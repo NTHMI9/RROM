@@ -1,0 +1,319 @@
+#!/sbin/sh
+#script by @chamchamfy
+OUTFD=/proc/self/fd/$2
+ZIPFILE="$3"
+
+ui_print() {
+  echo -e "ui_print $1\nui_print" >>$OUTFD
+}
+
+package_extract_file() {
+  ui_print " - Trích xuất $(echo $1 | awk -F "/" '{print $NF}') đến phân vùng $(echo $2 | awk -F "/" '{print $NF}')"
+  unzip -p "$ZIPFILE" $1 >$2
+}
+
+package_extract_zstd() {
+  ui_print " - Trích xuất $(echo $1 | awk -F "/" '{print $NF}') đến phân vùng $(echo $2 | awk -F "/" '{print $NF}')"
+  unzip -p "$ZIPFILE" $1 | $bin/zstd -c -d >$2
+}
+
+keyListener() {
+  ui_print "Ấn [Volume+] để chọn Có, ấn [Volume-] để chọn Không"
+  ui_print ""
+  keyListener_2
+}
+
+keyListener_2() {
+  getevent -qlc 1 2>&1 | grep VOLUME | grep "DOWN" >/tmp/events
+  if $(grep -q "VOLUMEUP" /tmp/events); then
+    ui_print " - Đang xử lý, vui lòng chờ......"
+    return 0
+  elif $(grep -q "VOLUMEDOWN" /tmp/events); then
+    ui_print " - Đang xử lý, vui lòng chờ......"
+    return 1
+  else
+    keyListener_2
+  fi
+}
+
+taosuper() { 
+echo " - Tạo super..."
+rm -f $superf 
+case $khe in 
+_a | _b)
+ khe='_a' 
+ khekhac='_b' 
+ sokhe='3' 
+ phanvungao='--virtual-ab' 
+ nhom='qti_dynamic_partitions_a' 
+ nhomkhac='qti_dynamic_partitions_b';;
+*)
+ sokhe='1' 
+ nhom='main'
+ unset khe khekhac nhomkhac phanvungao;;
+esac 
+cd $superd 
+# [ "$sokhe" == "3" ] && for ten in $danhsach; do ten=${ten//_a/}; mv -f $ten.img ${ten}_a.img; done
+superr=$(wc -c < $blk/super)
+for ten in $danhsach; do 
+if [ -s $ten.img ]; then 
+  kichco=$(wc -c < $ten.img)
+  tenkhac=${ten//_a/_b}
+  [ "$sokhe" == "3" ] && touch $tenkhac.img
+  npv="--partition $ten:none:$kichco:$nhom --image $ten=$ten.img" 
+  nhomphanvung+="$npv "
+  npvk="--partition $tenkhac:none:0:$nhomkhac --image $tenkhac=$tenkhac.img"
+  nhomphanvungkhac+="$npvk "
+fi 
+done
+nhomphanvung="--group $nhom:$superr $nhomphanvung"; 
+nhomphanvungkhac="--group $nhomkhac:$superr $nhomphanvungkhac"; 
+[ "$sokhe" == "1" ] && unset nhomphanvungkhac 
+taophanvung="$phanvungao --device super:$superr --metadata-slots $sokhe --metadata-size 65536 --super-name super $nhomphanvung $nhomphanvungkhac -o $superf"
+ssuper=$(du -sb $superd | awk '{print int($1)}') 
+echo $taophanvung
+[ "$superr" -gt "$ssuper" ] && $bin/lpmake $taophanvung || echo "- Kích cỡ tổng các phân vùng lớn hơn kích cỡ super" 
+} 
+
+taoext() { 
+echo "- Tạo ext4..." 
+for ten in $danhsach; do 
+if [ -s $superd/$ten.img ]; then 
+tens=$ten 
+ten=${ten//_a/} && ten=${ten//_b/} && mkdir -p -m 0777 $supert/$ten 
+mv -f $superd/$tens.img $superd/$ten.img
+cd $supert/$ten && $bin/erofs -x -f -i $superd/$ten.img
+rm -f $superd/$ten.img 
+size=$(du -sk $supert/$ten | awk '{print int($1*1.05)}')K
+if [ "$ten" == "system" ]; then DIEM='/' && TEN='/'; cp -af $bin/sext $superd/$ten.img; else DIEM="/$ten" && TEN="$ten"; cp -af $bin/vext $superd/$ten.img; fi 
+fcontexts="-S $supert/config/${ten}_file_contexts" 
+fsconfig="-C $supert/config/${ten}_fs_config"
+$bin/make_ext4fs -J -T "1230768000" -a "$DIEM" -l $size -L $TEN $fcontexts $fsconfig $supert/$ten.img $supert/$ten/ 
+rm -rf $supert/$ten 
+mkdir -p /t
+umount /t
+umount /$ten
+mount -w -t auto $supert/$ten.img /t
+[ "$ten" == "system" ] && mount -w -t auto $superd/$ten.img /system_root || mount -w -t auto $superd/$ten.img /$ten 
+[ "$ten" == "system" ] && cp -fpr /t/* /system_root || cp -fpr /t/* /$ten 
+umount /t
+[ "$ten" == "system" ] && umount /system_root || umount /$ten 
+rm -rf $supert/$ten.img 
+tune2fs -E hash_alg=half_md4 -O extra_attr,dir_index,filetype,extent,sparse_super,large_file,huge_file,uninit_bg,dir_nlink,extra_isize -e continue -o +user_xattr $superd/$ten.img
+tune2fs -o +acl -L "$TEN" -M "$DIEM" -c 20 $superd/$ten.img
+mv -f $superd/$ten.img $superd/$tens.img
+fi 
+done 
+}
+
+pfstab() { 
+for m in fstab.default fstab.emmc fstab.at.qcom fstab-wlan.qcom; do 
+if [ -f /vendor/etc/$m ]; then Fstab=/vendor/etc/$m
+Pfs=',avb ,avb_keys ,quota ,inlinecrypt ,wrappedkey ,verifyatboot ,fsverify ,verify'; 
+for i in $Pfs; do [ -n "$(grep "$i" $Fstab)" ] && sed -i "s|$i||g" $Fstab; done 
+Pfe='forceencrypt= forcefdeorfbe= fileencryption= encryptable= metadata_encryption= keydirectory= avb= avb_keys='; 
+for k in $Pfe; do tim=$(grep -m1 "$k" $Fstab) && [ -n "$tim" ] && doi=${tim#*"$k"} && doi=${k}${doi%%,*} && sed -i "s|,$doi||g" $Fstab; done 
+Pf='slotselect= first_stage_mount_keys=' 
+for n in $Pf; do tim=$(grep -m1 "$n" $Fstab) && [ -n "$tim" ] && doi=${tim#*"$n"} && doi=${n}${doi%%,*} && moi=${n//=/} && moi=${moi//_keys/} && sed -i "s|$doi|$moi|g" $Fstab; done  
+chmod 0644 /vendor/etc/$m
+[ -z "$(grep 'avb' /vendor/etc/$m)" ] && ui_print "+ Đã vá $m" || ui_print "- Không thể vá $m" 
+fi 
+done 
+} 
+
+khe=$(getprop ro.boot.slot_suffix) 
+blk=/dev/block/by-name 
+map=/dev/block/mapper
+bin=/tmp/bin/android
+KI=/tmp/aik
+superd=/data/local/superd
+superf=/data/local/super.img
+supert=/data/local/supert
+danhsach='system system_a system_b vendor vendor_a vendor_b system_ext system_ext_a system_ext_b product product_a product_b odm odm_a odm_b mi_ext mi_ext_a mi_ext_b system_dlkm system_dlkm_a system_dlkm_b vendor_dlkm vendor_dlkm_a vendor_dlkm_b'
+[ -d $bin ] && rm -rf $bin
+mkdir -p -m 0777 $bin $KI $superd $supert 
+unzip "$ZIPFILE" bin/android/* -d /tmp
+chmod -R 0777 $bin
+
+ui_print " "
+ui_print "======================================"
+ui_print "ROM: MIUI"
+ui_print "Device: "
+ui_print "Author: chamchamfy"
+ui_print "======================================"
+ui_print " "
+ui_print " "
+ui_print "- Cài đặt Magisk(Root)"
+if keyListener; then
+  for tim in boot boot_a boot_b; do 
+  [ -e "$blk/$tim" ] && package_extract_file "images/boot_magisk.img" "$blk/$tim"
+  done 
+  ui_print "+ Cài đặt hoàn tất Magisk(Root)"
+  ui_print " "
+  ui_print "+ Tắt tất cả các mô-đun Magisk để có thể khởi động bình thường?"
+  if keyListener; then
+    for list in $(ls -d /data/adb/modules/*); do
+      touch $list/disable
+    done
+    ui_print "+ Đã tắt các mô-đun Magisk"
+  else
+    ui_print "+ Không tắt mô-đun Magisk"
+  fi
+else
+  for tim in boot boot_a boot_b; do 
+  [ -e "$blk/$tim" ] && package_extract_file "images/boot.img" "$blk/$tim"
+  done 
+  ui_print "+ Không cài đặt Magisk(Root)"
+fi
+ui_print " "
+ui_print "- Cập nhật firmware"
+if [ -z "$khe" ]; then 
+[ -e $blk/modem ] && package_extract_file "images/NON-HLOS.bin" "$blk/modem"
+[ -e $blk/bluetooth ] && package_extract_file "images/BTFM.bin" "$blk/bluetooth"
+[ -e $blk/dsp ] && package_extract_file "images/dspso.bin" "$blk/dsp"
+[ -e $blk/keymasterk ] && package_extract_file "images/km4.mbn" "$blk/keymaster"
+[ -e $blk/uefisecapp ] && package_extract_file "images/uefi_sec.mbn" "$blk/uefisecapp"
+[ -e $blk/cmnlib64bak ] && package_extract_file "images/cmnlib64.mbn" "$blk/cmnlib64bak"
+[ -e $blk/cmnlibbak ] && package_extract_file "images/cmnlib.mbn" "$blk/cmnlibbak"
+[ -e $blk/tzbak ] && package_extract_file "images/tz.mbn" "$blk/tzbak"
+[ -e $blk/aopbak ] && package_extract_file "images/aop.mbn" "$blk/aopbak"
+[ -e $blk/storsecbak ] && package_extract_file "images/storsec.mbn" "$blk/storsecbak"
+[ -e $blk/devcfgbak ] && package_extract_file "images/devcfg.mbn" "$blk/devcfgbak"
+[ -e $blk/hypbak ] && package_extract_file "images/hyp.mbn" "$blk/hypbak"
+[ -e $blk/ablbak ] && package_extract_file "images/abl.elf" "$blk/ablbak"
+[ -e $blk/qupfwbak ] && package_extract_file "images/qupv3fw.elf" "$blk/qupfwbak"
+[ -e $blk/qupfw ] && package_extract_file "images/qupv3fw.elf" "$blk/qupfw"
+for ten in cmnlib64 tz aop featenabler cmnlib devcfg storsec hyp; do [ -e $blk/$ten ] && package_extract_file "images/$ten.mbn" "$blk/$ten"; done 
+for ten in xbl_config_5 xbl_5 xbl_config_4 abl xbl_4; do [ -e $blk/$ten ] && package_extract_file "images/$ten.elf" "$blk/$ten"; done 
+for ten in logo dtbo vbmeta vbmeta_system vbmeta_vendor vendor_boot; do [ -e $blk/$ten ] && package_extract_file "images/$ten.img" "$blk/$ten"; done 
+else 
+for ten in abl aop bluetooth cmnlib64 cmnlib cpucp devcfg dsp dtbo featenabler hyp imagefv keymaster modem qupfw shrm tz uefisecapp vbmeta vbmeta_system vendor_boot xbl_config xbl; do 
+[ -e $blk/${ten}_a ] && package_extract_file "images/$ten.img" "$blk/${ten}_a"
+[ -e $blk/${ten}_b ] && package_extract_file "images/$ten.img" "$blk/${ten}_b"
+done 
+fi 
+
+ui_print " "
+ui_print "- Cập nhật hệ thống"
+[ -e $blk/cust ] && package_extract_file "images/cust.img" "$blk/cust"
+[ -e $blk/super ] && package_extract_zstd "images/super.img.zst" "$blk/super"
+[ -e $blk/recovery ] && package_extract_file "images/recovery.img" "$blk/recovery"
+
+ui_print "- Thay đổi RW?"
+if keyListener; then
+ [ -e $blk/super ] && blockdev --setrw $blk/super
+if [ -n "$($bin/hexdump -n 4000 $(ls $map/product*) | grep 'e1e2 e0f5')" ]; then 
+ for ten in $danhsach; do [ -e $map/$ten ] && dd if=$map/$ten of=$superd/$ten.img; done 
+# for ten in $danhsach; do [ -e $map/$ten ] && ln -s $map/$ten $superd/$ten.img; done 
+ taoext 
+ui_print "- Vá fstab?"
+if keyListener; then
+for v in vendor vendor_a vendor_b; do umount /vendor; [ -s $superd/$v.img ] && mount -w -t auto $superd/$v.img /vendor && pfstab; umount /vendor; done 
+else
+  ui_print "+ Bỏ qua"
+fi
+ taosuper 
+ [ -s $superf ] && dd if=$superf of=$blk/super
+fi 
+if [ -n "$($bin/hexdump -n 4000 $(ls $map/product*) | grep 'ef53')" ]; then 
+ if [ -n "$(tune2fs -l $map/product* | grep 'shared_blocks')" ]; then 
+  cd $superd 
+  for ten in $danhsach; do 
+ [ -e $map/$ten ] && dd if=$map/$ten of=$superd/$ten.img
+# [ -e $map/$ten ] && ln -s $map/$ten $superd/$ten.img
+  if [ -s $ten.img ]; then 
+ e2fsck -fy $ten.img
+ resize2fs $ten.img $(wc -c $ten.img | awk '{print int($1*1.09/1024)}')K
+ e2fsck -y -E unshare_blocks $ten.img >/dev/null 2>&1
+ e2fsck -fy $ten.img
+ resize2fs $ten.img
+  fi 
+  done 
+ui_print "- Vá fstab?"
+if keyListener; then
+ for v in vendor vendor_a vendor_b; do umount /vendor; [ -s $superd/$v.img ] && mount -w -t auto $superd/$v.img /vendor && pfstab; umount /vendor; done 
+else
+  ui_print "+ Bỏ qua"
+fi
+ taosuper 
+ [ -s $superf ] && dd if=$superf of=$blk/super
+ fi 
+fi
+rm -rf $superd $superf $supert
+for ten in $danhsach; do 
+if [ -e $map/$ten ]; then 
+ if [ -n "$($bin/hexdump -n 4000 $map/$ten | grep 'ef53')" ]; then 
+ [ -n "$(tune2fs -l $map/$ten | grep 'shared_blocks')" ] && ui_print "- Phân vùng $ten chỉ đọc" || ui_print "+ Phân vùng $ten có quyền ghi đọc"
+ fi
+fi 
+done
+else
+  ui_print "+ Bỏ qua"
+fi
+sleep 1
+ui_print "- Vá boot?"
+if keyListener; then 
+for ten in boot boot_a boot_b vendor_boot vendor_boot_a vendor_boot_b; do 
+ if [ -e $blk/$ten ]; then 
+ bootp=$blk/$ten
+ bootf=$KI/$ten.img
+ bootn=$KI/$ten.new.img
+ dd if=$bootp of=$bootf 
+ cd $KI
+ magiskboot cleanup 
+ magiskboot unpack -h "$bootf"
+ for dt in dtb kernel_dtb extra recovery_dtbo; do [ -f $dt ] && magiskboot dtb $dt patch; done 
+ [ -f ramdisk.cpio ] && magiskboot cpio ramdisk.cpio patch; 
+ magiskboot hexpatch kernel \
+  736B69705F696E697472616D667300 \
+  77616E745F696E697472616D667300 
+ magiskboot hexpatch kernel \ 49010054011440B93FA00F71E9000054010840B93FA00F7189000054001840B91FA00F7188010054 \  A1020054011440B93FA00F7140020054010840B93FA00F71E0010054001840B91FA00F7181010054 
+ magiskboot hexpatch kernel 821B8012 E2FF8F12 
+ magiskboot repack "$bootf" "$bootn"
+ [ -s $bootn ] && dd if=$bootn of=$bootp
+ [ $? -eq 0 ] && ui_print "+ Vá $ten xong" || ui_print "- Vá $ten lỗi" 
+ magiskboot cleanup 
+ fi
+done
+else
+  ui_print "+ Bỏ qua"
+fi
+sleep 1
+ui_print "- Vá fstab?"
+if keyListener; then 
+umount /vendor 
+if [ -e $blk/vendor ]; then mount -w -t auto $blk/vendor /vendor; elif [ -e $map/vendor_a ]; then mount -w -t auto $map/vendor_a /vendor; fi 
+pfstab 
+umount /vendor 
+else
+  ui_print "+ Bỏ qua"
+fi
+sleep 1
+ui_print "- Vá vbmeta?"
+if keyListener; then
+  for ten in vbmeta vbmeta_a vbmeta_b vbmeta_system vbmeta_system_a vbmeta_system_b vbmeta_vendor vbmeta_vendor_a vbmeta_vendor_b; do [ -e $blk/$ten ] && dd of=$blk/$ten bs=1 seek=123 count=1 conv=notrunc status=none; done
+  ui_print "+ Đã vá vbmeta"
+else
+  ui_print "+ Bỏ qua"
+fi
+sleep 1
+ui_print "- Tắt verify?"
+if keyListener; then
+  avbctl --force disable-verity 
+  avbctl --force disable-verification 
+  ui_print "+ Đã tắt verify"
+else
+  ui_print "+ Bỏ qua"
+fi
+
+# Kích hoạt khe hoạt động
+[ -n "$khe" ] && bootctl set-active-boot-slot 0
+
+ui_print " "
+ui_print "- Đã flash xong! " 
+ui_print "======================================"
+ui_print "Vui lòng bỏ qua thông báo lỗi mount màu đỏ"
+ui_print "======================================"
+ui_print " "
+
+exit 0
