@@ -1,0 +1,41 @@
+name: REBUILD Rom MIUI by chamchamfy & kakathic
+on: 
+  workflow_dispatch:
+    inputs:
+      URL:
+        description: 'Hãy điền đường dẫn url của link rom để tải xuống'
+        required: true
+        default: 'https://bigota.d.miui.com/V14.0.1.0.TKDMIXM/miui_VILIGlobal_V14.0.1.0.TKDMIXM_81b331177e_13.0.zip'
+      SIZE:
+        description: 'Kích cỡ phân vùng super'
+        required: true
+        default: '8.5'
+      NNTV:
+        description: 'Ngôn ngữ dành riêng cho khu vực'
+        required: true
+        default: 'Viet_Nam'
+        type: choice
+        options:
+          - Viet_Nam
+          
+jobs:
+  build:
+    name: 'Xem quá trình...'
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: 'Xem thông báo'
+        env:
+          URL: ${{ inputs.URL }}
+          SIZE: ${{ inputs.SIZE }}
+          NNTV: ${{ inputs.NNTV }}
+        run: |
+          # Rom Rebuild 
+          bash .github/Chay.sh
+      - uses: actions/upload-artifact@v3
+        with:
+          name: RROM_${{ env.TENZ }}
+          path: .github/libpy/Flash2in1/*
+          retention-days: 2
+     
