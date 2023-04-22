@@ -1,0 +1,24 @@
+name: 'Test CODE'
+on: 
+  workflow_dispatch:
+jobs:
+  build:
+    name: 'Xem hoạt động'
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: 'Xem thông báo'
+        shell: bash
+        run: |
+          # kakathic
+          bash .github/Test.sh
+          TENZ="miui_ALIOTH_V13.0.7.0.SKHCNXM_98b397a7dc_12.0.zip"
+          echo "TENZ=$TENZ" >> $GITHUB_ENV
+          echo "TENZ=$TENZ" >> 123.txt
+      - name: 'Upload Rom'
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.TENZ }}
+          path: 123.txt
+          retention-days: 2
