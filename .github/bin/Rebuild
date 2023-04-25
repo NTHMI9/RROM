@@ -2,6 +2,7 @@
 #chamchamfy
 TOME="$GITHUB_WORKSPACE"
 Phanvung="system system_a vendor vendor_a product product_a system_ext odm odm_a mi_ext mi_ext_a system_dlkm system_dlkm_a vendor_dlkm vendor_dlkm_a"; 
+danhsach='system vendor system_ext product odm mi_ext system_dlkm vendor_dlkm' 
 Ungdung="ThemeManager.apk MIUIThemeManager.apk miui.apk miuisystem.apk framework.jar miui-framework.jar framework-ext-res.apk framework-res.apk miui-services.jar services.jar MiuiSystemUI.apk Settings.apk MiuiPackageInstaller.apk MIUIPackageInstaller.apk MiuiHome.apk MIUIWeather.apk Weather.apk MiuiFrequentPhrase.apk MIUISecurityCenter.apk SecurityCenter.apk PowerKeeper.apk"; 
 Boot="boot boot_a vendor_boot vendor_boot_a"; 
 pydump="python3 $TOME/.github/libpy/payload_dumper.py" 
@@ -19,7 +20,7 @@ Xem() { curl -s -L -G -H "$User" "$@"; }
 apktool() { java -Xmx512M -Dfile.encoding=utf-8 -jar $TOME/.github/Tools/kikfox.jar "$@"; } 
 baksmali() { java -Xmx4g -jar $TOME/.github/Tools/baksmali-2.3.4.jar "$@"; } 
 smali() { java -Xmx4g -jar $TOME/.github/Tools/smali-2.5.2.jar "$@"; } 
-sudo mkdir -p $TOME/{tmp,Unpack,Repack,Unzip,Payload,Super,Apk,Mod/tmp,VH,Up} 
+mkdir -p $TOME/{tmp,Unpack,Repack,Unzip,Payload,Super,Apk,Mod/tmp,VH,Up} 
 
 Taidulieu() { 
 Tenrom=${URL##*/} && Tenr=${Tenrom%.*} && Dinhdang=${URL##*.}; 
@@ -34,7 +35,7 @@ if [[ -s $TOME/$Tenrom ]]; then
 [[ "$Dinhdang" == "zip" ]] && unzip -qo "$TOME/$Tenrom" -d "$TOME/Unzip"
 [[ "$Dinhdang" == "tgz" ]] && tar -xf "$TOME/$Tenrom" -C "$TOME/Unzip"
 [[ -s $TOME/Unzip/images/super.img ]] && mv -f $TOME/Unzip/images/super.img $TOME/Unzip/super.img 
-ls $TOME/Unzip 
+#ls $TOME/Unzip 
 else echo "- Không có tập tin rom"
 fi 
 }
@@ -85,34 +86,35 @@ for B in $Boot; do [[ -s $B ]] && mv -f $TOME/Unzip/$B $TOME/tmp/${B//_a/}.img 2
 for Doi in $Phanvung; do [[ -s $TOME/Super/$Doi.img ]] && mv -f $TOME/Super/$Doi.img $TOME/Super/${Doi//_a/}.img 2>/dev/null; done 
 
 for Ten in system vendor system_ext product odm mi_ext vendor_dlkm system_dlkm; do 
+cd $TOME/Super 
  if [[ -s $TOME/Super/$Ten.img ]]; then 
   sudo mkdir -p /mnt/tmp/$Ten 
   if [[ -n "$(hexdump -n 4000 $Ten.img | grep 'e1e2 e0f5')" ]]; then 
    echo " ✓ Trích xuất $Ten.img erofs"
-   cd /mnt/tmp/$Ten && $erofsextract -x -f -i $TOME/Super/$Ten.img >/dev/null 2>&1
+   cd /mnt/tmp && $erofsextract -x -f -i $TOME/Super/$Ten.img >/dev/null 2>&1
    cd $TOME/Super 
-   echo " ✓ Trích xuất $Ten.img xong"
+  [[ -n "$(ls /mnt/tmp/$Ten)" ]] && echo " ✓ Trích xuất $Ten.img xong"
   elif [[ -n "$(hexdump -n 4000 $Ten.img | grep 'ef53')" ]]; then 
    echo " ✓ Trích xuất $Ten.img ext4" 
    $imgextract $Ten.img /mnt/tmp
-   echo " ✓ Trích xuất $Ten.img xong"
+     [[ -n "$(ls /mnt/tmp/$Ten)" ]] && echo " ✓ Trích xuất $Ten.img xong"
   elif [[ -n "$(hexdump -n 4 $Ten.img | grep 'ff3a')" ]]; then 
    echo " ✓ Trích xuất $Ten.img ext4 sparse" 
    mv -f $Ten.img ${Ten}s.img && simg2img ${Ten}s.img $Ten.img && $imgextract $Ten.img /mnt/tmp
-   echo " ✓ Trích xuất $Ten.img xong"
+     [[ -n "$(ls /mnt/tmp/$Ten)" ]] && echo " ✓ Trích xuất $Ten.img xong"
   else echo " ✓ Không biết định dạng!" 
   fi 
-  [[ -n "$(ls /mnt/tmp/$Ten)" ]] && for Ud in $Ungdung; do sudo cp -af $(sudo find /mnt/tmp/$Ten -type f -name "$Ud") $TOME/Apk; done
+  [[ -n "$(ls /mnt/tmp/$Ten)" ]] && for K in $Ungdung; do APK=$(sudo find /mnt/tmp/$Ten -type f -name "$K"); [[ -n "$APK" ]] && cp -af $APK $TOME/Apk; done
  fi
 done 
+[[ -d /mnt/tmp/config ]] && sudo cp -af /mnt/tmp/config $TOME/tmp
 [[ -z "$(ls $TOME/Apk)" ]] && echo "- Trích ứng dụng lỗi" || echo "- Trích ứng dụng xong!"
 }
 
 Mod() {
 . $TOME/Option.md
-
-API=$(sudo grep ro.build.version.sdk= /mnt/tmp/system/system/build.prop | cut -d = -f2)
-[[ "$API" -ge 31 ]] && m='miui-'
+API=$(sudo grep 'ro.build.version.sdk=' /mnt/tmp/system/system/build.prop | cut -d = -f2)
+[[ "$API" ]] && API=31
 # Thư mục chứa tập tin: $TOME/Apk
 [[ -z "$(ls $TOME/Apk)" ]] && echo "- Không có tập tin nào!"  
 # Thư mục chứa apk,jar đã mod: $TOME/Mod
@@ -146,13 +148,13 @@ done
 Repackfile() {
 for bapk in $TOME/Mod/*.*; do
 if [[ "${bapk##*.}" == 'apk' ]] || [[ "${bapk##*.}" == 'jar' ]]; then
-for bsmali in $(cat ${bapk%.*}/class | sed "s|$TOME/Mod/||g" | cut -d '/' -f2 | sort | uniq); do
-if [[ -e "$bsmali".dex ]]; then
-rm -fr "$bsmali".dex
-smali a --api $API ${bapk%.*}/$bsmali -o "${bapk%.*}/$bsmali".dex
+for class in $(ls -d ${bapk%.*}/class*); do
+if [[ -f $class.dex ]]; then
+rm -fr $class.dex
+smali a --api $API $class -o $class.dex
 fi
 done
-unset bsmali
+unset class
 cd ${bapk%.*}
 sudo zip -qr $bapk '*.dex'
 zipalign -f 4 $bapk $TOME/Mod/tmp/${bapk##*/}
@@ -162,7 +164,7 @@ done
 }
 
 Timfile() {
-sudo cp -f $(sudo find /mnt/tmp/* -name "$1") $TOME/Mod
+sudo cp -af $(sudo find /mnt/tmp/* -name "$1") $TOME/Mod
 }
 
 ngonngu() { 
@@ -178,27 +180,41 @@ fi
 } 
 
 Caidat() {
-Timfile 'Settings.apk'
+cp -af $TOME/Apk/Settings.apk $TOME/Mod
+if [[ -f $TOME/Mod/Settings.apk ]]; then 
 Unpackfile
 sed -i 's/"MIUI "/"MIUID "/g' Settings/classes*/com/android/settings/device/MiuiAboutPhoneUtils.smali >/dev/null 2>&1
 sed -i 's/"by "/" "/g' Settings/classes*/com/android/settings/device/MiuiAboutPhoneUtils.smali >/dev/null 2>&1 
 Repackfile
+fi 
 }
 
 Dichvu() { 
-Timfile ''$m'services.jar'
+cp -af $TOME/Apk/*services.jar $TOME/Mod
+if [[ -f $TOME/Mod/services.jar ]]; then 
 Unpackfile 
-# Xoá Getapps
 Vsmali ".method private checkSystemSelfProtection(Z)V" \
 ".end method" \
 '.method private checkSystemSelfProtection(Z)V
     .locals 1
     return-void
 .end method' \
-''$m'services/classes*/com/miui/server/*'
+'services/classes*/com/miui/server/*'
 Repackfile 
+fi 
+if [[ -f $TOME/Mod/miui-services.jar ]]; then 
+Unpackfile 
+Vsmali ".method private checkSystemSelfProtection(Z)V" \
+".end method" \
+'.method private checkSystemSelfProtection(Z)V
+    .locals 1
+    return-void
+.end method' \
+'miui-services/classes*/com/miui/server/*'
+Repackfile 
+fi 
 }
-ngonngu
+#ngonngu
 Dichvu
 Caidat
 }
@@ -206,7 +222,7 @@ Caidat
 Debloat() {
 Phanvung="system vendor product system_ext odm mi_ext system_dlkm vendor_dlkm"; 
 Danhsachxoa=$(cat $TOME/Delete_apps.md)
-api=$(sudo grep 'ro.build.version.sdk=' /mnt/tmp/system/system/build.prop | awk -F= '{print $2}');
+API=$(sudo grep 'ro.build.version.sdk=' /mnt/tmp/system/system/build.prop | awk -F= '{print $2}');
 
 Xoataptin() { 
 for DS in $Danhsachxoa; do Tim=$(sudo find $DATA -name "$DS") && [[ -e $Tim ]] && sudo rm -rf $Tim; done 
@@ -232,7 +248,7 @@ if [[ "$Ten" == "system" ]]; then
    unset i; 
    for i in ThemeManager.apk MIUIThemeManager.apk MIUIPackageInstaller.apk MiuiPackageInstaller.apk miuisystem.ak miui.apk; do [[ -f $TOME/Mod/$i ]] && sudo cp -frp $TOME/Mod/$i $DATA/system/app/${i%.*}; done 
   sudo cp -frp $TOME/Mod/system/* $DATA/system 2>/dev/null
-   Prop='persist.sys.allow_sys_app_update=true ro.control_privapp_permissions=disable ro.vendor.display.default_fps=60,90,120 persist.vendor.dfps.level=60,90,120 ro.vendor.audio.spk.clean=true ro.boot.veritymode=enforcing' && for k in $Prop; do t=$(echo $k | awk -F= '{print $1}') && [[ -n "$(sudo grep "$t" $DATA/system/build.prop)" ]] && sed -i "/$t/d" $DATA/system/build.prop && echo "$k" >> $DATA/system/build.prop; done 
+   Prop='persist.sys.allow_sys_app_update=true ro.control_privapp_permissions=disable ro.vendor.display.default_fps=60,90,120 persist.vendor.dfps.level=60,90,120 ro.vendor.audio.spk.clean=true ro.boot.veritymode=enforcing' && for k in $Prop; do t=$(echo $k | awk -F= '{print $1}') && [[ -n "$(sudo grep "$t" $DATA/system/build.prop)" ]] && sudo sed -i "/$t/d" $DATA/system/build.prop && sudo bash -c "echo '$k' >> $DATA/system/build.prop"; done 
   fi 
 fi 
  
@@ -257,27 +273,27 @@ fi
 } 
 
 Cauhinh() {
-Tenfc=/mnt/tmp/config/${Ten}_file_contexts
-Tenfs=/mnt/tmp/config/${Ten}_fs_config
+Tenfc=$TOME/tmp/config/${Ten}_file_contexts
+Tenfs=$TOME/tmp/config/${Ten}_fs_config
 if [[ "$Ten" == "system" ]]; then 
 sudo sed -i '/system\/lost/d' $Tenfc
-sudo bash -c "echo "$(grep 'system/' $Tenfc | sed -e '/\/system\/system\//d' -e '/+found/d' -e 's|system/||1' -e '/\/system /d; /\/system(/d')
+sudo bash -c "echo '$(grep 'system/' $Tenfc | sed -e '/\/system\/system\//d' -e '/+found/d' -e 's|system/||1' -e '/\/system /d; /\/system(/d')
 /system/lost\+found u:object_r:rootfs:s0
 /system/system/media/theme/default/framework-miui-res u:object_r:system_file:s0
 /system/system/bin/spm u:object_r:system_file:s0
 /system/system/etc/init/init\.spm\.rc u:object_r:system_file:s0
-/system/system/etc/sysconfig/nexus\.xml u:object_r:system_file:s0" >> $Tenfc"
+/system/system/etc/sysconfig/nexus\.xml u:object_r:system_file:s0' >> $Tenfc"
 
-sudo bash -c "echo "$(grep 'system/' $Tenfs | sed -e 's|system/||1')
-system/system/media/theme/default/framework-miui-res 0 0 0644
+echo "$(grep 'system/' $Tenfs | sed -e '/\/system\/system\//d' -e 's|system/||1')" >/dev/null | sudo tee -a $Tenfs
+sudo bash -c "echo 'system/system/media/theme/default/framework-miui-res 0 0 0644
 system/system/bin/spm 0 0 0777
 system/system/etc/init/init.spm.rc 0 0 0644
-system/system/etc/sysconfig/nexus.xml 0 0 0644" >> $Tenfs"
-fi 
+system/system/etc/sysconfig/nexus.xml 0 0 0644' >> $Tenfs"
+fi
 
-[[ -d $home/$Ten/media ]] && sudo bash -c "echo "$Ten/media/theme 0 0 0755
-$Ten/media/theme/default 0 0 0755
-$Ten/media/theme/default/framework-miui-res 0 0 0644" >> $Tenfs"
+[ -d $HOME/$TEN/media ] && sudo bash -c "echo '$TEN/media/theme 0 0 0755
+$TEN/media/theme/default 0 0 0755
+$TEN/media/theme/default/framework-miui-res 0 0 0644' >> $Tenfs"
 } 
 
 Taoext() {
@@ -289,8 +305,8 @@ Taoext() {
  echo "- Tạo $Ten.img ext4" 
 if [[ "$Ten" == "system" ]]; then DIEM='/'; TEN='/'; else DIEM="/$Ten"; TEN="$Ten"; fi 
 
-if [[ "$api" -lt 28 ]]; then 
- Size=$(sudo du -sk $DATA | awk '{print int($1*1.05)}')K 
+if [[ "$API" -lt 28 ]]; then 
+ Size=$(sudo du -sk $DATA | awk '{print int($1*1.09)}')K 
  sudo $mkext4 -J -T "1230768000" -a "$DIEM" -l "$Size" -L "$TEN" -S $Tenfc -C $Tenfs $TOME/tmp/$Ten.raw $DATA/; 
  sudo rm -rf $DATA
  [[ -n "$(ls $TAM)" ]] && sudo umount $TAM
@@ -309,8 +325,12 @@ if [[ "$api" -lt 28 ]]; then
  sudo umount $NEW
  sudo rm -f $TOME/tmp/$Ten.raw
 else
- Size=$(sudo du -sb $DATA | awk '{print int($1*1.05)}') 
-sudo $mkuserimg $DATA/ $TOME/tmp/$Ten.img ext4 "$DIEM" $Size -j "0" -T "1230768000" -C $Tenfs -L "$TEN" -I "256" -M "$DIEM" -m "0" $Tenfc; 
+ Size=$(sudo du -sb $DATA | awk '{print int($1*1.09)}')
+ for K in odm mi_ext vendor_dlkm system_dlkm; do [[ "$Ten" == "$K" ]] && Size=$(echo "16" | awk '{print int($1*1024*1024)}'); done 
+ 
+ sudo $mkuserimg $DATA/ $TOME/tmp/$Ten.img ext4 "$DIEM" $Size -j "0" -T "1230768000" -C $Tenfs -L "$TEN" -I "256" -M "$DIEM" -m "0" $Tenfc 
+
+ for K in odm mi_ext vendor_dlkm system_dlkm; do [[ "$Ten" == "$K" ]] && e2fsck -fy $TOME/tmp/$K.img >/dev/null 2>&1 && resize2fs -f -M $TOME/tmp/$K.img >/dev/null 2>&1 && resize2fs -f -M $TOME/tmp/$K.img >/dev/null 2>&1; done 
 fi 
 
 tune2fs -E hash_alg=half_md4 -O dir_index,filetype,extent,sparse_super,large_file,huge_file,uninit_bg,dir_nlink,extra_isize -e continue -o +user_xattr $TOME/tmp/$Ten.img >/dev/null 2>&1 
@@ -372,14 +392,14 @@ magiskboot cleanup >/dev/null 2>&1
 } 
 
 cd $TOME/Super 
-for Ten in $Phanvung; do 
+for Ten in $danhsach; do 
  TAM=/mnt/$Ten
  DATA=/mnt/tmp/$Ten
  NEW=/mnt/new
  if [[ -s $TOME/Super/$Ten.img ]]; then 
   [[ ! -e $TAM ]] && sudo mkdir -p $TAM
   [[ ! -e $NEW ]] && sudo mkdir -p $NEW
-  echo "- Xử lý $Ten.img"
+  echo "+ Xử lý $Ten.img"
   case $Dinhdangphanvung in 
 ext4) Taoext;; 
 erofs) Taoerofs;; 
@@ -394,7 +414,7 @@ erofs) Taoerofs;;
   fi 
 ;; 
 esac 
-  [[ -s $TOME/tmp/$Ten.img ]] && sudo mv -f $TOME/tmp/$Ten.img $TOME/Super && echo "- Xử lý $Ten.img xong"
+  [[ -s $TOME/tmp/$Ten.img ]] && sudo mv -f $TOME/tmp/$Ten.img $TOME/Super && echo "+ Xử lý $Ten.img xong" || echo "- Xử lý $Ten.img lỗi"
  fi 
 done 
 
@@ -413,8 +433,6 @@ fi
 
 # Kích cỡ phân vùng super 8.5GB/9GB
 superr=$(echo $SIZE | awk '{print int($1*1024*1024*1024)}');
-
-danhsach='system vendor system_ext product odm mi_ext system_dlkm vendor_dlkm' 
 
 if [[ -f $TOME/Payload/modem.img ]] || [[ -f $TOME/Unzip/images/modem.img ]] || [[ -f $TOME/Unzip/firmware-update/modem.img ]]; then 
  khe='_a' 
