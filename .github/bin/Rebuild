@@ -277,18 +277,19 @@ Tenfc=$TOME/tmp/config/${Ten}_file_contexts
 Tenfs=$TOME/tmp/config/${Ten}_fs_config
 if [[ "$Ten" == "system" ]]; then 
 sudo sed -i '/system\/lost/d' $Tenfc
-sudo bash -c "echo '$(grep 'system/' $Tenfc | sed -e '/\/system\/system\//d' -e '/+found/d' -e 's|system/||1' -e '/\/system /d; /\/system(/d')
+sudo bash -c "echo '$(grep 'system/' $Tenfc | sed -e '/\/system\/system\//d' -e '/+found/d' -e 's|system/||1' -e '/\/system /d; /\/system(/d')' >> $Tenfc"
+sudo bash -c "echo '/lost\+found u:object_r:rootfs:s0
 /system/lost\+found u:object_r:rootfs:s0
 /system/system/media/theme/default/framework-miui-res u:object_r:system_file:s0
 /system/system/bin/spm u:object_r:system_file:s0
 /system/system/etc/init/init\.spm\.rc u:object_r:system_file:s0
 /system/system/etc/sysconfig/nexus\.xml u:object_r:system_file:s0' >> $Tenfc"
 
-echo "$(grep 'system/' $Tenfs | sed -e '/\/system\/system\//d' -e 's|system/||1')" >/dev/null | sudo tee -a $Tenfs
-sudo bash -c "echo 'system/system/media/theme/default/framework-miui-res 0 0 0644
+echo "$(grep 'system/' $Tenfs | sed -e '/system\/ 0 0/d' -e 's|system/||1')
+system/system/media/theme/default/framework-miui-res 0 0 0644
 system/system/bin/spm 0 0 0777
 system/system/etc/init/init.spm.rc 0 0 0644
-system/system/etc/sysconfig/nexus.xml 0 0 0644' >> $Tenfs"
+system/system/etc/sysconfig/nexus.xml 0 0 0644" | sudo tee -a $Tenfs
 fi
 
 [ -d $HOME/$TEN/media ] && sudo bash -c "echo '$TEN/media/theme 0 0 0755
