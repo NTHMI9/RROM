@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
       - name: 'Xem thông báo'
         env:
           URL: ${{ inputs.URL }}
@@ -33,7 +33,7 @@ jobs:
         run: |
           # Rom Rebuild 
           bash .github/Chay.sh
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v6
         with:
           name: RROM_${{ env.TENZ }}
           path: .github/libpy/Flash2in1/*
