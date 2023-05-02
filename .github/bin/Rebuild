@@ -54,7 +54,7 @@ sudo bash -c "echo '$(grep "system/" $Tenfc | sed -e "/\/system\/system\//d" -e 
 /system/system/etc/init/init\.spm\.rc u:object_r:system_file:s0
 /system/system/etc/sysconfig/nexus\.xml u:object_r:system_file:s0' >> $Tenfc"
 
-sudo grep "system/" $Tenfs | sudo sed -e "/system\/ 0 0/d" -e "s|system/||1" >> $Tenfs
+sudo bash -c "grep 'system/' $Tenfs | sudo sed -e '/system\/ 0 0/d' -e 's|system/||1' >> $Tenfs"
 sudo bash -c "echo 'system/system/media/theme/default/framework-miui-res 0 0 0644
 system/system/bin/spm 0 0 0777
 system/system/etc/init/init.spm.rc 0 0 0644
