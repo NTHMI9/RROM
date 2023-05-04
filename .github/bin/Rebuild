@@ -23,6 +23,42 @@ baksmali() { java -Xmx4g -jar $TOME/.github/Tools/baksmali-2.3.4.jar "$@"; }
 smali() { java -Xmx4g -jar $TOME/.github/Tools/smali-2.5.2.jar "$@"; } 
 mkdir -p $TOME/{tmp,Unpack,Repack,Unzip,Payload,Super,Apk,Mod/tmp,VH,Up} 
 . $TOME/Option.md
+Timkiem() { find $TOME/Mod/$2 -name "*.smali" -exec grep -l "$1" {} +; } 
+Vsmali() {
+for Vka in $(Timkiem "$1" "$4"); do
+echo "MOD: $(echo "$1" | sed 's|\\||g')"
+sed -i -e "/^$1/,/$2/c $(echo "$3" | sed -z 's|\n|\\n|g')" "$Vka"
+echo "$Vka" >> $TOME/Mod/$(echo "$4" | sed "s|$TOME/Mod/||g" | cut -d '/' -f1)/class
+done
+}
+Unpackfile() {
+for vapk in $TOME/Mod/*.*; do
+mkdir -p ${vapk%.*}
+unzip -qo "$vapk" '*.dex' -d ${vapk%.*}
+for vsmali in ${vapk%.*}/*.dex; do
+baksmali d --api $API $vsmali -o ${vsmali%.*}
+done
+done
+}
+Repackfile() {
+for bapk in $TOME/Mod/*.*; do
+if [[ "${bapk##*.}" == 'apk' ]] || [[ "${bapk##*.}" == 'jar' ]]; then
+for class in $(ls -d ${bapk%.*}/class*); do
+if [[ -f $class.dex ]]; then
+rm -fr $class.dex
+smali a --api $API $class -o $class.dex
+fi
+done
+unset class
+cd ${bapk%.*}
+sudo zip -qr $bapk '*.dex'
+zipalign -f 4 $bapk $TOME/Mod/tmp/"${bapk##*/}"
+cp -rf $TOME/Mod/tmp/"${bapk##*/}" $bapk
+fi
+done
+}
+Timfile() { sudo cp -af $(sudo find /mnt/tmp/* -name "$1") $TOME/Mod; }
+#
 Taidulieu() { 
 Tenrom=${URL##*/} && Tenr=${Tenrom%.*} && Dinhdang=${URL##*.}; 
 echo "- Link Rom: $URL"
@@ -135,9 +171,9 @@ done
 [[ -d /mnt/tmp/config ]] && sudo cp -af /mnt/tmp/config $TOME/tmp
 sudo chmod -R 755 $TOME/tmp/config
 sudo cp -af /mnt/tmp/system/system/etc/selinux/plat_file_contexts $TOME/tmp/config/system_file_contexts 2>/dev/null
-sudo cat /mnt/tmp/system/etc/selinux/product_file_contexts >>$TOME/tmp/config/system_file_contexts 2>/dev/null
-sudo cat /mnt/tmp/system/etc/selinux/system_ext_file_contexts >>$TOME/tmp/config/system_file_contexts 2>/dev/null
-sudo cat /mnt/tmp/system/etc/selinux/vendor_file_contexts >>$TOME/tmp/config/system_file_contexts 2>/dev/null
+sudo bash -c "cat /mnt/tmp/system/etc/selinux/product_file_contexts >> $TOME/tmp/config/system_file_contexts" 2>/dev/null
+sudo bash -c "cat /mnt/tmp/system/etc/selinux/system_ext_file_contexts >> $TOME/tmp/config/system_file_contexts" 2>/dev/null
+sudo bash -c "cat /mnt/tmp/system/etc/selinux/vendor_file_contexts >> $TOME/tmp/config/system_file_contexts" 2>/dev/null
 [[ -z "$(ls $TOME/Apk)" ]] && echo "- Trích ứng dụng lỗi" || echo "- Trích ứng dụng xong!"
 }
 
@@ -148,70 +184,12 @@ API=$(sudo grep 'ro.build.version.sdk=' /mnt/tmp/system/system/build.prop | cut 
 [[ -z "$(ls $TOME/Apk)" ]] && echo "- Không có tập tin nào!"  
 # Thư mục chứa apk,jar đã mod: $TOME/Mod
 
-apktool() { java -Xmx512M -Dfile.encoding=utf-8 -jar $TOME/.github/Tools/kikfox.jar "$@"; } 
-baksmali() { java -Xmx4g -jar $TOME/.github/Tools/baksmali-2.3.4.jar "$@"; } 
-smali() { java -Xmx4g -jar $TOME/.github/Tools/smali-2.5.2.jar "$@"; } 
-Timkiem() { find $TOME/Mod/$2 -name "*.smali" -exec grep -l "$1" {} +; } 
-Taive() { curl -s -L "$1" -o "$2"; } 
-
-Vsmali() {
-for Vka in $(Timkiem "$1" "$4"); do
-echo "MOD: $(echo "$1" | sed 's|\\||g')"
-sed -i -e "/^$1/,/$2/c $(echo "$3" | sed -z 's|\n|\\n|g')" "$Vka"
-echo "$Vka" >> $TOME/Mod/$(echo "$4" | sed "s|$TOME/Mod/||g" | cut -d '/' -f1)/class
-done
-}
-
-# giải nén file
-Unpackfile() {
-for vapk in $TOME/Mod/*.*; do
-mkdir -p ${vapk%.*}
-unzip -qo "$vapk" '*.dex' -d ${vapk%.*}
-for vsmali in ${vapk%.*}/*.dex; do
-baksmali d --api $API $vsmali -o ${vsmali%.*}
-done
-done
-}
-
-# Đóng gói apk
-Repackfile() {
-for bapk in $TOME/Mod/*.*; do
-if [[ "${bapk##*.}" == 'apk' ]] || [[ "${bapk##*.}" == 'jar' ]]; then
-for class in $(ls -d ${bapk%.*}/class*); do
-if [[ -f $class.dex ]]; then
-rm -fr $class.dex
-smali a --api $API $class -o $class.dex
-fi
-done
-unset class
-cd ${bapk%.*}
-sudo zip -qr $bapk '*.dex'
-zipalign -f 4 $bapk $TOME/Mod/tmp/"${bapk##*/}"
-cp -rf $TOME/Mod/tmp/"${bapk##*/}" $bapk
-fi
-done
-}
-
-Timfile() { sudo cp -af $(sudo find /mnt/tmp/* -name "$1") $TOME/Mod; }
-
-ngonngu() { 
-if [[ "$NNTV" == "Viet_Nam" ]]; then
-Taive "https://github.com/kakathic/ZH-VN/releases/download/MS-1.7/VH-ZH-1.7.Zip" "$TOME/VH.zip"
-7za x -tzip -y "$TOME/VH.zip" -o$TOME/VH -p2 >/dev/null
-[[ -e /mnt/tmp/product/overlay ]] && TMVH=$TOME/Mod/product/overlay || TMVH=$TOME/Mod/vendor/overlay
-mkdir -p $TMVH
-mkdir -p $TOME/Mod/system/media/theme/default
-cp -af $TOME/VH/apk/* $TMVH
-cp -af $TOME/VH/framework-miui-res $TOME/Mod/system/media/theme/default
-fi
-} 
-
 Caidat() {
 cp -af $TOME/Apk/Settings.apk $TOME/Mod
 if [[ -f $TOME/Mod/Settings.apk ]]; then 
 Unpackfile
-sed -i 's/"MIUI "/"MIUID "/g' Settings/classes*/com/android/settings/device/MiuiAboutPhoneUtils.smali >/dev/null 2>&1
-sed -i 's/"by "/" "/g' Settings/classes*/com/android/settings/device/MiuiAboutPhoneUtils.smali >/dev/null 2>&1 
+sudo sed -i 's/"MIUI "/"MIUID "/g' $TOME/Mod/Settings/classes*/com/android/settings/device/MiuiAboutPhoneUtils.smali >/dev/null 2>&1
+sudo sed -i 's/"by "/" "/g' $TOME/Mod/Settings/classes*/com/android/settings/device/MiuiAboutPhoneUtils.smali >/dev/null 2>&1 
 Repackfile
 fi 
 }
@@ -244,13 +222,12 @@ Repackfile
 fi 
 fi
 }
-#ngonngu
+
 Dichvu
 Caidat
 }
 
 Debloat() {
-Phanvung="system vendor product system_ext odm mi_ext system_dlkm vendor_dlkm"; 
 Danhsachxoa=$(cat $TOME/Delete_apps.md)
 API=$(sudo grep 'ro.build.version.sdk=' /mnt/tmp/system/system/build.prop | awk -F= '{print $2}');
 
@@ -308,30 +285,15 @@ Taoext() {
  cd $DATA
  Cheptaptin 
  Xoataptin 
- Phanquyen
+ #Phanquyen
  Cauhinh
  echo "- Tạo $Ten.img ext4" 
 if [[ "$Ten" == "system" ]]; then DIEM='/'; TEN='/'; else DIEM="/$Ten"; TEN="$Ten"; fi 
 
 if [[ "$API" -lt 28 ]]; then 
  Size=$(sudo du -sk $DATA | awk '{print int($1*1.09)}')K 
- sudo $mkext4 -J -T "1230768000" -a "$DIEM" -l "$Size" -L "$TEN" -S $Tenfc -C $Tenfs $TOME/tmp/$Ten.raw $DATA/; 
+ sudo $mkext4 -J -T "1230768000" -a "$DIEM" -l "$Size" -L "$TEN" -S $Tenfc -C $Tenfs $TOME/tmp/$Ten.img $DATA/; 
  sudo rm -rf $DATA
- [[ -n "$(ls $TAM)" ]] && sudo umount $TAM
- [[ -n "$(ls $NEW)" ]] && sudo umount $NEW
- dd if=/dev/zero of=$TOME/tmp/$Ten.img bs=3k count=1048576 >/dev/null 2>&1
- mkfs.ext4 $TOME/tmp/$Ten.img >/dev/null 2>&1
- tune2fs -c0 -i0 $TOME/tmp/$Ten.img >/dev/null 2>&1
- e2fsck -fy $TOME/tmp/$Ten.img >/dev/null 2>&1
- resize2fs $TOME/tmp/$Ten.img $Size >/dev/null 2>&1
- e2fsck -fy $TOME/tmp/$Ten.raw >/dev/null 2>&1
- sudo mount -o rw,loop $TOME/tmp/$Ten.img $NEW
- sudo mount -o ro,loop $TOME/tmp/$Ten.raw $TAM
- sudo cp -frp $TAM/* $NEW
- sudo sync
- sudo umount $TAM
- sudo umount $NEW
- sudo rm -f $TOME/tmp/$Ten.raw
 else
  Size=$(sudo du -sb $DATA | awk '{print int($1*1.09)}')
  for K in odm mi_ext vendor_dlkm system_dlkm; do [[ "$Ten" == "$K" ]] && Size=$(echo "16" | awk '{print int($1*1024*1024)}'); done 
@@ -349,7 +311,7 @@ Taoerofs() {
    cd $DATA
    Cheptaptin 
    Xoataptin 
-   Phanquyen
+   #Phanquyen
    Cauhinh
    echo "- Tạo $Ten.img erofs" 
   if [[ "$Ten" == "system" ]]; then DIEM='/'; TEN='/'; else DIEM="/$Ten"; TEN="$Ten"; fi 
@@ -402,12 +364,8 @@ magiskboot cleanup >/dev/null 2>&1
 
 cd $TOME/Super 
 for Ten in $danhsach; do 
- TAM=/mnt/$Ten
  DATA=/mnt/tmp/$Ten
- NEW=/mnt/new
  if [[ -s $TOME/Super/$Ten.img ]]; then 
-  [[ ! -e $TAM ]] && sudo mkdir -p $TAM
-  [[ ! -e $NEW ]] && sudo mkdir -p $NEW
   echo "+ Xử lý $Ten.img"
   case $Dinhdangphanvung in 
 ext4) Taoext;; 
@@ -507,5 +465,6 @@ fi
 Taidulieu
 Unpack
 Mod
+[[ -f $TOME/.github/bin/MOD ]] && sudo $TOME/.github/bin/MOD
 Debloat
 Repack
