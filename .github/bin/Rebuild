@@ -96,7 +96,7 @@ system/system/etc/sysconfig/nexus.xml 0 0 0644
 system/framework/miui-services.jar 0 0 0644' >> $Tenfs"
 #sudo sed -i "/\/system\/system\//d" $Tenfs
 fi
-[ -d /mnt/tmp/$Ten/media ] && sudo bash -c "echo '$Ten/media/theme 0 0 0755
+[[ -d /mnt/tmp/$Ten/media ]] && sudo bash -c "echo '$Ten/media/theme 0 0 0755
 $Ten/media/theme/default 0 0 0755
 $Ten/media/theme/default/framework-miui-res 0 0 0644' >> $Tenfs"
 } 
@@ -263,11 +263,11 @@ if [[ "$Vfstab" == "1" ]]; then
 for Fstab in $DATA/etc/fstab*; do 
  if [[ -f $Fstab ]]; then 
 Pfs=',avb ,avb_keys ,quota ,inlinecrypt ,wrappedkey ,verifyatboot ,fsverify ,verify'; 
-for i in $Pfs; do [ -n "$(grep "$i" $Fstab)" ] && sudo sed -i "s|$i||g" $Fstab; done 
+for i in $Pfs; do [[ -n "$(grep "$i" $Fstab)" ]] && sudo sed -i "s|$i||g" $Fstab; done 
 Pfe='forceencrypt= forcefdeorfbe= fileencryption= encryptable= metadata_encryption= keydirectory= avb= avb_keys='; 
-for k in $Pfe; do tim=$(sudo grep -m1 "$k" $Fstab) && [ -n "$tim" ] && doi=${tim#*"$k"} && doi=${k}${doi%%,*} && sudo sed -i "s|,$doi||g" $Fstab; done 
+for k in $Pfe; do tim=$(sudo grep -m1 "$k" $Fstab) && [[ -n "$tim" ]] && doi=${tim#*"$k"} && doi=${k}${doi%%,*} && sudo sed -i "s|,$doi||g" $Fstab; done 
 Pf='slotselect= first_stage_mount_keys=' 
-for k in $Pf; do tim=$(sudo grep -m1 "$k" $Fstab) && [ -n "$tim" ] && doi=${tim#*"$k"} && doi=${k}${doi%%,*} && moi=${k//=/} && moi=${moi//_keys/} && sudo sed -i "s|$doi|$moi|g" $Fstab; done 
+for k in $Pf; do tim=$(sudo grep -m1 "$k" $Fstab) && [[ -n "$tim" ]] && doi=${tim#*"$k"} && doi=${k}${doi%%,*} && moi=${k//=/} && moi=${moi//_keys/} && sudo sed -i "s|$doi|$moi|g" $Fstab; done 
  fi 
 done 
 fi 
