@@ -57,7 +57,7 @@ cp -rf $TOME/Mod/tmp/"${bapk##*/}" $bapk
 fi
 done
 }
-Timfile() { sudo cp -af $(sudo find /mnt/tmp/* -name "$1") $TOME/Mod; }
+Timfile() { sudo cp -rf $(sudo find /mnt/tmp/* -name "$1") $TOME/Mod; }
 #
 Taidulieu() { 
 Tenrom=${URL##*/} && Tenr=${Tenrom%.*} && Dinhdang=${URL##*.}; 
@@ -165,15 +165,15 @@ cd $TOME/Super
      [[ -n "$(ls /mnt/tmp/$Ten)" ]] && echo " ✓ Trích xuất $Ten.img xong"
   else echo " ✓ Không biết định dạng!" 
   fi 
-  [[ -n "$(ls /mnt/tmp/$Ten)" ]] && for K in $Ungdung; do APK=$(sudo find /mnt/tmp/$Ten -type f -name "$K"); [[ -n "$APK" ]] && cp -af $APK $TOME/Apk; done
+  [[ -n "$(ls /mnt/tmp/$Ten)" ]] && for K in $Ungdung; do APK=$(sudo find /mnt/tmp/$Ten -type f -name "$K"); [[ -n "$APK" ]] && cp -rf $APK $TOME/Apk; done
  fi
 done 
-[[ -d /mnt/tmp/config ]] && sudo cp -af /mnt/tmp/config $TOME/tmp
+[[ -d /mnt/tmp/config ]] && sudo cp -rf /mnt/tmp/config $TOME/tmp
 sudo chmod -R 755 $TOME/tmp/config
-sudo cp -af /mnt/tmp/system/system/etc/selinux/plat_file_contexts $TOME/tmp/config/system_file_contexts 2>/dev/null
-sudo bash -c "cat /mnt/tmp/system/etc/selinux/product_file_contexts >> $TOME/tmp/config/system_file_contexts" 2>/dev/null
-sudo bash -c "cat /mnt/tmp/system/etc/selinux/system_ext_file_contexts >> $TOME/tmp/config/system_file_contexts" 2>/dev/null
-sudo bash -c "cat /mnt/tmp/system/etc/selinux/vendor_file_contexts >> $TOME/tmp/config/system_file_contexts" 2>/dev/null
+sudo cp -rf /mnt/tmp/system/system/etc/selinux/plat_file_contexts $TOME/tmp/config/system_file_contexts 
+sudo bash -c "cat /mnt/tmp/system/etc/selinux/product_file_contexts >> $TOME/tmp/config/system_file_contexts" 
+sudo bash -c "cat /mnt/tmp/system/etc/selinux/system_ext_file_contexts >> $TOME/tmp/config/system_file_contexts" 
+sudo bash -c "cat /mnt/tmp/system/etc/selinux/vendor_file_contexts >> $TOME/tmp/config/system_file_contexts" 
 [[ -z "$(ls $TOME/Apk)" ]] && echo "- Trích ứng dụng lỗi" || echo "- Trích ứng dụng xong!"
 }
 
@@ -185,7 +185,7 @@ API=$(sudo grep 'ro.build.version.sdk=' /mnt/tmp/system/system/build.prop | cut 
 # Thư mục chứa apk,jar đã mod: $TOME/Mod
 
 Caidat() {
-cp -af $TOME/Apk/Settings.apk $TOME/Mod
+cp -rf $TOME/Apk/Settings.apk $TOME/Mod
 if [[ -f $TOME/Mod/Settings.apk ]]; then 
 Unpackfile
 sudo sed -i 's/"MIUI "/"MIUID "/g' $TOME/Mod/Settings/classes*/com/android/settings/device/MiuiAboutPhoneUtils.smali >/dev/null 2>&1
@@ -195,7 +195,7 @@ fi
 }
 
 Dichvu() { 
-cp -af $TOME/Apk/*services.jar $TOME/Mod
+cp -rf $TOME/Apk/*services.jar $TOME/Mod
 if [[ "$API" -lt 31 ]]; then 
 if [[ -f $TOME/Mod/services.jar ]]; then 
 Unpackfile 
@@ -232,9 +232,8 @@ Danhsachxoa=$(cat $TOME/Delete_apps.md)
 API=$(sudo grep 'ro.build.version.sdk=' /mnt/tmp/system/system/build.prop | awk -F= '{print $2}');
 
 Xoataptin() { 
-for DS in $Danhsachxoa; do Tim=$(sudo find $DATA -name "$DS") && [[ -e $Tim ]] && sudo rm -rf $Tim; done 
-for TT in auto-install dynamicicons; do T=$(sudo find $DATA -name "*${TT}*") && [[ -e $T ]] && sudo rm -rf $T; done 
-[[ "$Xoadex" == "1" ]] && for S in service.art service.odex service.vdex miui-service.art miui-service.odex miui-service.vdex; do s=$(sudo find $DATA -type f -name "$S") && [[ -f $s ]] && sudo rm -rf $s; done 
+for DS in $Danhsachxoa *auto-install* dynamicicons; do sudo find $DATA -name "$DS" -delete; done 
+[[ "$Xoadex" == "1" ]] && for S in service.art service.odex service.vdex miui-service.art miui-service.odex miui-service.vdex; do sudo find $DATA -type f -name "$S" -delete; done 
 } 
 
 Phanquyen() { 
@@ -250,11 +249,11 @@ fi
 Cheptaptin() {
 if [[ "$Ten" == "system" ]]; then 
   if [[ -n "$(ls $DATA 2>/dev/null)" ]] && [[ -n "$(ls $TOME/Mod)" ]]; then
-   [[ -f $TOME/Mod/framework-ext-res.apk ]] && sudo cp -frp $TOME/Mod/framework-ext-res.apk $DATA/system/framework/framework-ext-res 
-   for i in framework.jar miui-framework.jar services.jar miui-services.jar framework-res.apk; do [[ -f $TOME/Mod/$i ]] && sudo cp -frp $TOME/Mod/$i $DATA/system/framework; done 
+   [[ -f $TOME/Mod/framework-ext-res.apk ]] && sudo cp -rf $TOME/Mod/framework-ext-res.apk $DATA/system/framework/framework-ext-res 
+   for i in framework.jar miui-framework.jar services.jar miui-services.jar framework-res.apk; do [[ -f $TOME/Mod/$i ]] && sudo cp -rf $TOME/Mod/$i $DATA/system/framework; done 
    unset i; 
-   for i in ThemeManager.apk MIUIThemeManager.apk MIUIPackageInstaller.apk MiuiPackageInstaller.apk miuisystem.ak miui.apk; do [[ -f $TOME/Mod/$i ]] && sudo cp -frp $TOME/Mod/$i $DATA/system/app/${i%.*}; done 
-  sudo cp -frp $TOME/Mod/system/* $DATA/system 2>/dev/null
+   for i in ThemeManager.apk MIUIThemeManager.apk MIUIPackageInstaller.apk MiuiPackageInstaller.apk miuisystem.ak miui.apk; do [[ -f $TOME/Mod/$i ]] && sudo cp -rf $TOME/Mod/$i $DATA/system/app/${i%.*}; done 
+  sudo cp -rfp $TOME/Mod/system/* $DATA/system 2>/dev/null
    Prop='persist.sys.allow_sys_app_update=true ro.control_privapp_permissions=disable ro.vendor.display.default_fps=60,90,120 persist.vendor.dfps.level=60,90,120 ro.vendor.audio.spk.clean=true ro.boot.veritymode=enforcing' && for k in $Prop; do t=$(echo $k | awk -F= '{print $1}') && [[ -n "$(sudo grep "$t" $DATA/system/build.prop)" ]] && sudo sed -i "/$t/d" $DATA/system/build.prop && sudo bash -c "echo '$k' >> $DATA/system/build.prop"; done 
   fi 
 fi 
@@ -276,8 +275,8 @@ fi
 
 if [[ -n "$(ls $DATA 2>/dev/null)" ]] && [[ -n "$(ls $TOME/Mod)" ]]; then
   sudo cp -frp $TOME/Mod/$Ten/* $DATA/$Ten 2>/dev/null 
-  [[ -f $TOME/Mod/Settings.apk ]] && [[ -d $DATA/priv-app/Settings ]] && sudo cp -frp $TOME/Mod/Settings.apk $DATA/priv-app/Settings
-  [[ -f $TOME/Mod/MiuiStemUI.apk ]] && [[ -d $DATA/priv-app/MiuiSystemUI ]] && sudo cp -frp $TOME/Mod/MiuiSystemUI.apk $DATA/priv-app/MiuiSystemUI
+  [[ -f $TOME/Mod/Settings.apk ]] && [[ -d $DATA/priv-app/Settings ]] && sudo cp -rf $TOME/Mod/Settings.apk $DATA/priv-app/Settings
+  [[ -f $TOME/Mod/MiuiStemUI.apk ]] && [[ -d $DATA/priv-app/MiuiSystemUI ]] && sudo cp -rf $TOME/Mod/MiuiSystemUI.apk $DATA/priv-app/MiuiSystemUI
 fi
 } 
 
@@ -342,7 +341,7 @@ bootn=$TOME/KI/image-new.img
 mkdir -p $KI
 
 cd $KI 
-cp -af $TOME/tmp/boot*.img $KI/boot.img 2>/dev/null 
+cp -rf $TOME/tmp/boot*.img $KI/boot.img 2>/dev/null 
 if [[ -e $KI/boot.img ]]; then echo "- Xử lý boot.img" 
  bootf=$KI/boot.img; 
  magiskboot unpack -h $bootf >/dev/null 2>&1
@@ -352,7 +351,7 @@ fi
 magiskboot cleanup >/dev/null 2>&1
 
 cd $KI 
-cp -af $TOME/tmp/vendor_boot*.img $KI/vendor_boot.img 2>/dev/null 
+cp -rf $TOME/tmp/vendor_boot*.img $KI/vendor_boot.img 2>/dev/null 
 if [[ -e $KI/vendor_boot.img ]]; then echo "- Xử lý vendor_boot.img" 
  bootf=$KI/vendor_boot.img; 
  magiskboot unpack -h $bootf >/dev/null 2>&1
