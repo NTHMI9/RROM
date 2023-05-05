@@ -171,9 +171,9 @@ done
 [[ -d /mnt/tmp/config ]] && sudo cp -rf /mnt/tmp/config $TOME/tmp
 sudo chmod -R 755 $TOME/tmp/config
 sudo cp -rf /mnt/tmp/system/system/etc/selinux/plat_file_contexts $TOME/tmp/config/system_file_contexts 
-sudo bash -c "cat /mnt/tmp/system/etc/selinux/product_file_contexts >> $TOME/tmp/config/system_file_contexts" 
-sudo bash -c "cat /mnt/tmp/system/etc/selinux/system_ext_file_contexts >> $TOME/tmp/config/system_file_contexts" 
-sudo bash -c "cat /mnt/tmp/system/etc/selinux/vendor_file_contexts >> $TOME/tmp/config/system_file_contexts" 
+sudo bash -c "cat /mnt/tmp/product/etc/selinux/product_file_contexts >> $TOME/tmp/config/system_file_contexts" 
+sudo bash -c "cat /mnt/tmp/system_ext/etc/selinux/system_ext_file_contexts >> $TOME/tmp/config/system_file_contexts" 
+sudo bash -c "cat /mnt/tmp/vendor/etc/selinux/vendor_file_contexts >> $TOME/tmp/config/system_file_contexts" 
 [[ -z "$(ls $TOME/Apk)" ]] && echo "- Trích ứng dụng lỗi" || echo "- Trích ứng dụng xong!"
 }
 
@@ -232,8 +232,8 @@ Danhsachxoa=$(cat $TOME/Delete_apps.md)
 API=$(sudo grep 'ro.build.version.sdk=' /mnt/tmp/system/system/build.prop | awk -F= '{print $2}');
 
 Xoataptin() { 
-for DS in $Danhsachxoa *auto-install* dynamicicons; do sudo find $DATA -name "$DS" -delete; done 
-[[ "$Xoadex" == "1" ]] && for S in service.art service.odex service.vdex miui-service.art miui-service.odex miui-service.vdex; do sudo find $DATA -type f -name "$S" -delete; done 
+for DS in $Danhsachxoa *auto-install* dynamicicons; do sudo find $DATA -name "$DS" -exec sudo rm -rf {} +; done 
+[[ "$Xoadex" == "1" ]] && for S in service.art service.odex service.vdex miui-service.art miui-service.odex miui-service.vdex; do sudo find $DATA -type f -name "$S" -exec sudo rm -rf {} +; done 
 } 
 
 Phanquyen() { 
