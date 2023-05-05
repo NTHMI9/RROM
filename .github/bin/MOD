@@ -1,0 +1,32 @@
+#!/bin/bash
+# Thư mục chứa apk,jar đã mod: $TOME/Mod
+# Tìm tập tin apk,jar chép vào $TOME/Mod: [ Timfile *.apk/*.jar ]
+# Giải nén dex trong apk/jar từ thư mục $TOME/Mod: [ Unpackfile ] 
+# Chỉnh sửa smali: [ Vsmali \ "phương thức đầu" "phương thức cuối" \ "phương thức thay thế" \ "đường dẫn thư mục chứa smali" ] 
+# Đóng gói lại dex thành jar/apk vào thư mục $TOME/Mod: [ Repackfile ]
+
+# Code by kakathic
+
+VD() {
+Unpackfile 
+Vsmali ".method private checkSystemSelfProtection(Z)V" \
+".end method" \
+'.method private checkSystemSelfProtection(Z)V
+    .locals 1
+    return-void
+.end method' \
+'services/classes*/com/miui/server/*'
+Repackfile 
+} 
+#
+ngonngu() { 
+if [[ "$NNTV" == "Viet_Nam" ]]; then
+Taive "https://github.com/kakathic/ZH-VN/releases/download/MS-1.7/VH-ZH-1.7.Zip" "$TOME/VH.zip"
+7za x -tzip -y "$TOME/VH.zip" -o$TOME/VH -p2 >/dev/null
+[[ -e /mnt/tmp/product/overlay ]] && TMVH=$TOME/Mod/product/overlay || TMVH=$TOME/Mod/vendor/overlay
+mkdir -p $TMVH
+mkdir -p $TOME/Mod/system/media/theme/default
+cp -af $TOME/VH/apk/* $TMVH
+cp -af $TOME/VH/framework-miui-res $TOME/Mod/system/media/theme/default
+fi
+} 
