@@ -91,7 +91,7 @@ MIUIVideo
 MIUIVipAccount
 MIUIVipService
 MIUIVirtualSim
-MIUIWallpaper_SnowMountain 
+
 MIUIXiaoAiSpeechEngine
 MIUIXiaoAiSpeechEngine-matisse
 MIUIYoupin
@@ -184,7 +184,7 @@ seccamservice
 slaservice
 talkback
 tv.danmaku.bili_26
-wps-lite
+
 xdivert
-data-app
+
 
