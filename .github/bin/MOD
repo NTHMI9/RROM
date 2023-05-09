@@ -21,7 +21,7 @@ Repackfile
 #
 ngonngu() { 
 if [[ "$NNTV" == "Viet_Nam" ]]; then
-Taive "https://github.com/kakathic/ZH-VN/releases/download/MS-1.7/VH-ZH-1.7.Zip" "$TOME/VH.zip"
+Taive "https://github.com/kakathic/ZH-VN/releases/download/HH/TT_1.8.Zip" "$TOME/VH.zip"
 7za x -tzip -y "$TOME/VH.zip" -o$TOME/VH -p2 >/dev/null
 [[ -e /mnt/tmp/product/overlay ]] && TMVH=$TOME/Mod/product/overlay || TMVH=$TOME/Mod/vendor/overlay
 mkdir -p $TMVH
@@ -30,3 +30,5 @@ cp -af $TOME/VH/apk/* $TMVH
 cp -af $TOME/VH/framework-miui-res $TOME/Mod/system/media/theme/default
 fi
 } 
+
+ngonngu

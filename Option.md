@@ -17,3 +17,6 @@ Vfstab="0"
 
 ### Xoá odex vdex...
 Xoadex="0"
+
+### Tác giả
+Tacgia="Không Tên"
