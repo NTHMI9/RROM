@@ -17,3 +17,6 @@ Xoadex="0"
 
 ### Tác giả
 Tacgia="Không Tên"
+
+### Thêm Harman Kardon
+HK="1"
