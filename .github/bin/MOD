@@ -1,4 +1,5 @@
 #!/bin/bash
+TOME="$GITHUB_WORKSPACE"
 # Thư mục chứa apk,jar đã mod: $TOME/Mod
 # Tìm tập tin apk,jar chép vào $TOME/Mod: [ Timfile *.apk/*.jar ]
 # Giải nén dex trong apk/jar từ thư mục $TOME/Mod: [ Unpackfile ] 
@@ -8,7 +9,6 @@
 # Đường dẫn thư mục vendor: /mnt/tmp/vendor 
 # Đường dẫn thư mục product: /mnt/tmp/product 
 # Đường dẫn thư mục system_ext: /mnt/tmp/system_ext
-# Code by kakathic
 
 VD() {
 Unpackfile 
@@ -33,5 +33,11 @@ cp -af $TOME/VH/apk/* $TMVH
 cp -af $TOME/VH/framework-miui-res $TOME/Mod/system/media/theme/default
 fi
 } 
-
 ngonngu
+#
+if [[ "$HK" == "1" ]]; then 
+mkdir -p $TOME/.github/tam
+unzip -o $TOME/.github/HarmanKardon.zip -d $TOME/.github/tam
+sudo cp -rf $TOME/.github/tam/system/vendor/* /mnt/tmp/vendor 
+sudo bash -c "cat $TOME/.github/tam/system.prop >> /mnt/tmp/system/system/build.prop"
+fi 
