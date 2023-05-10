@@ -4,7 +4,10 @@
 # Giải nén dex trong apk/jar từ thư mục $TOME/Mod: [ Unpackfile ] 
 # Chỉnh sửa smali: [ Vsmali \ "phương thức đầu" "phương thức cuối" \ "phương thức thay thế" \ "đường dẫn thư mục chứa smali" ] 
 # Đóng gói lại dex thành jar/apk vào thư mục $TOME/Mod: [ Repackfile ]
-
+# Đường dẫn thư mục system: /mnt/tmp/system/system
+# Đường dẫn thư mục vendor: /mnt/tmp/vendor 
+# Đường dẫn thư mục product: /mnt/tmp/product 
+# Đường dẫn thư mục system_ext: /mnt/tmp/system_ext
 # Code by kakathic
 
 VD() {
