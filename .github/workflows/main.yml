@@ -1,4 +1,4 @@
-name: REBUILD Rom MIUI by chamchamfy & kakathic
+name: REBUILD Rom MIUI
 on: 
   workflow_dispatch:
     inputs:
