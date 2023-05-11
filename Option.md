@@ -2,7 +2,7 @@
 #### Mặc định: 1 là bật, 0 là tắt
 
 #### Các tùy chọn khác
-opcc="0"
+opcc="1"
 
 #### Hỗ trợ: ext4 hoặc erofs. Bỏ trống là mặc định
 Dinhdangphanvung="ext4"
