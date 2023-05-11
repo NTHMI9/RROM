@@ -40,4 +40,5 @@ mkdir -p $TOME/.github/tam
 unzip -o $TOME/.github/HarmanKardon.zip -d $TOME/.github/tam
 sudo cp -rf $TOME/.github/tam/system/vendor/* /mnt/tmp/vendor 
 sudo bash -c "cat $TOME/.github/tam/system.prop >> /mnt/tmp/system/system/build.prop"
+sudo bash -c "cat $TOME/.github/tam/system.prop >> /mnt/tmp/vendor/build.prop"
 fi 
