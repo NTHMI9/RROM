@@ -56,6 +56,7 @@ else echo "- Không có tập tin rom"
 fi 
 }
 
-Taidulieu
+#Taidulieu
+[[ -f $TOME/.github/bin/MOD ]] && sudo $TOME/.github/bin/MOD
 
 echo "- Kết thúc" 
