@@ -24,23 +24,134 @@ Repackfile
 #
 ngonngu() { 
 if [[ "$NNTV" == "Viet_Nam" ]]; then
-echo " Thêm ngôn ngữ..."
 Taive "https://github.com/kakathic/ZH-VN/releases/download/HH/TT_1.8.Zip" "$TOME/VH.zip"
 7za x -tzip -y "$TOME/VH.zip" -o$TOME/VH >/dev/null
 [[ -e /mnt/tmp/product/overlay ]] && TMVH=$TOME/Mod/product/overlay || TMVH=$TOME/Mod/vendor/overlay
 mkdir -p $TMVH
 mkdir -p $TOME/Mod/system/media/theme/default
-cp -rf $TOME/VH/apk/* $TMVH
-cp -rf $TOME/VH/framework-miui-res $TOME/Mod/system/media/theme/default
+cp -af $TOME/VH/apk/* $TMVH
+cp -af $TOME/VH/framework-miui-res $TOME/Mod/system/media/theme/default
 fi
 } 
 ngonngu
 #
 if [[ "$HK" == "1" ]]; then 
-echo " Thêm Harman Kardon..."
 mkdir -p $TOME/.github/tam
 unzip -o $TOME/.github/HarmanKardon.zip -d $TOME/.github/tam
 sudo cp -rf $TOME/.github/tam/system/vendor/* /mnt/tmp/vendor 
-#sudo bash -c "cat $TOME/.github/tam/system.prop >> /mnt/tmp/system/system/build.prop"
-cat $TOME/.github/tam/system.prop >> /mnt/tmp/system/system/build.prop
+sudo bash -c "cat $TOME/.github/tam/system.prop >> /mnt/tmp/system/system/build.prop"
 fi 
+
+# Thêm file_contexts
+systemfc=''
+
+vendorfc='/(vendor|system/vendor)/lib/egl/eglSubDriverAndroid\.so u:object_r:system_lib_file:s0
+/(vendor|system/vendor)/lib/egl/libEGL_adreno\.so u:object_r:system_lib_file:s0
+/(vendor|system/vendor)/lib/egl/libGLESv1_CM_adreno\.so u:object_r:system_lib_file:s0
+/(vendor|system/vendor)/lib/egl/libGLESv2_adreno\.so u:object_r:system_lib_file:s0
+/(vendor|system/vendor)/lib/egl/libq3dtools_adreno\.so u:object_r:system_lib_file:s0
+/(vendor|system/vendor)/lib/egl/libq3dtools_esx\.so u:object_r:system_lib_file:s0
+/(vendor|system/vendor)/lib/hw/vulkan\.adreno\.so u:object_r:same_process_hal_file:s0
+/(vendor|system/vendor)/lib/notgsl\.so u:object_r:same_process_hal_file:s0
+/(vendor|system/vendor)/lib/libadreno_app_profiles\.so u:object_r:same_process_hal_file:s0
+/(vendor|system/vendor)/lib/libadreno_utils\.so u:object_r:same_process_hal_file:s0
+/(vendor|system/vendor)/lib/libbase64\.so u:object_r:same_process_hal_file:s0
+/(vendor|system/vendor)/lib/libllvm-glnext\.so u:object_r:same_process_hal_file:s0
+/(vendor|system/vendor)/lib/libllvm-qgl\.so u:object_r:same_process_hal_file:s0
+/(vendor|system/vendor)/lib/libq3dtools_adreno\.so u:object_r:same_process_hal_file:s0
+/(vendor|system/vendor)/lib/vendor\.qti\.hardware\.display\.mapper@3\.0\.so u:object_r:same_process_hal_file:s0
+/(vendor|system/vendor)/lib/vendor\.qti\.hardware\.display\.mapper@4\.0\.so u:object_r:same_process_hal_file:s0
+/(vendor|system/vendor)/lib/vendor\.qti\.hardware\.display\.mapperextensions@1\.0\.so u:object_r:same_process_hal_file:s0
+/(vendor|system/vendor)/lib/vendor\.qti\.hardware\.display\.mapperextensions@1\.1\.so u:object_r:same_process_hal_file:s0
+/(vendor|system/vendor)/lib64/egl/eglSubDriverAndroid\.so u:object_r:system_lib_file:s0
+/(vendor|system/vendor)/lib64/egl/libEGL_adreno\.so u:object_r:system_lib_file:s0
+/(vendor|system/vendor)/lib64/egl/libGLESv1_CM_adreno\.so u:object_r:system_lib_file:s0
+/(vendor|system/vendor)/lib64/egl/libGLESv2_adreno\.so u:object_r:system_lib_file:s0
+/(vendor|system/vendor)/lib64/egl/libq3dtools_adreno\.so u:object_r:system_lib_file:s0
+/(vendor|system/vendor)/lib64/egl/libq3dtools_esx\.so u:object_r:system_lib_file:s0
+/(vendor|system/vendor)/lib64/hw/vulkan\.adreno\.so u:object_r:same_process_hal_file:s0
+/(vendor|system/vendor)/lib64/libc++\.so u:object_r:same_process_hal_file:s0
+/(vendor|system/vendor)/lib64/gpu++\.so u:object_r:same_process_hal_file:s0
+/(vendor|system/vendor)/lib64/libadreno_app_profiles\.so u:object_r:same_process_hal_file:s0
+/(vendor|system/vendor)/lib64/libadreno_utils\.so u:object_r:same_process_hal_file:s0
+/(vendor|system/vendor)/lib64/libgsl\.so u:object_r:same_process_hal_file:s0
+/(vendor|system/vendor)/lib64/libgsl\.so u:object_r:same_process_hal_file:s0
+/(vendor|system/vendor)/lib64/notgsl\.so u:object_r:same_process_hal_file:s0
+/(vendor|system/vendor)/lib64/libgpudataproducer\.so u:object_r:same_process_hal_file:s0
+/(vendor|system/vendor)/lib64/libbase64\.so u:object_r:same_process_hal_file:s0
+/(vendor|system/vendor)/lib64/libllvm-glnext\.so u:object_r:same_process_hal_file:s0
+/(vendor|system/vendor)/lib64/libllvm-qgl\.so u:object_r:same_process_hal_file:s0
+/(vendor|system/vendor)/lib64/libq3dtools_adreno\.so u:object_r:same_process_hal_file:s0
+/(vendor|system/vendor)/lib64/libEGL_adreno\.so u:object_r:same_process_hal_file:s0
+/(vendor|system/vendor)/lib64/libGLESv2_adreno\.so u:object_r:same_process_hal_file:s0
+/(vendor|system/vendor)/lib64/libcutlis\.so u:object_r:same_process_hal_file:s0
+/(vendor|system/vendor)/lib64/vendor\.qti\.hardware\.display\.mapper@1\.0\.so u:object_r:same_process_hal_file:s0
+/(vendor|system/vendor)/lib64/vendor\.qti\.hardware\.display\.mapper@2\.0\.so u:object_r:same_process_hal_file:s0
+/(vendor|system/vendor)/lib64/vendor\.qti\.hardware\.display\.mapper@3\.0\.so u:object_r:same_process_hal_file:s0
+/(vendor|system/vendor)/lib64/vendor\.qti\.hardware\.display\.mapper@4\.0\.so u:object_r:same_process_hal_file:s0
+/(vendor|system/vendor)/lib64/vendor\.qti\.hardware\.display\.mapperextensions@1\.0\.so u:object_r:same_process_hal_file:s0
+/(vendor|system/vendor)/lib64/vendor\.qti\.hardware\.display\.mapperextensions@1\.1\.so u:object_r:same_process_hal_file:s0
+/(vendor|system/vendor)/lib64/notllvm-glnext\.so u:object_r:same_process_hal_file:s0
+/(vendor|system/vendor)/etc/permissions/public\.libraries\.txt u:object_r:same_process_hal_file:s0'
+
+productfc=''
+
+system_extfc=''
+
+# Thêm fsconfig
+systemfs=''
+
+vendorfs='vendor/lib/egl/eglSubDriverAndroid.so 0 0 0755 0644
+vendor/lib/egl/libEGL_adreno.so 0 0 0755 0644
+vendor/lib/egl/libGLESv1_CM_adreno.so 0 0 0755 0644
+vendor/lib/egl/libGLESv2_adreno.so 0 0 0755 0644
+vendor/lib/egl/libq3dtools_adreno.so 0 0 0755 0644
+vendor/lib/egl/libq3dtools_esx.so 0 0 0755 0644
+vendor/lib/hw/vulkan.adreno.so 0 0 0755 0644
+vendor/lib/notgsl.so 0 0 0755 0644
+vendor/lib/libadreno_app_profiles.so 0 0 0755 0644
+vendor/lib/libadreno_utils.so 0 0 0755 0644
+vendor/lib/libbase64.so 0 0 0755 0644
+vendor/lib/libllvm-glnext.so 0 0 0755 0644
+vendor/lib/libllvm-qgl.so 0 0 0755 0644
+vendor/lib/libq3dtools_adreno.so 0 0 0755 0644
+vendor/lib/vendor.qti.hardware.display.mapper@3.0.so 0 0 0755 0644
+vendor/lib/vendor.qti.hardware.display.mapper@4.0.so 0 0 0755 0644
+vendor/lib/vendor.qti.hardware.display.mapperextensions@1.0.so 0 0 0755 0644
+vendor/lib/vendor.qti.hardware.display.mapperextensions@1.1.so 0 0 0755 0644
+vendor/lib64/egl/eglSubDriverAndroid.so 0 0 0755 0644
+vendor/lib64/egl/libEGL_adreno.so 0 0 0755 0644
+vendor/lib64/egl/libGLESv1_CM_adreno.so 0 0 0755 0644
+vendor/lib64/egl/libGLESv2_adreno.so 0 0 0755 0644
+vendor/lib64/egl/libq3dtools_adreno.so 0 0 0755 0644
+vendor/lib64/egl/libq3dtools_esx.so 0 0 0755 0644
+vendor/lib64/hw/vulkan.adreno.so 0 0 0755 0644
+vendor/lib64/libc++.so 0 0 0755 0644
+vendor/lib64/gpu++.so 0 0 0755 0644
+vendor/lib64/libadreno_app_profiles.so 0 0 0755 0644
+vendor/lib64/libadreno_utils.so 0 0 0755 0644
+vendor/lib64/libgsl.so 0 0 0755 0644
+vendor/lib64/libgsl.so 0 0 0755 0644
+vendor/lib64/notgsl.so 0 0 0755 0644
+vendor/lib64/libgpudataproducer.so 0 0 0755 0644
+vendor/lib64/libbase64.so 0 0 0755 0644
+vendor/lib64/libllvm-glnext.so 0 0 0755 0644
+vendor/lib64/libllvm-qgl.so 0 0 0755 0644
+vendor/lib64/libq3dtools_adreno.so 0 0 0755 0644
+vendor/lib64/libEGL_adreno.so 0 0 0755 0644
+vendor/lib64/libGLESv2_adreno.so 0 0 0755 0644
+vendor/lib64/libcutlis.so 0 0 0755 0644
+vendor/lib64/vendor.qti.hardware.display.mapper@1.0.so 0 0 0755 0644
+vendor/lib64/vendor.qti.hardware.display.mapper@2.0.so 0 0 0755 0644
+vendor/lib64/vendor.qti.hardware.display.mapper@3.0.so 0 0 0755 0644
+vendor/lib64/vendor.qti.hardware.display.mapper@4.0.so 0 0 0755 0644
+vendor/lib64/vendor.qti.hardware.display.mapperextensions@1.0.so 0 0 0755 0644
+vendor/lib64/vendor.qti.hardware.display.mapperextensions@1.1.so 0 0 0755 0644
+vendor/lib64/notllvm-glnext.so 0 0 0755 0644
+vendor/etc/permissions/public.libraries.txt 0 0 0755 0644
+vendor/firmware/a650_sqe.fw 0 0 0755 0644
+vendor/firmware/a650_gmu.bin 0 0 0755 0644'
+
+productfs=''
+
+system_extfs=''
