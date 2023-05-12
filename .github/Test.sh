@@ -57,5 +57,7 @@ fi
 }
 
 Taidulieu
+. $TOME/Option.md
+. MOD
 
 echo "- Kết thúc" 

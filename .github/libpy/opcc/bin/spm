@@ -1,0 +1,341 @@
+#!/system/bin/sh
+#Code by chamchamfy
+setprop spectrum.support 1
+ghi() { chmod "$1" "$4"; echo "$2" > "$4"; chmod "$3" "$4"; } 
+
+if [ -f /sdcard/.ccs ]; then ccs=/sdcard/.ccs; elif [ -f /storage/emulated/0/.ccs ]; then ccs=/storage/emulated/0/.ccs; elif [ -f /storage/self/primary/.ccs ]; then ccs=/storage/self/primary/.ccs; elif [ -f /data/media/0/.ccs ]; then ccs=/data/media/0/.ccs; fi 
+
+if [ -f $ccs ]; then 
+GPU=$(grep 'GPU' $ccs | awk -F= '{print $2}'); 
+Governor=$(grep 'Governor' $ccs | awk -F= '{print $2}'); 
+ZRam=$(grep 'ZRam' $ccs | awk -F= '{print $2}');
+Selinux=$(grep 'Selinux' $ccs | awk -F= '{print $2}'); 
+Local=$(grep 'Local' $ccs | awk -F= '{print $2}'); 
+else 
+GPU=1
+Governor=powersave
+ZRam=2
+Selinux=0
+Local=vi-VN
+fi 
+
+bat() {
+# Setprop 
+setprop ro.boot.hwc "GLOBAL"
+setprop ro.boot.hwcountry "GLOBAL"
+setprop ro.boot.verifiedbootstate "green"
+setprop ro.boot.veritymode "enforcing"
+setprop ro.boot.vbmeta.device_state "locked"
+setprop vendor.boot.vbmeta.device_state "locked"
+setprop ro.debuggable "0"
+setprop ro.secure "1"
+setprop ro.adb.secure "0"
+setprop ro.allow.mock.location "0"
+setprop ro.secureboot.devicelock "0"
+setprop ro.config.dmverity "false" 
+setprop ro.config.zram "true"
+setprop persist.sys.usb.config "adb,mtp"
+setprop debug.performance.tuning "1"
+setprop ro.config.enable.hw_accel "true"
+setprop ro.ril.enable.amr.wideband "1"
+setprop ro.floatingtouch.available "1"
+setprop video.accelerate.hw "1"
+setprop wifi.supplicant_scan_interval "180"
+setprop windowsmgr.max_events_per_sec "90"
+#setprop ro.setupwizard.mode "ENABLE"
+setprop ro.control_privapp_permissions "disable"
+setprop persist.sys.allow_sys_app_update "true"
+setprop ro.miui.fpstool_enabled "true"
+setprop ro.miui.has_cust_partition "true"
+setprop ro.product.model "2206122SC" 
+setprop ro.telephony.call_ring.delay "0"
+setprop ro.feature.dolby_enable "true"
+setprop persist.camera.HAL3.enabled "1"
+setprop persist.camera.eis.enable "1" 
+setprop persist.vendor.camera.HAL3.enabled "1"
+setprop persist.vendor.camera.eis.enable "1"
+#setprop ro.fod.dimlayer.enable "false" 
+#setprop ro.hardware.fp.fod "false"
+#setprop ro.vendor.fod.dimlayer.enable "false"
+#setprop ro.vendor.audio.dolby.vision.support "true"
+setprop ro.vendor.audio.enhance.support "true"
+setprop ro.vendor.audio.gain.support "true"
+setprop ro.vendor.audio.game.effect "true"
+setprop ro.vendor.audio.karaok.support "true"
+setprop ro.vendor.audio.ns.support "true"
+#setprop ro.vendor.audio.sfx.harmankardon "true" 
+setprop ro.vendor.audio.spk.clean "true"
+setprop ro.vendor.audio.voice.change.support "true"
+setprop ro.vendor.audio.voice.change.youme.support "true"
+setprop ro.vendor.net.enable_dual_wifi "1"
+setprop ro.vendor.touchfeature.gamemode.enable "true"
+setprop persist.device_config.runtime_native.usap_pool_enabled "true"
+setprop persist.sys.power.default.powermode "1"
+setprop sys.miui.ndcd "off"
+setprop ro.com.google.ime.kb_pad_port_b "20"
+setprop ro.vendor.smart_dfps.enable "true"
+setprop ro.vendor.display.default_fps "60,90,120,144"
+setprop ro.vendor.fps.switch.default "true"
+setprop ro.vendor.dfps.enable "true"
+setprop persist.vendor.dfps.level "60,90,120,144" 
+setprop persist.vendor.night.charge "true"
+setprop ro.vendor.audio.support.sound.id "true"
+setprop ro.vendor.audio.voip.assistant "true"
+setprop persist.sys.voip_record.always_on "true"
+setprop persist.vendor.battery.health "true"
+setprop ro.vendor.fps.switch.thermal "true"
+setprop ro.vendor.fps.switch.default "true"
+setprop ro.surface_flinger.use_content_detection_for_refresh_rate "false"
+setprop persist.vendor.power.dfps.level "60,90,120,144" 
+setprop persist.sys.smartfps "1"
+setprop ro.miui.has_security_keyboard "1"
+setprop ro.miui.support_miui_ime_bottom "1"
+
+
+# User 
+settings put system miui_home_double_tap_to_lock 1
+settings put global GPUTUNER_SWITCH true
+settings put global sys_uidcpupower true
+settings put global sysui_powerui_enabled true
+settings put global screen_enhance_engine_gallery_ai_mode_status true
+settings put global settings_network_and_internet_v2 true
+settings put secure vtb_boosting 1
+settings put system link_turbo_option 1
+settings put global SUPPORT_UGD true
+settings put secure in_call_notification_enabled 1
+settings put secure qs_media_resumption 0
+}
+
+vantay() { 
+API=$(getprop ro.product.first_api_level) 
+case $API in 
+ 33) fp=Redmi/alioth/alioth:13/RKQ1.211001.001/V14.0.23.2.6.DEV:user/release-keys;; 
+ 32) fp=Xiaomi/zijin/zijin:12/SKQ1.211006.001/V13.0.6.0.SLPCNXM:user/release-keys;; 
+ 31) fp=Xiaomi/zijin/zijin:12/SKQ1.211006.001/V13.0.6.0.SLPCNXM:user/release-keys;; 
+ 30) fp=Xiaomi/cetus/cetus:11/RKQ1.201112.002/V13.0.3.0.RJTCNXM:user/release-keys;; 
+ 29) fp=Redmi/bomb/bomb:10/QP1A.190711.020/V12.0.8.0.QJLCNXM:user/release-keys;; 
+ 28) fp=Xiaomi/dipper/dipper:8.1.0/OPM1.171019.011/V9.5.5.0.OEAMIFA:user/release-keys;; 
+esac 
+setprop ro.build.fingerprint "$fp"
+setprop ro.bootimage.build.fingerprint "$fp"
+setprop ro.system.build.fingerprint "$fp"
+setprop ro.vendor.build.fingerprint "$fp"
+setprop ro.product.build.fingerprint "$fp"
+setprop ro.odm.build.fingerprint "$fp"
+setprop ro.system_ext.build.fingerprint "$fp"
+} 
+
+tuychinh() { 
+# IO_Scheduler
+for blk in mmcblk0 mmcblk0rpmb sda sdb sdc sdd sde sdf; do 
+if [ -e $blk ]; then 
+ghi "777" "noop" "644" "/sys/block/$blk/queue/scheduler"
+ghi "777" "512" "644" "/sys/block/$blk/queue/read_ahead_kb"
+ghi "777" "64" "644" "/sys/block/$blk/queue/nr_requests"
+ghi "777" "0" "644" "/sys/block/$blk/queue/iostats"
+fi 
+done 
+
+# ZRam=2
+chmod 777 /dev/block/zram0
+swapoff /dev/block/zram0
+ghi "777" "1" "644" "/sys/block/zram0/reset"
+ghi "777" "1" "644" "/sys/devices/virtual/block/zram0/reset"
+ghi "777" "0" "644" "/sys/block/zram0/mem_limit"
+ghi "777" "lz4" "644" "/sys/block/zram0/comp_algorithm"
+ghi "777" "8" "644" "/sys/block/zram0/max_comp_streams"
+ghi "777" "$(($ZRam*1024))M" "644" "/sys/block/zram0/disksize"
+mkswap /dev/block/zram0
+swapon /dev/block/zram0 
+chmod 644 /dev/block/zram0
+
+# Performance
+ghi "777" "1024" "644" "/sys/devices/virtual/bdi/8:0/read_ahead_kb"
+ghi "777" "1024" "644" "/sys/devices/virtual/bdi/8:16/read_ahead_kb"
+ghi "777" "1024" "644" "/sys/devices/virtual/bdi/8:32/read_ahead_kb"
+ghi "777" "1024" "644" "/sys/devices/virtual/bdi/8:48/read_ahead_kb"
+ghi "777" "1024" "644" "/sys/devices/virtual/bdi/8:64/read_ahead_kb"
+ghi "777" "1024" "644" "/sys/devices/virtual/bdi/8:80/read_ahead_kb"
+ghi "777" "1024" "644" "/sys/devices/virtual/bdi/8:80/read_ahead_kb"
+ghi "777" "1024" "644" "/sys/devices/virtual/bdi/8:80/read_ahead_kb"
+
+# Policy
+if [ -e /sys/devices/system/cpu/cpufreq/policy7 ]; then policy=policy7; cpu=cpu7; elif [ -e /sys/devices/system/cpu/cpufreq/policy6 ]; then policy=policy6; cpu=cpu6; else policy=policy4; cpu=cpu4; fi 
+
+# Config
+if [ "$GPU" = "1" ]; then 
+ghi "777" "115000" "644" "/sys/class/thermal/thermal_zone32/trip_point_0_temp"
+ghi "777" "115000" "644" "/sys/class/thermal/thermal_zone33/trip_point_0_temp"
+ghi "777" "schedutil" "644" "/sys/devices/system/cpu/cpufreq/policy0/scaling_governor"
+ghi "777" "schedutil" "644" "/sys/devices/system/cpu/cpufreq/$policy/scaling_governor"
+ghi "777" "90" "644" "/sys/devices/system/cpu/cpufreq/$policy/schedutil/hispeed_load"
+ghi "777" "1401600" "644" "/sys/devices/system/cpu/cpufreq/$policy/schedutil/hispeed_freq"
+ghi "777" "2420000" "644" "/sys/devices/system/cpu/cpufreq/policy0/scaling_max_freq"
+ghi "777" "300000" "644" "/sys/devices/system/cpu/cpufreq/policy0/scaling_min_freq"
+ghi "777" "2840000" "644" "/sys/devices/system/cpu/cpufreq/$policy/scaling_max_freq"
+ghi "777" "825600" "644" "/sys/devices/system/cpu/cpufreq/$policy/scaling_min_freq"
+ghi "777" "0:1305600 1:0 2:0 3:0 4:0 5:0 6:0 7:0" "/sys/devices/system/cpu/cpu_boost/input_boost_freq"
+ghi "777" "0" "644" "/sys/devices/system/cpu/cpu_boost/input_boost_ms"
+ghi "777" "0" "644" "/sys/devices/system/cpu/cpu_boost/sched_boost_on_input"
+ghi "777" "0" "644" "/sys/class/kgsl/kgsl-3d0/thermal_pwrlevel"
+ghi "777" "0" "644" "/sys/class/kgsl/kgsl-3d0/throttling"
+ghi "777" "0" "644" "/sys/class/kgsl/kgsl-3d0/max_pwrlevel"
+ghi "777" "0" "644" "/sys/class/kgsl/kgsl-3d0/perfcounter"
+ghi "777" "0" "644" "/sys/class/kgsl/kgsl-3d0/force_bus_on"
+ghi "777" "1" "644" "/sys/class/kgsl/kgsl-3d0/force_clk_on"
+ghi "777" "1" "644" "/sys/class/kgsl/kgsl-3d0/force_rail_on"
+ghi "777" "1" "644" "/sys/class/kgsl/kgsl-3d0/force_no_nap"
+ghi "777" "1" "644" "/sys/class/kgsl/kgsl-3d0/bus_split"
+ghi "777" "0" "644" "/sys/class/kgsl/kgsl-3d0/devfreq/adrenoboost"
+ghi "777" "$Governor" "644" "/sys/class/kgsl/kgsl-3d0/devfreq/governor"
+ghi "777" "850000000" "644" "/sys/class/kgsl/kgsl-3d0/devfreq/max_freq"
+ghi "777" "315000000" "644" "/sys/class/kgsl/kgsl-3d0/devfreq/min_freq"
+ghi "777" "315000000" "644" "/sys/class/kgsl/kgsl-3d0/gpuclk"
+ghi "777" "850000000" "644" "/sys/class/kgsl/kgsl-3d0/max_gpuclk"
+ghi "777" "10000000" "644" "/sys/class/kgsl/kgsl-3d0/idle_timer"
+ghi "777" "850" "644" "/sys/class/kgsl/kgsl-3d0/max_clock_mhz"
+ghi "777" "315" "644" "/sys/class/kgsl/kgsl-3d0/min_clock_mhz"
+fi  
+}
+
+baomat() {
+chmod 666 /sys/fs/selinux/enforce
+if [ "$Selinux" = "0" ]; then 
+echo "0" > /sys/fs/selinux/enforce
+setenforce 0
+else echo "1" > /sys/fs/selinux/enforce
+setenforce 1
+fi  
+chmod 444 /sys/fs/selinux/enforce 
+}
+
+khoidong() {
+if [ "$(date +%j)" -gt 500 ]; then 
+reboot 
+fi 
+}
+
+gobo() {
+#rm -rf /system/*/AnalyticsCore /system/*/MSA /system/*/mab /system/*/*auto-install*.json 
+rm -rf /data/data/*/app_analytics /data/*/*analytics* /data/miui/pai
+Danhsach="com.facebook.appmanager com.facebook.system com.facebook.services com.miui.analytics com.miui.systemAdSolution com.miui.msa com.miui.msa.global com.xiaomi.glgm com.mipay.wallet.in com.xiaomi.payment org.mipay.android.manager com.xiaomi.ab com.miui.voiceassist com.miui.voicetrigger com.unionpay.tsmservice.mi com.xiaomi.payment com.xiaomi.aireco com.mobiletools.systemhelper com.xiaomi.shop com.miui.smarttravel com.xiaomi.jr com.xiaomi.youpin com.xiaomi.vipaccount com.miui.virtualsim com.miui.contentextension com.xiaomi.aiasst.service com.android.quicksearchbox com.xiaomi.aiasst.vision com.miui.tsmclient com.miui.nextpay com.sohu.inputmethod.sogou.xiaomi com.iflytek.inputmethod.miui com.baidu.input_mi com.android.browser com.miui.videoplayer com.miui.player com.xiaomi.drivemode com.xiaomi.gamecenter.sdk.service com.xiaomi.macro" 
+for ten in $Danhsach; do pm uninstall -k --user 0 $ten; done 
+pm disable com.google.android.gms/.chimera.GmsIntentOperationService
+pm disable com.miui.powerkeeper/.statemachine.PowerStateMachineService
+pm disable com.miui.powerkeeper/com.miui.powerkeeper.statemachine.PowerStateMachineService
+for ten in $Danhsach; do pm disable $ten; done 
+} 
+
+tatmahoa() {
+for Fstab in /vendor/etc/fstab.*; do 
+if [ -f $Fstab ]; then 
+Pfs=',avb ,avb_keys ,quota ,inlinecrypt ,wrappedkey ,verifyatboot ,fsverify ,verify'; 
+for i in $Pfs; do [ -n "$(grep "$i" $Fstab)" ] && sed -i "s|$i||g" $Fstab; done 
+Pfe='forceencrypt= forcefdeorfbe= fileencryption= encryptable= metadata_encryption= keydirectory= avb= avb_keys='; 
+for k in $Pfe; do tim=$(grep -m1 "$k" $Fstab) && [ -n "$tim" ] && doi=${tim#*"$k"} && doi=${k}${doi%%,*} && sed -i "s|,$doi||g" $Fstab; done 
+Pf='slotselect= first_stage_mount_keys=' 
+for k in $Pf; do tim=$(grep -m1 "$k" $Fstab) && [ -n "$tim" ] && doi=${tim#*"$k"} && doi=${k}${doi%%,*} && moi=${k//=/} && moi=${moi//_keys/} && sed -i "s|$doi|$moi|g" $Fstab; done 
+fi
+done
+avbctl --force disable-verification 2> /dev/null 
+avbctl --force disable-verity 2> /dev/null
+} 
+
+ngonngu() {
+[ -z "$Local" ] && settings put system system_locales en-US || settings put system system_locales "$Local" 
+}
+
+tinhnang() {
+sed -i '/<\/features>/d' /product/etc/device_feature/*.xml 
+echo '
+<integer name="config_cell_count_y_max">15</integer>
+<integer name="config_cell_count_x_max">15</integer>
+<bool name="support_sound_assist">true</bool>
+<integer name="support_widevine_l1">2</integer>
+<bool name="is_support_video_tool_box">true</bool>
+<bool name="support_videobox_display_effect">true</bool>
+<bool name="config_sunlight_mode_available">true</bool>
+<bool name="miui_volume_expand_freeland">true</bool>
+<bool name="support_android_flashlight">true</bool>
+<bool name="enable_flash_global">true</bool>
+<bool name="support_multi_face_input">true</bool>
+<bool name="support_multi_face_input_global">true</bool>
+<string-array name="support_face_unlock_region_global">
+        <item>ALL</item>
+</string-array>
+<string-array name="support_face_unlock_region_dom">
+        <item>ALL</item>
+</string-array>
+<integer-array name="edge_suppresson_condition"> 
+        <item>50</item>
+        <item>2</item>
+        <item>4</item>
+        <item>6</item>
+        <item>8</item>
+        <item>10</item>
+    </integer-array>
+    <integer-array name="edge_suppresson_absolute">
+        <item>0</item>
+        <item>3</item>
+        <item>5</item>
+        <item>8</item>
+        <item>10</item>
+    </integer-array>
+    <integer-array name="edge_suppresson_corner">
+        <item>150</item>
+        <item>300</item>
+        <item>170</item>
+        <item>170</item>
+    </integer-array>
+    <integer-array name="edge_suppresson_size">
+        <item>12</item>
+        <item>96</item>
+    </integer-array> 
+<bool name="support_SR_for_image_display">true</bool>
+<bool name="support_AI_display">true</bool>
+<bool name="support_nature_mode">true</bool>
+<bool name="support_game_dim">true</bool>
+<bool name="support_high_resolution">true</bool>
+<bool name="support_dc_backlight">true</bool>
+<bool name="support_secret_dc_backlight">false</bool>
+<bool name="support_paper_eyecare">true</bool>
+<float name="paper_eyecare_default_value">91.0</float>
+<integer name="paper_eyecare_default_texture">25</integer>
+<integer name="paper_eyecare_max_texture">70</integer>
+<bool name="support_smart_fps">true</bool>
+<integer name="smart_fps_value">120</integer> 
+<integer-array name="fpsList">
+        <item>144</item>
+        <item>120</item>
+        <item>90</item>
+        <item>60</item>
+    </integer-array>
+<integer name="config_screenBrightnessSettingDefault">100</integer>
+<integer name="config_screenBrightnessSettingMaximum">255</integer>
+<integer name="config_screenBrightnessSettingMinimum">15</integer>
+</features>' >> /product/etc/device_feature/*.xml 
+} 
+
+chaynen() { 
+Danhsach="com.facebook.katana com.facebook.orca org.telegram.messenger com.zing.zalo"
+dumpsys deviceidle disable
+for Ten in $Danhsach; do
+appops start $Ten 10008
+appops set $Ten 10008 allow
+appops set $Ten 10021 allow
+appops set $Ten RUN_IN_BACKGROUND allow
+appops set $Ten RUN_ANY_IN_BACKGROUND allow
+appops set $Ten START_FOREGROUND allow 
+done
+}
+
+# Tùy_Chọn
+bat
+vantay
+tuychinh 
+#chaynen 
+baomat
+ngonngu 
+gobo
+#tatmahoa
+#tinhnang 

@@ -1,8 +1,11 @@
 # Tùy chọn
 #### Mặc định: 1 là bật, 0 là tắt
 
+#### Ngôn ngữ
+#NNTV="Viet_Nam"
+
 #### Các tùy chọn khác
-opcc="1"
+opcc="0"
 
 #### Hỗ trợ: ext4 hoặc erofs. Bỏ trống là mặc định
 Dinhdangphanvung="ext4"
