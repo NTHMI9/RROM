@@ -23,4 +23,4 @@ Xoadex="0"
 Tacgia="Không Tên"
 
 ### Thêm Harman Kardon
-HK="0"
+HK="1"
