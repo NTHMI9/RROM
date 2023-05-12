@@ -59,5 +59,7 @@ fi
 #Taidulieu
 . $TOME/Option.md
 . MOD
+[[ -n "$systemfc" ]] && sudo bash -c "echo '$systemfc' >> $TOME/tmp/system_file_contexts"
+cat $TOME/tmp/system_file_contexts
 
 echo "- Kết thúc" 
