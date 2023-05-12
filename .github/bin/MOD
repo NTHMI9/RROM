@@ -24,18 +24,20 @@ Repackfile
 #
 ngonngu() { 
 if [[ "$NNTV" == "Viet_Nam" ]]; then
+echo " Thêm ngôn ngữ..."
 Taive "https://github.com/kakathic/ZH-VN/releases/download/HH/TT_1.8.Zip" "$TOME/VH.zip"
 7za x -tzip -y "$TOME/VH.zip" -o$TOME/VH >/dev/null
 [[ -e /mnt/tmp/product/overlay ]] && TMVH=$TOME/Mod/product/overlay || TMVH=$TOME/Mod/vendor/overlay
 mkdir -p $TMVH
 mkdir -p $TOME/Mod/system/media/theme/default
-cp -af $TOME/VH/apk/* $TMVH
-cp -af $TOME/VH/framework-miui-res $TOME/Mod/system/media/theme/default
+cp -rf $TOME/VH/apk/* $TMVH
+cp -rf $TOME/VH/framework-miui-res $TOME/Mod/system/media/theme/default
 fi
 } 
 ngonngu
 #
 if [[ "$HK" == "1" ]]; then 
+echo " Thêm Harman Kardon..."
 mkdir -p $TOME/.github/tam
 unzip -o $TOME/.github/HarmanKardon.zip -d $TOME/.github/tam
 sudo cp -rf $TOME/.github/tam/system/vendor/* /mnt/tmp/vendor 
