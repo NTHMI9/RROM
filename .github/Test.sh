@@ -57,7 +57,6 @@ fi
 }
 
 #Taidulieu
-NNTV="Viet_Nam"
 [[ -f $TOME/.github/bin/MOD ]] && . $TOME/.github/bin/MOD
 
 echo "- Kết thúc" 
