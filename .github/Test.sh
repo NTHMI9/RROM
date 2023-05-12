@@ -57,6 +57,6 @@ fi
 }
 
 #Taidulieu
-[[ -f $TOME/.github/bin/MOD ]] && sudo $TOME/.github/bin/MOD
+[[ -f $TOME/.github/bin/MOD ]] && . $TOME/.github/bin/MOD
 
 echo "- Kết thúc" 
