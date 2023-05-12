@@ -57,6 +57,7 @@ fi
 }
 
 #Taidulieu
-[[ -f $TOME/.github/bin/MOD ]] && . $TOME/.github/bin/MOD
+. $TOME/Option.md
+. MOD
 
 echo "- Kết thúc" 
