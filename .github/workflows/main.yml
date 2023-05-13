@@ -33,5 +33,5 @@ jobs:
         with:
           name: RROM_${{ env.TENZ }}
           path: .github/libpy/Flash2in1/*
-          retention-days: 3
+          retention-days: 2
      
