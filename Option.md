@@ -25,5 +25,11 @@ Tacgia="Không Tên"
 ### Thêm Harman Kardon
 HK="0"
 
-### Thêm Adreno Driver
-GPU="0"
+### Thêm Adreno GPU Driver
+##SDM8250
+GPU770="0"
+GPU690="0"
+GPU687="0"
+##SDM8350+
+GPU615="1"
+
