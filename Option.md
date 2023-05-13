@@ -24,3 +24,6 @@ Tacgia="Không Tên"
 
 ### Thêm Harman Kardon
 HK="0"
+
+### Thêm Adreno Driver
+GPU="0"
