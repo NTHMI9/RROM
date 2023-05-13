@@ -56,8 +56,8 @@ else echo "- Không có tập tin rom"
 fi 
 }
 
-#Taidulieu
+Taidulieu
 . $TOME/Option.md
-. MOD
+. $TOME/.github/bin/mod
 
 echo "- Kết thúc" 
