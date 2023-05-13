@@ -20,12 +20,15 @@ Vfstab="0"
 Xoadex="0"
 
 ### Tác giả
-Tacgia="Không Tên"
+Tacgia="chamchamfy"
 
 ### Thêm Harman Kardon
 HK="0"
 
 ### Thêm Adreno GPU Driver
+GPU="1"
+
+### Tùy chọn phiên bản Adreno GPU Driver 
 #SDM8250
 
 GPU770="0"
@@ -37,4 +40,3 @@ GPU687="0"
 #SDM8350+
 
 GPU615="1"
-
