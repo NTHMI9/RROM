@@ -59,9 +59,4 @@ fi
 #Taidulieu
 . $TOME/Option.md
 . $TOME/.github/bin/mod
-echo "$vendorfc"
-echo 
-[[ -n "$vendorfc" ]] && sudo bash -c "echo '$vendorfc' >> $TOME/tmp/vendor_file_contexts"
-cat $TOME/tmp/vendor_file_contexts
-
 echo "- Kết thúc" 
