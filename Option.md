@@ -26,10 +26,13 @@ Tacgia="Không Tên"
 HK="0"
 
 ### Thêm Adreno GPU Driver
-##SDM8250
+#SDM8250
 GPU770="0"
+
 GPU690="0"
+
 GPU687="0"
-##SDM8350+
+
+#SDM8350+
 GPU615="1"
 
