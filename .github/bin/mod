@@ -22,44 +22,6 @@ Vsmali ".method private checkSystemSelfProtection(Z)V" \
 Repackfile 
 } 
 #
-ngonngu() { 
-if [[ "$NNTV" == "Viet_Nam" ]]; then echo " Thêm ngôn ngữ..."
-Taive "https://github.com/kakathic/ZH-VN/releases/download/HH/TT_1.8.Zip" "$TOME/VH.zip"
-7za x -tzip -y "$TOME/VH.zip" -o$TOME/VH >/dev/null
-[[ -e /mnt/tmp/product/overlay ]] && TMVH=/mnt/tmp/product/overlay || TMVH=/mnt/tmp/vendor/overlay
-sudo cp -rf $TOME/VH/apk/* $TMVH
-sudo cp -rf $TOME/VH/framework-miui-res /mnt/tmp/system/system/media/theme/default
-fi
-} 
-ngonngu
-#
-if [[ "$HK" == "1" ]]; then echo " Thêm Harman Kardon..."
-mkdir -p $TOME/.github/tam
-unzip -qo $TOME/.github/HarmanKardon.zip -d $TOME/.github/tam  >/dev/null
-sudo cp -rf $TOME/.github/tam/system/vendor/* /mnt/tmp/vendor 
-#sudo bash -c "cat $TOME/.github/tam/system.prop >> /mnt/tmp/system/system/build.prop"
-sudo bash -c "cat $TOME/.github/tam/system.prop >> /mnt/tmp/vendor/build.prop"
-fi 
-#
-sudo rm -rf $TOME/.github/tam
-if [[ "$GPU" == "1" ]]; then 
- if [[ "$GPU770" == "1" ]]; then 
- Taive "https://sourceforge.net/projects/chamchamfy/files/Tools/AdrenoGPUDriver770.zip" "$TOME/.github/AdrenoGPUDriver.zip"
- elif [[ "$GPU690" == "1" ]]; then 
- Taive "https://sourceforge.net/projects/chamchamfy/files/Tools/AdrenoGPUDriver690.zip" "$TOME/.github/AdrenoGPUDriver.zip"
- elif [[ "$GPU687" == "1" ]]; then 
- Taive "https://sourceforge.net/projects/chamchamfy/files/Tools/AdrenoGPUDriver687.zip" "$TOME/.github/AdrenoGPUDriver.zip"
- elif [[ "$GPU615" == "1" ]]; then 
- Taive "https://sourceforge.net/projects/chamchamfy/files/Tools/AdrenoGPUDriver615.zip" "$TOME/.github/AdrenoGPUDriver.zip"
- fi 
-echo " Thêm Adreno GPU Driver..."
-mkdir -p $TOME/.github/tam
-unzip -qo $TOME/.github/AdrenoGPUDriver.zip -d $TOME/.github/tam >/dev/null
-sudo cp -rf $TOME/.github/tam/system/vendor/* /mnt/tmp/vendor 
-#sudo bash -c "cat $TOME/.github/tam/system.prop | sed -e '/# Tweak/d' >> /mnt/tmp/system/system/build.prop"
-sudo bash -c "cat $TOME/.github/tam/system.prop | sed -e '/# Tweak/d' >> /mnt/tmp/vendor/build.prop"
-fi 
-#
 themcauhinh() { 
 # Thêm file_contexts
 systemfc=''
@@ -177,4 +139,46 @@ productfs='product/product 0 0 0755'
 
 system_extfs=''
 }
+#
+ngonngu() { 
+if [[ "$NNTV" == "Viet_Nam" ]]; then echo " Thêm ngôn ngữ..."
+Taive "https://github.com/kakathic/ZH-VN/releases/download/HH/TT_1.8.Zip" "$TOME/VH.zip"
+7za x -tzip -y "$TOME/VH.zip" -o$TOME/VH >/dev/null
+[[ -e /mnt/tmp/product/overlay ]] && TMVH=/mnt/tmp/product/overlay || TMVH=/mnt/tmp/vendor/overlay
+sudo cp -rf $TOME/VH/apk/* $TMVH
+sudo cp -rf $TOME/VH/framework-miui-res /mnt/tmp/system/system/media/theme/default
+fi
+} 
+ngonngu
+#
+if [[ "$HK" == "1" ]]; then echo " Thêm Harman Kardon..."
+mkdir -p $TOME/.github/tam
+unzip -qo $TOME/.github/HarmanKardon.zip -d $TOME/.github/tam
+sudo cp -rf $TOME/.github/tam/system/vendor/* /mnt/tmp/vendor 
+#sudo bash -c "cat $TOME/.github/tam/system.prop >> /mnt/tmp/system/system/build.prop"
+sudo bash -c "cat $TOME/.github/tam/system.prop >> /mnt/tmp/vendor/build.prop"
+sudo rm -rf $TOME/.github/tam
+fi 
+#
+if [[ "$GPU" == "1" ]]; then 
+ if [[ "$GPU770" == "1" ]]; then 
+ Taive "https://sourceforge.net/projects/chamchamfy/files/Tools/AdrenoGPUDriver770.zip" "$TOME/AdrenoGPUDriver.zip"
+ elif [[ "$GPU690" == "1" ]]; then 
+ Taive "https://sourceforge.net/projects/chamchamfy/files/Tools/AdrenoGPUDriver690.zip" "$TOME/AdrenoGPUDriver.zip"
+ elif [[ "$GPU687" == "1" ]]; then 
+ Taive "https://sourceforge.net/projects/chamchamfy/files/Tools/AdrenoGPUDriver687.zip" "$TOME/AdrenoGPUDriver.zip"
+ elif [[ "$GPU615" == "1" ]]; then 
+ Taive "https://sourceforge.net/projects/chamchamfy/files/Tools/AdrenoGPUDriver615.zip" "$TOME/AdrenoGPUDriver.zip"
+ fi 
+echo " Thêm Adreno GPU Driver..."
+mkdir -p $TOME/tam
+7za x -tzip -y $TOME/AdrenoGPUDriver.zip -o$TOME/tam >/dev/null
+sudo cp -rf $TOME/tam/system/vendor/* /mnt/tmp/vendor 
+#sudo bash -c "cat $TOME/tam/system.prop | sed -e '/# Tweak/d' >> /mnt/tmp/system/system/build.prop"
+sudo bash -c "cat $TOME/tam/system.prop | sed -e '/# Tweak/d' >> /mnt/tmp/vendor/build.prop"
+sudo rm -rf $TOME/tam
+fi 
+#
+
+#
 themcauhinh
