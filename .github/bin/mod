@@ -178,13 +178,14 @@ if [[ "$GPU" == "1" ]]; then
  elif [[ "$GPU615" == "1" ]]; then 
  Taive "https://github.com/chamchamfy/toolcc/raw/main/AdrenoGPUDriver615.zip" "$TOME/AdrenoGPUDriver.zip"
  fi 
-echo " Thêm Adreno GPU Driver..."
+if [[ -s $TOME/AdrenoGPUDriver.zip ]]; then echo " Thêm Adreno GPU Driver..."
 mkdir -p $TOME/tam
 7za x -tzip -y $TOME/AdrenoGPUDriver.zip -o$TOME/tam >/dev/null
 sudo cp -rf $TOME/tam/system/vendor/* /mnt/tmp/vendor 
 #sudo bash -c "cat $TOME/tam/system.prop | sed -e '/# Tweak/d' >> /mnt/tmp/system/system/build.prop"
 sudo bash -c "cat $TOME/tam/system.prop | sed -e '/# Tweak/d' >> /mnt/tmp/vendor/build.prop"
 sudo rm -rf $TOME/tam
+fi 
 fi 
 #
 
