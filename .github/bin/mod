@@ -24,7 +24,7 @@ Repackfile
 #
 themcauhinh() { 
 # Thêm file_contexts
-systemfc=''
+systemfc='/system/system/media/theme/default/gadgets/vertical_clock.mtz u:object_r:system_file:s0'
 
 vendorfc='/vendor/lib/egl/eglSubDriverAndroid\.so u:object_r:system_lib_file:s0
 /vendor/lib/egl/libEGL_adreno\.so u:object_r:system_lib_file:s0
@@ -85,7 +85,7 @@ productfc=''
 system_extfc=''
 
 # Thêm fsconfig
-systemfs=''
+systemfs='system/media/theme/default/gadgets/vertical_clock.mtz 0 0 0755 0644'
 
 vendorfs='vendor/lib/egl/eglSubDriverAndroid.so 0 0 0755 0644
 vendor/lib/egl/libEGL_adreno.so 0 0 0755 0644
