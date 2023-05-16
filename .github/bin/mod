@@ -24,7 +24,7 @@ Repackfile
 #
 themcauhinh() { 
 # Thêm file_contexts
-systemfc='/system/system/media/theme/default/gadgets/vertical_clock.mtz u:object_r:system_file:s0'
+systemfc=''
 
 vendorfc='/vendor/lib/egl/eglSubDriverAndroid\.so u:object_r:vendor_file:s0
 /vendor/lib/egl/libEGL_adreno\.so u:object_r:vendor_file:s0
@@ -85,9 +85,7 @@ productfc=''
 system_extfc=''
 
 # Thêm fsconfig
-systemfs='system/media/theme/default/gadgets/vertical_clock.mtz 0 0 0755 0644
-system/media/theme/miui_mod_icons/com.android.gallery3d.png 0 0 0755 0644
-system/media/theme/miui_mod_icons/icon_shortcut.png 0 0 0755 0644'
+systemfs=''
 
 vendorfs='vendor/lib/egl/eglSubDriverAndroid.so 0 0 0755 0644
 vendor/lib/egl/libEGL_adreno.so 0 0 0755 0644
@@ -145,7 +143,7 @@ vendor/firmware/a650_sqe.fw 0 0 0755 0644
 vendor/firmware/a650_gmu.bin 0 0 0755 0644
 vendor/lib64/libcutils.so 0 0 0755 0644'
 
-productfs='product/product 0 0 0755'
+productfs=''
 
 system_extfs=''
 }
