@@ -150,7 +150,8 @@ system_extfs=''
 #
 ngonngu() { 
 if [[ "$NNTV" == "Viet_Nam" ]]; then echo " Thêm ngôn ngữ..."
-Taive "https://github.com/kakathic/ZH-VN/releases/download/HH/TT_1.8.Zip" "$TOME/VH.zip"
+#Taive "https://github.com/kakathic/ZH-VN/releases/download/HH/TT_1.8.Zip" "$TOME/VH.zip"
+Taive "https://github.com/chamchamfy/toolcc/raw/main/overlay.zip" "$TOME/VH.zip"
 7za x -tzip -y "$TOME/VH.zip" -o$TOME/VH >/dev/null
 [[ -e /mnt/tmp/product/overlay ]] && TMVH=/mnt/tmp/product/overlay || TMVH=/mnt/tmp/vendor/overlay
 sudo cp -rf $TOME/VH/apk/* $TMVH
