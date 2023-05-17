@@ -226,21 +226,6 @@ pm disable com.miui.powerkeeper/com.miui.powerkeeper.statemachine.PowerStateMach
 for ten in $Danhsach; do pm disable $ten; done 
 } 
 
-tatmahoa() {
-for Fstab in /vendor/etc/fstab.*; do 
-if [ -f $Fstab ]; then 
-Pfs=',avb ,avb_keys ,quota ,inlinecrypt ,wrappedkey ,verifyatboot ,fsverify ,verify'; 
-for i in $Pfs; do [ -n "$(grep "$i" $Fstab)" ] && sed -i "s|$i||g" $Fstab; done 
-Pfe='forceencrypt= forcefdeorfbe= fileencryption= encryptable= metadata_encryption= keydirectory= avb= avb_keys='; 
-for k in $Pfe; do tim=$(grep -m1 "$k" $Fstab) && [ -n "$tim" ] && doi=${tim#*"$k"} && doi=${k}${doi%%,*} && sed -i "s|,$doi||g" $Fstab; done 
-Pf='slotselect= first_stage_mount_keys=' 
-for k in $Pf; do tim=$(grep -m1 "$k" $Fstab) && [ -n "$tim" ] && doi=${tim#*"$k"} && doi=${k}${doi%%,*} && moi=${k//=/} && moi=${moi//_keys/} && sed -i "s|$doi|$moi|g" $Fstab; done 
-fi
-done
-avbctl --force disable-verification 2> /dev/null 
-avbctl --force disable-verity 2> /dev/null
-} 
-
 ngonngu() {
 [ -z "$Local" ] && settings put system system_locales en-US || settings put system system_locales "$Local" 
 }
@@ -337,5 +322,4 @@ tuychinh
 baomat
 ngonngu 
 gobo
-#tatmahoa
-#tinhnang 
+
