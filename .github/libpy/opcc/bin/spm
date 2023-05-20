@@ -9,89 +9,13 @@ if [ -f $ccs ]; then
 GPU=$(grep 'GPU' $ccs | awk -F= '{print $2}'); 
 Governor=$(grep 'Governor' $ccs | awk -F= '{print $2}'); 
 ZRam=$(grep 'ZRam' $ccs | awk -F= '{print $2}');
-Selinux=$(grep 'Selinux' $ccs | awk -F= '{print $2}'); 
-Local=$(grep 'Local' $ccs | awk -F= '{print $2}'); 
 else 
-GPU=1
-Governor=powersave
-ZRam=2
-Selinux=0
-Local=vi-VN
+GPU='1'
+Governor='powersave'
+ZRam='2'
 fi 
 
 bat() {
-# Setprop 
-setprop ro.boot.hwc "GLOBAL"
-setprop ro.boot.hwcountry "GLOBAL"
-setprop ro.boot.verifiedbootstate "green"
-setprop ro.boot.veritymode "enforcing"
-setprop ro.boot.vbmeta.device_state "locked"
-setprop vendor.boot.vbmeta.device_state "locked"
-setprop ro.debuggable "0"
-setprop ro.secure "1"
-setprop ro.adb.secure "0"
-setprop ro.allow.mock.location "0"
-setprop ro.secureboot.devicelock "0"
-setprop ro.config.dmverity "false" 
-setprop ro.config.zram "true"
-setprop persist.sys.usb.config "adb,mtp"
-setprop debug.performance.tuning "1"
-setprop ro.config.enable.hw_accel "true"
-setprop ro.ril.enable.amr.wideband "1"
-setprop ro.floatingtouch.available "1"
-setprop video.accelerate.hw "1"
-setprop wifi.supplicant_scan_interval "180"
-setprop windowsmgr.max_events_per_sec "90"
-#setprop ro.setupwizard.mode "ENABLE"
-setprop ro.control_privapp_permissions "disable"
-setprop persist.sys.allow_sys_app_update "true"
-setprop ro.miui.fpstool_enabled "true"
-setprop ro.miui.has_cust_partition "true"
-setprop ro.product.model "2206122SC" 
-setprop ro.telephony.call_ring.delay "0"
-setprop ro.feature.dolby_enable "true"
-setprop persist.camera.HAL3.enabled "1"
-setprop persist.camera.eis.enable "1" 
-setprop persist.vendor.camera.HAL3.enabled "1"
-setprop persist.vendor.camera.eis.enable "1"
-#setprop ro.fod.dimlayer.enable "false" 
-#setprop ro.hardware.fp.fod "false"
-#setprop ro.vendor.fod.dimlayer.enable "false"
-#setprop ro.vendor.audio.dolby.vision.support "true"
-setprop ro.vendor.audio.enhance.support "true"
-setprop ro.vendor.audio.gain.support "true"
-setprop ro.vendor.audio.game.effect "true"
-setprop ro.vendor.audio.karaok.support "true"
-setprop ro.vendor.audio.ns.support "true"
-#setprop ro.vendor.audio.sfx.harmankardon "true" 
-setprop ro.vendor.audio.spk.clean "true"
-setprop ro.vendor.audio.voice.change.support "true"
-setprop ro.vendor.audio.voice.change.youme.support "true"
-setprop ro.vendor.net.enable_dual_wifi "1"
-setprop ro.vendor.touchfeature.gamemode.enable "true"
-setprop persist.device_config.runtime_native.usap_pool_enabled "true"
-setprop persist.sys.power.default.powermode "1"
-setprop sys.miui.ndcd "off"
-setprop ro.com.google.ime.kb_pad_port_b "20"
-setprop ro.vendor.smart_dfps.enable "true"
-setprop ro.vendor.display.default_fps "60,90,120,144"
-setprop ro.vendor.fps.switch.default "true"
-setprop ro.vendor.dfps.enable "true"
-setprop persist.vendor.dfps.level "60,90,120,144" 
-setprop persist.vendor.night.charge "true"
-setprop ro.vendor.audio.support.sound.id "true"
-setprop ro.vendor.audio.voip.assistant "true"
-setprop persist.sys.voip_record.always_on "true"
-setprop persist.vendor.battery.health "true"
-setprop ro.vendor.fps.switch.thermal "true"
-setprop ro.vendor.fps.switch.default "true"
-setprop ro.surface_flinger.use_content_detection_for_refresh_rate "false"
-setprop persist.vendor.power.dfps.level "60,90,120,144" 
-setprop persist.sys.smartfps "1"
-setprop ro.miui.has_security_keyboard "1"
-setprop ro.miui.support_miui_ime_bottom "1"
-
-
 # User 
 settings put system miui_home_double_tap_to_lock 1
 settings put global GPUTUNER_SWITCH true
@@ -105,25 +29,6 @@ settings put global SUPPORT_UGD true
 settings put secure in_call_notification_enabled 1
 settings put secure qs_media_resumption 0
 }
-
-vantay() { 
-API=$(getprop ro.product.first_api_level) 
-case $API in 
- 33) fp=Redmi/alioth/alioth:13/RKQ1.211001.001/V14.0.23.2.6.DEV:user/release-keys;; 
- 32) fp=Xiaomi/zijin/zijin:12/SKQ1.211006.001/V13.0.6.0.SLPCNXM:user/release-keys;; 
- 31) fp=Xiaomi/zijin/zijin:12/SKQ1.211006.001/V13.0.6.0.SLPCNXM:user/release-keys;; 
- 30) fp=Xiaomi/cetus/cetus:11/RKQ1.201112.002/V13.0.3.0.RJTCNXM:user/release-keys;; 
- 29) fp=Redmi/bomb/bomb:10/QP1A.190711.020/V12.0.8.0.QJLCNXM:user/release-keys;; 
- 28) fp=Xiaomi/dipper/dipper:8.1.0/OPM1.171019.011/V9.5.5.0.OEAMIFA:user/release-keys;; 
-esac 
-setprop ro.build.fingerprint "$fp"
-setprop ro.bootimage.build.fingerprint "$fp"
-setprop ro.system.build.fingerprint "$fp"
-setprop ro.vendor.build.fingerprint "$fp"
-setprop ro.product.build.fingerprint "$fp"
-setprop ro.odm.build.fingerprint "$fp"
-setprop ro.system_ext.build.fingerprint "$fp"
-} 
 
 tuychinh() { 
 # IO_Scheduler
@@ -198,26 +103,9 @@ ghi "777" "315" "644" "/sys/class/kgsl/kgsl-3d0/min_clock_mhz"
 fi  
 }
 
-baomat() {
-chmod 666 /sys/fs/selinux/enforce
-if [ "$Selinux" = "0" ]; then 
-echo "0" > /sys/fs/selinux/enforce
-setenforce 0
-else echo "1" > /sys/fs/selinux/enforce
-setenforce 1
-fi  
-chmod 444 /sys/fs/selinux/enforce 
-}
-
-khoidong() {
-if [ "$(date +%j)" -gt 500 ]; then 
-reboot 
-fi 
-}
 
 gobo() {
-#rm -rf /system/*/AnalyticsCore /system/*/MSA /system/*/mab /system/*/*auto-install*.json 
-rm -rf /data/data/*/app_analytics /data/*/*analytics* /data/miui/pai
+rm -rf /data/data/*/app_analytics /data/*/*analytics* /data/miui/pai /system/*/*auto-install*.json 
 Danhsach="com.facebook.appmanager com.facebook.system com.facebook.services com.miui.analytics com.miui.systemAdSolution com.miui.msa com.miui.msa.global com.xiaomi.glgm com.mipay.wallet.in com.xiaomi.payment org.mipay.android.manager com.xiaomi.ab com.miui.voiceassist com.miui.voicetrigger com.unionpay.tsmservice.mi com.xiaomi.payment com.xiaomi.aireco com.mobiletools.systemhelper com.xiaomi.shop com.miui.smarttravel com.xiaomi.jr com.xiaomi.youpin com.xiaomi.vipaccount com.miui.virtualsim com.miui.contentextension com.xiaomi.aiasst.service com.android.quicksearchbox com.xiaomi.aiasst.vision com.miui.tsmclient com.miui.nextpay com.sohu.inputmethod.sogou.xiaomi com.iflytek.inputmethod.miui com.baidu.input_mi com.android.browser com.miui.videoplayer com.miui.player com.xiaomi.drivemode com.xiaomi.gamecenter.sdk.service com.xiaomi.macro" 
 for ten in $Danhsach; do pm uninstall -k --user 0 $ten; done 
 pm disable com.google.android.gms/.chimera.GmsIntentOperationService
@@ -226,12 +114,11 @@ pm disable com.miui.powerkeeper/com.miui.powerkeeper.statemachine.PowerStateMach
 for ten in $Danhsach; do pm disable $ten; done 
 } 
 
-ngonngu() {
-[ -z "$Local" ] && settings put system system_locales en-US || settings put system system_locales "$Local" 
-}
 
 tinhnang() {
-sed -i '/<\/features>/d' /product/etc/device_feature/*.xml 
+for p in product system vendor; do 
+ if [ -z "$(grep -m1 'miui_volume_expand_freeland' /$p/etc/device_feature/*.xml)" ]; then 
+  sed -i '/<\/features>/d' /$p/etc/device_feature/*.xml 
 echo '
 <integer name="config_cell_count_y_max">15</integer>
 <integer name="config_cell_count_x_max">15</integer>
@@ -298,7 +185,9 @@ echo '
 <integer name="config_screenBrightnessSettingDefault">100</integer>
 <integer name="config_screenBrightnessSettingMaximum">255</integer>
 <integer name="config_screenBrightnessSettingMinimum">15</integer>
-</features>' >> /product/etc/device_feature/*.xml 
+</features>' >> /$p/etc/device_feature/*.xml 
+ fi
+done
 } 
 
 chaynen() { 
@@ -316,10 +205,7 @@ done
 
 # Tùy_Chọn
 bat
-vantay
 tuychinh 
-#chaynen 
-baomat
-ngonngu 
 gobo
-
+tinhnang 
+#chaynen 

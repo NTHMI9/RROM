@@ -1,5 +1,5 @@
 # Initialization
- on property:init.svc.thermal-engine=running
+on property:init.svc.thermal-engine=running
       stop thermal-engine
       stop logd
       stop vendor.cnss_diag
@@ -9,23 +9,113 @@
       stop tcpdump
       stop ipacm-diag
 
-# Set default profile on first boot 
+# Set boot completed
 on property:sys.boot_completed=1
       chmod 0755 /system/bin/spm
-      exec u:r:init:s0 root root -- /system/bin/spm 
-      exec u:r:magisk:s0 root root -- /system/bin/spm    
-      exec_background - system shell -- /system/bin/spm
+      exec u:r:init:s0 system system -- /system/bin/spm 
+      exec u:r:magisk:s0 system system -- /system/bin/spm
+	  exec - system system -- /system/bin/spm 
+# run setprop
+on property:sys.boot_completed=1
+	setprop ro.boot.hwc "GLOBAL"
+	setprop ro.boot.hwcountry "GLOBAL"
+	setprop ro.boot.verifiedbootstate "green"
+	setprop ro.boot.veritymode "enforcing"
+	setprop ro.boot.vbmeta.device_state "locked"
+	setprop vendor.boot.vbmeta.device_state "locked"
+	setprop ro.debuggable "0"
+	setprop ro.secure "1"
+	setprop ro.adb.secure "0"
+	setprop ro.allow.mock.location "0"
+	setprop ro.secureboot.devicelock "0"
+	setprop ro.config.dmverity "false" 
+	setprop persist.sys.usb.config "adb,mtp"
+	setprop debug.performance.tuning "1"
+	setprop ro.config.enable.hw_accel "true"
+	setprop ro.ril.enable.amr.wideband "1"
+	setprop ro.floatingtouch.available "1"
+	setprop video.accelerate.hw "1"
+	setprop wifi.supplicant_scan_interval "180"
+	setprop windowsmgr.max_events_per_sec "90"
+	#setprop ro.setupwizard.mode "ENABLE"
+	setprop ro.control_privapp_permissions "disable"
+	setprop persist.sys.allow_sys_app_update "true"
+	setprop ro.miui.fpstool_enabled "true"
+	setprop ro.miui.has_cust_partition "true"
+	setprop ro.telephony.call_ring.delay "0"
+	setprop ro.feature.dolby_enable "true"
+	setprop persist.camera.HAL3.enabled "1"
+	setprop persist.camera.eis.enable "1" 
+	setprop persist.vendor.camera.HAL3.enabled "1"
+	setprop persist.vendor.camera.eis.enable "1"
+	#setprop ro.fod.dimlayer.enable "false" 
+	#setprop ro.hardware.fp.fod "false"
+	#setprop ro.vendor.fod.dimlayer.enable "false"
+	#setprop ro.vendor.audio.dolby.vision.support "true"
+	setprop ro.vendor.audio.enhance.support "true"
+	setprop ro.vendor.audio.gain.support "true"
+	setprop ro.vendor.audio.game.effect "true"
+	setprop ro.vendor.audio.karaok.support "true"
+	setprop ro.vendor.audio.ns.support "true"
+	#setprop ro.vendor.audio.sfx.harmankardon "true" 
+	setprop ro.vendor.audio.spk.clean "true"
+	setprop ro.vendor.audio.voice.change.support "true"
+	setprop ro.vendor.audio.voice.change.youme.support "true"
+	setprop ro.vendor.net.enable_dual_wifi "1"
+	setprop ro.vendor.touchfeature.gamemode.enable "true"
+	setprop persist.device_config.runtime_native.usap_pool_enabled "true"
+	setprop persist.sys.power.default.powermode "1"
+	setprop sys.miui.ndcd "off"
+	setprop ro.com.google.ime.kb_pad_port_b "20"
+	setprop ro.vendor.smart_dfps.enable "true"
+	setprop ro.vendor.display.default_fps "60,90,120,144"
+	setprop ro.vendor.fps.switch.default "true"
+	setprop ro.vendor.dfps.enable "true"
+	setprop persist.vendor.dfps.level "60,90,120,144" 
+	setprop persist.vendor.night.charge "true"
+	setprop ro.vendor.audio.support.sound.id "true"
+	setprop ro.vendor.audio.voip.assistant "true"
+	setprop persist.sys.voip_record.always_on "true"
+	setprop persist.vendor.battery.health "true"
+	setprop ro.vendor.fps.switch.thermal "true"
+	setprop ro.vendor.fps.switch.default "true"
+	setprop ro.surface_flinger.use_content_detection_for_refresh_rate "false"
+	setprop persist.vendor.power.dfps.level "60,90,120,144" 
+	setprop persist.sys.smartfps "1"
+	setprop ro.miui.has_security_keyboard "1"
+	setprop ro.miui.support_miui_ime_bottom "1"
+	
+# permissive
+on property:sys.boot_completed=1
+	chmod 666 /sys/fs/selinux/enforce
+	write /sys/fs/selinux/enforce 0
+	chmod 444 /sys/fs/selinux/enforce
+	
+# vantay
+on property:ro.product.first_api_level=33
+	setprop ro.build.fingerprint "google/raven/raven:13/TQ1A.230105.002/9325679:user/release-keys"
+	setprop ro.bootimage.build.fingerprint "google/raven/raven:13/TQ1A.230105.002/9325679:user/release-keys"
+	setprop ro.system.build.fingerprint "google/raven/raven:13/TQ1A.230105.002/9325679:user/release-keys"
+	setprop ro.vendor.build.fingerprint "google/raven/raven:13/TQ1A.230105.002/9325679:user/release-keys"
+	setprop ro.product.build.fingerprint "google/raven/raven:13/TQ1A.230105.002/9325679:user/release-keys"
+	setprop ro.odm.build.fingerprint "google/raven/raven:13/TQ1A.230105.002/9325679:user/release-keys"
+	setprop ro.system_ext.build.fingerprint "google/raven/raven:13/TQ1A.230105.002/9325679:user/release-keys"
+	
+on property:ro.product.first_api_level=32
+	setprop ro.build.fingerprint "google/raven/raven:13/TQ1A.230105.002/9325679:user/release-keys"
+	setprop ro.bootimage.build.fingerprint "google/raven/raven:13/TQ1A.230105.002/9325679:user/release-keys"
+	setprop ro.system.build.fingerprint "google/raven/raven:13/TQ1A.230105.002/9325679:user/release-keys"
+	setprop ro.vendor.build.fingerprint "google/raven/raven:13/TQ1A.230105.002/9325679:user/release-keys"
+	setprop ro.product.build.fingerprint "google/raven/raven:13/TQ1A.230105.002/9325679:user/release-keys"
+	setprop ro.odm.build.fingerprint "google/raven/raven:13/TQ1A.230105.002/9325679:user/release-keys"
+	setprop ro.system_ext.build.fingerprint "google/raven/raven:13/TQ1A.230105.002/9325679:user/release-keys"
 
-on property:dev.bootcomplete=1
-      chmod 0755 /system/bin/spm
-      exec u:r:init:s0 root root -- /system/bin/spm 
-      exec u:r:magisk:s0 root root -- /system/bin/spm    
-      exec_background - system shell -- /system/bin/spm
-# Setprop
+on property:ro.product.first_api_level=31
+	setprop ro.build.fingerprint "google/raven/raven:12/SD1A.210817.036/7805805:user/release-keys"
+	setprop ro.bootimage.build.fingerprint "google/raven/raven:12/SD1A.210817.036/7805805:user/release-keys"
+	setprop ro.system.build.fingerprint "google/raven/raven:12/SD1A.210817.036/7805805:user/release-keys"
+	setprop ro.vendor.build.fingerprint "google/raven/raven:12/SD1A.210817.036/7805805:user/release-keys"
+	setprop ro.product.build.fingerprint "google/raven/raven:12/SD1A.210817.036/7805805:user/release-keys"
+	setprop ro.odm.build.fingerprint "google/raven/raven:12/SD1A.210817.036/7805805:user/release-keys"
+	setprop ro.system_ext.build.fingerprint "google/raven/raven:12/SD1A.210817.036/7805805:user/release-keys"
 
-
-# Addition profiles
-# on property:sys.boot_completed=1
-# on property:persist.spectrum.profile=0
-# exec u:r:magisk:s0 root root -- /system/bin/spm balance
-  
