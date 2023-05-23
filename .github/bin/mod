@@ -10,7 +10,9 @@ TOME="$GITHUB_WORKSPACE"
 # Đường dẫn thư mục product: /mnt/tmp/product 
 # Đường dẫn thư mục system_ext: /mnt/tmp/system_ext
 
-VD() {
+Dichvu() {
+Timfile "miui-services.jar"
+if [[ -f $TOME/Mod/miui-services.jar ]]; then 
 Unpackfile 
 Vsmali ".method private checkSystemSelfProtection(Z)V" \
 ".end method" \
@@ -18,8 +20,9 @@ Vsmali ".method private checkSystemSelfProtection(Z)V" \
     .locals 1
     return-void
 .end method' \
-'services/classes*/com/miui/server/*'
+'miui-services/classes*/com/miui/server/*'
 Repackfile 
+fi 
 } 
 #
 themcauhinh() { 
