@@ -1,8 +1,8 @@
 # Tùy chọn
 #### Mặc định: 1 là bật, 0 là tắt
 
-#### Ngôn ngữ
-NNTV="Viet_Nam"
+#### Ngôn ngữ: Viet_Nam
+NNTV=""
 
 #### Các tùy chọn khác
 opcc="0"
