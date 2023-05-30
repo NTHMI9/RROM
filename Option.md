@@ -2,7 +2,7 @@
 #### Mặc định: 1 là bật, 0 là tắt
 
 #### Ngôn ngữ: Viet_Nam
-NNTV=""
+NNTV="Viet_Nam"
 
 #### Các tùy chọn khác
 opcc="0"
