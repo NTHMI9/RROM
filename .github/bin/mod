@@ -27,7 +27,7 @@ fi
 #
 themcauhinh() { 
 # Thêm file_contexts
-systemfc=''
+systemfc='/media u:object_r:system_file:s0'
 
 vendorfc='/vendor/lib/egl/eglSubDriverAndroid\.so u:object_r:system_lib_file:s0
 /vendor/lib/egl/libEGL_adreno\.so u:object_r:system_lib_file:s0
@@ -88,7 +88,7 @@ productfc=''
 system_extfc=''
 
 # Thêm fsconfig
-systemfs=''
+systemfs='media 0 0 755'
 
 vendorfs='vendor/lib/egl/eglSubDriverAndroid.so 0 0 0755 0644
 vendor/lib/egl/libEGL_adreno.so 0 0 0755 0644
