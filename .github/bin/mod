@@ -83,7 +83,8 @@ vendorfc='/vendor/lib/egl/eglSubDriverAndroid\.so u:object_r:system_lib_file:s0
 /vendor/etc/permissions/public\.libraries\.txt u:object_r:same_process_hal_file:s0
 /vendor/lib64/libcutils\.so u:object_r:same_process_hal_file:s0'
 
-productfc=''
+productfc='/product/media/theme/default/framework-miui-res u:object_r:system_file:s0
+/product/media/theme/default/gadgets/ccs.mtz u:object_r:system_file:s0'
 
 system_extfc=''
 
@@ -146,7 +147,10 @@ vendor/firmware/a650_sqe.fw 0 0 0755 0644
 vendor/firmware/a650_gmu.bin 0 0 0755 0644
 vendor/lib64/libcutils.so 0 0 0755 0644'
 
-productfs=''
+productfs='product/media/theme/default/framework-miui-res 0 0 0644
+product/media/theme/default/gadgets/ccs.mtz 0 0 0644
+product/media/theme/miui_mod_icons/com.android.gallery3d.png 0 0 0755 0644
+product/media/theme/miui_mod_icons/icon_shortcut.png 0 0 0755 0644'
 
 system_extfs=''
 }
