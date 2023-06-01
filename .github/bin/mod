@@ -29,7 +29,8 @@ themcauhinh() {
 # Thêm file_contexts
 systemfc='/media u:object_r:system_file:s0
 /media/theme u:object_r:system_file:s0
-/media/theme/.data u:object_r:system_file:s0'
+/media/theme/.data u:object_r:system_file:s0
+/media/theme/.data/content u:object_r:system_file:s0'
 
 vendorfc='/vendor/lib/egl/eglSubDriverAndroid\.so u:object_r:system_lib_file:s0
 /vendor/lib/egl/libEGL_adreno\.so u:object_r:system_lib_file:s0
@@ -92,7 +93,8 @@ system_extfc=''
 # Thêm fsconfig
 systemfs='media 0 0 0755
 media/theme 0 0 0755
-media/theme/.data 0 0 0755'
+media/theme/.data 0 0 0755
+media/theme/.data/content 0 0 0755'
 
 vendorfs='vendor/lib/egl/eglSubDriverAndroid.so 0 0 0755 0644
 vendor/lib/egl/libEGL_adreno.so 0 0 0755 0644
