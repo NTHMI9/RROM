@@ -5,7 +5,7 @@
 NNTV="Viet_Nam"
 
 #### Các tùy chọn khác
-opcc="1"
+opcc="0"
 
 #### Hỗ trợ: ext4 hoặc erofs. Bỏ trống là mặc định
 Dinhdangphanvung="ext4"
