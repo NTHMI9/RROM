@@ -66,7 +66,7 @@ on property:sys.boot_completed=1
 	setprop persist.device_config.runtime_native.usap_pool_enabled "true"
 	setprop persist.sys.power.default.powermode "1"
 	setprop sys.miui.ndcd "off"
-	setprop ro.com.google.ime.kb_pad_port_b "20"
+	setprop ro.com.google.ime.kb_pad_port_b "10"
 	setprop ro.vendor.smart_dfps.enable "true"
 	setprop ro.vendor.display.default_fps "60,90,120,144"
 	setprop ro.vendor.fps.switch.default "true"
@@ -92,7 +92,7 @@ on property:sys.boot_completed=1
 	chmod 444 /sys/fs/selinux/enforce
 	
 # vantay
-on property:ro.product.first_api_level=33
+on property:ro.product.build.version.sdk=33
 	setprop ro.build.fingerprint "google/raven/raven:13/TQ1A.230105.002/9325679:user/release-keys"
 	setprop ro.bootimage.build.fingerprint "google/raven/raven:13/TQ1A.230105.002/9325679:user/release-keys"
 	setprop ro.system.build.fingerprint "google/raven/raven:13/TQ1A.230105.002/9325679:user/release-keys"
@@ -101,7 +101,7 @@ on property:ro.product.first_api_level=33
 	setprop ro.odm.build.fingerprint "google/raven/raven:13/TQ1A.230105.002/9325679:user/release-keys"
 	setprop ro.system_ext.build.fingerprint "google/raven/raven:13/TQ1A.230105.002/9325679:user/release-keys"
 	
-on property:ro.product.first_api_level=32
+on property:ro.product.build.version.sdk=32
 	setprop ro.build.fingerprint "google/raven/raven:13/TQ1A.230105.002/9325679:user/release-keys"
 	setprop ro.bootimage.build.fingerprint "google/raven/raven:13/TQ1A.230105.002/9325679:user/release-keys"
 	setprop ro.system.build.fingerprint "google/raven/raven:13/TQ1A.230105.002/9325679:user/release-keys"
@@ -110,7 +110,7 @@ on property:ro.product.first_api_level=32
 	setprop ro.odm.build.fingerprint "google/raven/raven:13/TQ1A.230105.002/9325679:user/release-keys"
 	setprop ro.system_ext.build.fingerprint "google/raven/raven:13/TQ1A.230105.002/9325679:user/release-keys"
 
-on property:ro.product.first_api_level=31
+on property:ro.product.build.version.sdk=31
 	setprop ro.build.fingerprint "google/raven/raven:12/SD1A.210817.036/7805805:user/release-keys"
 	setprop ro.bootimage.build.fingerprint "google/raven/raven:12/SD1A.210817.036/7805805:user/release-keys"
 	setprop ro.system.build.fingerprint "google/raven/raven:12/SD1A.210817.036/7805805:user/release-keys"
