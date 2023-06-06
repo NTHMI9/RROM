@@ -1,11 +1,11 @@
 # Tùy chọn
 #### Mặc định: 1 là bật, 0 là tắt
 
-#### Ngôn ngữ: Viet_Nam
+#### Ngôn ngữ
 NNTV="Viet_Nam"
 
 #### Các tùy chọn khác
-opcc="1"
+opcc="0"
 
 #### Hỗ trợ: ext4 hoặc erofs. Bỏ trống là mặc định
 Dinhdangphanvung="ext4"
@@ -14,7 +14,7 @@ Dinhdangphanvung="ext4"
 chedo="none"
 
 ### Vá fstab
-Vfstab="0"
+Vfstab="1"
 
 ### Xoá odex vdex...
 Xoadex="#service.art #service.odex #service.vdex #miui-service.art #miui-service.odex #miui-service.vdex"

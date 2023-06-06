@@ -5,7 +5,7 @@ on:
       URL:
         description: 'Hãy điền đường dẫn url của link rom để tải xuống'
         required: true
-        default: 'https://bigota.d.miui.com/V14.0.2.0.TKDMIXM/miui_VILIGlobal_V14.0.2.0.TKDMIXM_a419b72ee9_13.0.zip'
+        default: 'https://bigota.d.miui.com/V14.0.1.0.TKDMIXM/miui_VILIGlobal_V14.0.1.0.TKDMIXM_81b331177e_13.0.zip'
       SIZE:
         description: 'Kích cỡ phân vùng super'
         required: true

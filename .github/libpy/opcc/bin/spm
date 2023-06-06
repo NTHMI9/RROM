@@ -118,6 +118,7 @@ for ten in $Danhsach; do pm disable $ten; done
 tinhnang() {
 for p in product system vendor; do 
  if [ -z "$(grep -m1 'miui_volume_expand_freeland' /$p/etc/device_feature/*.xml)" ]; then 
+if [ -d /$p/etc/device_feature ]; then
   sed -i '/<\/features>/d' /$p/etc/device_feature/*.xml 
 echo '
 <integer name="config_cell_count_y_max">15</integer>
@@ -186,6 +187,7 @@ echo '
 <integer name="config_screenBrightnessSettingMaximum">255</integer>
 <integer name="config_screenBrightnessSettingMinimum">15</integer>
 </features>' >> /$p/etc/device_feature/*.xml 
+fi
  fi
 done
 } 
