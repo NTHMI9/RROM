@@ -14,7 +14,7 @@ Dinhdangphanvung="ext4"
 chedo="none"
 
 ### Vá fstab
-Vfstab="1"
+Vfstab="0"
 
 ### Xoá odex vdex...
 Xoadex="#service.art #service.odex #service.vdex #miui-service.art #miui-service.odex #miui-service.vdex"
