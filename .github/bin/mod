@@ -152,7 +152,7 @@ system_extfs=''
 }
 #
 ngonngu() { 
-if [[ "$NNTV" == "Viet_Nam" ]]; then echo " Thêm ngôn ngữ..."
+if [[ "$NNTV" == "Viet_Nam" ]]; then echo " * Thêm ngôn ngữ..."
 #Taive "https://github.com/kakathic/ZH-VN/releases/download/HH/TT_1.8.Zip" "$TOME/VH.zip"
 Taive "https://github.com/chamchamfy/toolcc/raw/main/overlay.zip" "$TOME/VH.zip"
 7za x -tzip -y "$TOME/VH.zip" -o$TOME/VH >/dev/null
@@ -163,13 +163,14 @@ fi
 } 
 ngonngu
 #
-if [[ "$HK" == "1" ]]; then echo " Thêm Harman Kardon..."
-mkdir -p $TOME/.github/tam
-unzip -qo $TOME/.github/HarmanKardon.zip -d $TOME/.github/tam
-sudo cp -rf $TOME/.github/tam/system/vendor/* /mnt/tmp/vendor 
-#sudo bash -c "cat $TOME/.github/tam/system.prop >> /mnt/tmp/system/system/build.prop"
-sudo bash -c "cat $TOME/.github/tam/system.prop >> /mnt/tmp/vendor/build.prop"
-sudo rm -rf $TOME/.github/tam
+if [[ "$HK" == "1" ]]; then echo " * Thêm Harman Kardon..."
+mkdir -p $TOME/tam
+unzip -qo $TOME/.github/HarmanKardon.zip -d $TOME/tam
+sudo cp -rf $TOME/tam/system/vendor/* /mnt/tmp/vendor 
+sudo sed -i '/import/d' /mnt/tmp/vendor/build.prop
+sudo bash -c "cat $TOME/tam/system.prop >> /mnt/tmp/vendor/build.prop"
+sudo bash -c "echo 'import /vendor/${ro.boot.product.hardware.sku}.build.prop' >> /mnt/tmp/vendor/build.prop"
+sudo rm -rf $TOME/tam
 fi 
 #
 if [[ "$GPU" == "1" ]]; then 
@@ -182,12 +183,15 @@ if [[ "$GPU" == "1" ]]; then
  elif [[ "$GPU615" == "1" ]]; then 
  Taive "https://github.com/chamchamfy/toolcc/raw/main/AdrenoGPUDriver615.zip" "$TOME/AdrenoGPUDriver.zip"
  fi 
-if [[ -s $TOME/AdrenoGPUDriver.zip ]]; then echo " Thêm Adreno GPU Driver..."
+if [[ -s $TOME/AdrenoGPUDriver.zip ]]; then echo " * Thêm Adreno GPU Driver..."
 mkdir -p $TOME/tam
 7za x -tzip -y $TOME/AdrenoGPUDriver.zip -o$TOME/tam >/dev/null
 sudo cp -rf $TOME/tam/system/vendor/* /mnt/tmp/vendor 
-#sudo bash -c "cat $TOME/tam/system.prop | sed -e '/# Tweak/d' >> /mnt/tmp/system/system/build.prop"
-sudo bash -c "cat $TOME/tam/system.prop | sed -e '/# Tweak/d' >> /mnt/tmp/vendor/build.prop"
+them=$(sudo cat $TOME/tam/system.prop | sed -e '/# Tweak/d')
+sudo sed -i "s|import /vendor/${ro.boot.product.hardware.sku}.build.prop|$them \n import /vendor/${ro.boot.product.hardware.sku}.build.prop|" /mnt/tmp/vendor/build.prop
+#sudo sed -i '/import/d' /mnt/tmp/vendor/build.prop
+#sudo bash -c "cat $TOME/tam/system.prop | sed -e '/# Tweak/d' >> /mnt/tmp/vendor/build.prop"
+#sudo bash -c "echo 'import /vendor/${ro.boot.product.hardware.sku}.build.prop' >> /mnt/tmp/vendor/build.prop"
 sudo rm -rf $TOME/tam
 fi 
 fi 
