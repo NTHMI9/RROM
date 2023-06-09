@@ -25,5 +25,6 @@ pip3 install -r requirements.txt > /dev/null
 echo "- Chạy thử nghiệm lệnh"
 
 TOME="$GITHUB_WORKSPACE"
+sudo touch /mnt/tmp/vendor/build.prop
 sudo echo 'import /vendor/${ro.boot.product.hardware.sku}.build.prop' >> /mnt/tmp/vendor/build.prop
 cat /mnt/tmp/vendor/build.prop
