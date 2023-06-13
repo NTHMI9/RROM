@@ -23,7 +23,7 @@ Xoadex="#service.art #service.odex #service.vdex #miui-service.art #miui-service
 Tacgia="chamchamfy"
 
 ### Thêm Harman Kardon
-HK="0"
+HK="1"
 
 ### Thêm Adreno GPU Driver
 GPU="1"
