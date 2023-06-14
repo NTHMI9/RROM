@@ -150,7 +150,12 @@ vendor/firmware/FOD_Motion_Flare_RTP.bin 0 0 0644
 vendor/firmware/FOD_Motion_Planet_RTP.bin 0 0 0644
 vendor/firmware/FOD_Motion_Ripple_RTP.bin 0 0 0644
 vendor/firmware/FOD_Motion_Triang_RTP.bin 0 0 0644
-vendor/firmware/FOD_Motion_Spiral_RTP.bin 0 0 0644'
+vendor/firmware/FOD_Motion_Spiral_RTP.bin 0 0 0644
+vendor/firmware/Gesture_Back_Pull_RTP.bin 0 0 0644
+vendor/firmware/Gesture_Back_Release_RTP.bin 0 0 0644
+vendor/firmware/aw8697_haptic.bin 0 0 0644
+vendor/firmware/notification_cleanall_rtp.bin 0 0 0644
+vendor/firmware/task_cleanall_rtp.bin 0 0 0644'
 productfs=''
 
 system_extfs=''
