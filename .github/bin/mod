@@ -146,7 +146,8 @@ vendor/firmware/a650_sqe.fw 0 0 0644
 vendor/firmware/a650_gmu.bin 0 0 0644
 vendor/lib64/libcutils.so 0 0 0644
 vendor/firmware/FOD_Motion_Aurora_RTP.bin 0 0 0644
-vendor/firmware/FOD_Motion_Flare_RTP.bin 0 0 0644'
+vendor/firmware/FOD_Motion_Flare_RTP.bin 0 0 0644
+vendor/firmware/FOD_Motion_Planet_RTP.bin 0 0 0644'
 
 productfs=''
 
