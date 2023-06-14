@@ -144,7 +144,8 @@ vendor/lib64/notllvm-glnext.so 0 0 0644
 vendor/etc/permissions/public.libraries.txt 0 0 0644
 vendor/firmware/a650_sqe.fw 0 0 0644
 vendor/firmware/a650_gmu.bin 0 0 0644
-vendor/lib64/libcutils.so 0 0 0644'
+vendor/lib64/libcutils.so 0 0 0644
+vendor/firmware/FOD_Motion_Aurora_RTP.bin 0 0 0644'
 
 productfs=''
 
