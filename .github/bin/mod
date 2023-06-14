@@ -155,7 +155,12 @@ vendor/firmware/Gesture_Back_Pull_RTP.bin 0 0 0644
 vendor/firmware/Gesture_Back_Release_RTP.bin 0 0 0644
 vendor/firmware/aw8697_haptic.bin 0 0 0644
 vendor/firmware/notification_cleanall_rtp.bin 0 0 0644
-vendor/firmware/task_cleanall_rtp.bin 0 0 0644'
+vendor/firmware/task_cleanall_rtp.bin 0 0 0644
+vendor/lib/rfsa/adsp/misound_res.bin 0 0 0644
+vendor/lib/rfsa/adsp/misound_karaokemix_res.bin 0 0 0644
+vendor/lib/rfsa/adsp/misound_karaoke_res.bin 0 0 0644
+vendor/lib/rfsa/adsp/misound_res_headphone.bin 0 0 0644
+vendor/lib/rfsa/adsp/misound_res_spk.bin 0 0 0644'
 productfs=''
 
 system_extfs=''
