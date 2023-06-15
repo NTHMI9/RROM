@@ -22,13 +22,13 @@ Xoadex="#service.art #service.odex #service.vdex #miui-service.art #miui-service
 ### Tác giả
 Tacgia="chamchamfy"
 
-### Thêm Harman Kardon
-HK="1"
+### Thêm Harman Kardon (không hoạt động)
+HK="0"
 
-### Thêm Adreno GPU Driver
-GPU="1"
+### Thêm Adreno GPU Driver (không hoạt động)
+GPU="0"
 
-### Tùy chọn phiên bản Adreno GPU Driver 
+### Tùy chọn phiên bản Adreno GPU Driver (không hoạt động)
 #SDM8250
 
 GPU770="0"
