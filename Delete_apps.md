@@ -177,3 +177,9 @@ ThirdAppAssistant
 RideModeAudio
 Magisk
 MIUIXiaoAiSpeechEngine
+Opera
+MIBrowserGlobal_removable
+MICOMMUNITY_OVERSEA
+MISTORE_OVERSEA
+#PersonalSafety
+#Driver
