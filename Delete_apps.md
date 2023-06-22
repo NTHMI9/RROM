@@ -183,3 +183,5 @@ MICOMMUNITY_OVERSEA
 MISTORE_OVERSEA
 #PersonalSafety
 #Driver
+Chrome64
+GameCenterGlobal
