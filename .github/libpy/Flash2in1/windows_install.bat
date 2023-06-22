@@ -1,34 +1,34 @@
 @echo off
 mode con cols=100 lines=30
-title ←Nếu từ [Chọn] được hiển thị ở bên trái của tiêu đề cửa sổ, vui lòng nhấn Enter hoặc nhấn nút chuột phải để xóa lựa chọn, nếu quá trình sẽ dừng lại. 
+title ←Neu tu [Chon] duoc hien thi o ben trai cua tieu de cua so, vui long nhan Enter hoac nhan nut chuot phai de xoa lua chon, neu qua trinh se dung lai. 
 
 if %PROCESSOR_ARCHITECTURE%==x86 (set cpuArch=x86) else set cpuArch=amd64
 
 echo.
 echo.
-echo.Hãy nhấn phím bất kỳ để tiếp tục
+echo.Hay nhan phim bat ky de tiep tuc
 pause >nul 2>nul
 cls
-echo.Không đóng cửa sổ hoặc thao tác với chuột và bàn phím. Nếu từ [Chọn] hiển thị ở phía bên trái của tiêu đề cửa sổ, vui lòng nhấn Enter hoặc nhấn nút chuột phải để xóa lựa chọn, nếu không việc thực thi đầu ra sẽ dừng lại.
+echo.Khong dong cua so hoac thao tac voi chuot va ban phim. Neu tu [Chon] hien thi o phia ben trai cua tieu de cua so, vui long nhan Enter hoac nhan nut chuot phai de xoa lua chon, neu khong viec thuc thi dau ra se dung lai.
 echo.
 if exist images\super.img.zst (
-echo.Đang chuẩn bị
-echo. - Bắt đầu chuyển đổi super.img.zst ==》super.img  (Có thể mất nhiều thời gian, tùy thuộc vào cấu hình máy tính của bạn)
-echo. Lưu ý: Hãy đảm bảo rằng dung lượng còn lại của phân vùng hiện tại của bạn lớn hơn 10GB, nếu không, quá trình chuyển đổi super sẽ không thành công, dẫn đến không thể flash. (Bấm phím bất kỳ để tiếp tục)
+echo.Dang chuan bi
+echo. - Bat dau chuyen doi super.img.zst ==》super.img  (Co the mat nhieu thoi gian, tuy thuoc vao cau hinh may tinh cua ban)
+echo. Luu y: Hay dam bao rang dung luong con lai cua phan vung hien tai cua ban lon hon 10GB, neu khong, qua trinh chuyen doi super se khong thanh cong, dan den khong the flash. (Bam phim bat ky de tiep tuc)
 pause >nul 2>nul
 bin\windows\%cpuArch%\zstd --rm -d images\super.img.zst -o images\super.img
 if %errorlevel% == 1 (
-    echo.Chuyển đổi không thành công, nhấn phím bất kỳ để thoát
+    echo.Chuyen doi khong thanh cong, nhan phim bat ky de thoat
     pause >nul 2>nul
     exit
 )
-echo.Chuẩn bị đã hoàn tất
+echo.Chuan bi da hoan tat
 echo.
 )
 
 
 :Q1
-set /p CHOICE1="Q1:Lần cài đặt đầu tiên yêu cầu xóa dữ liệu và bộ nhớ trong của bạn. Bạn có đồng ý không? (Y/N) "
+set /p CHOICE1="Q1:Lan cai dat dau tien yeu cau xoa du lieu va bo nho trong cua ban. Ban co dong y khong? (Y/N) "
 if /i "%CHOICE1%" == "y" (
     goto Q2
 ) else if /i "%CHOICE1%" == "n" (
@@ -38,7 +38,7 @@ if /i "%CHOICE1%" == "y" (
 )
 
 :Q2
-set /p CHOICE2="Q2:Cài đặt Magisk（ROOT）?(Y/N) "
+set /p CHOICE2="Q2:Cai dat Magisk（ROOT）?(Y/N) "
 if /i "%CHOICE2%" == "y" (
     goto MAIN
 ) else if /i "%CHOICE2%" == "n" (
@@ -153,8 +153,8 @@ if /i "%CHOICE2%" == "y" (
     bin\windows\all\fastboot %* flash boot images\boot.img
 )
 if exist images\super.img (
-echo. Bắt đầu flash super. Tệp này lớn và có thể mất nhiều thời gian (tùy thuộc vào cấu hình máy tính của bạn). 
-echo. Không đóng cửa sổ hoặc thao tác chuột và bàn phím. Nếu từ [Chọn] hiển thị ở phía bên trái của tiêu đề cửa sổ, vui lòng nhấn Enter hoặc nhấn nút chuột phải để xóa lựa chọn, nếu không, việc thực thi đầu ra sẽ dừng lại.
+echo. Bat dau flash super. Tep nay lon va co the mat nhieu thoi gian (tuy thuoc vao cau hinh may tinh cua ban). 
+echo. Khong dong cua so hoac thao tac chuot va ban phim. Neu tu [Chon] hien thi o phia ben trai cua tieu de cua so, vui long nhan Enter hoac nhan nut chuot phai de xoa lua chon, neu khong, viec thuc thi dau ra se dung lai.
 bin\windows\all\fastboot %* flash super images\super.img
 )
 bin\windows\all\fastboot %* flash cust images\cust.img
