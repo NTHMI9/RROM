@@ -26,3 +26,6 @@ echo "- Chạy thử nghiệm lệnh"
 
 TOME="$GITHUB_WORKSPACE"
 
+e2fsdroid --help
+
+mke2fs
