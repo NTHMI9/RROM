@@ -7,7 +7,7 @@ export TOME="$GITHUB_WORKSPACE"
 export PATH="$TOME/.github/bin:$PATH"
 chmod -R 777 $TOME/.github/bin/* >/dev/null
 chmod -R 777 $TOME/.github/*.sh >/dev/null
-sed -i -e 's/\r$//' $TOME/.github/bin/Rebuild >/dev/null 
+#sed -i -e 's/\r$//' $TOME/.github/bin/Rebuild >/dev/null 
 
 echo "▼ Tên máy chủ"
 uname -a
