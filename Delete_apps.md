@@ -181,7 +181,10 @@ Opera
 MIBrowserGlobal_removable
 MICOMMUNITY_OVERSEA
 MISTORE_OVERSEA
-#PersonalSafety
+PersonalSafety
 #Driver
 Chrome64
 GameCenterGlobal
+PaymentService_Global
+GoogleOne
+MipayService
