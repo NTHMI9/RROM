@@ -26,7 +26,7 @@ echo "- Chạy thử nghiệm lệnh"
 
 TOME="$GITHUB_WORKSPACE"
 
-$TOME/.github/bin/e2fsdroid --help
-$TOME/.github/bin/mke2fs --help
+which e2fsdroid
+which mke2fs
 
 exit 0
