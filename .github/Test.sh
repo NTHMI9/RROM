@@ -27,5 +27,6 @@ echo "- Chạy thử nghiệm lệnh"
 TOME="$GITHUB_WORKSPACE"
 
 env
+ls /usr/bin
 
 exit 0
