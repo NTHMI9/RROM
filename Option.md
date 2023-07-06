@@ -7,7 +7,7 @@ NNTV="Viet_Nam"
 #### Các tùy chọn khác
 opcc="1"
 
-#### Hỗ trợ: ext4 hoặc erofs. Bỏ trống là mặc định. Định dạng ext4 không hỗ trợ từ android 13 trở lên
+#### Hỗ trợ: ext4 hoặc erofs. Bỏ trống là mặc định
 Dinhdangphanvung="ext4"
 
 #### Chế độ phân vùng: none hoặc readonly
@@ -22,13 +22,13 @@ Xoadex="#service.art #service.odex #service.vdex #miui-service.art #miui-service
 ### Tác giả
 Tacgia="chamchamfy"
 
-### Thêm Harman Kardon (không hoạt động)
+### Thêm Harman Kardon
 HK="0"
 
-### Thêm Adreno GPU Driver (không hoạt động)
-GPU="0"
+### Thêm Adreno GPU Driver
+GPU="1"
 
-### Tùy chọn phiên bản Adreno GPU Driver (không hoạt động)
+### Tùy chọn phiên bản Adreno GPU Driver 
 #SDM8250
 
 GPU770="0"
