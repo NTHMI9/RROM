@@ -8,7 +8,7 @@ NNTV="Viet_Nam"
 opcc="1"
 
 #### Hỗ trợ: ext4 hoặc erofs. Bỏ trống là mặc định
-Dinhdangphanvung="ext4"
+Dinhdangphanvung=""
 
 #### Chế độ phân vùng: none hoặc readonly
 chedo="none"
@@ -26,7 +26,7 @@ Tacgia="chamchamfy"
 HK="0"
 
 ### Thêm Adreno GPU Driver
-GPU="1"
+GPU="0"
 
 ### Tùy chọn phiên bản Adreno GPU Driver 
 #SDM8250
