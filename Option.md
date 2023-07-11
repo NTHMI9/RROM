@@ -17,7 +17,7 @@ chedo="none"
 Vfstab="0"
 
 ### Xoá odex vdex...
-Xoadex="#service.art #service.odex #service.vdex #miui-service.art #miui-service.odex #miui-service.vdex"
+Xoadex="service.art service.odex service.vdex miui-service.odex miui-service.vdex #framework.odex #framework.vdex"
 
 ### Tác giả
 Tacgia="chamchamfy"
