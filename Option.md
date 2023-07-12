@@ -16,6 +16,9 @@ chedo="none"
 ### Vá fstab
 Vfstab="0"
 
+### Vá hệ thống
+Vsys="1"
+
 ### Xoá odex vdex...
 Xoadex="service.art service.odex service.vdex miui-service.odex miui-service.vdex #framework.odex #framework.vdex"
 
