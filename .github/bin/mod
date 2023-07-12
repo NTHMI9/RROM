@@ -14,38 +14,9 @@ noichua='đường dẫn thư mục'
 phuongthuc='phương thức cần tìm '
 cuoi='phương thức cuối'
 noidung='nội dung thay thế'
-lệnh: thayphuongthuc/chendau/chentruoc/chensau/thaygiua/thaythedoan/thaydoan/chendoan
+chạy lệnh: thayphuongthuc/chendau/chentruoc/chensau/thaygiua/thaythedoan/thaydoan/chendoan
 boten; 
 }
-
-Dichvu() { 
-for tjar in services miui-service framework; do 
-Timfile "$tjar.jar"
-if [[ -f $TOME/Mod/$tjar.jar ]]; then 
-Unpackfile 
-###
-noichua=$(find $TOME/Mod/$tjar -type f -name '*.smali'); 
-#
-phuongthuc='.method isSecureLocked'; 
-cuoi='.end method'
-noidung='const/4 v0, 0x0\n return v0\n .end method'; 
-thayphuongthuc 
-# 
-phuongthuc='.method private checkAppSignature' 
-cuoi='.end method'
-noidung='const/4 v0, 0x1\n return v0\n .end method'; 
-thayphuongthuc 
-
-phuongthuc='.method private checkSysAppCrack' 
-cuoi='.end method'
-noidung='const/4 v0, 0x0\n return v0\n .end method'; 
-thayphuongthuc 
-
-phuongthuc='.method private checkSystemSelfProtection' 
-cuoi='.end method'
-noidung='return-void\n .end method'; 
-thayphuongthuc 
->>>>>>> 513e6cc33846c693ad0ae401b4364888c96567e7
 #
 Trinhcaidat() { 
 noichua=$(find $TOME/Mod/$tjar -type f -name '*.smali');
