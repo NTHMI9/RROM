@@ -11,10 +11,9 @@ TOME="$GITHUB_WORKSPACE"
 # Đường dẫn thư mục system_ext: /mnt/tmp/system_ext
 
 Dichvu() { 
-for tjar in services.jar miui-service.jar; do 
-Timfile "$tjar"
-ttm=${tjar//.jar/}
-if [[ -f $TOME/Mod/$tjar ]]; then 
+for tjar in services miui-service; do 
+Timfile "$tjar.jar"
+if [[ -f $TOME/Mod/$tjar.jar ]]; then 
 Unpackfile 
 Vsmali ".method private checkSystemSelfProtection(Z)V" \
 ".end method" \
@@ -22,15 +21,16 @@ Vsmali ".method private checkSystemSelfProtection(Z)V" \
     .locals 1
     return-void
 .end method' \
-"$ttm/classes*/com/miui/server/*"
+"$tjar/classes*/com/miui/server/*"
 Repackfile 
 fi 
 done
 }
 
 Caidat() {
-Timfile "Settings.apk"
-if [[ -f $TOME/Mod/Settings.apk ]]; then 
+for tjar in Settings; do
+Timfile "$tjar.apk"
+if [[ -f $TOME/Mod/$tjar.apk ]]; then 
 Unpackfile
 sudo sed -i 's/"MIUI "/"MIUID "/g' $TOME/Mod/Settings/classes*/com/android/settings/device/MiuiAboutPhoneUtils.smali >/dev/null 2>&1
 sudo sed -i 's/"by "/" "/g' $TOME/Mod/Settings/classes*/com/android/settings/device/MiuiAboutPhoneUtils.smali >/dev/null 2>&1 
