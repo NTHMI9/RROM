@@ -11,31 +11,122 @@ TOME="$GITHUB_WORKSPACE"
 # Đường dẫn thư mục system_ext: /mnt/tmp/system_ext
 
 Dichvu() { 
-for tjar in services miui-service; do 
+for tjar in services miui-service framework; do 
 Timfile "$tjar.jar"
 if [[ -f $TOME/Mod/$tjar.jar ]]; then 
 Unpackfile 
-Vsmali ".method private checkSystemSelfProtection(Z)V" \
-".end method" \
-'.method private checkSystemSelfProtection(Z)V
-    .locals 1
-    return-void
-.end method' \
-"$tjar/classes*/com/miui/server/*"
+###
+noichua=$(find $TOME/Mod/$tjar -type f -name '*.smali'); 
+#
+phuongthuc='.method isSecureLocked'; 
+cuoi='.end method'
+noidung='const/4 v0, 0x0\n return v0\n .end method'; 
+thayphuongthuc 
+# 
+phuongthuc='.method private checkAppSignature' 
+cuoi='.end method'
+noidung='const/4 v0, 0x1\n return v0\n .end method'; 
+thayphuongthuc 
+
+phuongthuc='.method private checkSysAppCrack' 
+cuoi='.end method'
+noidung='const/4 v0, 0x0\n return v0\n .end method'; 
+thayphuongthuc 
+
+phuongthuc='.method private checkSystemSelfProtection' 
+cuoi='.end method'
+noidung='return-void\n .end method'; 
+thayphuongthuc 
+boten; 
+#
+phuongthuc='static checkDowngrade'
+cuoi='.end method'
+noidung='    .param p0, "before"  # Lcom/android/server/pm/parsing/pkg/AndroidPackage;\n
+    .param p1, "after"  # Landroid/content/pm/PackageInfoLite;\n
+    .annotation system Ldalvik/annotation/Throws;\n
+        value = {\n
+            Lcom/android/server/pm/PackageManagerException;\n
+        }\n
+    .end annotation\n
+    
+    const/4 v0, 0x0\n 
+    
+    return-void\n 
+.end method' 
+thayphuongthuc
+# 
+phuongthuc='.method public static compareSignatures' 
+cuoi='.end method'
+noidung='const/4 v0, 0x0\n return v0\n .end method'; 
+thayphuongthuc 
+
+phuongthuc='.method private static matchSignaturesCompat' 
+cuoi='.end method'
+noidung='    .param p0, "packageName"  # Ljava/lang/String;\n
+    .param p1, "packageSignatures"  # Lcom/android/server/pm/PackageSignatures;\n
+    .param p2, "parsedSignatures"  # Landroid/content/pm/PackageParser$SigningDetails;\n
+    
+    const/4 v0, 0x0\n 
+    
+    return v0\n 
+.end method'
+thayphuongthuc
+
+phuongthuc='.method private static matchSignaturesRecover' 
+cuoi='.end method'
+noidung='    .param p0, "packageName"  # Ljava/lang/String;\n
+    .param p1, "existingSignatures"  # Landroid/content/pm/PackageParser$SigningDetails;\n
+    .param p2, "parsedSignatures"  # Landroid/content/pm/PackageParser$SigningDetails;\n
+    .param p3, "flags"  # I\n
+    
+    const/4 v0, 0x0\n 
+    
+    return v0\n 
+.end method' 
+thayphuongthuc
+##framework
+phuongthuc='.method public checkCapability(Landroid/content/pm/PackageParser'; 
+cuoi='.end method'
+noidung='const/4 v0, 0x0\n return v0\n .end method'; 
+thayphuongthuc 
+
+phuongthuc='.method public checkCapability(Ljava/lang/String'; 
+cuoi='.end method'
+noidung='const/4 v0, 0x0\n return v0\n .end method'; 
+thayphuongthuc 
+
+phuongthuc='.method public checkCapabilityRecover'; 
+cuoi='.end method'
+noidung='  .param p1, "oldDetails"  # Landroid/content/pm/PackageParser\$SigningDetails;\n
+    .param p2, "flags"  # I\n 
+    .annotation system Ldalvik/annotation/Throws;\n
+        value = {\n 
+             Ljava/security/cert/CertificateException;\n 
+        }\n
+    .end annotation\n 
+    
+    const/4 v0, 0x1\n 
+    
+    return v0\n 
+.end method' 
+thayphuongthuc
+###
 Repackfile 
 fi 
 done
 }
-
+#
 Caidat() {
+#cp -rf $TOME/Apk/Settings.apk $TOME/Mod
 for tjar in Settings; do
 Timfile "$tjar.apk"
 if [[ -f $TOME/Mod/$tjar.apk ]]; then 
 Unpackfile
-sudo sed -i 's/"MIUI "/"MIUID "/g' $TOME/Mod/Settings/classes*/com/android/settings/device/MiuiAboutPhoneUtils.smali >/dev/null 2>&1
-sudo sed -i 's/"by "/" "/g' $TOME/Mod/Settings/classes*/com/android/settings/device/MiuiAboutPhoneUtils.smali >/dev/null 2>&1 
+sudo sed -i 's/"MIUI "/"MIUID "/g' $TOME/Mod/$tjar/classes*/com/android/settings/device/MiuiAboutPhoneUtils.smali >/dev/null 2>&1
+sudo sed -i 's/"by "/" "/g' $TOME/Mod/$tjar/classes*/com/android/settings/device/MiuiAboutPhoneUtils.smali >/dev/null 2>&1 
 Repackfile
 fi 
+done
 }
 #
 Dichvu
