@@ -37,7 +37,6 @@ phuongthuc='.method private checkSystemSelfProtection'
 cuoi='.end method'
 noidung='return-void\n .end method'; 
 thayphuongthuc 
-boten; 
 #
 phuongthuc='static checkDowngrade'
 cuoi='.end method'
