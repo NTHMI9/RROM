@@ -39,7 +39,7 @@ fi
 }
 #
 Dichvu
-#Caidat
+Caidat
 #
 themcauhinh() { 
 # Thêm file_contexts
