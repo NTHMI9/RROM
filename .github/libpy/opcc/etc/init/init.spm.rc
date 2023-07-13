@@ -30,6 +30,7 @@ on property:sys.boot_completed=1
 	setprop ro.secureboot.devicelock "0"
 	setprop ro.config.dmverity "false" 
 	setprop persist.sys.usb.config "adb,mtp"
+	setprop debug.composition.type "gpu"
 	setprop debug.performance.tuning "1"
 	setprop ro.config.enable.hw_accel "true"
 	setprop ro.ril.enable.amr.wideband "1"
@@ -58,7 +59,13 @@ on property:sys.boot_completed=1
 	setprop ro.vendor.audio.karaok.support "true"
 	setprop ro.vendor.audio.ns.support "true"
 	#setprop ro.vendor.audio.sfx.harmankardon "true" 
+	setprop ro.vendor.audio.sfx.earadj "true"
+	setprop ro.vendor.audio.sfx.scenario "true"
+	setprop ro.vendor.audio.scenario.support "true"
+	setprop ro.vendor.audio.surround.support "true"
+	setprop ro.vendor.audio.spk.stereo "true"
 	setprop ro.vendor.audio.spk.clean "true"
+	setprop ro.vendor.audio.vocal.support "true"
 	setprop ro.vendor.audio.voice.change.support "true"
 	setprop ro.vendor.audio.voice.change.youme.support "true"
 	setprop ro.vendor.net.enable_dual_wifi "1"
@@ -81,10 +88,12 @@ on property:sys.boot_completed=1
 	setprop ro.vendor.fps.switch.default "true"
 	setprop ro.surface_flinger.use_content_detection_for_refresh_rate "false"
 	setprop persist.vendor.power.dfps.level "60,90,120,144" 
+	setprop persist.sys.composition.type "gpu"
 	setprop persist.sys.smartfps "1"
 	setprop ro.miui.has_security_keyboard "1"
 	setprop ro.miui.support_miui_ime_bottom "1"
-	
+	setprop ro.zygote.disable_gl_preload "1"
+
 # permissive
 on property:sys.boot_completed=1
 	chmod 666 /sys/fs/selinux/enforce
