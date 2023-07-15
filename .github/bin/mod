@@ -19,11 +19,20 @@ boten;
 }
 #
 Trinhcaidat() { 
-noichua=$(find $TOME/Mod/$tjar -type f -name '*.smali');
+for tjar in MIUIPackageInstaller.apk MIUIGlobalPackageInstaller.apk; do
+Timfile "$tjar.apk"
+if [[ -f $TOME/Mod/$tjar.apk ]]; then 
+Unpackfile
+thumuc=$(find $TOME/Mod/$tjar -type f -name '*.smali');
+for noichua in $thumuc; do
 phuongthuc='.method public static a(Landroid/content/pm/ApplicationInfo;)Z'; 
 noidung='const/4 v0, 0x0\n return v0'; 
 chendau
 boten; 
+done
+Repackfile
+fi 
+done
 }
 #
 Caidat() {
@@ -32,8 +41,8 @@ for tjar in Settings; do
 Timfile "$tjar.apk"
 if [[ -f $TOME/Mod/$tjar.apk ]]; then 
 Unpackfile
-sudo sed -i 's/"MIUI "/"MIUID "/g' $TOME/Mod/$tjar/classes*/com/android/settings/device/MiuiAboutPhoneUtils.smali >/dev/null 2>&1
-sudo sed -i 's/"by "/" "/g' $TOME/Mod/$tjar/classes*/com/android/settings/device/MiuiAboutPhoneUtils.smali >/dev/null 2>&1 
+sudo sed -i 's/"MIUI "/"MIUID "/g' $TOME/Mod/$tjar/classes*/com/android/settings/device/MiuiAboutPhoneUtils.smali 2>/dev/null
+sudo sed -i 's/"by "/" "/g' $TOME/Mod/$tjar/classes*/com/android/settings/device/MiuiAboutPhoneUtils.smali 2>/dev/null
 Repackfile
 fi 
 done
