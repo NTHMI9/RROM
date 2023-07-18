@@ -20,7 +20,7 @@ Vfstab="0"
 Vsys="1"
 
 ### Xoá odex vdex...
-Xoadex="service.art service.odex service.vdex miui-service.odex miui-service.vdex framework.odex framework.vdex"
+Xoadex="service.art service.odex service.vdex miui-service.odex miui-service.vdex framework.odex framework.vdex miui-framework.odex miui-framework.vdex"
 
 ### Tác giả
 Tacgia="chamchamfy"
