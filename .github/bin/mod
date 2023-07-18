@@ -50,7 +50,7 @@ Repackfile
 fi 
 done
 }
-Caidat
+#Caidat
 #
 themcauhinh() { 
 # Thêm file_contexts
