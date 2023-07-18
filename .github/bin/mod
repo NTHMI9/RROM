@@ -22,6 +22,7 @@ Trinhcaidat() {
 for tjar in MIUIPackageInstaller.apk MIUIGlobalPackageInstaller.apk; do
 Timfile "$tjar.apk"
 if [[ -f $TOME/Mod/$tjar.apk ]]; then 
+echo " Xử lý: $tjar.apk"
 Unpackfile
 thumuc=$(find $TOME/Mod/$tjar -type f -name '*.smali');
 for noichua in $thumuc; do
@@ -40,6 +41,7 @@ Caidat() {
 for tjar in Settings; do
 Timfile "$tjar.apk"
 if [[ -f $TOME/Mod/$tjar.apk ]]; then 
+echo " Xử lý: $tjar.apk"
 Unpackfile
 sudo sed -i 's/"MIUI "/"MIUID "/g' $TOME/Mod/$tjar/classes*/com/android/settings/device/MiuiAboutPhoneUtils.smali 2>/dev/null
 sudo sed -i 's/"by "/" "/g' $TOME/Mod/$tjar/classes*/com/android/settings/device/MiuiAboutPhoneUtils.smali 2>/dev/null
