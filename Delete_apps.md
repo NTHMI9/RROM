@@ -75,7 +75,7 @@ MIUIDriveMode
 MIUIDuokanReader
 MIUIEmail 
 MIUIGameCenter
-MIUIGlobalMinusScreenWidget
+#MIUIGlobalMinusScreenWidget
 MIUIHuanji
 MIUIMiPicks
 MIUIMusic
