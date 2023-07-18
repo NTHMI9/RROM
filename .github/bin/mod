@@ -11,7 +11,7 @@ TOME="$GITHUB_WORKSPACE"
 # Đường dẫn thư mục system_ext: /mnt/tmp/system_ext
 cuphap() {
 noichua='đường dẫn thư mục'
-phuongthuc='phương thức cần tìm '
+phuongthuc='phương thức cần tìm'
 cuoi='phương thức cuối'
 noidung='nội dung thay thế'
 chạy lệnh: thayphuongthuc/chendau/chentruoc/chensau/thaygiua/thaythedoan/thaydoan/chendoan
@@ -35,7 +35,7 @@ Repackfile
 fi 
 done
 }
-Trinhcaidat
+#Trinhcaidat
 #
 Caidat() {
 #cp -rf $TOME/Apk/Settings.apk $TOME/Mod
