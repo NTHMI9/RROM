@@ -35,6 +35,7 @@ Repackfile
 fi 
 done
 }
+Trinhcaidat
 #
 Caidat() {
 #cp -rf $TOME/Apk/Settings.apk $TOME/Mod
