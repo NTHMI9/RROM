@@ -3,7 +3,6 @@ TOME="$GITHUB_WORKSPACE"
 # Thư mục chứa apk,jar đã mod: $TOME/Mod
 # Tìm tập tin apk,jar chép vào $TOME/Mod: [ Timfile *.apk/*.jar ]
 # Giải nén dex trong apk/jar từ thư mục $TOME/Mod: [ Unpackfile ] 
-# Chỉnh sửa smali: [ Vsmali \ "phương thức đầu" "phương thức cuối" \ "phương thức thay thế" \ "đường dẫn thư mục chứa smali" ] 
 # Đóng gói lại dex thành jar/apk vào thư mục $TOME/Mod: [ Repackfile ]
 # Đường dẫn thư mục system: /mnt/tmp/system/system 
 # Đường dẫn thư mục vendor: /mnt/tmp/vendor 
@@ -19,7 +18,7 @@ boten;
 }
 #
 Trinhcaidat() { 
-for tjar in MIUIPackageInstaller.apk MIUIGlobalPackageInstaller.apk; do
+for tjar in MIUIPackageInstaller.apk GlobalPackageInstaller.apk; do
 Timfile "$tjar.apk"
 if [[ -f $TOME/Mod/$tjar.apk ]]; then 
 echo " Xử lý: $tjar.apk"
@@ -38,7 +37,6 @@ done
 #Trinhcaidat
 #
 Caidat() {
-#cp -rf $TOME/Apk/Settings.apk $TOME/Mod
 for tjar in Settings; do
 Timfile "$tjar.apk"
 if [[ -f $TOME/Mod/$tjar.apk ]]; then 
@@ -197,7 +195,7 @@ ngonngu
 if [[ "$HK" == "1" ]]; then echo " * Thêm Harman Kardon..."
 mkdir -p $TOME/tam
 unzip -qo $TOME/.github/HarmanKardon.zip -d $TOME/tam
-sudo cp -rf $TOME/tam/system/vendor/* /mnt/tmp/vendor 
+sudo cp -af $TOME/tam/system/vendor/* /mnt/tmp/vendor 
 themp=$(sudo grep 'import' /mnt/tmp/vendor/build.prop)
 sudo sed -i '/import/d' /mnt/tmp/vendor/build.prop
 sudo bash -c "cat $TOME/tam/system.prop >> /mnt/tmp/vendor/build.prop"
@@ -215,10 +213,10 @@ if [[ "$GPU" == "1" ]]; then
  elif [[ "$GPU615" == "1" ]]; then 
  Taive "https://github.com/chamchamfy/toolcc/raw/main/AdrenoGPUDriver615.zip" "$TOME/AdrenoGPUDriver.zip"
  fi 
-if [[ -s $TOME/AdrenoGPUDriver.zip ]]; then echo " * Thêm Adreno GPU Driver..."
+if [[ -s "$TOME/AdrenoGPUDriver.zip" ]]; then echo " * Thêm Adreno GPU Driver..."
 mkdir -p $TOME/tam
 7za x -tzip -y $TOME/AdrenoGPUDriver.zip -o$TOME/tam >/dev/null
-sudo cp -rf $TOME/tam/system/vendor/* /mnt/tmp/vendor 
+sudo cp -af $TOME/tam/system/vendor/* /mnt/tmp/vendor 
 themp=$(sudo grep 'import' /mnt/tmp/vendor/build.prop)
 sudo sed -i '/import/d' /mnt/tmp/vendor/build.prop
 sudo bash -c "cat $TOME/tam/system.prop | sed -e '/# Tweak/d' >> /mnt/tmp/vendor/build.prop"
