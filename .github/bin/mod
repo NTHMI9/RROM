@@ -9,12 +9,24 @@ TOME="$GITHUB_WORKSPACE"
 # Đường dẫn thư mục product: /mnt/tmp/product 
 # Đường dẫn thư mục system_ext: /mnt/tmp/system_ext
 cuphap() {
-noichua='đường dẫn thư mục'
+# Nếu biết tên smali
+noichua=$(find 'đường dẫn thư mục' -type f -name 'tên smali'); 
 phuongthuc='phương thức cần tìm'
 cuoi='phương thức cuối'
 noidung='nội dung thay thế'
+dong="nội dung cần tìm để thay dòng nếu có"
 chạy lệnh: thayphuongthuc/chendau/chentruoc/chensau/thaygiua/thaythedoan/thaydoan/chendoan/thaydong
 boten; 
+# Không biết tên smali
+taptin=$(find 'đường dẫn thư mục' -type f -name '*.smali');
+for noichua in $taptin; do
+phuongthuc='phương thức cần tìm'
+cuoi='phương thức cuối'
+noidung='nội dung thay thế'
+dong="nội dung cần tìm để thay dòng nếu có"
+chạy lệnh: thayphuongthuc/chendau/chentruoc/chensau/thaygiua/thaythedoan/thaydoan/chendoan/thaydong
+boten;
+done
 }
 #
 Trinhcaidat() { 
@@ -23,8 +35,8 @@ Timfile "$tjar.apk"
 if [[ -f $TOME/Mod/$tjar.apk ]]; then 
 echo " Xử lý: $tjar.apk"
 Unpackfile
-thumuc=$(find $TOME/Mod/$tjar -type f -name '*.smali');
-for noichua in $thumuc; do
+taptin=$(find $TOME/Mod/$tjar -type f -name '*.smali');
+for noichua in $taptin; do
 phuongthuc='.method public static a(Landroid/content/pm/ApplicationInfo;)Z'; 
 noidung='const/4 v0, 0x0\n return v0'; 
 chendau
