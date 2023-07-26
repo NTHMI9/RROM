@@ -57,7 +57,8 @@ Unpackfile
 sudo sed -i 's/"MIUI "/"MIUID "/g' $TOME/Mod/$tjar/classes*/com/android/settings/device/MiuiAboutPhoneUtils.smali 2>/dev/null
 sudo sed -i 's/"by xiaomi.eu"/"by MIUICC "/g' $TOME/Mod/$tjar/classes*/com/android/settings/device/MiuiAboutPhoneUtils.smali 2>/dev/null
 sudo sed -i 's/"by "/" "/g' $TOME/Mod/$tjar/classes*/com/android/settings/device/MiuiAboutPhoneUtils.smali 2>/dev/null 
-for m in MiuiUtils.smali MiuiSecuritySettings.smali MiuiDisplaySettings.smali display/PageLayoutFragment.smali MiuiSettings.smali; sed -i 's/IS_INTERNATIONAL_BUILD/IS_ALPHA_BUILD/g' $TOME/Mod/$tjar/classes*/com/android/settings/$m 2>/dev/null; done
+ if [[ "$TKM" == "1" ]]; then 
+for m in MiuiUtils.smali MiuiSecuritySettings.smali MiuiDisplaySettings.smali display/PageLayoutFragment.smali MiuiSettings.smali; do sed -i 's/IS_INTERNATIONAL_BUILD/IS_ALPHA_BUILD/g' $TOME/Mod/$tjar/classes*/com/android/settings/$m 2>/dev/null; done
 sed -i 's|sget-boolean v0, Lmiui/os/Build;->IS_ALPHA_BUILD:Z|sget-boolean v0, Lmiui/os/Build;->IS_INTERNATIONAL_BUILD:Z|' $TOME/Mod/$tjar/classes*/com/android/settings/MiuiSettings.smali 2>/dev/null 
 noichua=$(find $TOME/Mod/$tjar -type f -name 'MiuiSettings.smali'); 
 phuongthuc='IS_SUPPORT_TABLET_SCREEN_SETTINGS:Z'
@@ -69,6 +70,7 @@ noidung='sget-boolean v10, Lmiui/os/Build;->IS_INTERNATIONAL_BUILD:Z'
 dong='IS_ALPHA_BUILD'
 thaydong
 boten; 
+ fi
 Repackfile
 fi 
 done

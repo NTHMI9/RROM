@@ -2,12 +2,12 @@
 #### Mặc định: 1 là bật, 0 là tắt
 
 #### Ngôn ngữ
-NNTV="Viet_Nam"
+NN="VI"
 
 #### Các tùy chọn khác
 opcc="1"
 
-#### Hỗ trợ: ext4 hoặc erofs. Bỏ trống là mặc định ( Android 13 trở lên dạng ext4 không hoạt động)
+#### Hỗ trợ: ext4 hoặc erofs. Bỏ trống là mặc định
 Dinhdangphanvung="ext4"
 
 #### Chế độ phân vùng: none hoặc readonly
@@ -18,6 +18,9 @@ Vfstab="0"
 
 ### Vá hệ thống
 Vsys="1"
+
+### Chuyển Tài khoản Mi lên đầu
+TKM="1"
 
 ### Xoá odex vdex...
 Xoadex="services.art services.odex services.vdex miui-services.odex miui-services.vdex framework.odex framework.vdex miui-framework.odex miui-framework.vdex #Settings.odex #Settings.vdex"
