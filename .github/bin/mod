@@ -15,7 +15,7 @@ phuongthuc='phương thức cần tìm'
 cuoi='phương thức cuối'
 noidung='nội dung thay thế'
 dong="nội dung cần tìm để thay dòng nếu có"
-chạy lệnh: thayphuongthuc/chendau/chentruoc/chensau/thaygiua/thaythedoan/thaydoan/chendoan/thaydong
+chạy lệnh: thayphuongthuc/chendau/chentruoc/chensau/thaygiua/thaythedoan/thaydoan/chendoan/thaydong/thaychuoi
 boten; 
 # Không biết tên smali
 taptin=$(find 'đường dẫn thư mục' -type f -name '*.smali');
@@ -24,7 +24,7 @@ phuongthuc='phương thức cần tìm'
 cuoi='phương thức cuối'
 noidung='nội dung thay thế'
 dong="nội dung cần tìm để thay dòng nếu có"
-chạy lệnh: thayphuongthuc/chendau/chentruoc/chensau/thaygiua/thaythedoan/thaydoan/chendoan/thaydong
+chạy lệnh: thayphuongthuc/chendau/chentruoc/chensau/thaygiua/thaythedoan/thaydoan/chendoan/thaydong/thaychuoi
 boten;
 done
 }
@@ -49,7 +49,7 @@ done
 #Trinhcaidat
 #
 Caidat() {
-for tjar in Settings; do
+for tjar in Joyose Settings; do
 Timfile "$tjar.apk"
 if [[ -f $TOME/Mod/$tjar.apk ]]; then 
 echo " Xử lý: $tjar.apk"
@@ -59,17 +59,26 @@ sudo sed -i 's/"by xiaomi.eu"/"by MIUICC "/g' $TOME/Mod/$tjar/classes*/com/andro
 sudo sed -i 's/"by "/" "/g' $TOME/Mod/$tjar/classes*/com/android/settings/device/MiuiAboutPhoneUtils.smali 2>/dev/null 
  if [[ "$TKM" == "1" ]]; then 
 for m in MiuiUtils.smali MiuiSecuritySettings.smali MiuiDisplaySettings.smali display/PageLayoutFragment.smali MiuiSettings.smali; do sed -i 's/IS_INTERNATIONAL_BUILD/IS_ALPHA_BUILD/g' $TOME/Mod/$tjar/classes*/com/android/settings/$m 2>/dev/null; done
-sed -i 's|sget-boolean v0, Lmiui/os/Build;->IS_ALPHA_BUILD:Z|sget-boolean v0, Lmiui/os/Build;->IS_INTERNATIONAL_BUILD:Z|' $TOME/Mod/$tjar/classes*/com/android/settings/MiuiSettings.smali 2>/dev/null 
+sed -i 's/sget-boolean v0, Lmiui\/os\/Build;->IS_ALPHA_BUILD:Z/sget-boolean v0, Lmiui\/os\/Build;->IS_INTERNATIONAL_BUILD:Z/' $TOME/Mod/$tjar/classes*/com/android/settings/MiuiSettings.smali 2>/dev/null 
 noichua=$(find $TOME/Mod/$tjar -type f -name 'MiuiSettings.smali'); 
 phuongthuc='IS_SUPPORT_TABLET_SCREEN_SETTINGS:Z'
-noidung='sget-boolean v10, Lmiui/os/Build;->IS_INTERNATIONAL_BUILD:Z'
+noidung='IS_INTERNATIONAL_BUILD'
 dong='IS_ALPHA_BUILD'
-thaydong 
-phuongthuc='sget v10, Lcom/android/settings/R$id;->mi_wallet_payment:I'
-noidung='sget-boolean v10, Lmiui/os/Build;->IS_INTERNATIONAL_BUILD:Z'
+thaychuoi
+phuongthuc='sget v10, Lcom/android/settings/R\$id;->mi_wallet_payment:I'
+noidung='IS_INTERNATIONAL_BUILD'
 dong='IS_ALPHA_BUILD'
-thaydong
+thaychuoi
 boten; 
+ fi
+ if [[ "$tjar" == "Joyose" ]]; then 
+taptin=$(find $TOME/Mod/$tjar/ -type f -name '*.smali'); 
+for noichua in $taptin; do
+phuongthuc='GPUTUNER_SWITCH'
+noidung='const/4 v0, 0x1'
+dong='const/4 v0, 0x0'
+thaydong
+done
  fi
 Repackfile
 fi 
