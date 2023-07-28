@@ -59,17 +59,26 @@ sudo sed -i 's/"by xiaomi.eu"/"by MIUICC "/g' $TOME/Mod/$tjar/classes*/com/andro
 sudo sed -i 's/"by "/" "/g' $TOME/Mod/$tjar/classes*/com/android/settings/device/MiuiAboutPhoneUtils.smali 2>/dev/null 
  if [[ "$TKM" == "1" ]]; then 
 for m in MiuiUtils.smali MiuiSecuritySettings.smali MiuiDisplaySettings.smali display/PageLayoutFragment.smali MiuiSettings.smali; do sed -i 's/IS_INTERNATIONAL_BUILD/IS_ALPHA_BUILD/g' $TOME/Mod/$tjar/classes*/com/android/settings/$m 2>/dev/null; done
+sed -i 's/sget-boolean v2, Lmiui\/os\/Build;->IS_GLOBAL_BUILD:Z/sget-boolean v2, Lmiui\/os\/Build;->IS_ALPHA_BUILD:Z/' $TOME/Mod/$tjar/classes*/com/android/settings/MiuiDisplaySettings.smali 2>/dev/null 
 sed -i 's/sget-boolean v0, Lmiui\/os\/Build;->IS_ALPHA_BUILD:Z/sget-boolean v0, Lmiui\/os\/Build;->IS_INTERNATIONAL_BUILD:Z/' $TOME/Mod/$tjar/classes*/com/android/settings/MiuiSettings.smali 2>/dev/null 
 noichua=$(find $TOME/Mod/$tjar -type f -name 'MiuiSettings.smali'); 
 phuongthuc='IS_SUPPORT_TABLET_SCREEN_SETTINGS:Z'
 noidung='IS_INTERNATIONAL_BUILD'
 dong='IS_ALPHA_BUILD'
 thaychuoi
+boten;
+noichua=$(find $$TOME/Mod/$tjar -type f -name 'MiuiSettings.smali'); 
 phuongthuc='sget v10, Lcom/android/settings/R\$id;->mi_wallet_payment:I'
 noidung='IS_INTERNATIONAL_BUILD'
 dong='IS_ALPHA_BUILD'
 thaychuoi
-boten; 
+boten;
+noichua=$(find $TOME/Mod/$tjar -type f -name 'MiuiSettings.smali'); 
+phuongthuc='sget v10, Lcom/android/settings/R\$id;->system_apps_updater:I'
+noidung='IS_ALPHA_BUILD'
+dong='IS_GLOBAL_BUILD'
+thaychuoi
+boten;
  fi
  if [[ "$tjar" == "Joyose" ]]; then 
 taptin=$(find $TOME/Mod/$tjar/ -type f -name '*.smali'); 
