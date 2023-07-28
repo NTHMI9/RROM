@@ -22,6 +22,9 @@ Vsys="1"
 ### Chuyển Tài khoản Mi lên đầu
 TKM="1"
 
+#### Thêm twrp
+twrp="0"
+
 ### Xoá odex vdex...
 Xoadex="services.art services.odex services.vdex miui-services.odex miui-services.vdex framework.odex framework.vdex miui-framework.odex miui-framework.vdex #Settings.odex #Settings.vdex"
 
