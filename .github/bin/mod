@@ -270,6 +270,7 @@ sudo rm -rf $TOME/tam
 fi 
 fi 
 #
-[[ "$twrp" == "1" ]] && echo " * Thêm TWRP..." && Taive "https://sourceforge.net/projects/recovery-for-xiaomi-devices/files/vili/twrp-3.7.0_12-v7.9_A13-vili-skkk.img" "$TOME/Unzip/images/boot.img"
+#[[ "$twrp" == "1" ]] && echo " * Thêm TWRP..." && Taive "https://sourceforge.net/projects/recovery-for-xiaomi-devices/files/vili/twrp-3.7.0_12-v7.9_A13-vili-skkk.img" "$TOME/Unzip/images/boot.img"
+[[ "$twrp" == "1" ]] && echo " * Thêm TWRP..." && Taive "https://github.com/chamchamfy/toolcc/raw/main/boot_global.img" "$TOME/Unzip/images/boot.img"
 #
 themcauhinh
