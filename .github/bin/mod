@@ -8,6 +8,7 @@ TOME="$GITHUB_WORKSPACE"
 # Đường dẫn thư mục vendor: /mnt/tmp/vendor 
 # Đường dẫn thư mục product: /mnt/tmp/product 
 # Đường dẫn thư mục system_ext: /mnt/tmp/system_ext
+# tenmamay: 'ro.product.device'
 cuphap() {
 # Nếu biết tên smali
 noichua=$(find 'đường dẫn thư mục' -type f -name 'tên smali'); 
@@ -271,6 +272,16 @@ fi
 fi 
 #
 #[[ "$twrp" == "1" ]] && echo " * Thêm TWRP..." && Taive "https://sourceforge.net/projects/recovery-for-xiaomi-devices/files/vili/twrp-3.7.0_12-v7.9_A13-vili-skkk.img" "$TOME/Unzip/images/boot.img"
-[[ "$twrp" == "1" ]] && echo " * Thêm TWRP..." && Taive "https://sourceforge.net/projects/chamchamfy/files/Tools/boot_global.img" "$TOME/Unzip/images/boot.img"
+if [[ "$twrp" == "1" ]]; then echo " * Thêm BOOT TWRP..."
+ mkdir -p $TOME/tam
+ if [[ -n "$(echo "$URL" | grep 'MIXM')" ]]; then linktwrp="https://sourceforge.net/projects/chamchamfy/files/Tools/boot_global_$tenmamay.img"
+ elif [[ -n "$(echo "$URL" | grep 'TWXM')" ]]; then linktwrp="https://sourceforge.net/projects/chamchamfy/files/Tools/boot_tw_$tenmamay.img"
+ elif [[ -n "$(echo "$URL" | grep 'IDXM')" ]]; then linktwrp="https://sourceforge.net/projects/chamchamfy/files/Tools/boot_id_$tenmamay.img"
+ elif [[ -n "$(echo "$URL" | grep 'EUXM')" ]]; then linktwrp="https://sourceforge.net/projects/chamchamfy/files/Tools/boot_eu_$tenmamay.img"
+ else linktwrp='https://sourceforge.net/projects/recovery-for-xiaomi-devices/files/vili/twrp-3.7.0_12-v7.9_A13-vili-skkk.img'
+ fi
+Taive "$linktwrp" "$TOME/tam/boot.img"
+[[ -s "$TOME/tam/boot.img" ]] && sudo cp -af "$TOME/tam/boot.img" "$TOME/Unzip/images/boot.img"
+fi
 #
 themcauhinh
