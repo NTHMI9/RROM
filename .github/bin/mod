@@ -271,7 +271,7 @@ sudo rm -rf $TOME/tam
 fi 
 fi 
 #
-if [[ "$twrp" == "1" ]]; then echo " * Thêm BOOT TWRP $tenmaxmay ..."
+if [[ "$twrp" == "1" ]]; then echo " * Thêm BOOT TWRP $tenmamay..."
  mkdir -p $TOME/twrp
  if [[ -n "$(echo "$URL" | grep 'MIXM')" ]]; then linktwrp="https://sourceforge.net/projects/chamchamfy/files/Tools/boot_global_$tenmamay.img"
  elif [[ -n "$(echo "$URL" | grep 'TWXM')" ]]; then linktwrp="https://sourceforge.net/projects/chamchamfy/files/Tools/boot_tw_$tenmamay.img"
