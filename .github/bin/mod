@@ -1,5 +1,6 @@
 #!/bin/bash
 TOME="$GITHUB_WORKSPACE"
+tenmamay=$(sudo grep 'ro.product.device' /mnt/tmp/vendor/build.prop | awk -F= '{print $2}')
 # Thư mục chứa apk,jar đã mod: $TOME/Mod
 # Tìm tập tin apk,jar chép vào $TOME/Mod: [ Timfile *.apk/*.jar ]
 # Giải nén dex trong apk/jar từ thư mục $TOME/Mod: [ Unpackfile ] 
@@ -8,7 +9,7 @@ TOME="$GITHUB_WORKSPACE"
 # Đường dẫn thư mục vendor: /mnt/tmp/vendor 
 # Đường dẫn thư mục product: /mnt/tmp/product 
 # Đường dẫn thư mục system_ext: /mnt/tmp/system_ext
-# tenmamay: 'ro.product.device'
+
 cuphap() {
 # Nếu biết tên smali
 noichua=$(find 'đường dẫn thư mục' -type f -name 'tên smali'); 
