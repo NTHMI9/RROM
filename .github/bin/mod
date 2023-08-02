@@ -271,16 +271,16 @@ sudo rm -rf $TOME/tam
 fi 
 fi 
 #
-if [[ "$twrp" == "1" ]]; then echo " * Thêm BOOT TWRP..."
- mkdir -p $TOME/tam
+if [[ "$twrp" == "1" ]]; then echo " * Thêm BOOT TWRP $tenmaxmay ..."
+ mkdir -p $TOME/twrp
  if [[ -n "$(echo "$URL" | grep 'MIXM')" ]]; then linktwrp="https://sourceforge.net/projects/chamchamfy/files/Tools/boot_global_$tenmamay.img"
  elif [[ -n "$(echo "$URL" | grep 'TWXM')" ]]; then linktwrp="https://sourceforge.net/projects/chamchamfy/files/Tools/boot_tw_$tenmamay.img"
  elif [[ -n "$(echo "$URL" | grep 'IDXM')" ]]; then linktwrp="https://sourceforge.net/projects/chamchamfy/files/Tools/boot_id_$tenmamay.img"
  elif [[ -n "$(echo "$URL" | grep 'EUXM')" ]]; then linktwrp="https://sourceforge.net/projects/chamchamfy/files/Tools/boot_eu_$tenmamay.img"
- else linktwrp='https://sourceforge.net/projects/recovery-for-xiaomi-devices/files/vili/twrp-3.7.0_12-v7.9_A13-vili-skkk.img'
+ else
+[[ "$tenmamay" == "vili" ]] && linktwrp='https://sourceforge.net/projects/recovery-for-xiaomi-devices/files/vili/twrp-3.7.0_12-v7.9_A13-vili-skkk.img'
  fi
-Taive "$linktwrp" "$TOME/tam/boot.img"
-[[ -s "$TOME/tam/boot.img" ]] && sudo cp -af "$TOME/tam/boot.img" "$TOME/Unzip/images/boot.img"
+Taive "$linktwrp" "$TOME/twrp/boot.img"
 fi
 #
 themcauhinh
