@@ -23,7 +23,7 @@ Vsys="1"
 TKM="1"
 
 #### Thêm twrp
-twrp="0"
+twrp="1"
 
 ### Xoá odex vdex...
 Xoadex="services.art services.odex services.vdex miui-services.odex miui-services.vdex framework.odex framework.vdex miui-framework.odex miui-framework.vdex #Settings.odex #Settings.vdex"
