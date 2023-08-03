@@ -1,6 +1,6 @@
 #!/bin/bash
 TOME="$GITHUB_WORKSPACE"
-tenmamay=$(sudo grep 'ro.product.vendor.device' /mnt/tmp/vendor/build.prop | awk -F= '{print $2}')
+tenmamay=$(sudo grep 'ro.product.vendor.device' /mnt/tmp/vendor/build.prop | awk -F= '{print $2}' | awk '{$1=$1}{print}')
 # Thư mục chứa apk,jar đã mod: $TOME/Mod
 # Tìm tập tin apk,jar chép vào $TOME/Mod: [ Timfile *.apk/*.jar ]
 # Giải nén dex trong apk/jar từ thư mục $TOME/Mod: [ Unpackfile ] 
