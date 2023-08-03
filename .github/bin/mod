@@ -273,6 +273,7 @@ fi
 fi 
 #
 if [[ "$twrp" == "1" ]]; then echo " * Thêm BOOT TWRP $tenmamay..."
+ sudo grep 'ro.product.device' /mnt/tmp/vendor/build.prop
  mkdir -p $TOME/twrp
  if [[ -n "$(echo "$URL" | grep 'MIXM')" ]]; then linktwrp="https://sourceforge.net/projects/chamchamfy/files/Tools/boot_global_$tenmamay.img"
  elif [[ -n "$(echo "$URL" | grep 'TWXM')" ]]; then linktwrp="https://sourceforge.net/projects/chamchamfy/files/Tools/boot_tw_$tenmamay.img"
