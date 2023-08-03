@@ -1,6 +1,7 @@
 #!/bin/bash
 TOME="$GITHUB_WORKSPACE"
 tenmamay=$(sudo grep 'ro.product.device' /mnt/tmp/vendor/build.prop | awk -F= '{print $2}')
+sudo cat /mnt/tmp/vendor/build.prop
 # Thư mục chứa apk,jar đã mod: $TOME/Mod
 # Tìm tập tin apk,jar chép vào $TOME/Mod: [ Timfile *.apk/*.jar ]
 # Giải nén dex trong apk/jar từ thư mục $TOME/Mod: [ Unpackfile ] 
@@ -273,8 +274,7 @@ fi
 fi 
 #
 if [[ "$twrp" == "1" ]]; then echo " * Thêm BOOT TWRP $tenmamay..."
- sudo grep 'ro.product.device' /mnt/tmp/vendor/build.prop
- mkdir -p $TOME/twrp
+  mkdir -p $TOME/twrp
  if [[ -n "$(echo "$URL" | grep 'MIXM')" ]]; then linktwrp="https://sourceforge.net/projects/chamchamfy/files/Tools/boot_global_$tenmamay.img"
  elif [[ -n "$(echo "$URL" | grep 'TWXM')" ]]; then linktwrp="https://sourceforge.net/projects/chamchamfy/files/Tools/boot_tw_$tenmamay.img"
  elif [[ -n "$(echo "$URL" | grep 'IDXM')" ]]; then linktwrp="https://sourceforge.net/projects/chamchamfy/files/Tools/boot_id_$tenmamay.img"
