@@ -282,8 +282,9 @@ linktwrp="https://sourceforge.net/projects/chamchamfy/files/Tools/boot_global_$t
  else
 [[ "$tenmamay" == "vili" ]] && linktwrp='https://sourceforge.net/projects/recovery-for-xiaomi-devices/files/vili/twrp-3.7.0_12-v7.9_A13-vili-skkk.img'
  fi
-echo "curl -s -L "$linktwrp" "$TOME/twrp/boot.img""
-curl -s -L "$linktwrp" "$TOME/twrp/boot.img"
+echo "curl -s -L "$linktwrp" -o "$TOME/twrp/boot.img""
+curl -s -L "$linktwrp" -o "$TOME/twrp/boot.img"
+#wget "$linktwrp" -O "$TOME/twrp/boot.img"
 du -m $TOME/twrp/boot.img
 fi
 #
