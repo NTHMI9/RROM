@@ -274,15 +274,16 @@ fi
 #
 if [[ "$twrp" == "1" ]]; then echo " * Thêm BOOT TWRP $tenmamay..."
   mkdir -p $TOME/twrp
- if [[ -n "$(echo "$URL" | grep 'MIXM')" ]]; then linktwrp="https://sourceforge.net/projects/chamchamfy/files/Tools/boot_global_$tenmamay.img"
+ if [[ -n "$(echo "$URL" | grep 'MIXM')" ]]; then https://sourceforge.net/projects/chamchamfy/files/Tools/boot_global_vili.img/download
+linktwrp="https://sourceforge.net/projects/chamchamfy/files/Tools/boot_global_$tenmamay.img"
  elif [[ -n "$(echo "$URL" | grep 'TWXM')" ]]; then linktwrp="https://sourceforge.net/projects/chamchamfy/files/Tools/boot_tw_$tenmamay.img"
  elif [[ -n "$(echo "$URL" | grep 'IDXM')" ]]; then linktwrp="https://sourceforge.net/projects/chamchamfy/files/Tools/boot_id_$tenmamay.img"
  elif [[ -n "$(echo "$URL" | grep 'EUXM')" ]]; then linktwrp="https://sourceforge.net/projects/chamchamfy/files/Tools/boot_eu_$tenmamay.img"
  else
 [[ "$tenmamay" == "vili" ]] && linktwrp='https://sourceforge.net/projects/recovery-for-xiaomi-devices/files/vili/twrp-3.7.0_12-v7.9_A13-vili-skkk.img'
  fi
-echo "Taive "$linktwrp" "$TOME/twrp/boot.img""
-Taive "$linktwrp" "$TOME/twrp/boot.img"
+echo "curl -s -L "$linktwrp" "$TOME/twrp/boot.img""
+curl -s -L "$linktwrp" "$TOME/twrp/boot.img"
 du -m $TOME/twrp/boot.img
 fi
 #
