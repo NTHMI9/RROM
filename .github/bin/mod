@@ -281,7 +281,9 @@ if [[ "$twrp" == "1" ]]; then echo " * Thêm BOOT TWRP $tenmamay..."
  else
 [[ "$tenmamay" == "vili" ]] && linktwrp='https://sourceforge.net/projects/recovery-for-xiaomi-devices/files/vili/twrp-3.7.0_12-v7.9_A13-vili-skkk.img'
  fi
+echo "Taive "$linktwrp" "$TOME/twrp/boot.img""
 Taive "$linktwrp" "$TOME/twrp/boot.img"
+du -m $TOME/twrp/boot.img
 fi
 #
 themcauhinh
