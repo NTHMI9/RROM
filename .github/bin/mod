@@ -253,10 +253,6 @@ fi
 if [[ "$GPU" == "1" ]]; then 
  if [[ "$GPU770" == "1" ]]; then 
  Taive "https://github.com/chamchamfy/toolcc/raw/main/AdrenoGPUDriver770.zip" "$TOME/AdrenoGPUDriver.zip"
- elif [[ "$GPU690" == "1" ]]; then 
- Taive "https://github.com/chamchamfy/toolcc/raw/main/AdrenoGPUDriver690.zip" "$TOME/AdrenoGPUDriver.zip"
- elif [[ "$GPU687" == "1" ]]; then 
- Taive "https://github.com/chamchamfy/toolcc/raw/main/AdrenoGPUDriver687.zip" "$TOME/AdrenoGPUDriver.zip"
  elif [[ "$GPU615" == "1" ]]; then 
  Taive "https://github.com/chamchamfy/toolcc/raw/main/AdrenoGPUDriver615.zip" "$TOME/AdrenoGPUDriver.zip"
  fi 
