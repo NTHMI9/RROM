@@ -229,12 +229,14 @@ system_extfs=''
 #
 ngonngu() { 
 if [[ "$NN" == "VI" ]]; then echo " * Thêm ngôn ngữ..."
+mkdir -p $TOME/VH
 #Taive "https://github.com/kakathic/ZH-VN/releases/download/HH/TT_1.8.Zip" "$TOME/VH.zip"
 Taive "https://github.com/chamchamfy/toolcc/raw/main/overlay.zip" "$TOME/VH.zip"
 7za x -tzip -y "$TOME/VH.zip" -o$TOME/VH >/dev/null
 [[ -e /mnt/tmp/product/overlay ]] && TMVH=/mnt/tmp/product/overlay || TMVH=/mnt/tmp/vendor/overlay
-sudo cp -rf $TOME/VH/apk/* $TMVH
+sudo cp -af $TOME/VH/apk/* $TMVH
 [[ -d /mnt/tmp/system/system/media ]] && sudo cp -rf $TOME/VH/framework-miui-res /mnt/tmp/system/system/media/theme/default || sudo cp -rf $TOME/VH/framework-miui-res /mnt/tmp/product/media/theme/default
+sudo rm -rf $TOME/VH
 fi
 } 
 ngonngu
@@ -264,9 +266,33 @@ themp=$(sudo grep 'import' /mnt/tmp/vendor/build.prop)
 sudo sed -i '/import/d' /mnt/tmp/vendor/build.prop
 sudo bash -c "cat $TOME/tam/system.prop | sed -e '/# Tweak/d' >> /mnt/tmp/vendor/build.prop"
 sudo bash -c "echo '$themp' >> /mnt/tmp/vendor/build.prop"
-sudo rm -rf $TOME/tam
+sudo rm -rf $TOME/tam $TOME/AdrenoGPUDriver.zip
 fi 
 fi 
+#
+if [[ "$tenmamay" == "alioth" ]]; then echo " * Thêm Gói iamkudo..."
+ Taive "https://sourceforge.net/projects/chamchamfy/files/Tools/Elite_TWRP_weekly.zip" "$TOME/Elite_TWRP_weekly.zip"
+ if [[ -s "$TOME/Elite_TWRP_weekly.zip" ]]; then 
+ mkdir -p $TOME/tam
+ 7za x -tzip -y $TOME/Elite_TWRP_weekly.zip -o$TOME/tam >/dev/null
+ sudo cp -af $TOME/tam/product/* /mnt/tmp/product
+ sudo cp -af $TOME/tam/vendor/* /mnt/tmp/vendor
+ sudo cp -af $TOME/tam/system_ext/* /mnt/tmp/system_ext
+ sudo rm -rf $TOME/tam $TOME/Elite_TWRP_weekly.zip
+ fi
+fi
+#
+#
+if [[ -n "$(echo "$URL" | grep 'CNXM')" ]]; then echo " * Thêm Gói Gapp..."
+ Taive "https://sourceforge.net/projects/nikgapps/files/Releases/NikGapps-T/16-Jul-2023/NikGapps-basic-arm64-13-20230716-signed.zip" "$TOME/gapp.zip"
+ if [[ -s "$TOME/gapp.zip" ]]; then 
+ mkdir -p $TOME/tam
+ 7za x -tzip -y $TOME/gapp.zip -o$TOME/tam >/dev/null
+ 
+ sudo rm -rf $TOME/tam
+ fi
+fi
+#
 #
 if [[ "$twrp" == "1" ]]; then echo " * Thêm BOOT TWRP $tenmamay..."
  mkdir -p $TOME/twrp
