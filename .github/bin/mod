@@ -307,7 +307,7 @@ if [[ "$twrp" == "1" ]]; then echo " * Thêm BOOT TWRP $tenmamay..."
  fi
 Taive "$linktwrp" "$TOME/twrp/boot.img"
 #wget "$linktwrp" -O "$TOME/twrp/boot.img"
-du -m $TOME/twrp/boot.img
+du -m $TOME/twrp/boot.img 2>/dev/null
 fi
 #
 themcauhinh
