@@ -1,16 +1,16 @@
 # Tùy chọn
 #### Mặc định: 1 là bật, 0 là tắt
 
-#### Ngôn ngữ
+### Ngôn ngữ
 NN="VI"
 
 #### Các tùy chọn khác
 opcc="1"
 
-#### Hỗ trợ: ext4 hoặc erofs. Bỏ trống là mặc định
+### Hỗ trợ: ext4 hoặc erofs. Bỏ trống là mặc định
 Dinhdangphanvung="ext4"
 
-#### Chế độ phân vùng super: none hoặc readonly
+### Chế độ phân vùng super: none hoặc readonly
 chedo="none"
 
 ### Vá fstab (decrypt)
@@ -19,10 +19,10 @@ Vfstab="0"
 ### Vá hệ thống
 Vsys="1"
 
-### Chuyển Tài khoản Mi lên đầu. Tùy chỉnh trong tập tin .github/bin/mod
+### Chuyển Tài khoản Mi lên đầu. Tùy chỉnh trong tập tin .github/bin/mod khi mod Settings
 TKM="1"
 
-#### Thêm twrp. Tùy chỉnh trong tập tin .github/bin/mod cho phù hợp dòng máy
+### Thêm twrp. Tùy chỉnh trong tập tin .github/bin/mod cho phù hợp dòng máy
 twrp="1"
 
 ### Xoá odex vdex... Khi tùy chọn vá hệ thống bật
