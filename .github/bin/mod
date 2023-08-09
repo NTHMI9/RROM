@@ -31,27 +31,8 @@ boten;
 done
 }
 #
-Trinhcaidat() { 
-for tjar in MIUIPackageInstaller.apk; do
-Timfile "$tjar.apk"
-if [[ -f $TOME/Mod/$tjar.apk ]]; then 
-echo " Xử lý: $tjar.apk"
-Unpackfile
-taptin=$(find $TOME/Mod/$tjar -type f -name '*.smali');
-for noichua in $taptin; do
-phuongthuc='.method public static a(Landroid/content/pm/ApplicationInfo;)Z'; 
-noidung='const/4 v0, 0x0\n return v0'; 
-chendau
-boten; 
-done
-Repackfile
-fi 
-done
-}
-Trinhcaidat
-#
 Caidat() {
-for tjar in Joyose Settings; do
+for tjar in Joyose1 Settings1 MIUISystemUIPlugin1 MIUIPackageInstaller MiuiSystemUI1; do
 Timfile "$tjar.apk"
 if [[ -f $TOME/Mod/$tjar.apk ]]; then 
 echo " Xử lý: $tjar.apk"
@@ -91,11 +72,36 @@ dong='const/4 v0, 0x0'
 thaydong
 done
  fi
+ if [[ "$tjar" == "MIUISystemUIPlugin" ]]; then 
+noichua=$(find $TOME/Mod/$tjar/ -type f -name 'MiPlayController.smali'); 
+phuongthuc='supportMiPlayAudio()'
+cuoi='.end method'
+noidung='const/4 p0, 0x1\n return p0'
+thayphuongthuc
+boten;
+ fi
+ if [[ "$tjar" == "MIUIPackageInstaller" ]]; then 
+taptin=$(find $TOME/Mod/$tjar -type f -name '*.smali');
+for noichua in $taptin; do
+phuongthuc='.method public static a(Landroid/content/pm/ApplicationInfo;)Z'; 
+noidung='const/4 v0, 0x0\n return v0'; 
+chendau
+boten; 
+done
+ fi
+ if [[ "$tjar" == "MiuiSystemUI" ]]; then 
+[[ -d $TOME/Mod/$tjar/classes ]] && sudo cp -af $TOME/.github/libpy/pow/* $TOME/Mod/$tjar/classes
+noichua=$(find $TOME/Mod/$tjar/ -type f -name 'PrivacyItemControllerler.smali'); 
+phuongthuc='isMicicCameraAndabled('
+noidung='move-result p0'
+dong='const/4 p0, 0x0'
+thaydong
+ fi
 Repackfile
 fi 
 done
 }
-#Caidat
+Caidat
 #
 themcauhinh() { 
 # Thêm file_contexts
@@ -275,8 +281,8 @@ fi
 fi 
 #
 if [[ "$tenmamay" == "alioth" ]]; then 
- Taive "https://sourceforge.net/projects/chamchamfy/files/Tools/Elite_TWRP_weekly.zip" "$TOME/appmod.zip"
- if [[ -s "$TOME/appmod.zip" ]]; then echo " * Thêm App Mod..."
+ Taive "https://sourceforge.net/projects/toolkudotwrp/files/kudo/Elite_TWRP_weekly.zip" "$TOME/appmod.zip"
+ if [[ "$(sudo du -m $TOME/appmod.zip 2>/dev/null | awk '{print $1}')" -gt 100 ]]; then echo " * Thêm App Mod..."
  mkdir -p $TOME/tam
  7za x -tzip -y $TOME/appmod.zip -o$TOME/tam >/dev/null
  sudo cp -af $TOME/tam/product/*app /mnt/tmp/product 2>/dev/null
