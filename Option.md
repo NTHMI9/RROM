@@ -40,7 +40,7 @@ GPU="0"
 ### Tùy chọn phiên bản Adreno GPU Driver (Không hoạt động)
 #SDM8250
 
-GPU770="0" 
+GPU770="0"
 GPU725="0"
 
 #SDM8350+
