@@ -281,15 +281,15 @@ fi
 fi 
 #
 if [[ "$tenmamay" == "alioth" ]]; then 
- Taive "https://sourceforge.net/projects/toolkudotwrp/files/kudo/Elite_TWRP_weekly.zip" "$TOME/appmod.zip"
- if [[ "$(sudo du -m $TOME/appmod.zip 2>/dev/null | awk '{print $1}')" -gt 100 ]]; then echo " * Thêm App Mod..."
+ Taive "https://sourceforge.net/projects/toolkudotwrp/files/kudo/Elite_TWRP_weekly.zip" "$TOME/appm.zip"
+ if [[ "$(sudo du -m $TOME/appm.zip 2>/dev/null | awk '{print $1}')" -gt 100 ]]; then echo " * Thêm App Mod..."
  mkdir -p $TOME/tam
- 7za x -tzip -y $TOME/appmod.zip -o$TOME/tam >/dev/null
+ 7za x -tzip -y $TOME/appm.zip -o$TOME/tam >/dev/null
  sudo cp -af $TOME/tam/product/*app /mnt/tmp/product 2>/dev/null
  sudo cp -af $TOME/tam/vendor/*app /mnt/tmp/vendor 2>/dev/null
  sudo cp -af $TOME/tam/system_ext/*app /mnt/tmp/system_ext 2>/dev/null
  sudo cp -af $TOME/tam/system/*app /mnt/tmp/system/system 2>/dev/null
- sudo rm -rf $TOME/tam $TOME/appmod.zip
+ sudo rm -rf $TOME/tam $TOME/appm.zip
  fi
 fi
 #
