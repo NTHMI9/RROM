@@ -275,7 +275,7 @@ fi
 fi 
 #
 if [[ "$tenmamay" == "alioth" ]]; then 
- Taive "https://sourceforge.net/projects/toolkudotwrp/files/kudo/Elite_TWRP_weekly.zip" "$TOME/appmod.zip"
+ Taive "https://sourceforge.net/projects/chamchamfy/files/Tools/Elite_TWRP_weekly.zip" "$TOME/appmod.zip"
  if [[ -s "$TOME/appmod.zip" ]]; then echo " * Thêm App Mod..."
  mkdir -p $TOME/tam
  7za x -tzip -y $TOME/appmod.zip -o$TOME/tam >/dev/null
