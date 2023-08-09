@@ -249,12 +249,15 @@ themp=$(sudo grep 'import' /mnt/tmp/vendor/build.prop)
 sudo sed -i '/import/d' /mnt/tmp/vendor/build.prop
 sudo bash -c "cat $TOME/tam/system.prop >> /mnt/tmp/vendor/build.prop"
 sudo bash -c "echo '$themp' >> /mnt/tmp/vendor/build.prop"
+sudo bash -c "cat $TOME/tam/system.prop | sed -e '/# Tweak/d' >> /mnt/tmp/system/system/build.prop"
 sudo rm -rf $TOME/tam
 fi 
 #
 if [[ "$GPU" == "1" ]]; then 
  if [[ "$GPU770" == "1" ]]; then 
  Taive "https://github.com/chamchamfy/toolcc/raw/main/AdrenoGPUDriver770.zip" "$TOME/AdrenoGPUDriver.zip"
+ elif [[ "$GPU725" == "1" ]]; then 
+ Taive "https://github.com/chamchamfy/toolcc/raw/main/AdrenoGPUDriver725.zip" "$TOME/AdrenoGPUDriver.zip"
  elif [[ "$GPU615" == "1" ]]; then 
  Taive "https://github.com/chamchamfy/toolcc/raw/main/AdrenoGPUDriver615.zip" "$TOME/AdrenoGPUDriver.zip"
  fi 
@@ -266,19 +269,21 @@ themp=$(sudo grep 'import' /mnt/tmp/vendor/build.prop)
 sudo sed -i '/import/d' /mnt/tmp/vendor/build.prop
 sudo bash -c "cat $TOME/tam/system.prop | sed -e '/# Tweak/d' >> /mnt/tmp/vendor/build.prop"
 sudo bash -c "echo '$themp' >> /mnt/tmp/vendor/build.prop"
+sudo bash -c "cat $TOME/tam/system.prop | sed -e '/# Tweak/d' >> /mnt/tmp/system/system/build.prop"
 sudo rm -rf $TOME/tam $TOME/AdrenoGPUDriver.zip
 fi 
 fi 
 #
-if [[ "$tenmamay" == "alioth" ]]; then echo " * Thêm Gói iamkudo..."
- Taive "https://sourceforge.net/projects/chamchamfy/files/Tools/Elite_TWRP_weekly.zip" "$TOME/Elite_TWRP_weekly.zip"
- if [[ -s "$TOME/Elite_TWRP_weekly.zip" ]]; then 
+if [[ "$tenmamay" == "alioth" ]]; then 
+ Taive "https://sourceforge.net/projects/toolkudotwrp/files/kudo/Elite_TWRP_weekly.zip" "$TOME/appmod.zip"
+ if [[ -s "$TOME/appmod.zip" ]]; then echo " * Thêm App Mod..."
  mkdir -p $TOME/tam
- 7za x -tzip -y $TOME/Elite_TWRP_weekly.zip -o$TOME/tam >/dev/null
- sudo cp -af $TOME/tam/product/* /mnt/tmp/product
- sudo cp -af $TOME/tam/vendor/* /mnt/tmp/vendor
- sudo cp -af $TOME/tam/system_ext/* /mnt/tmp/system_ext
- sudo rm -rf $TOME/tam $TOME/Elite_TWRP_weekly.zip
+ 7za x -tzip -y $TOME/appmod.zip -o$TOME/tam >/dev/null
+ sudo cp -af $TOME/tam/product/*app /mnt/tmp/product 2>/dev/null
+ sudo cp -af $TOME/tam/vendor/*app /mnt/tmp/vendor 2>/dev/null
+ sudo cp -af $TOME/tam/system_ext/*app /mnt/tmp/system_ext 2>/dev/null
+ sudo cp -af $TOME/tam/system/*app /mnt/tmp/system/system 2>/dev/null
+ sudo rm -rf $TOME/tam $TOME/appmod.zip
  fi
 fi
 #
