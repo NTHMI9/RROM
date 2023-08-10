@@ -248,12 +248,13 @@ vendorfc='/vendor/lib/egl/libVkLayer_ADRENO_qprofiler\.so u:object_r:system_lib_
 
 productfc='/product/app/FileExplorer/FileExplorer\.apk u:object_r:system_file:s0
 /product/app/LatinImeGoogle/LatinImeGoogle\.apk u:object_r:system_file:s0
+/product/priv-app/LatinImeGoogle/LatinImeGoogle\.apk u:object_r:system_file:s0
 /product/app/MiuiScreenshot/MiuiScreenshot\.apk u:object_r:system_file:s0
 /product/app/MiuiScreenRecorder/MiuiScreenRecorder\.apk u:object_r:system_file:s0
 /product/app/Joyose/Joyose\.apk u:object_r:system_file:s0
 /product/app/MiuiSystemUIPlugin/MiuiSystemUIPlugin\.apk u:object_r:system_file:s0
 /product/priv-app/MiuiGallery/MiuiGallery\.apk u:object_r:system_file:s0
-/product/app/Gallery_T_CN/Gallery_T_CN\.apk u:object_r:system_file:s0'
+/product/priv-app/Gallery_T_CN/Gallery_T_CN\.apk u:object_r:system_file:s0'
 
 system_extfc=''
 
@@ -336,6 +337,8 @@ productfs='product/app/FileExplorer 0 0 0755
 product/app/FileExplorer/FileExplorer.apk 0 0 0644
 product/app/LatinImeGoogle 0 0 0755
 product/app/LatinImeGoogle/LatinImeGoogle.apk 0 0 0644
+product/priv-app/LatinImeGoogle 0 0 0755
+product/priv-app/LatinImeGoogle/LatinImeGoogle.apk 0 0 0644
 product/app/MiuiScreenshot 0 0 0755
 product/app/MiuiScreenshot/MiuiScreenshot.apk 0 0 0644
 product/app/MiuiScreenRecorder 0 0 0755
@@ -346,8 +349,8 @@ product/app/MiuiSystemUIPlugin 0 0 0755
 product/app/MiuiSystemUIPlugin/MiuiSystemUIPlugin.apk 0 0 0644
 product/priv-app/MiuiGallery 0 0 0755
 product/priv-app/MiuiGallery/MiuiGallery.apk 0 0 0644
-product/app/Gallery_T_CN 0 0 0755
-product/app/Gallery_T_CN/Gallery_T_CN.apk 0 0 0644'
+product/priv-app/Gallery_T_CN 0 0 0755
+product/priv-app/Gallery_T_CN/Gallery_T_CN.apk 0 0 0644'
 
 system_extfs=''
 }
