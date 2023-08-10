@@ -110,9 +110,9 @@ tinhnang() {
 for p in /mnt/tmp/product /mnt/tmp/system/system /mnt/tmp/vendor; do 
  if [ -d $p/etc/device_features ]; then
   for f in $p/etc/device_features/*.xml; do
-   if [ -z "$(grep -m1 'miui_volume_expand_freeland' $f)" ]; then 
-sed -i '/<\/features>/d' $f
-echo '
+   if [ -z "$(sudo grep -m1 'miui_volume_expand_freeland' $f)" ]; then 
+sudo sed -i '/<\/features>/d' $f
+sudo bash -c "echo '
 <integer name="config_cell_count_y_max">15</integer>
 <integer name="config_cell_count_x_max">15</integer>
 <integer name="support_widevine_l1">2</integer>
@@ -193,7 +193,7 @@ echo '
 <integer name="config_screenBrightnessSettingDefault">100</integer>
 <integer name="config_screenBrightnessSettingMaximum">255</integer>
 <integer name="config_screenBrightnessSettingMinimum">15</integer>
-</features>' >> $f
+</features>' >> $f"
    fi
   done
  fi
