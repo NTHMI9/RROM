@@ -32,6 +32,7 @@
 #Weather 
 #Wellbeing
 AiAsstVision
+AiAsstVision_L2
 AnalyticsCore
 AndroidAutoStub
 AutoRegistration
@@ -112,6 +113,7 @@ MipayService
 Mirror
 MiuiAudioMonitor
 MiuiBiometric
+MiuiBiometric3389
 MiuiBugReport
 MiuiBugReportGlobal
 MiuiCompass
