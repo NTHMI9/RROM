@@ -255,7 +255,8 @@ productfc='/product/app/FileExplorer/FileExplorer\.apk u:object_r:system_file:s0
 /product/app/MiuiSystemUIPlugin/MiuiSystemUIPlugin\.apk u:object_r:system_file:s0
 /product/priv-app/MiuiGallery/MiuiGallery\.apk u:object_r:system_file:s0
 /product/priv-app/Gallery_T_CN/Gallery_T_CN\.apk u:object_r:system_file:s0
-/product/priv-app/SecurityCenter/SecurityCenter.apk u:object_r:system_file:s0'
+/product/priv-app/SecurityCenter/SecurityCenter\.apk u:object_r:system_file:s0
+/product/priv-app/MIUISecurityCenter/MIUISecurityCenter\.apk u:object_r:system_file:s0'
 
 system_extfc=''
 
