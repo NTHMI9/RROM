@@ -249,7 +249,10 @@ vendorfc='/vendor/lib/egl/libVkLayer_ADRENO_qprofiler\.so u:object_r:system_lib_
 productfc='/product/app/FileExplorer/FileExplorer\.apk u:object_r:system_file:s0
 /product/app/LatinImeGoogle/LatinImeGoogle\.apk u:object_r:system_file:s0
 /product/app/MiuiScreenshot/MiuiScreenshot\.apk u:object_r:system_file:s0
-/product/app/MiuiScreenRecorder/MiuiScreenRecorder\.apk u:object_r:system_file:s0'
+/product/app/MiuiScreenRecorder/MiuiScreenRecorder\.apk u:object_r:system_file:s0
+/product/app/Joyose/Joyose\.apk u:object_r:system_file:s0
+/product/app/MiuiSystemUIPlugin/MiuiSystemUIPlugin\.apk u:object_r:system_file:s0
+/product/priv-app/MiuiGallery/MiuiGallery\.apk u:object_r:system_file:s0'
 
 system_extfc=''
 
@@ -334,7 +337,14 @@ product/app/LatinImeGoogle 0 0 0755
 product/app/LatinImeGoogle/LatinImeGoogle.apk 0 0 0644
 product/app/MiuiScreenshot 0 0 0755
 product/app/MiuiScreenshot/MiuiScreenshot.apk 0 0 0644
-product/app/MiuiScreenRecorder/MiuiScreenRecorder.apk 0 0 0644'
+product/app/MiuiScreenRecorder/MiuiScreenRecorder 0 0 0755
+product/app/MiuiScreenRecorder/MiuiScreenRecorder.apk 0 0 0644
+product/app/Joyose/Joyose 0 0 0755
+product/app/Joyose/Joyose.apk 0 0 0644
+product/app/MiuiSystemUIPlugin/MiuiSystemUIPlugin 0 0 0755
+product/app/MiuiSystemUIPlugin/MiuiSystemUIPlugin.apk 0 0 0644
+product/priv-app/MiuiGallery/MiuiGallery 0 0 0755
+product/priv-app/MiuiGallery/MiuiGallery.apk 0 0 0644'
 
 system_extfs=''
 }
@@ -405,6 +415,15 @@ if [[ -n "$(echo "$URL" | grep 'CNXM')" ]]; then
  if [[ -s "$TOME/appm.zip" ]]; then echo " * Thêm App Mod..."
  mkdir -p $TOME/tam
  7za x -tzip -y $TOME/appm.zip -o$TOME/tam >/dev/null
+ for a in $TOME/tam/product/app/*; do 
+ tm=${a//miui/MIUI}; ttm=${a##*/}; tmm=${ttm//miui/MIUI}; 
+ sudo mv -f $a $tm 2>/dev/null
+ sudo mv -f $tm/$ttm.apk $tm/$tmm.apk 2>/dev/null
+ done
+ sudo mv -f $TOME/tam/product/app/FileExplorer $TOME/tam/product/app/MIUIFileExplorer 2>/dev/null
+ sudo mv -f $TOME/tam/product/app/MIUIFileExplorer/FileExplorer.apk $TOME/tam/product/app/MIUIFileExplorer/MIUIFileExplorer.apk 2>/dev/null
+ sudo mv -f $TOME/tam/product/priv-app/MiuiGallery $TOME/tam/product/app/Gallery_T_CN 2>/dev/null
+ sudo mv -f $TOME/tam/product/priv-app/Gallery_T_CN/MiuiGallery.apk $TOME/tam/product/app/Gallery_T_CN/Gallery_T_CN.apk 2>/dev/null
  sudo cp -af $TOME/tam/product/*app /mnt/tmp/product 2>/dev/null
  sudo cp -af $TOME/tam/vendor/*app /mnt/tmp/vendor 2>/dev/null
  sudo cp -af $TOME/tam/system_ext/*app /mnt/tmp/system_ext 2>/dev/null
