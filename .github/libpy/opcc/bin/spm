@@ -114,22 +114,29 @@ pm disable com.miui.powerkeeper/com.miui.powerkeeper.statemachine.PowerStateMach
 for ten in $Danhsach; do pm disable $ten; done 
 } 
 
-
 tinhnang() {
 for p in product system vendor; do 
- if [ -z "$(grep -m1 'miui_volume_expand_freeland' /$p/etc/device_feature/*.xml)" ]; then 
-if [ -d /$p/etc/device_feature ]; then
-  sed -i '/<\/features>/d' /$p/etc/device_feature/*.xml 
+ if [ -d /$p/etc/device_features ]; then
+  for f in /$p/etc/device_features/*.xml; do
+   if [ -z "$(grep -m1 'miui_volume_expand_freeland' $f)" ]; then 
+sed -i '/<\/features>/d' $f
 echo '
 <integer name="config_cell_count_y_max">15</integer>
 <integer name="config_cell_count_x_max">15</integer>
-<bool name="support_sound_assist">true</bool>
 <integer name="support_widevine_l1">2</integer>
+<bool name="support_sound_assist">true</bool>
 <bool name="is_support_video_tool_box">true</bool>
 <bool name="support_videobox_display_effect">true</bool>
-<bool name="config_sunlight_mode_available">true</bool>
 <bool name="miui_volume_expand_freeland">true</bool>
-<bool name="support_android_flashlight">true</bool>
+<bool name="support_main_xiaoai">true</bool>
+<bool name="support_tap_fingerprint_sensor_to_home">true</bool>
+<bool name="support_sign_verify_in_cust">true</bool>
+<bool name="support_lhdc_offload">true</bool>
+<bool name="support_audio_share">true</bool>
+<bool name="support_truetone">true</bool>
+<bool name="is_support_fingerprint_tap">true</bool>
+<bool name="is_support_partial_screenshot">true</bool>
+<bool name="support_google_rsa_protocol">true</bool>
 <bool name="enable_flash_global">true</bool>
 <bool name="support_multi_face_input">true</bool>
 <bool name="support_multi_face_input_global">true</bool>
@@ -139,6 +146,7 @@ echo '
 <string-array name="support_face_unlock_region_dom">
         <item>ALL</item>
 </string-array>
+<bool name="support_edgesuppression_with_sensor">true</bool>
 <integer-array name="edge_suppresson_condition"> 
         <item>50</item>
         <item>2</item>
@@ -172,13 +180,20 @@ echo '
 <bool name="support_dc_backlight">true</bool>
 <bool name="support_secret_dc_backlight">false</bool>
 <bool name="support_paper_eyecare">true</bool>
+<bool name="support_decrease_brightness_spec_app">true</bool>
+<bool name="support_led_light">true</bool>
+<bool name="support_led_color">true</bool>
+<bool name="support_android_flashlight">true</bool>
+<bool name="config_sunlight_mode_available">true</bool>
+<bool name="dc_backlight_fps_incompatible">true</bool>
+<bool name="need_remove_expert_primary">false</bool>
+<bool name="need_remove_expert_bright">true</bool>
 <float name="paper_eyecare_default_value">91.0</float>
 <integer name="paper_eyecare_default_texture">25</integer>
 <integer name="paper_eyecare_max_texture">70</integer>
 <bool name="support_smart_fps">true</bool>
 <integer name="smart_fps_value">120</integer> 
 <integer-array name="fpsList">
-        <item>144</item>
         <item>120</item>
         <item>90</item>
         <item>60</item>
@@ -186,8 +201,9 @@ echo '
 <integer name="config_screenBrightnessSettingDefault">100</integer>
 <integer name="config_screenBrightnessSettingMaximum">255</integer>
 <integer name="config_screenBrightnessSettingMinimum">15</integer>
-</features>' >> /$p/etc/device_feature/*.xml 
-fi
+</features>' >> $f
+   fi
+  done
  fi
 done
 } 

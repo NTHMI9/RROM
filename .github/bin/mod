@@ -106,6 +106,99 @@ done
 }
 Caidat
 #
+tinhnang() {
+for p in /mnt/tmp/product /mnt/tmp/system/system /mnt/tmp/vendor; do 
+ if [ -d $p/etc/device_features ]; then
+  for f in $p/etc/device_features/*.xml; do
+   if [ -z "$(grep -m1 'miui_volume_expand_freeland' $f)" ]; then 
+sed -i '/<\/features>/d' $f
+echo '
+<integer name="config_cell_count_y_max">15</integer>
+<integer name="config_cell_count_x_max">15</integer>
+<integer name="support_widevine_l1">2</integer>
+<bool name="support_sound_assist">true</bool>
+<bool name="is_support_video_tool_box">true</bool>
+<bool name="support_videobox_display_effect">true</bool>
+<bool name="miui_volume_expand_freeland">true</bool>
+<bool name="support_main_xiaoai">true</bool>
+<bool name="support_tap_fingerprint_sensor_to_home">true</bool>
+<bool name="support_sign_verify_in_cust">true</bool>
+<bool name="support_lhdc_offload">true</bool>
+<bool name="support_audio_share">true</bool>
+<bool name="support_truetone">true</bool>
+<bool name="is_support_fingerprint_tap">true</bool>
+<bool name="is_support_partial_screenshot">true</bool>
+<bool name="support_google_rsa_protocol">true</bool>
+<bool name="enable_flash_global">true</bool>
+<bool name="support_multi_face_input">true</bool>
+<bool name="support_multi_face_input_global">true</bool>
+<string-array name="support_face_unlock_region_global">
+        <item>ALL</item>
+</string-array>
+<string-array name="support_face_unlock_region_dom">
+        <item>ALL</item>
+</string-array>
+<bool name="support_edgesuppression_with_sensor">true</bool>
+<integer-array name="edge_suppresson_condition"> 
+        <item>50</item>
+        <item>2</item>
+        <item>4</item>
+        <item>6</item>
+        <item>8</item>
+        <item>10</item>
+    </integer-array>
+    <integer-array name="edge_suppresson_absolute">
+        <item>0</item>
+        <item>3</item>
+        <item>5</item>
+        <item>8</item>
+        <item>10</item>
+    </integer-array>
+    <integer-array name="edge_suppresson_corner">
+        <item>150</item>
+        <item>300</item>
+        <item>170</item>
+        <item>170</item>
+    </integer-array>
+    <integer-array name="edge_suppresson_size">
+        <item>12</item>
+        <item>96</item>
+    </integer-array> 
+<bool name="support_SR_for_image_display">true</bool>
+<bool name="support_AI_display">true</bool>
+<bool name="support_nature_mode">true</bool>
+<bool name="support_game_dim">true</bool>
+<bool name="support_high_resolution">true</bool>
+<bool name="support_dc_backlight">true</bool>
+<bool name="support_secret_dc_backlight">false</bool>
+<bool name="support_paper_eyecare">true</bool>
+<bool name="support_decrease_brightness_spec_app">true</bool>
+<bool name="support_led_light">true</bool>
+<bool name="support_led_color">true</bool>
+<bool name="support_android_flashlight">true</bool>
+<bool name="config_sunlight_mode_available">true</bool>
+<bool name="dc_backlight_fps_incompatible">true</bool>
+<bool name="need_remove_expert_primary">false</bool>
+<bool name="need_remove_expert_bright">true</bool>
+<float name="paper_eyecare_default_value">91.0</float>
+<integer name="paper_eyecare_default_texture">25</integer>
+<integer name="paper_eyecare_max_texture">70</integer>
+<bool name="support_smart_fps">true</bool>
+<integer name="smart_fps_value">120</integer> 
+<integer-array name="fpsList">
+        <item>120</item>
+        <item>90</item>
+        <item>60</item>
+    </integer-array>
+<integer name="config_screenBrightnessSettingDefault">100</integer>
+<integer name="config_screenBrightnessSettingMaximum">255</integer>
+<integer name="config_screenBrightnessSettingMinimum">15</integer>
+</features>' >> $f
+   fi
+  done
+ fi
+done
+} 
 themcauhinh() { 
 # Thêm file_contexts
 systemfc='/system/system/lib64/libGLESv1\.so u:object_r:system_lib_file:s0
@@ -153,7 +246,10 @@ vendorfc='/vendor/lib/egl/libVkLayer_ADRENO_qprofiler\.so u:object_r:system_lib_
 /vendor/etc/permissions/public\.libraries\.txt u:object_r:same_process_hal_file:s0
 /vendor/lib64/libcutils\.so u:object_r:same_process_hal_file:s0'
 
-productfc='/product/app/FileExplorer/FileExplorer\.apk u:object_r:system_file:s0'
+productfc='/product/app/FileExplorer/FileExplorer\.apk u:object_r:system_file:s0
+/product/app/LatinImeGoogle/LatinImeGoogle\.apk u:object_r:system_file:s0
+/product/app/MiuiScreenshot/MiuiScreenshot\.apk u:object_r:system_file:s0
+/product/app/MiuiScreenRecorder/MiuiScreenRecorder\.apk u:object_r:system_file:s0'
 
 system_extfc=''
 
@@ -233,7 +329,12 @@ vendor/lib/rfsa/adsp/misound_res_headphone.bin 0 0 0644
 vendor/lib/rfsa/adsp/misound_res_spk.bin 0 0 0644'
 
 productfs='product/app/FileExplorer 0 0 0755
-product/app/FileExplorer/FileExplorer.apk 0 0 0644'
+product/app/FileExplorer/FileExplorer.apk 0 0 0644
+product/app/LatinImeGoogle 0 0 0755
+product/app/LatinImeGoogle/LatinImeGoogle.apk 0 0 0644
+product/app/MiuiScreenshot 0 0 0755
+product/app/MiuiScreenshot/MiuiScreenshot.apk 0 0 0644
+product/app/MiuiScreenRecorder/MiuiScreenRecorder.apk 0 0 0644'
 
 system_extfs=''
 }
@@ -256,11 +357,6 @@ if [[ "$HK" == "1" ]]; then echo " * Thêm Harman Kardon..."
 mkdir -p $TOME/tam
 unzip -qo $TOME/.github/HarmanKardon.zip -d $TOME/tam
 sudo cp -af $TOME/tam/system/vendor/* /mnt/tmp/vendor 
-themp=$(sudo grep 'import' /mnt/tmp/vendor/build.prop)
-sudo sed -i '/import/d' /mnt/tmp/vendor/build.prop
-sudo bash -c "cat $TOME/tam/system.prop >> /mnt/tmp/vendor/build.prop"
-sudo bash -c "echo '$themp' >> /mnt/tmp/vendor/build.prop"
-sudo bash -c "cat $TOME/tam/system.prop | sed -e '/# Tweak/d' >> /mnt/tmp/system/system/build.prop"
 sudo rm -rf $TOME/tam
 fi 
 #
@@ -276,34 +372,16 @@ if [[ -s "$TOME/AdrenoGPUDriver.zip" ]]; then echo " * Thêm Adreno GPU Driver..
 mkdir -p $TOME/tam
 7za x -tzip -y $TOME/AdrenoGPUDriver.zip -o$TOME/tam >/dev/null
 sudo cp -af $TOME/tam/system/vendor/* /mnt/tmp/vendor 
-themp=$(sudo grep 'import' /mnt/tmp/vendor/build.prop)
-sudo sed -i '/import/d' /mnt/tmp/vendor/build.prop
-sudo bash -c "cat $TOME/tam/system.prop | sed -e '/# Tweak/d' >> /mnt/tmp/vendor/build.prop"
-sudo bash -c "echo '$themp' >> /mnt/tmp/vendor/build.prop"
-sudo bash -c "cat $TOME/tam/system.prop | sed -e '/# Tweak/d' >> /mnt/tmp/system/system/build.prop"
 sudo rm -rf $TOME/tam $TOME/AdrenoGPUDriver.zip
 fi 
 fi 
 #
-if [[ "$tenmamay" == "alioth" ]]; then 
- Taive "https://sourceforge.net/projects/toolkudotwrp/files/kudo/Elite_TWRP_weekly.zip" "$TOME/appm.zip"
- if [[ -s "$TOME/appm.zip" ]]; then echo " * Thêm App Mod..."
- mkdir -p $TOME/tam
- 7za x -tzip -y $TOME/appm.zip -o$TOME/tam >/dev/null
- for c in /mnt/tmp/product/etc/device_features/*.xml; do sudo cp -af $TOME/tam/product/etc/device_features/*.xml $c; done
- sudo rm -f /mnt/tmp/product/etc/device_features/vili.xml 2>/dev/null
- sudo cp -af $TOME/tam/product/*app /mnt/tmp/product 2>/dev/null
- sudo cp -af $TOME/tam/vendor/*app /mnt/tmp/vendor 2>/dev/null
- sudo cp -af $TOME/tam/system_ext/*app /mnt/tmp/system_ext 2>/dev/null
- sudo cp -af $TOME/tam/system/*app /mnt/tmp/system/system 2>/dev/null
- sudo rm -rf $TOME/tam $TOME/appm.zip
- fi
-fi
 #
+[[ "$tenmamay" == "vili" ]] && sudo cp -af $TOME/.github/libpy/input/vili.xml /mnt/tmp/product/etc/device_features || tinhnang
 #
-if [[ -n "$(echo "$URL" | grep 'CNXM')" ]]; then echo " * Thêm Gói Gapp..."
+if [[ -n "$(echo "$URL" | grep 'CNXM')" ]]; then 
  Taive "https://sourceforge.net/projects/nikgapps/files/Releases/NikGapps-T/16-Jul-2023/NikGapps-basic-arm64-13-20230716-signed.zip" "$TOME/gapp.zip"
- if [[ -s "$TOME/gapp.zip" ]]; then 
+ if [[ -s "$TOME/gapp.zip" ]]; then echo " * Thêm Gói Gapp..."
  mkdir -p $TOME/gapp $TOME/tam
  7za x -tzip -y $TOME/gapp.zip -o$TOME/tam >/dev/null
  for f in $TOME/tam/AppSet/CarrierServices/*.zip $TOME/tam/AppSet/Core/*.zip; do 
@@ -322,6 +400,16 @@ if [[ -n "$(echo "$URL" | grep 'CNXM')" ]]; then echo " * Thêm Gói Gapp..."
   fi
  done
  sudo rm -rf $TOME/tam $TOME/gapp $TOME/gapp.zip
+ fi
+ Taive "https://sourceforge.net/projects/toolkudotwrp/files/kudo/MiuiMod14.zip" "$TOME/appm.zip"
+ if [[ -s "$TOME/appm.zip" ]]; then echo " * Thêm App Mod..."
+ mkdir -p $TOME/tam
+ 7za x -tzip -y $TOME/appm.zip -o$TOME/tam >/dev/null
+ sudo cp -af $TOME/tam/product/*app /mnt/tmp/product 2>/dev/null
+ sudo cp -af $TOME/tam/vendor/*app /mnt/tmp/vendor 2>/dev/null
+ sudo cp -af $TOME/tam/system_ext/*app /mnt/tmp/system_ext 2>/dev/null
+ sudo cp -af $TOME/tam/system/*app /mnt/tmp/system/system 2>/dev/null
+ sudo rm -rf $TOME/tam $TOME/appm.zip
  fi
 fi
 #
