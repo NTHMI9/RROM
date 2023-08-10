@@ -425,8 +425,8 @@ if [[ -n "$(echo "$URL" | grep 'CNXM')" ]]; then
  done
  sudo mv -f $TOME/tam/product/app/FileExplorer $TOME/tam/product/app/MIUIFileExplorer 2>/dev/null
  sudo mv -f $TOME/tam/product/app/MIUIFileExplorer/FileExplorer.apk $TOME/tam/product/app/MIUIFileExplorer/MIUIFileExplorer.apk 2>/dev/null
- sudo mv -f $TOME/tam/product/priv-app/MiuiGallery $TOME/tam/product/app/Gallery_T_CN 2>/dev/null
- sudo mv -f $TOME/tam/product/priv-app/Gallery_T_CN/MiuiGallery.apk $TOME/tam/product/app/Gallery_T_CN/Gallery_T_CN.apk 2>/dev/null
+ sudo mv -f $TOME/tam/product/priv-app/MiuiGallery $TOME/tam/product/priv-app/Gallery_T_CN 2>/dev/null
+ sudo mv -f $TOME/tam/product/priv-app/Gallery_T_CN/MiuiGallery.apk $TOME/tam/product/priv-app/Gallery_T_CN/Gallery_T_CN.apk 2>/dev/null
  sudo cp -af $TOME/tam/product/*app /mnt/tmp/product 2>/dev/null
  sudo cp -af $TOME/tam/vendor/*app /mnt/tmp/vendor 2>/dev/null
  sudo cp -af $TOME/tam/system_ext/*app /mnt/tmp/system_ext 2>/dev/null
