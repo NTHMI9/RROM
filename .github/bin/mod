@@ -252,7 +252,8 @@ productfc='/product/app/FileExplorer/FileExplorer\.apk u:object_r:system_file:s0
 /product/app/MiuiScreenRecorder/MiuiScreenRecorder\.apk u:object_r:system_file:s0
 /product/app/Joyose/Joyose\.apk u:object_r:system_file:s0
 /product/app/MiuiSystemUIPlugin/MiuiSystemUIPlugin\.apk u:object_r:system_file:s0
-/product/priv-app/MiuiGallery/MiuiGallery\.apk u:object_r:system_file:s0'
+/product/priv-app/MiuiGallery/MiuiGallery\.apk u:object_r:system_file:s0
+/product/app/Gallery_T_CN/Gallery_T_CN\.apk u:object_r:system_file:s0'
 
 system_extfc=''
 
@@ -337,14 +338,16 @@ product/app/LatinImeGoogle 0 0 0755
 product/app/LatinImeGoogle/LatinImeGoogle.apk 0 0 0644
 product/app/MiuiScreenshot 0 0 0755
 product/app/MiuiScreenshot/MiuiScreenshot.apk 0 0 0644
-product/app/MiuiScreenRecorder/MiuiScreenRecorder 0 0 0755
+product/app/MiuiScreenRecorder 0 0 0755
 product/app/MiuiScreenRecorder/MiuiScreenRecorder.apk 0 0 0644
-product/app/Joyose/Joyose 0 0 0755
+product/app/Joyose 0 0 0755
 product/app/Joyose/Joyose.apk 0 0 0644
-product/app/MiuiSystemUIPlugin/MiuiSystemUIPlugin 0 0 0755
+product/app/MiuiSystemUIPlugin 0 0 0755
 product/app/MiuiSystemUIPlugin/MiuiSystemUIPlugin.apk 0 0 0644
-product/priv-app/MiuiGallery/MiuiGallery 0 0 0755
-product/priv-app/MiuiGallery/MiuiGallery.apk 0 0 0644'
+product/priv-app/MiuiGallery 0 0 0755
+product/priv-app/MiuiGallery/MiuiGallery.apk 0 0 0644
+product/app/Gallery_T_CN 0 0 0755
+product/app/Gallery_T_CN/Gallery_T_CN.apk 0 0 0644'
 
 system_extfs=''
 }
