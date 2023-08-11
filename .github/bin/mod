@@ -422,7 +422,6 @@ if [[ -n "$(echo "$URL" | grep 'CNXM')" ]]; then
  sudo mv -f $a $tm 2>/dev/null
  sudo mv -f $tm/$ttm.apk $tm/$tmm.apk 2>/dev/null
  done
- 
  sudo mv -f $TOME/tam/product/app/FileExplorer $TOME/tam/product/app/MIUIFileExplorer 2>/dev/null
  sudo mv -f $TOME/tam/product/app/MIUIFileExplorer/FileExplorer.apk $TOME/tam/product/app/MIUIFileExplorer/MIUIFileExplorer.apk 2>/dev/null
  sudo mv -f $TOME/tam/product/priv-app/MiuiGallery $TOME/tam/product/priv-app/Gallery_T_CN 2>/dev/null
@@ -431,7 +430,7 @@ if [[ -n "$(echo "$URL" | grep 'CNXM')" ]]; then
  sudo mv -f $TOME/tam/product/priv-app/SecurityCenter $TOME/tam/product/priv-app/MIUISecurityCenter 2>/dev/null
  sudo mv -f $TOME/tam/product/priv-app/MIUISecurityCenter/SecurityCenter.apk $TOME/tam/product/priv-app/MIUISecurityCenter/MIUISecurityCenter.apk 2>/dev/null
  cd $TOME/tam/product;
- for tt in $(ls *app/*/*.*) $(ls *app/*/*/*/*.*); do
+ for tt in $(ls app/*/*.*) $(ls priv-app/*/*/*/*.*); do
  [[ -n "$(echo $tt | grep .so)" ]] && sudo bash -c "echo '/product/${tt//./\.} u:object_r:system_lib_file:s0' >> $TOME/pcfg"
  [[ -n "$(echo $tt | grep .apk)" ]] && sudo bash -c "echo '/product/${tt//./\.} u:object_r:system_file:s0' >> $TOME/pcfg"
  sudo bash -c "echo 'product/$tt 0 0 0644' >> $TOME/pfs"
@@ -443,6 +442,10 @@ if [[ -n "$(echo "$URL" | grep 'CNXM')" ]]; then
  sudo cp -af $TOME/tam/system/*app /mnt/tmp/system/system 2>/dev/null
  sudo rm -rf $TOME/tam $TOME/appm.zip
  fi
+ cat $TOME/pfs
+ cat $TOME/vfs
+ cat $TOME/pcfg
+ cat $TOME/vcfg
 fi
 }
 tuychinh
