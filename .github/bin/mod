@@ -382,11 +382,11 @@ if [[ -n "$(echo "$URL" | grep 'CNXM')" ]]; then
  done
  for t in $TOME/gapp/*; do
   if [[ -d $t ]]; then 
-   t1=$(echo $t | awk -F__ '{print $2}')
-   t2=$(echo $t | awk -F__ '{print $3}')
-   t3=$(echo $t | awk -F__ '{print $4}')
-   t4=$(echo $t | awk -F__ '{print $5}')
-   t5=$(echo $t | awk -F__ '{print $6}')
+   t1=$(echo $t | awk -F___ '{print $2}')
+   t2=$(echo $t | awk -F___ '{print $3}')
+   t3=$(echo $t | awk -F___ '{print $4}')
+   t4=$(echo $t | awk -F___ '{print $5}')
+   t5=$(echo $t | awk -F___ '{print $6}')
    tm="/mnt/tmp/product/$t1/$t2/$t3/$t4/$t5"
    sudo mkdir -p $tm
    sudo cp -af $t/* $tm
