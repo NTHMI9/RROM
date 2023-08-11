@@ -372,6 +372,24 @@ fi
 #
 [[ "$tenmamay" == "vili" ]] && sudo cp -af $TOME/.github/libpy/input/vili.xml /mnt/tmp/product/etc/device_features || tinhnang
 #
+#
+if [[ "$twrp" == "1" ]]; then echo " * Thêm BOOT TWRP $tenmamay..."
+ mkdir -p $TOME/twrp
+ if [[ -n "$(echo "$URL" | grep 'MIXM')" ]]; then linktwrp="https://sourceforge.net/projects/chamchamfy/files/Tools/boot_global_$tenmamay.img"
+ elif [[ -n "$(echo "$URL" | grep 'TWXM')" ]]; then linktwrp="https://sourceforge.net/projects/chamchamfy/files/Tools/boot_tw_$tenmamay.img"
+ elif [[ -n "$(echo "$URL" | grep 'IDXM')" ]]; then linktwrp="https://sourceforge.net/projects/chamchamfy/files/Tools/boot_id_$tenmamay.img"
+ elif [[ -n "$(echo "$URL" | grep 'EUXM')" ]]; then linktwrp="https://sourceforge.net/projects/chamchamfy/files/Tools/boot_eu_$tenmamay.img"
+ elif [[ -n "$(echo "$URL" | grep 'CNXM')" ]]; then linktwrp="https://sourceforge.net/projects/chamchamfy/files/Tools/boot_cn_$tenmamay.img"
+ else
+[[ "$tenmamay" == "vili" ]] && linktwrp='https://sourceforge.net/projects/recovery-for-xiaomi-devices/files/vili/twrp-3.7.0_12-v7.9_A13-vili-skkk.img'
+[[ "$tenmamay" == "alioth" ]] && linktwrp='https://sourceforge.net/projects/recovery-for-xiaomi-devices/files/alioth/twrp-3.7.0_12-v7.9_A13-alioth-skkk.img'
+ fi
+ Taive "$linktwrp" "$TOME/twrp/boot.img"
+ #wget "$linktwrp" -O "$TOME/twrp/boot.img"
+ du -m $TOME/twrp/boot.img 2>/dev/null
+fi
+#
+tuychinh() {
 if [[ -n "$(echo "$URL" | grep 'CNXM')" ]]; then 
  Taive "https://sourceforge.net/projects/nikgapps/files/Releases/NikGapps-T/16-Jul-2023/NikGapps-basic-arm64-13-20230716-signed.zip" "$TOME/gapp.zip"
  if [[ -s "$TOME/gapp.zip" ]]; then echo " * Thêm Gói Gapp..."
@@ -426,22 +444,7 @@ if [[ -n "$(echo "$URL" | grep 'CNXM')" ]]; then
  sudo rm -rf $TOME/tam $TOME/appm.zip
  fi
 fi
-#
-#
-if [[ "$twrp" == "1" ]]; then echo " * Thêm BOOT TWRP $tenmamay..."
- mkdir -p $TOME/twrp
- if [[ -n "$(echo "$URL" | grep 'MIXM')" ]]; then linktwrp="https://sourceforge.net/projects/chamchamfy/files/Tools/boot_global_$tenmamay.img"
- elif [[ -n "$(echo "$URL" | grep 'TWXM')" ]]; then linktwrp="https://sourceforge.net/projects/chamchamfy/files/Tools/boot_tw_$tenmamay.img"
- elif [[ -n "$(echo "$URL" | grep 'IDXM')" ]]; then linktwrp="https://sourceforge.net/projects/chamchamfy/files/Tools/boot_id_$tenmamay.img"
- elif [[ -n "$(echo "$URL" | grep 'EUXM')" ]]; then linktwrp="https://sourceforge.net/projects/chamchamfy/files/Tools/boot_eu_$tenmamay.img"
- elif [[ -n "$(echo "$URL" | grep 'CNXM')" ]]; then linktwrp="https://sourceforge.net/projects/chamchamfy/files/Tools/boot_cn_$tenmamay.img"
- else
-[[ "$tenmamay" == "vili" ]] && linktwrp='https://sourceforge.net/projects/recovery-for-xiaomi-devices/files/vili/twrp-3.7.0_12-v7.9_A13-vili-skkk.img'
-[[ "$tenmamay" == "alioth" ]] && linktwrp='https://sourceforge.net/projects/recovery-for-xiaomi-devices/files/alioth/twrp-3.7.0_12-v7.9_A13-alioth-skkk.img'
- fi
-Taive "$linktwrp" "$TOME/twrp/boot.img"
-#wget "$linktwrp" -O "$TOME/twrp/boot.img"
-du -m $TOME/twrp/boot.img 2>/dev/null
-fi
+}
+tuychinh
 #
 themcauhinh
