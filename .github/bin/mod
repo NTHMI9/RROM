@@ -380,7 +380,7 @@ if [[ -n "$(echo "$URL" | grep 'CNXM')" ]]; then
  for f in $TOME/tam/AppSet/CarrierServices/*.zip $TOME/tam/AppSet/Core/*.zip; do 
  7za x -tzip -y $f -o$TOME/gapp >/dev/null
  done
- for t in $TOME/gapp/*; do
+ for t in $TOME/gapp/*/*; do
   if [[ -d $t ]]; then 
    t1=$(echo $t | awk -F___ '{print $2}')
    t2=$(echo $t | awk -F___ '{print $3}')
@@ -390,6 +390,7 @@ if [[ -n "$(echo "$URL" | grep 'CNXM')" ]]; then
    tm="/mnt/tmp/product/$t1/$t2/$t3/$t4/$t5"
    sudo mkdir -p $tm
    sudo cp -af $t/* $tm
+   for m in $t/*.*; do sudo bash -c "echo 'product/$t1/$t2/$t3/$t4/$t5/${m##*/} 0 0 0644' >> $TOME/pcfg"; done
   fi
  done
  sudo rm -rf $TOME/tam $TOME/gapp $TOME/gapp.zip
@@ -413,11 +414,11 @@ if [[ -n "$(echo "$URL" | grep 'CNXM')" ]]; then
  sudo mv -f $TOME/tam/product/priv-app/MIUISecurityCenter/SecurityCenter.apk $TOME/tam/product/priv-app/MIUISecurityCenter/MIUISecurityCenter.apk 2>/dev/null
  cd $TOME/tam/product;
  for tt in $(ls *app/*/*.*) $(ls *app/*/*/*/*.*); do
- [[ -n "$(echo $tt | grep .so)" ]] && sudo bash -c "echo '/product/${tt//./\} u:object_r:system_lib_file:s0' >> $TOME/pcfg"
- [[ -n "$(echo $tt | grep .apk)" ]] && sudo bash -c "echo '/product/${tt//./\} u:object_r:system_file:s0' >> $TOME/pcfg"
+ [[ -n "$(echo $tt | grep .so)" ]] && sudo bash -c "echo '/product/${tt//./\.} u:object_r:system_lib_file:s0' >> $TOME/pcfg"
+ [[ -n "$(echo $tt | grep .apk)" ]] && sudo bash -c "echo '/product/${tt//./\.} u:object_r:system_file:s0' >> $TOME/pcfg"
  sudo bash -c "echo 'product/$tt 0 0 0644' >> $TOME/pfs"
  done
- cd $TOME/tam/vendor; for tt in $(ls etc/*.*); do sudo bash -c "echo '/vendor/${tt//./\} u:object_r:vendor_file:s0' >> $TOME/vcfg"; sudo bash -c "echo 'vendor/$tt 0 0 0644' >> $TOME/vfs"; done
+ cd $TOME/tam/vendor; for tt in $(ls etc/*.*); do sudo bash -c "echo '/vendor/${tt//./\.} u:object_r:vendor_file:s0' >> $TOME/vcfg"; sudo bash -c "echo 'vendor/$tt 0 0 0644' >> $TOME/vfs"; done
  sudo cp -af $TOME/tam/product/*app /mnt/tmp/product 2>/dev/null
  sudo cp -af $TOME/tam/vendor/*app /mnt/tmp/vendor 2>/dev/null
  sudo cp -af $TOME/tam/system_ext/*app /mnt/tmp/system_ext 2>/dev/null
