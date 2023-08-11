@@ -207,7 +207,7 @@ systemfc='/system/system/lib64/libGLESv1\.so u:object_r:system_lib_file:s0
 /system/system/lib/libGLESv2\.so u:object_r:system_lib_file:s0
 '
 
-vendorfc='/vendor/lib/egl/libVkLayer_ADRENO_qprofiler\.so u:object_r:system_lib_file:s0
+vendorfc="/vendor/lib/egl/libVkLayer_ADRENO_qprofiler\.so u:object_r:system_lib_file:s0
 /vendor/lib/libdmabufheap\.so u:object_r:system_lib_file:s0
 /vendor/lib/hw/vulkan\.adreno\.so u:object_r:same_process_hal_file:s0
 /vendor/lib/notgsl\.so u:object_r:same_process_hal_file:s0
@@ -244,26 +244,17 @@ vendorfc='/vendor/lib/egl/libVkLayer_ADRENO_qprofiler\.so u:object_r:system_lib_
 /vendor/lib64/vendor\.qti\.hardware\.display\.mapperextensions@1\.1\.so u:object_r:same_process_hal_file:s0
 /vendor/lib64/notllvm-glnext\.so u:object_r:same_process_hal_file:s0
 /vendor/etc/permissions/public\.libraries\.txt u:object_r:same_process_hal_file:s0
-/vendor/lib64/libcutils\.so u:object_r:same_process_hal_file:s0'
+/vendor/lib64/libcutils\.so u:object_r:same_process_hal_file:s0
+$(sudo cat $TOME/vcfg)"
 
-productfc='/product/app/FileExplorer/FileExplorer\.apk u:object_r:system_file:s0
-/product/app/LatinImeGoogle/LatinImeGoogle\.apk u:object_r:system_file:s0
-/product/priv-app/LatinImeGoogle/LatinImeGoogle\.apk u:object_r:system_file:s0
-/product/app/MiuiScreenshot/MiuiScreenshot\.apk u:object_r:system_file:s0
-/product/app/MiuiScreenRecorder/MiuiScreenRecorder\.apk u:object_r:system_file:s0
-/product/app/Joyose/Joyose\.apk u:object_r:system_file:s0
-/product/app/MiuiSystemUIPlugin/MiuiSystemUIPlugin\.apk u:object_r:system_file:s0
-/product/priv-app/MiuiGallery/MiuiGallery\.apk u:object_r:system_file:s0
-/product/priv-app/Gallery_T_CN/Gallery_T_CN\.apk u:object_r:system_file:s0
-/product/priv-app/SecurityCenter/SecurityCenter\.apk u:object_r:system_file:s0
-/product/priv-app/MIUISecurityCenter/MIUISecurityCenter\.apk u:object_r:system_file:s0'
+productfc="$(sudo cat $TOME/pcfg)"
 
 system_extfc=''
 
 # Thêm fsconfig
 systemfs=''
 
-vendorfs='vendor/lib/egl/eglSubDriverAndroid.so 0 0 0644
+vendorfs="vendor/lib/egl/eglSubDriverAndroid.so 0 0 0644
 vendor/lib/egl/libEGL_adreno.so 0 0 0644
 vendor/lib/egl/libGLESv1_CM_adreno.so 0 0 0644
 vendor/lib/egl/libGLESv2_adreno.so 0 0 0644
@@ -333,30 +324,10 @@ vendor/lib/rfsa/adsp/misound_res.bin 0 0 0644
 vendor/lib/rfsa/adsp/misound_karaokemix_res.bin 0 0 0644
 vendor/lib/rfsa/adsp/misound_karaoke_res.bin 0 0 0644
 vendor/lib/rfsa/adsp/misound_res_headphone.bin 0 0 0644
-vendor/lib/rfsa/adsp/misound_res_spk.bin 0 0 0644'
+vendor/lib/rfsa/adsp/misound_res_spk.bin 0 0 0644
+$(sudo cat $TOME/vfs)"
 
-productfs='product/app/FileExplorer 0 0 0755
-product/app/FileExplorer/FileExplorer.apk 0 0 0644
-product/app/LatinImeGoogle 0 0 0755
-product/app/LatinImeGoogle/LatinImeGoogle.apk 0 0 0644
-product/priv-app/LatinImeGoogle 0 0 0755
-product/priv-app/LatinImeGoogle/LatinImeGoogle.apk 0 0 0644
-product/app/MiuiScreenshot 0 0 0755
-product/app/MiuiScreenshot/MiuiScreenshot.apk 0 0 0644
-product/app/MiuiScreenRecorder 0 0 0755
-product/app/MiuiScreenRecorder/MiuiScreenRecorder.apk 0 0 0644
-product/app/Joyose 0 0 0755
-product/app/Joyose/Joyose.apk 0 0 0644
-product/app/MiuiSystemUIPlugin 0 0 0755
-product/app/MiuiSystemUIPlugin/MiuiSystemUIPlugin.apk 0 0 0644
-product/priv-app/MiuiGallery 0 0 0755
-product/priv-app/MiuiGallery/MiuiGallery.apk 0 0 0644
-product/priv-app/Gallery_T_CN 0 0 0755
-product/priv-app/Gallery_T_CN/Gallery_T_CN.apk 0 0 0644
-product/priv-app/SecurityCenter 0 0 0755
-product/priv-app/SecurityCenter/SecurityCenter.apk 0 0 0644
-product/priv-app/MIUISecurityCenter 0 0 0755
-product/priv-app/MIUISecurityCenter/MIUISecurityCenter.apk 0 0 0644'
+productfs="$(sudo cat $TOME/pfs)"
 
 system_extfs=''
 }
@@ -432,6 +403,7 @@ if [[ -n "$(echo "$URL" | grep 'CNXM')" ]]; then
  sudo mv -f $a $tm 2>/dev/null
  sudo mv -f $tm/$ttm.apk $tm/$tmm.apk 2>/dev/null
  done
+ 
  sudo mv -f $TOME/tam/product/app/FileExplorer $TOME/tam/product/app/MIUIFileExplorer 2>/dev/null
  sudo mv -f $TOME/tam/product/app/MIUIFileExplorer/FileExplorer.apk $TOME/tam/product/app/MIUIFileExplorer/MIUIFileExplorer.apk 2>/dev/null
  sudo mv -f $TOME/tam/product/priv-app/MiuiGallery $TOME/tam/product/priv-app/Gallery_T_CN 2>/dev/null
@@ -439,6 +411,13 @@ if [[ -n "$(echo "$URL" | grep 'CNXM')" ]]; then
  sudo rm -rf $TOME/tam/product/priv-app/SecurityCenter/lib*
  sudo mv -f $TOME/tam/product/priv-app/SecurityCenter $TOME/tam/product/priv-app/MIUISecurityCenter 2>/dev/null
  sudo mv -f $TOME/tam/product/priv-app/MIUISecurityCenter/SecurityCenter.apk $TOME/tam/product/priv-app/MIUISecurityCenter/MIUISecurityCenter.apk 2>/dev/null
+ cd $TOME/tam/product;
+ for tt in $(ls *app/*/*.*) $(ls *app/*/*/*/*.*); do
+ [[ -n "$(echo $tt | grep .so)" ]] && sudo bash -c "echo '/product/${tt//./\} u:object_r:system_lib_file:s0' >> $TOME/pcfg"
+ [[ -n "$(echo $tt | grep .apk)" ]] && sudo bash -c "echo '/product/${tt//./\} u:object_r:system_file:s0' >> $TOME/pcfg"
+ sudo bash -c "echo 'product/$tt 0 0 0644' >> $TOME/pfs"
+ done
+ cd $TOME/tam/vendor; for tt in $(ls etc/*.*); do sudo bash -c "echo '/vendor/${tt//./\} u:object_r:vendor_file:s0' >> $TOME/vcfg"; sudo bash -c "echo 'vendor/$tt 0 0 0644' >> $TOME/vfs"; done
  sudo cp -af $TOME/tam/product/*app /mnt/tmp/product 2>/dev/null
  sudo cp -af $TOME/tam/vendor/*app /mnt/tmp/vendor 2>/dev/null
  sudo cp -af $TOME/tam/system_ext/*app /mnt/tmp/system_ext 2>/dev/null
