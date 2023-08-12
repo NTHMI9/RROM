@@ -112,8 +112,6 @@ MiShop
 MipayService
 Mirror
 MiuiAudioMonitor
-MiuiBiometric
-MiuiBiometric3389
 MiuiBugReport
 MiuiBugReportGlobal
 MiuiCompass
