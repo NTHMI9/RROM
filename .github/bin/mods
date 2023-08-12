@@ -2,6 +2,7 @@
 TOME="$GITHUB_WORKSPACE"
 cd $TOME/super
 for m in system.img vendor.img product.img system_ext.img; do sudo mkdir -p /mnt/diem/${m%/*}; sudo mount -w -t auto $TOME/super/$m /mnt/diem/${m%/*}; done 
+khoichay() {
 if [[ -n "$(echo "$URL" | grep 'CNXM')" ]]; then 
  Taive "https://sourceforge.net/projects/nikgapps/files/Releases/NikGapps-T/16-Jul-2023/NikGapps-basic-arm64-13-20230716-signed.zip" "$TOME/gapp.zip"
  if [[ -s "$TOME/gapp.zip" ]]; then echo " * Thêm Gói Gapp..."
@@ -46,6 +47,8 @@ if [[ -n "$(echo "$URL" | grep 'CNXM')" ]]; then
  fi
  for i in system/system vendor product system_ext; do sudo cd /mnt/diem/$i && Phanquyen; done 
 fi
+}
+#khoichay
 umount /mnt/diem/product 
 umount /mnt/diem/system 
 umount /mnt/diem/system_ext

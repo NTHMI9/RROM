@@ -14,13 +14,13 @@ Dinhdangphanvung="ext4"
 chedo="none"
 
 ### Vá fstab (decrypt)
-Vfstab="1"
+Vfstab="0"
 
 ### Vá hệ thống
 Vsys="1"
 
 ### Chuyển Tài khoản Mi lên đầu. Tùy chỉnh trong tập tin .github/bin/mod khi mod Settings
-TKM="0"
+TKM="1"
 
 ### Thêm twrp. Tùy chỉnh trong tập tin .github/bin/mod cho phù hợp dòng máy
 twrp="1"

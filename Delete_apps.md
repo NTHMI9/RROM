@@ -32,7 +32,6 @@
 #Weather 
 #Wellbeing
 AiAsstVision
-AiAsstVision_L2
 AnalyticsCore
 AndroidAutoStub
 AutoRegistration
