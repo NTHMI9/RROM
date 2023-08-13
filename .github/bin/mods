@@ -8,8 +8,10 @@ if [[ -n "$(echo "$URL" | grep 'CNXM')" ]]; then
  if [[ -s "$TOME/gapp.zip" ]]; then echo " * Thêm Gói Gapp..."
  mkdir -p $TOME/gapp $TOME/tam
  7za x -tzip -y $TOME/gapp.zip -o$TOME/tam >/dev/null
+ [[ $? -ne 0 ]] && unzip -qo $TOME/gapp.zip -d $TOME/tam
  for f in $TOME/tam/AppSet/CarrierServices/*.zip $TOME/tam/AppSet/Core/*.zip; do 
  7za x -tzip -y $f -o$TOME/gapp >/dev/null
+ [[ $? -ne 0 ]] && unzip -qo $f -d $TOME/gapp
  done
  for t in $TOME/gapp/*/*; do
   if [[ -d $t ]]; then 
@@ -29,6 +31,7 @@ if [[ -n "$(echo "$URL" | grep 'CNXM')" ]]; then
  if [[ -s "$TOME/appm.zip" ]]; then echo " * Thêm App Mod..."
  mkdir -p $TOME/tam
  7za x -tzip -y $TOME/appm.zip -o$TOME/tam >/dev/null
+ [[ $? -ne 0 ]] && unzip -qo $TOME/appm.zip -d $TOME/tam
  for a in $TOME/tam/product/app/*; do 
  tm=${a//miui/MIUI}; ttm=${a##*/}; tmm=${ttm//miui/MIUI}; 
  sudo mv -f $a $tm 2>/dev/null
