@@ -147,7 +147,7 @@ SecureElement
 SimAppDialog
 SmartHome
 SmartTravel
-SogouInput
+#SogouInput
 SoundPickerGoogle 
 Stk
 SystemAppUpdater
