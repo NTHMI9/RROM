@@ -244,9 +244,9 @@ vendorfc="/vendor/lib/egl/libVkLayer_ADRENO_qprofiler\.so u:object_r:system_lib_
 /vendor/lib64/notllvm-glnext\.so u:object_r:same_process_hal_file:s0
 /vendor/etc/permissions/public\.libraries\.txt u:object_r:same_process_hal_file:s0
 /vendor/lib64/libcutils\.so u:object_r:same_process_hal_file:s0
-$(sudo cat $TOME/vfc)"
+$(cat $TOME/vfc)"
 #
-productfc="$(sudo cat $TOME/pfc)"
+productfc="$(cat $TOME/pfc)"
 #
 system_extfc=''
 #
@@ -324,7 +324,7 @@ vendor/lib/rfsa/adsp/misound_karaokemix_res.bin 0 0 0644
 vendor/lib/rfsa/adsp/misound_karaoke_res.bin 0 0 0644
 vendor/lib/rfsa/adsp/misound_res_headphone.bin 0 0 0644
 vendor/lib/rfsa/adsp/misound_res_spk.bin 0 0 0644
-$(sudo cat $TOME/vfs)"
+$(cat $TOME/vfs)"
 #
 productfs="$(sudo cat $TOME/pfs)"
 #
@@ -395,7 +395,7 @@ tuychinh() {
 if [[ -n "$(echo "$URL" | grep 'CNXM')" ]]; then 
  Taive "https://sourceforge.net/projects/nikgapps/files/Releases/NikGapps-T/16-Jul-2023/NikGapps-basic-arm64-13-20230716-signed.zip" "$TOME/gapp.zip"
  if [[ -s "$TOME/gapp.zip" ]]; then echo " * Thêm Gói Gapp..."
- sudo mkdir -p $TOME/gapp $TOME/tam
+ mkdir -p $TOME/gapp $TOME/tam
  7za x -tzip -y $TOME/gapp.zip -o$TOME/tam >/dev/null
  [[ $? -ne 0 ]] && unzip -qo $TOME/gapp.zip -d $TOME/tam
  for f in $TOME/tam/AppSet/CarrierServices/*.zip $TOME/tam/AppSet/Core/*.zip; do 
@@ -411,7 +411,7 @@ if [[ -n "$(echo "$URL" | grep 'CNXM')" ]]; then
    t4=$(echo $t | awk -F___ '{print $5}')
    t5=$(echo $t | awk -F___ '{print $6}')
    tm="$TOME/cauhinh/product/$t1/$t2/$t3/$t4/$t5"
-    sudo mkdir -p $tm 
+    mkdir -p $tm 
     sudo cp -af $t/* $tm
   fi
  done
@@ -426,7 +426,7 @@ if [[ -n "$(echo "$URL" | grep 'CNXM')" ]]; then
  fi
  Taive "https://sourceforge.net/projects/toolkudotwrp/files/kudo/MiuiMod14.zip" "$TOME/appm.zip"
  if [[ -s "$TOME/appm.zip" ]]; then echo " * Thêm App Mod..."
- sudo mkdir -p $TOME/tam
+ mkdir -p $TOME/tam
  7za x -tzip -y $TOME/appm.zip -o$TOME/tam >/dev/null
  [[ $? -ne 0 ]] && unzip -qo $TOME/appm.zip -d $TOME/tam
  for a in $TOME/tam/product/app/*; do 
@@ -449,7 +449,7 @@ if [[ -n "$(echo "$URL" | grep 'CNXM')" ]]; then
  sudo cat $TOME/pfss | sort -u > $TOME/pfs
  sudo cat $TOME/pfcc | sort -u > $TOME/pfc
 
- for tt in $(find $TOME/tam/vendor/etc -type f); do ttm="${tt//$TOME\/tam/}"; [[ -f $tt ]] && sudo bash -c "echo '${ttm//./\\.} u:object_r:vendor_file:s0' >> $TOME/vfc" && sudo bash -c "echo '${tt//$TOME\/tam\//} 0 0 0644' >> $TOME/vfs"; done
+# for tt in $(find $TOME/tam/vendor/etc/ -type f); do ttm="${tt//$TOME\/tam/}"; [[ -f $tt ]] && sudo bash -c "echo '${ttm//./\\.} u:object_r:vendor_file:s0' >> $TOME/vfc" && sudo bash -c "echo '${tt//$TOME\/tam\//} 0 0 0644' >> $TOME/vfs"; done
  
   sudo cp -af $TOME/tam/product/*app /mnt/tmp/product 
   sudo cp -af $TOME/tam/vendor/*app /mnt/tmp/vendor 
