@@ -134,31 +134,3 @@ on property:sys.boot_completed=1
 	write /sys/fs/selinux/enforce 0
 	chmod 0640 /sys/fs/selinux/enforce
 	chmod 0440 /sys/fs/selinux/policy
-# vantay
-on property:ro.product.build.version.sdk=33
-	setprop ro.build.fingerprint "google/raven/raven:13/TQ1A.230105.002/9325679:user/release-keys"
-	setprop ro.bootimage.build.fingerprint "google/raven/raven:13/TQ1A.230105.002/9325679:user/release-keys"
-	setprop ro.system.build.fingerprint "google/raven/raven:13/TQ1A.230105.002/9325679:user/release-keys"
-	setprop ro.vendor.build.fingerprint "google/raven/raven:13/TQ1A.230105.002/9325679:user/release-keys"
-	setprop ro.product.build.fingerprint "google/raven/raven:13/TQ1A.230105.002/9325679:user/release-keys"
-	setprop ro.odm.build.fingerprint "google/raven/raven:13/TQ1A.230105.002/9325679:user/release-keys"
-	setprop ro.system_ext.build.fingerprint "google/raven/raven:13/TQ1A.230105.002/9325679:user/release-keys"
-	
-on property:ro.product.build.version.sdk=32
-	setprop ro.build.fingerprint "google/raven/raven:13/TQ1A.230105.002/9325679:user/release-keys"
-	setprop ro.bootimage.build.fingerprint "google/raven/raven:13/TQ1A.230105.002/9325679:user/release-keys"
-	setprop ro.system.build.fingerprint "google/raven/raven:13/TQ1A.230105.002/9325679:user/release-keys"
-	setprop ro.vendor.build.fingerprint "google/raven/raven:13/TQ1A.230105.002/9325679:user/release-keys"
-	setprop ro.product.build.fingerprint "google/raven/raven:13/TQ1A.230105.002/9325679:user/release-keys"
-	setprop ro.odm.build.fingerprint "google/raven/raven:13/TQ1A.230105.002/9325679:user/release-keys"
-	setprop ro.system_ext.build.fingerprint "google/raven/raven:13/TQ1A.230105.002/9325679:user/release-keys"
-
-on property:ro.product.build.version.sdk=31
-	setprop ro.build.fingerprint "google/raven/raven:12/SD1A.210817.036/7805805:user/release-keys"
-	setprop ro.bootimage.build.fingerprint "google/raven/raven:12/SD1A.210817.036/7805805:user/release-keys"
-	setprop ro.system.build.fingerprint "google/raven/raven:12/SD1A.210817.036/7805805:user/release-keys"
-	setprop ro.vendor.build.fingerprint "google/raven/raven:12/SD1A.210817.036/7805805:user/release-keys"
-	setprop ro.product.build.fingerprint "google/raven/raven:12/SD1A.210817.036/7805805:user/release-keys"
-	setprop ro.odm.build.fingerprint "google/raven/raven:12/SD1A.210817.036/7805805:user/release-keys"
-	setprop ro.system_ext.build.fingerprint "google/raven/raven:12/SD1A.210817.036/7805805:user/release-keys"
-	

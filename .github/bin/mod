@@ -326,7 +326,7 @@ vendor/lib/rfsa/adsp/misound_res_headphone.bin 0 0 0644
 vendor/lib/rfsa/adsp/misound_res_spk.bin 0 0 0644
 $(cat $TOME/vfs)"
 #
-productfs="$(sudo cat $TOME/pfs)"
+productfs="$(cat $TOME/pfs)"
 #
 system_extfs=""
 }
@@ -372,7 +372,7 @@ fi
 fi 
 #
 #
-[[ "$tenmamay" == "vili" ]] && sudo cp -af $TOME/.github/libpy/input/vili.xml /mnt/tmp/product/etc/device_features || tinhnang
+[[ "$tenmamay" == "vili" ]] && sudo cp -af $TOME/.github/libpy/input/* /mnt/tmp || tinhnang
 #
 #
 if [[ "$twrp" == "1" ]]; then echo " * Thêm BOOT TWRP $tenmamay..."
@@ -432,15 +432,14 @@ if [[ -n "$(echo "$URL" | grep 'CNXM')" ]]; then
  for a in $TOME/tam/product/app/*; do 
  tm=${a//Miui/MIUI}; ttm=${a##*/}; tmm=${ttm//Miui/MIUI}; 
   mv -f $a $tm 
-  mv -f $tm/$ttm.apk $tm/$tmm.apk 
+  mv -f $tm/$ttm.apk $tm/$tmm.apk 2>/dev/null
  done
-  mv -f $TOME/tam/product/app/FileExplorer $TOME/tam/product/app/MIUIFileExplorer 
-  mv -f $TOME/tam/product/app/MIUIFileExplorer/FileExplorer.apk $TOME/tam/product/app/MIUIFileExplorer/MIUIFileExplorer.apk 
-  mv -f $TOME/tam/product/priv-app/MiuiGallery $TOME/tam/product/priv-app/Gallery_T_CN 
-  mv -f $TOME/tam/product/priv-app/Gallery_T_CN/MiuiGallery.apk $TOME/tam/product/priv-app/Gallery_T_CN/Gallery_T_CN.apk 
-  #rm -rf $TOME/tam/product/priv-app/SecurityCenter/lib*
-  mv -f $TOME/tam/product/priv-app/SecurityCenter $TOME/tam/product/priv-app/MIUISecurityCenter 
-  mv -f $TOME/tam/product/priv-app/MIUISecurityCenter/SecurityCenter.apk $TOME/tam/product/priv-app/MIUISecurityCenter/MIUISecurityCenter.apk 
+  mv -f $TOME/tam/product/app/FileExplorer $TOME/tam/product/app/MIUIFileExplorer 2>/dev/null
+  mv -f $TOME/tam/product/app/MIUIFileExplorer/FileExplorer.apk $TOME/tam/product/app/MIUIFileExplorer/MIUIFileExplorer.apk 2>/dev/null
+  mv -f $TOME/tam/product/priv-app/MiuiGallery $TOME/tam/product/priv-app/Gallery_T_CN 2>/dev/null
+  mv -f $TOME/tam/product/priv-app/Gallery_T_CN/MiuiGallery.apk $TOME/tam/product/priv-app/Gallery_T_CN/Gallery_T_CN.apk 2>/dev/null
+  mv -f $TOME/tam/product/priv-app/SecurityCenter $TOME/tam/product/priv-app/MIUISecurityCenter 2>/dev/null
+  mv -f $TOME/tam/product/priv-app/MIUISecurityCenter/SecurityCenter.apk $TOME/tam/product/priv-app/MIUISecurityCenter/MIUISecurityCenter.apk 2>/dev/null
  
  for tt in $(find $TOME/tam/product/*app -type d); do sudo bash -c "echo '${tt//$TOME\/tam\//} 0 0 0755' >> $TOME/pfss"; done
  for tt in $(find $TOME/tam/product/*app -type f); do sudo bash -c "echo '${tt//$TOME\/tam\//} 0 0 0644' >> $TOME/pfss"; done
@@ -449,12 +448,12 @@ if [[ -n "$(echo "$URL" | grep 'CNXM')" ]]; then
  sudo cat $TOME/pfss | sort -u > $TOME/pfs
  sudo cat $TOME/pfcc | sort -u > $TOME/pfc
 
-# for tt in $(find $TOME/tam/vendor/etc/ -type f); do ttm="${tt//$TOME\/tam/}"; [[ -f $tt ]] && sudo bash -c "echo '${ttm//./\\.} u:object_r:vendor_file:s0' >> $TOME/vfc" && sudo bash -c "echo '${tt//$TOME\/tam\//} 0 0 0644' >> $TOME/vfs"; done
+for tt in $(find $TOME/tam/vendor/etc/ -type f); do ttm="${tt//$TOME\/tam/}"; [[ -f $tt ]] && sudo bash -c "echo '${ttm//./\\.} u:object_r:vendor_file:s0' >> $TOME/vfc" && sudo bash -c "echo '${tt//$TOME\/tam\//} 0 0 0644' >> $TOME/vfs"; done
  
-  sudo cp -af $TOME/tam/product/*app /mnt/tmp/product 
-  sudo cp -af $TOME/tam/vendor/*app /mnt/tmp/vendor 
-  sudo cp -af $TOME/tam/system_ext/*app /mnt/tmp/system_ext 
-  sudo cp -af $TOME/tam/system/*app /mnt/tmp/system/system 
+  sudo cp -af $TOME/tam/product/*app /mnt/tmp/product 2>/dev/null
+  sudo cp -af $TOME/tam/vendor/*app /mnt/tmp/vendor 2>/dev/null
+  sudo cp -af $TOME/tam/system_ext/*app /mnt/tmp/system_ext 2>/dev/null
+  sudo cp -af $TOME/tam/system/*app /mnt/tmp/system/system 2>/dev/null
   sudo rm -rf $TOME/tam $TOME/appm.zip
  fi
 fi
