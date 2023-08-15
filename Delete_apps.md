@@ -45,7 +45,7 @@ Chrome64
 CloudPrint2 
 CtsShimPrebuilt
 DMRegService
-DiracAudioControlService
+#DiracAudioControlService
 Driver
 Duo
 DynamicSystemInstallationService
