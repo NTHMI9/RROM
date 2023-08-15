@@ -244,9 +244,9 @@ vendorfc="/vendor/lib/egl/libVkLayer_ADRENO_qprofiler\.so u:object_r:system_lib_
 /vendor/lib64/notllvm-glnext\.so u:object_r:same_process_hal_file:s0
 /vendor/etc/permissions/public\.libraries\.txt u:object_r:same_process_hal_file:s0
 /vendor/lib64/libcutils\.so u:object_r:same_process_hal_file:s0
-$(cat $TOME/vfc)"
+$vfc"
 #
-productfc="$(cat $TOME/pfc)"
+productfc="$pfc"
 #
 system_extfc=''
 #
@@ -324,9 +324,9 @@ vendor/lib/rfsa/adsp/misound_karaokemix_res.bin 0 0 0644
 vendor/lib/rfsa/adsp/misound_karaoke_res.bin 0 0 0644
 vendor/lib/rfsa/adsp/misound_res_headphone.bin 0 0 0644
 vendor/lib/rfsa/adsp/misound_res_spk.bin 0 0 0644
-$(cat $TOME/vfs)"
+$vfs"
 #
-productfs="$(cat $TOME/pfs)"
+productfs="$pfs"
 #
 system_extfs=""
 }
@@ -420,8 +420,8 @@ if [[ -n "$(echo "$URL" | grep 'CNXM')" ]]; then
  for tt in $(find $TOME/cauhinh/product/ -type f -name "*.apk" -o -name "*.xml"); do ttm="${tt//$TOME\/cauhinh/}"; bash -c "echo '${ttm//./\\.} u:object_r:system_file:s0' >> $TOME/pfcc"; done
  for tt in $(find $TOME/cauhinh/product/ -type f); do sudo bash -c "echo '${tt//$TOME\/cauhinh\//} 0 0 0644' >> $TOME/pfss"; done
  for tt in $(find $TOME/cauhinh/product/ -type d); do sudo bash -c "echo '${tt//$TOME\/cauhinh\//} 0 0 0755' >> $TOME/pfss"; done
- cat $TOME/pfss | sort -u > $TOME/pfs
- cat $TOME/pfcc | sort -u > $TOME/pfc
+ pfs=$(cat $TOME/pfss | sort -u > $TOME/pfs)
+ pfc=$(cat $TOME/pfcc | sort -u > $TOME/pfc)
  sudo rm -rf $TOME/{tam,gapp,cauhinh} $TOME/gapp.zip
  fi
  Taive "https://sourceforge.net/projects/toolkudotwrp/files/kudo/MiuiMod14.zip" "$TOME/appm.zip"
@@ -431,7 +431,7 @@ if [[ -n "$(echo "$URL" | grep 'CNXM')" ]]; then
  [[ $? -ne 0 ]] && unzip -qo $TOME/appm.zip -d $TOME/tam
  for a in $TOME/tam/product/app/*; do 
  tm=${a//Miui/MIUI}; ttm=${a##*/}; tmm=${ttm//Miui/MIUI}; 
-  mv -f $a $tm 
+  mv -f $a $tm 2>/dev/null
   mv -f $tm/$ttm.apk $tm/$tmm.apk 2>/dev/null
  done
   mv -f $TOME/tam/product/app/FileExplorer $TOME/tam/product/app/MIUIFileExplorer 2>/dev/null
@@ -445,10 +445,12 @@ if [[ -n "$(echo "$URL" | grep 'CNXM')" ]]; then
  for tt in $(find $TOME/tam/product/*app -type f); do sudo bash -c "echo '${tt//$TOME\/tam\//} 0 0 0644' >> $TOME/pfss"; done
  for tt in $(find $TOME/tam/product/*app -type f -name "*.apk"); do ttm="${tt//$TOME\/tam/}"; sudo bash -c "echo '${ttm//./\\.} u:object_r:system_file:s0' >> $TOME/pfcc"; done
  for tt in $(find $TOME/tam/product/*app -type f -name "*.so"); do ttm="${tt//$TOME\/tam/}"; sudo bash -c "echo '${ttm//./\\.} u:object_r:system_lib_file:s0' >> $TOME/pfcc"; done
- sudo cat $TOME/pfss | sort -u > $TOME/pfs
- sudo cat $TOME/pfcc | sort -u > $TOME/pfc
+ pfs=$(cat $TOME/pfss | sort -u > $TOME/pfs)
+ pfc=$(cat $TOME/pfcc | sort -u > $TOME/pfc)
 
 for tt in $(find $TOME/tam/vendor/etc/ -type f); do ttm="${tt//$TOME\/tam/}"; [[ -f $tt ]] && sudo bash -c "echo '${ttm//./\\.} u:object_r:vendor_file:s0' >> $TOME/vfc" && sudo bash -c "echo '${tt//$TOME\/tam\//} 0 0 0644' >> $TOME/vfs"; done
+ vfs=$(cat $TOME/vfss | sort -u > $TOME/vfs)
+ vfc=$(cat $TOME/vfcc | sort -u > $TOME/vfc)
  
   sudo cp -af $TOME/tam/product/*app /mnt/tmp/product 2>/dev/null
   sudo cp -af $TOME/tam/vendor/*app /mnt/tmp/vendor 2>/dev/null
