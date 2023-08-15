@@ -71,6 +71,8 @@ MIPlayClient
 MISTORE_OVERSEA
 MIService
 MIServiceGlobal
+MITSMClient
+MIUIAiasstService
 MIUIBrowser
 MIUIDriveMode
 MIUIDuokanReader
@@ -81,8 +83,11 @@ MIUIHuanji
 MIUIMiPicks
 MIUIMusic
 MIUINewHome
+MIUINewHome_Removable
 MIUIQuickSearchBox
+MIUIReporter
 MIUIScanner
+#MIUISuperMarket
 MIUISystemAppUpdater
 MIUIVideo
 MIUIVideoPlayer
@@ -100,6 +105,7 @@ Magisk
 Maps
 MarkupGoogle 
 MiBrowser
+MiBugReport
 MiCreditInStub
 MiGameCenterGlobal
 MiGameCenterSDKService
