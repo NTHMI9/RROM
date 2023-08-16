@@ -323,8 +323,7 @@ vendor/lib/rfsa/adsp/misound_res.bin 0 0 0644
 vendor/lib/rfsa/adsp/misound_karaokemix_res.bin 0 0 0644
 vendor/lib/rfsa/adsp/misound_karaoke_res.bin 0 0 0644
 vendor/lib/rfsa/adsp/misound_res_headphone.bin 0 0 0644
-vendor/lib/rfsa/adsp/misound_res_spk.bin 0 0 0644
-$vfs"
+vendor/lib/rfsa/adsp/misound_res_spk.bin 0 0 0644"
 #
 productfs="$pfs"
 #
