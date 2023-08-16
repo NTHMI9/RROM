@@ -448,7 +448,7 @@ if [[ -n "$(echo "$URL" | grep 'CNXM')" ]]; then
  pfs=$(cat $TOME/pfss | sort -u > $TOME/pfs)
  pfc=$(cat $TOME/pfcc | sort -u > $TOME/pfc)
 
-for tt in $(find $TOME/tam/vendor/etc/ -type f); do ttm="${tt//$TOME\/tam/}"; [[ -f $tt ]] && sudo bash -c "echo '${ttm//./\\.} u:object_r:vendor_file:s0' >> $TOME/vfc" && sudo bash -c "echo '${tt//$TOME\/tam\//} 0 0 0644' >> $TOME/vfs"; done
+for tt in $(find $TOME/tam/vendor/etc/ -type f); do ttm="${tt//$TOME\/tam/}"; sudo bash -c "echo '${ttm//./\\.} u:object_r:vendor_file:s0' >> $TOME/vfcc"; sudo bash -c "echo '${tt//$TOME\/tam\//} 0 0 0644' >> $TOME/vfss"; done
  vfs=$(cat $TOME/vfss | sort -u > $TOME/vfs)
  vfc=$(cat $TOME/vfcc | sort -u > $TOME/vfc)
  
