@@ -253,8 +253,7 @@ system_extfc=''
 # Thêm fsconfig
 systemfs=''
 #
-vendorfs="$vfs
-vendor/lib/egl/eglSubDriverAndroid.so 0 0 0644
+vendorfs="vendor/lib/egl/eglSubDriverAndroid.so 0 0 0644
 vendor/lib/egl/libEGL_adreno.so 0 0 0644
 vendor/lib/egl/libGLESv1_CM_adreno.so 0 0 0644
 vendor/lib/egl/libGLESv2_adreno.so 0 0 0644
@@ -451,9 +450,9 @@ if [[ -n "$(echo "$URL" | grep 'CNXM')" ]]; then
 
 for tt in $(find $TOME/tam/vendor/etc -type f); do ttm="${tt//$TOME\/tam/}";
  sudo bash -c "echo '${ttm//./\\.} u:object_r:vendor_file:s0' >> $TOME/vfcc"; 
- sudo bash -c "echo '${tt//$TOME\/tam\//} 0 0 0644' >> $TOME/vfss"; 
+ #sudo bash -c "echo '${tt//$TOME\/tam\//} 0 0 0644' >> $TOME/vfss"; 
 done
-vfs=$(cat $TOME/vfss | sort -u > $TOME/vfs)
+#vfs=$(cat $TOME/vfss | sort -u > $TOME/vfs)
 vfc=$(cat $TOME/vfcc | sort -u > $TOME/vfc)
  
   sudo cp -af $TOME/tam/product/*app /mnt/tmp/product 2>/dev/null
