@@ -416,10 +416,10 @@ if [[ -n "$(echo "$URL" | grep 'CNXM')" ]]; then
   fi
  done
  sudo cp -af $TOME/cauhinh/product/* /mnt/tmp/product
- for tt in $(find $TOME/cauhinh/product/ -type f -name "*.so"); do ttm="${tt//$TOME\/cauhinh/}"; bash -c "echo '${ttm//./\\.} u:object_r:system_lib_file:s0' >> $TOME/pfcc"; done
- for tt in $(find $TOME/cauhinh/product/ -type f -name "*.apk" -o -name "*.xml"); do ttm="${tt//$TOME\/cauhinh/}"; bash -c "echo '${ttm//./\\.} u:object_r:system_file:s0' >> $TOME/pfcc"; done
- for tt in $(find $TOME/cauhinh/product/ -type f); do sudo bash -c "echo '${tt//$TOME\/cauhinh\//} 0 0 0644' >> $TOME/pfss"; done
- for tt in $(find $TOME/cauhinh/product/ -type d); do sudo bash -c "echo '${tt//$TOME\/cauhinh\//} 0 0 0755' >> $TOME/pfss"; done
+ for tt in $(find $TOME/cauhinh/product -type f -name "*.so"); do ttm="${tt//$TOME\/cauhinh/}"; bash -c "echo '${ttm//./\\.} u:object_r:system_lib_file:s0' >> $TOME/pfcc"; done
+ for tt in $(find $TOME/cauhinh/product -type f -name "*.apk" -o -name "*.xml"); do ttm="${tt//$TOME\/cauhinh/}"; bash -c "echo '${ttm//./\\.} u:object_r:system_file:s0' >> $TOME/pfcc"; done
+ for tt in $(find $TOME/cauhinh/product -type f); do sudo bash -c "echo '${tt//$TOME\/cauhinh\//} 0 0 0644' >> $TOME/pfss"; done
+ for tt in $(find $TOME/cauhinh/product -type d); do sudo bash -c "echo '${tt//$TOME\/cauhinh\//} 0 0 0755' >> $TOME/pfss"; done
  pfs=$(cat $TOME/pfss | sort -u > $TOME/pfs)
  pfc=$(cat $TOME/pfcc | sort -u > $TOME/pfc)
  sed -i -e 's/\r$//' $TOME/pfs
@@ -452,11 +452,11 @@ if [[ -n "$(echo "$URL" | grep 'CNXM')" ]]; then
  sed -i -e 's/\r$//' $TOME/pfs
  sed -i -e 's/\r$//' $TOME/pfc
 
-for tt in $(find $TOME/tam/vendor/etc/ -type f); do ttm="${tt//$TOME\/tam/}"; sudo bash -c "echo '${ttm//./\\.} u:object_r:vendor_file:s0' >> $TOME/vfcc"; sudo bash -c "echo '${tt//$TOME\/tam\//} 0 0 0644' >> $TOME/vfss"; done
+for tt in $(find $TOME/tam/vendor/etc -type f); do ttm="${tt//$TOME\/tam/}"; sudo bash -c "echo '${ttm//./\\.} u:object_r:vendor_file:s0' >> $TOME/vfcc"; sudo bash -c "echo '${tt//$TOME\/tam\//} 0 0 0644' >> $TOME/vfss"; done
  vfs=$(cat $TOME/vfss | sort -u > $TOME/vfs)
  vfc=$(cat $TOME/vfcc | sort -u > $TOME/vfc)
- sed -i -e 's/\r$//' $TOME/vfs
- sed -i -e 's/\r$//' $TOME/vfc
+ sed -i -e 's/\r$//' -e 's/____//g' $TOME/vfs
+ sed -i -e 's/\r$//' -e 's/____//g' $TOME/vfc
  
   sudo cp -af $TOME/tam/product/*app /mnt/tmp/product 2>/dev/null
   sudo cp -af $TOME/tam/vendor/*app /mnt/tmp/vendor 2>/dev/null
