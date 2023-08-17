@@ -452,7 +452,13 @@ if [[ -n "$(echo "$URL" | grep 'CNXM')" ]]; then
  sed -i -e 's/\r$//' $TOME/pfs
  sed -i -e 's/\r$//' $TOME/pfc
 
-for tt in $(find $TOME/tam/vendor/etc -type f); do ttm="${tt//$TOME\/tam/}"; sudo bash -c "echo '${ttm//./\\.} u:object_r:vendor_file:s0' >> $TOME/vfcc"; sudo bash -c "echo '${tt//$TOME\/tam\//} 0 0 0644' >> $TOME/vfss"; done
+for tt in $(find $TOME/tam/vendor/etc -type f); do 
+ ttm="${tt//$TOME\/tam/}"; 
+ sudo bash -c "echo '${ttm//./\\.} u:object_r:vendor_file:s0' >> $TOME/vfcc"
+ #sudo bash -c "echo '${tt//$TOME\/tam\//} 0 0 0644' >> $TOME/vfss"; 
+ sudo bash -c "echo '$(echo $tt | sed -e "s|$TOME/tam/||g") 0 0 0644' >> $TOME/vfss"; 
+done
+
  vfs=$(cat $TOME/vfss | sed -e 's/\r$//' | sort -u > $TOME/vfs)
  vfc=$(cat $TOME/vfcc | sort -u > $TOME/vfc)
  sed -i -e 's/\r$//' $TOME/vfs
