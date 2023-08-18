@@ -199,6 +199,152 @@ sudo bash -c "echo '
  fi
 done
 } 
+pfscg='product 0 0 0755
+product/app 0 0 0755
+product/app/GoogleCalendarSyncAdapter 0 0 0755
+product/app/GoogleCalendarSyncAdapter/GoogleCalendarSyncAdapter.apk 0 0 0644
+product/app/GoogleContactsSyncAdapter 0 0 0755
+product/app/GoogleContactsSyncAdapter/GoogleContactsSyncAdapter.apk 0 0 0644
+product/etc 0 0 0755
+product/etc/default-permissions 0 0 0755
+product/etc/default-permissions/default-permissions-nikgapps.xml 0 0 0644
+product/etc/permissions 0 0 0755
+product/etc/permissions/NikGapps-privapp-permissions-google.xml 0 0 0644
+product/etc/permissions/com.android.vending.xml 0 0 0644
+product/etc/permissions/com.google.android.gms.xml 0 0 0644
+product/etc/permissions/com.google.android.gsf.xml 0 0 0644
+product/etc/permissions/com.google.android.ims.xml 0 0 0644
+product/etc/permissions/privapp-permissions-google-p.xml 0 0 0644
+product/etc/permissions/split-permissions-google.xml 0 0 0644
+product/etc/security 0 0 0755
+product/etc/security/fsverity 0 0 0755
+product/etc/security/fsverity/gms_fsverity_cert.der 0 0 0644
+product/etc/security/fsverity/play_store_fsi_cert.der 0 0 0644
+product/etc/sysconfig 0 0 0755
+product/etc/sysconfig/GoogleCamera_6gb_or_more_ram.xml 0 0 0644
+product/etc/sysconfig/adaptivecharging.xml 0 0 0644
+product/etc/sysconfig/d2d_cable_migration_feature.xml 0 0 0644
+product/etc/sysconfig/dreamliner.xml 0 0 0644
+product/etc/sysconfig/game_service.xml 0 0 0644
+product/etc/sysconfig/google-hiddenapi-package-whitelist.xml 0 0 0644
+product/etc/sysconfig/google-install-constraints-package-allowlist.xml 0 0 0644
+product/etc/sysconfig/google-staged-installer-whitelist.xml 0 0 0644
+product/etc/sysconfig/google.xml 0 0 0644
+product/etc/sysconfig/google_build.xml 0 0 0644
+product/etc/sysconfig/nexus.xml 0 0 0644
+product/etc/sysconfig/nga.xml 0 0 0644
+product/etc/sysconfig/pixel_experience_2017.xml 0 0 0644
+product/etc/sysconfig/preinstalled-packages-product-pixel-2017-and-newer.xml 0 0 0644
+product/etc/sysconfig/quick_tap.xml 0 0 0644
+product/framework 0 0 0755
+product/framework/com.google.android.dialer.support.jar 0 0 0644
+product/framework/com.google.android.maps.jar 0 0 0644
+product/lib 0 0 0755
+product/lib/libjni_latinimegoogle.so 0 0 0644
+product/lib64 0 0 0755
+product/lib64/libgdx.so 0 0 0644
+product/lib64/libjni_latinimegoogle.so 0 0 0644
+product/overlay 0 0 0755
+product/overlay/GmsCoreOverlay.apk 0 0 0644
+product/priv-app 0 0 0755
+product/priv-app/CarrierServices 0 0 0755
+product/priv-app/CarrierServices/CarrierServices.apk 0 0 0644
+product/priv-app/GoogleServicesFramework 0 0 0755
+product/priv-app/GoogleServicesFramework/GoogleServicesFramework.apk 0 0 0644
+product/priv-app/Phonesky 0 0 0755
+product/priv-app/Phonesky/Phonesky.apk 0 0 0644
+product/priv-app/PrebuiltGmsCore 0 0 0755
+product/priv-app/PrebuiltGmsCore/PrebuiltGmsCoreSc.apk 0 0 0644
+product/priv-app/PrebuiltGmsCore/app_chimera 0 0 0755
+product/priv-app/PrebuiltGmsCore/app_chimera/m 0 0 0755
+product/priv-app/PrebuiltGmsCore/app_chimera/m/PrebuiltGmsCoreSc_AdsDynamite.apk 0 0 0644
+product/priv-app/PrebuiltGmsCore/app_chimera/m/PrebuiltGmsCoreSc_CronetDynamite.apk 0 0 0644
+product/priv-app/PrebuiltGmsCore/app_chimera/m/PrebuiltGmsCoreSc_DynamiteLoader.apk 0 0 0644
+product/priv-app/PrebuiltGmsCore/app_chimera/m/PrebuiltGmsCoreSc_DynamiteModulesA.apk 0 0 0644
+product/priv-app/PrebuiltGmsCore/app_chimera/m/PrebuiltGmsCoreSc_DynamiteModulesC.apk 0 0 0644
+product/priv-app/PrebuiltGmsCore/app_chimera/m/PrebuiltGmsCoreSc_GoogleCertificates.apk 0 0 0644
+product/priv-app/PrebuiltGmsCore/app_chimera/m/PrebuiltGmsCoreSc_MapsDynamite.apk 0 0 0644
+product/priv-app/PrebuiltGmsCore/app_chimera/m/PrebuiltGmsCoreSc_MeasurementDynamite.apk 0 0 0644
+product/priv-app/PrebuiltGmsCore/m 0 0 0755
+product/priv-app/PrebuiltGmsCore/m/independent 0 0 0755
+product/priv-app/PrebuiltGmsCore/m/independent/AndroidPlatformServices.apk 0 0 0644
+product/priv-app/PrebuiltGmsCore/m/optional 0 0 0755
+product/priv-app/PrebuiltGmsCore/m/optional/MlkitBarcodeUIPrebuilt.apk 0 0 0644
+product/priv-app/PrebuiltGmsCore/m/optional/VisionBarcodePrebuilt.apk 0 0 0644'
+
+pfccg='/product u:object_r:system_file:s0
+/product/app u:object_r:system_file:s0
+/product/app/GoogleCalendarSyncAdapter u:object_r:system_file:s0
+/product/app/GoogleCalendarSyncAdapter/GoogleCalendarSyncAdapter\.apk u:object_r:system_file:s0
+/product/app/GoogleContactsSyncAdapter u:object_r:system_file:s0
+/product/app/GoogleContactsSyncAdapter/GoogleContactsSyncAdapter\.apk u:object_r:system_file:s0
+/product/etc u:object_r:system_file:s0
+/product/etc/default-permissions u:object_r:system_file:s0
+/product/etc/default-permissions/default-permissions-nikgapps\.xml u:object_r:system_file:s0
+/product/etc/permissions u:object_r:system_file:s0
+/product/etc/permissions/NikGapps-privapp-permissions-google\.xml u:object_r:system_file:s0
+/product/etc/permissions/com\.android\.vending\.xml u:object_r:system_file:s0
+/product/etc/permissions/com\.google\.android\.gms\.xml u:object_r:system_file:s0
+/product/etc/permissions/com\.google\.android\.gsf\.xml u:object_r:system_file:s0
+/product/etc/permissions/com\.google\.android\.ims\.xml u:object_r:system_file:s0
+/product/etc/permissions/privapp-permissions-google-p\.xml u:object_r:system_file:s0
+/product/etc/permissions/split-permissions-google\.xml u:object_r:system_file:s0
+/product/etc/security u:object_r:system_file:s0
+/product/etc/security/fsverity u:object_r:system_file:s0
+/product/etc/security/fsverity/gms_fsverity_cert\.der u:object_r:system_file:s0
+/product/etc/security/fsverity/play_store_fsi_cert\.der u:object_r:system_file:s0
+/product/etc/sysconfig u:object_r:system_file:s0
+/product/etc/sysconfig/GoogleCamera_6gb_or_more_ram\.xml u:object_r:system_file:s0
+/product/etc/sysconfig/adaptivecharging\.xml u:object_r:system_file:s0
+/product/etc/sysconfig/d2d_cable_migration_feature\.xml u:object_r:system_file:s0
+/product/etc/sysconfig/dreamliner\.xml u:object_r:system_file:s0
+/product/etc/sysconfig/game_service\.xml u:object_r:system_file:s0
+/product/etc/sysconfig/google-hiddenapi-package-whitelist\.xml u:object_r:system_file:s0
+/product/etc/sysconfig/google-install-constraints-package-allowlist\.xml u:object_r:system_file:s0
+/product/etc/sysconfig/google-staged-installer-whitelist\.xml u:object_r:system_file:s0
+/product/etc/sysconfig/google\.xml u:object_r:system_file:s0
+/product/etc/sysconfig/google_build\.xml u:object_r:system_file:s0
+/product/etc/sysconfig/nexus\.xml u:object_r:system_file:s0
+/product/etc/sysconfig/nga\.xml u:object_r:system_file:s0
+/product/etc/sysconfig/pixel_experience_2017\.xml u:object_r:system_file:s0
+/product/etc/sysconfig/preinstalled-packages-product-pixel-2017-and-newer\.xml u:object_r:system_file:s0
+/product/etc/sysconfig/quick_tap\.xml u:object_r:system_file:s0
+/product/framework u:object_r:system_file:s0
+/product/framework/com\.google\.android\.dialer\.support\.jar u:object_r:system_file:s0
+/product/framework/com\.google\.android\.maps\.jar u:object_r:system_file:s0
+/product/lib u:object_r:system_file:s0
+/product/lib/libjni_latinimegoogle\.so u:object_r:system_file:s0
+/product/lib64 u:object_r:system_file:s0
+/product/lib64/libgdx\.so u:object_r:system_file:s0
+/product/lib64/libjni_latinimegoogle\.so u:object_r:system_file:s0
+/product/overlay u:object_r:system_file:s0
+/product/overlay/GmsCoreOverlay\.apk u:object_r:system_file:s0
+/product/priv-app u:object_r:system_file:s0
+/product/priv-app/CarrierServices u:object_r:system_file:s0
+/product/priv-app/CarrierServices/CarrierServices\.apk u:object_r:system_file:s0
+/product/priv-app/GoogleServicesFramework u:object_r:system_file:s0
+/product/priv-app/GoogleServicesFramework/GoogleServicesFramework\.apk u:object_r:system_file:s0
+/product/priv-app/Phonesky u:object_r:system_file:s0
+/product/priv-app/Phonesky/Phonesky\.apk u:object_r:system_file:s0
+/product/priv-app/PrebuiltGmsCore u:object_r:system_file:s0
+/product/priv-app/PrebuiltGmsCore/PrebuiltGmsCoreSc\.apk u:object_r:system_file:s0
+/product/priv-app/PrebuiltGmsCore/app_chimera u:object_r:system_file:s0
+/product/priv-app/PrebuiltGmsCore/app_chimera/m u:object_r:system_file:s0
+/product/priv-app/PrebuiltGmsCore/app_chimera/m/PrebuiltGmsCoreSc_AdsDynamite\.apk u:object_r:system_file:s0
+/product/priv-app/PrebuiltGmsCore/app_chimera/m/PrebuiltGmsCoreSc_CronetDynamite\.apk u:object_r:system_file:s0
+/product/priv-app/PrebuiltGmsCore/app_chimera/m/PrebuiltGmsCoreSc_DynamiteLoader\.apk u:object_r:system_file:s0
+/product/priv-app/PrebuiltGmsCore/app_chimera/m/PrebuiltGmsCoreSc_DynamiteModulesA\.apk u:object_r:system_file:s0
+/product/priv-app/PrebuiltGmsCore/app_chimera/m/PrebuiltGmsCoreSc_DynamiteModulesC\.apk u:object_r:system_file:s0
+/product/priv-app/PrebuiltGmsCore/app_chimera/m/PrebuiltGmsCoreSc_GoogleCertificates\.apk u:object_r:system_file:s0
+/product/priv-app/PrebuiltGmsCore/app_chimera/m/PrebuiltGmsCoreSc_MapsDynamite\.apk u:object_r:system_file:s0
+/product/priv-app/PrebuiltGmsCore/app_chimera/m/PrebuiltGmsCoreSc_MeasurementDynamite\.apk u:object_r:system_file:s0
+/product/priv-app/PrebuiltGmsCore/m u:object_r:system_file:s0
+/product/priv-app/PrebuiltGmsCore/m/independent u:object_r:system_file:s0
+/product/priv-app/PrebuiltGmsCore/m/independent/AndroidPlatformServices\.apk u:object_r:system_file:s0
+/product/priv-app/PrebuiltGmsCore/m/optional u:object_r:system_file:s0
+/product/priv-app/PrebuiltGmsCore/m/optional/MlkitBarcodeUIPrebuilt\.apk u:object_r:system_file:s0
+/product/priv-app/PrebuiltGmsCore/m/optional/VisionBarcodePrebuilt\.apk u:object_r:system_file:s0'
+
 themcauhinh() { 
 # Thêm file_contexts
 systemfc="/system/system/lib64/libGLESv1\.so u:object_r:system_lib_file:s0
@@ -380,7 +526,7 @@ if [[ "$twrp" == "1" ]]; then echo " * Thêm BOOT TWRP $tenmamay..."
  elif [[ -n "$(echo "$URL" | grep 'TWXM')" ]]; then linktwrp="https://sourceforge.net/projects/chamchamfy/files/Tools/boot_tw_$tenmamay.img"
  elif [[ -n "$(echo "$URL" | grep 'IDXM')" ]]; then linktwrp="https://sourceforge.net/projects/chamchamfy/files/Tools/boot_id_$tenmamay.img"
  elif [[ -n "$(echo "$URL" | grep 'EUXM')" ]]; then linktwrp="https://sourceforge.net/projects/chamchamfy/files/Tools/boot_eu_$tenmamay.img"
- elif [[ -n "$(echo "$URL" | grep 'CNXM')" ]]; then linktwrp="https://sourceforge.net/projects/chamchamfy/files/Tools/boot_cn_$tenmamay.img"
+ elif [[ -n "$(echo "$URL" | grep 'CNXM')" ]]; then linktwrp="https://sourceforge.net/projects/kudopatch/files/boot/boot_cn_$tenmamay.img"
  else
 [[ "$tenmamay" == "vili" ]] && linktwrp='https://sourceforge.net/projects/recovery-for-xiaomi-devices/files/vili/twrp-3.7.0_12-v7.9_A13-vili-skkk.img'
 [[ "$tenmamay" == "alioth" ]] && linktwrp='https://sourceforge.net/projects/recovery-for-xiaomi-devices/files/alioth/twrp-3.7.0_12-v7.9_A13-alioth-skkk.img'
@@ -426,7 +572,7 @@ if [[ -n "$(echo "$URL" | grep 'CNXM')" ]]; then
  sudo rm -rf $TOME/{tam,gapp,cauhinh} $TOME/gapp.zip
  fi
  Taive "https://sourceforge.net/projects/toolkudotwrp/files/kudo/MiuiMod14.zip" "$TOME/appm.zip"
- if [[ -s "$TOME/appm.zip" ]]; then echo " * Thêm App Mod..."
+ if [[ "$(du -m $TOME/appm.zip | awk '{print $1}')" -gt 100 ]]; then echo " * Thêm App Mod..."
  mkdir -p $TOME/tam
  7za x -tzip -y $TOME/appm.zip -o$TOME/tam >/dev/null
  [[ $? -ne 0 ]] && unzip -qo $TOME/appm.zip -d $TOME/tam
