@@ -392,7 +392,8 @@ vendorfc="/vendor/lib/egl/libVkLayer_ADRENO_qprofiler\.so u:object_r:system_lib_
 /vendor/lib64/libcutils\.so u:object_r:same_process_hal_file:s0
 $vfc"
 #
-productfc="$pfc"
+productfc="$pfccg
+$pfc"
 #
 system_extfc=''
 #
