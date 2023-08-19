@@ -482,7 +482,7 @@ mkdir -p $TOME/VH
 #Taive "https://github.com/kakathic/ZH-VN/releases/download/HH/TT_1.8.Zip" "$TOME/VH.zip"
 Taive "https://github.com/chamchamfy/toolcc/raw/main/overlay.zip" "$TOME/VH.zip"
 7za x -tzip -y "$TOME/VH.zip" -o$TOME/VH >/dev/null
-[[ $? -ne 0 ]] && unzip -qo $TOME/VH.zip -d $TOME/VH
+[ $? -ne 0 ] && unzip -qo $TOME/VH.zip -d $TOME/VH
 [[ -e /mnt/tmp/product/overlay ]] && TMVH=/mnt/tmp/product/overlay || TMVH=/mnt/tmp/vendor/overlay
 sudo cp -af $TOME/VH/apk/* $TMVH
 [[ -d /mnt/tmp/system/system/media ]] && sudo cp -rf $TOME/VH/framework-miui-res /mnt/tmp/system/system/media/theme/default || sudo cp -rf $TOME/VH/framework-miui-res /mnt/tmp/product/media/theme/default
@@ -494,7 +494,7 @@ ngonngu
 if [[ "$HK" == "1" ]]; then echo " * Thêm Harman Kardon..."
 mkdir -p $TOME/tam
 7za x -tzip -y $TOME/.github/HarmanKardon.zip -o$TOME/tam >/dev/null
-[[ $? -ne 0 ]] && unzip -qo $TOME/.github/HarmanKardon.zip -d $TOME/tam
+[ $? -ne 0 ] && unzip -qo $TOME/.github/HarmanKardon.zip -d $TOME/tam
 sudo cp -af $TOME/tam/system/vendor/* /mnt/tmp/vendor 
 sudo rm -rf $TOME/tam
 fi 
@@ -510,7 +510,7 @@ if [[ "$GPU" == "1" ]]; then
 if [[ -s "$TOME/AdrenoGPUDriver.zip" ]]; then echo " * Thêm Adreno GPU Driver..."
 mkdir -p $TOME/tam
 7za x -tzip -y $TOME/AdrenoGPUDriver.zip -o$TOME/tam >/dev/null
-[[ $? -ne 0 ]] && unzip -qo $TOME/AdrenoGPUDriver.zip -d $TOME/tam
+[ $? -ne 0 ] && unzip -qo $TOME/AdrenoGPUDriver.zip -d $TOME/tam
 sudo cp -af $TOME/tam/system/vendor/* /mnt/tmp/vendor 
 sudo rm -rf $TOME/tam $TOME/AdrenoGPUDriver.zip
 fi 
@@ -542,11 +542,11 @@ if [[ -n "$(echo "$URL" | grep 'CNXM')" ]]; then
  if [[ -s "$TOME/gapp.zip" ]]; then echo " * Thêm Gói Gapp..."
  mkdir -p $TOME/gapp $TOME/tam
  7za x -tzip -y $TOME/gapp.zip -o$TOME/tam >/dev/null
- [[ $? -ne 0 ]] && unzip -qo $TOME/gapp.zip -d $TOME/tam
+ [ $? -ne 0 ] && unzip -qo $TOME/gapp.zip -d $TOME/tam
  for f in $TOME/tam/AppSet/CarrierServices/*.zip $TOME/tam/AppSet/Core/*.zip; do 
  tm=${f//.zip/}; ttm=${tm##*/}; mkdir -p $TOME/gapp/$ttm; 
  7za x -tzip -y $f -o$TOME/gapp/$ttm >/dev/null
- [[ $? -ne 0 ]] && unzip -qo $f -d $TOME/gapp/$ttm
+ [ $? -ne 0 ] && unzip -qo $f -d $TOME/gapp/$ttm
  done
  for t in $TOME/gapp/*/*; do
   if [[ -d $t ]]; then 
@@ -561,8 +561,10 @@ if [[ -n "$(echo "$URL" | grep 'CNXM')" ]]; then
   fi
  done
  sudo cp -af $TOME/cauhinh/product/* /mnt/tmp/product
- for tt in $(find $TOME/cauhinh/product -type f); do sudo bash -c "echo '${tt//$TOME\/cauhinh\//} 0 0 0644' >> $TOME/pfss"; ttm="${tt//$TOME\/cauhinh/}"; bash -c "echo '${ttm//./\\.} u:object_r:system_file:s0' >> $TOME/pfcc"; done
- for tt in $(find $TOME/cauhinh/product -type d); do sudo bash -c "echo '${tt//$TOME\/cauhinh\//} 0 0 0755' >> $TOME/pfss"; ttm="${tt//$TOME\/cauhinh/}"; bash -c "echo '${ttm//./\\.} u:object_r:system_file:s0' >> $TOME/pfcc"; done
+ for tt in $(find $TOME/cauhinh/product -type f); do sudo bash -c "echo '${tt//$TOME\/cauhinh\//} 0 0 0644' >> $TOME/pfs"; ttm="${tt//$TOME\/cauhinh/}"; bash -c "echo '${ttm//./\\.} u:object_r:system_file:s0' >> $TOME/pfc"; done
+ for tt in $(find $TOME/cauhinh/product -type d); do sudo bash -c "echo '${tt//$TOME\/cauhinh\//} 0 0 0755' >> $TOME/pfs"; ttm="${tt//$TOME\/cauhinh/}"; bash -c "echo '${ttm//./\\.} u:object_r:system_file:s0' >> $TOME/pfc"; done
+ mv -f $TOME/pfs $TOME/pfss
+ mv -f $TOME/pfc $TOME/pfcc
  pfs=$(sudo bash -c "cat $TOME/pfss | sort -u > $TOME/pfs")
  pfc=$(sudo bash -c "cat $TOME/pfcc | sort -u > $TOME/pfc")
  
@@ -572,7 +574,7 @@ if [[ -n "$(echo "$URL" | grep 'CNXM')" ]]; then
  if [[ "$(du -m $TOME/appm.zip | awk '{print $1}')" -gt 100 ]]; then echo " * Thêm App Mod..."
  mkdir -p $TOME/tam
  unzip -qo $TOME/appm.zip -d $TOME/tam
- [[ $? -ne 0 ]] && 7za x -tzip -y $TOME/appm.zip -o$TOME/tam >/dev/null
+ [ $? -ne 0 ] && 7za x -tzip -y $TOME/appm.zip -o$TOME/tam >/dev/null
  for a in $TOME/tam/product/app/*; do 
  tm=${a//Miui/MIUI}; ttm=${a##*/}; tmm=${ttm//Miui/MIUI}; 
   mv -f $a $tm 2>/dev/null
@@ -587,6 +589,8 @@ if [[ -n "$(echo "$URL" | grep 'CNXM')" ]]; then
  
  for tt in $(find $TOME/tam/product/*app -type d); do sudo bash -c "echo '${tt//$TOME\/tam\//} 0 0 0755' >> $TOME/pfss"; ttm="${tt//$TOME\/tam/}"; sudo bash -c "echo '${ttm//./\\.} u:object_r:system_file:s0' >> $TOME/pfcc"; done
  for tt in $(find $TOME/tam/product/*app -type f); do sudo bash -c "echo '${tt//$TOME\/tam\//} 0 0 0644' >> $TOME/pfss"; ttm="${tt//$TOME\/tam/}"; sudo bash -c "echo '${ttm//./\\.} u:object_r:system_file:s0' >> $TOME/pfcc"; done
+ mv -f $TOME/pfs $TOME/pfss
+ mv -f $TOME/pfc $TOME/pfcc
  pfs=$(sudo bash -c "cat $TOME/pfss | sort -u > $TOME/pfs")
  pfc=$(sudo bash -c "cat $TOME/pfcc | sort -u > $TOME/pfc")
 
@@ -598,6 +602,8 @@ for tt in $(find $TOME/tam/vendor/etc -type d); do ttm="${tt//$TOME\/tam/}";
  sudo bash -c "echo '${ttm//./\\.} u:object_r:vendor_file:s0' >> $TOME/vfcc"; 
  #sudo bash -c "echo '${tt//$TOME\/tam\//} 0 0 0755' >> $TOME/vfss"; 
 done
+ #mv -f $TOME/pfs $TOME/pfss
+ #mv -f $TOME/pfc $TOME/pfcc
 #vfs=$(sudo bash -c "cat $TOME/vfss | sort -u > $TOME/vfs")
 vfc=$(sudo bash -c "cat $TOME/vfcc | sort -u > $TOME/vfc")
  
