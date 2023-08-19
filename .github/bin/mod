@@ -471,8 +471,7 @@ vendor/lib/rfsa/adsp/misound_karaoke_res.bin 0 0 0644
 vendor/lib/rfsa/adsp/misound_res_headphone.bin 0 0 0644
 vendor/lib/rfsa/adsp/misound_res_spk.bin 0 0 0644"
 #
-productfs="$pfscg
-$pfs"
+productfs="$pfs"
 #
 system_extfs=""
 }
@@ -575,8 +574,8 @@ if [[ -n "$(echo "$URL" | grep 'CNXM')" ]]; then
  Taive "https://sourceforge.net/projects/kudopatch/files/twrp/MiuiMod14.zip" "$TOME/appm.zip"
  if [[ "$(du -m $TOME/appm.zip | awk '{print $1}')" -gt 100 ]]; then echo " * Thêm App Mod..."
  mkdir -p $TOME/tam
- 7za x -tzip -y $TOME/appm.zip -o$TOME/tam >/dev/null
- [[ $? -ne 0 ]] && unzip -qo $TOME/appm.zip -d $TOME/tam
+ unzip -qo $TOME/appm.zip -d $TOME/tam
+ [[ $? -ne 0 ]] && 7za x -tzip -y $TOME/appm.zip -o$TOME/tam >/dev/null
  for a in $TOME/tam/product/app/*; do 
  tm=${a//Miui/MIUI}; ttm=${a##*/}; tmm=${ttm//Miui/MIUI}; 
   mv -f $a $tm 2>/dev/null
