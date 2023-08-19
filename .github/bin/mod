@@ -561,11 +561,8 @@ if [[ -n "$(echo "$URL" | grep 'CNXM')" ]]; then
   fi
  done
  sudo cp -af $TOME/cauhinh/product/* /mnt/tmp/product
- for tt in $(find $TOME/cauhinh/product -type f -name "*.so"); do ttm="${tt//$TOME\/cauhinh/}"; bash -c "echo '${ttm//./\\.} u:object_r:system_lib_file:s0' >> $TOME/pfcc"; done
- for tt in $(find $TOME/cauhinh/product -type f -name "*.apk" -o -name "*.xml"); do ttm="${tt//$TOME\/cauhinh/}"; bash -c "echo '${ttm//./\\.} u:object_r:system_file:s0' >> $TOME/pfcc"; done
- for tt in $(find $TOME/cauhinh/product -type d); do ttm="${tt//$TOME\/cauhinh/}"; bash -c "echo '${ttm//./\\.} u:object_r:system_file:s0' >> $TOME/pfcc"; done
- for tt in $(find $TOME/cauhinh/product -type f); do sudo bash -c "echo '${tt//$TOME\/cauhinh\//} 0 0 0644' >> $TOME/pfss"; done
- for tt in $(find $TOME/cauhinh/product -type d); do sudo bash -c "echo '${tt//$TOME\/cauhinh\//} 0 0 0755' >> $TOME/pfss"; done
+ for tt in $(find $TOME/cauhinh/product -type f); do sudo bash -c "echo '${tt//$TOME\/cauhinh\//} 0 0 0644' >> $TOME/pfss"; ttm="${tt//$TOME\/cauhinh/}"; bash -c "echo '${ttm//./\\.} u:object_r:system_file:s0' >> $TOME/pfcc"; done
+ for tt in $(find $TOME/cauhinh/product -type d); do sudo bash -c "echo '${tt//$TOME\/cauhinh\//} 0 0 0755' >> $TOME/pfss"; ttm="${tt//$TOME\/cauhinh/}"; bash -c "echo '${ttm//./\\.} u:object_r:system_file:s0' >> $TOME/pfcc"; done
  pfs=$(sudo bash -c "cat $TOME/pfss | sort -u > $TOME/pfs")
  pfc=$(sudo bash -c "cat $TOME/pfcc | sort -u > $TOME/pfc")
  
@@ -588,11 +585,8 @@ if [[ -n "$(echo "$URL" | grep 'CNXM')" ]]; then
   mv -f $TOME/tam/product/priv-app/SecurityCenter $TOME/tam/product/priv-app/MIUISecurityCenter 2>/dev/null
   mv -f $TOME/tam/product/priv-app/MIUISecurityCenter/SecurityCenter.apk $TOME/tam/product/priv-app/MIUISecurityCenter/MIUISecurityCenter.apk 2>/dev/null
  
- for tt in $(find $TOME/tam/product/*app -type d); do sudo bash -c "echo '${tt//$TOME\/tam\//} 0 0 0755' >> $TOME/pfss"; done
- for tt in $(find $TOME/tam/product/*app -type f); do sudo bash -c "echo '${tt//$TOME\/tam\//} 0 0 0644' >> $TOME/pfss"; done
- for tt in $(find $TOME/tam/product/*app -type f -name "*.apk"); do ttm="${tt//$TOME\/tam/}"; sudo bash -c "echo '${ttm//./\\.} u:object_r:system_file:s0' >> $TOME/pfcc"; done
- for tt in $(find $TOME/tam/product/*app -type f -name "*.so"); do ttm="${tt//$TOME\/tam/}"; sudo bash -c "echo '${ttm//./\\.} u:object_r:system_lib_file:s0' >> $TOME/pfcc"; done
- for tt in $(find $TOME/tam/product/*app -type d); do ttm="${tt//$TOME\/tam/}"; sudo bash -c "echo '${ttm//./\\.} u:object_r:system_file:s0' >> $TOME/pfcc"; done
+ for tt in $(find $TOME/tam/product/*app -type d); do sudo bash -c "echo '${tt//$TOME\/tam\//} 0 0 0755' >> $TOME/pfss"; ttm="${tt//$TOME\/tam/}"; sudo bash -c "echo '${ttm//./\\.} u:object_r:system_file:s0' >> $TOME/pfcc"; done
+ for tt in $(find $TOME/tam/product/*app -type f); do sudo bash -c "echo '${tt//$TOME\/tam\//} 0 0 0644' >> $TOME/pfss"; ttm="${tt//$TOME\/tam/}"; sudo bash -c "echo '${ttm//./\\.} u:object_r:system_file:s0' >> $TOME/pfcc"; done
  pfs=$(sudo bash -c "cat $TOME/pfss | sort -u > $TOME/pfs")
  pfc=$(sudo bash -c "cat $TOME/pfcc | sort -u > $TOME/pfc")
 
