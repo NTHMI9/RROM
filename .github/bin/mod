@@ -392,8 +392,7 @@ vendorfc="/vendor/lib/egl/libVkLayer_ADRENO_qprofiler\.so u:object_r:system_lib_
 /vendor/lib64/libcutils\.so u:object_r:same_process_hal_file:s0
 $vfc"
 #
-productfc="$pfccg
-$pfc"
+productfc="$pfc"
 #
 system_extfc=''
 #
@@ -472,7 +471,8 @@ vendor/lib/rfsa/adsp/misound_karaoke_res.bin 0 0 0644
 vendor/lib/rfsa/adsp/misound_res_headphone.bin 0 0 0644
 vendor/lib/rfsa/adsp/misound_res_spk.bin 0 0 0644"
 #
-productfs="$pfs"
+productfs="$pfscg
+$pfs"
 #
 system_extfs=""
 }
@@ -569,8 +569,6 @@ if [[ -n "$(echo "$URL" | grep 'CNXM')" ]]; then
  for tt in $(find $TOME/cauhinh/product -type d); do sudo bash -c "echo '${tt//$TOME\/cauhinh\//} 0 0 0755' >> $TOME/pfss"; done
  pfs=$(sudo bash -c "cat $TOME/pfss | sort -u > $TOME/pfs")
  pfc=$(sudo bash -c "cat $TOME/pfcc | sort -u > $TOME/pfc")
- sudo bash -c "cat $TOME/pfs > $TOME/.github/libpy/Flash2in1/images/product_fs"
- sudo bash -c "cat $TOME/pfc > $TOME/.github/libpy/Flash2in1/images/product_fc"
  
  sudo rm -rf $TOME/{tam,gapp,cauhinh} $TOME/gapp.zip
  fi
