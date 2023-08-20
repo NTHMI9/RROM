@@ -245,7 +245,7 @@ vendorfc="/vendor/lib/egl/libVkLayer_ADRENO_qprofiler\.so u:object_r:system_lib_
 /vendor/lib64/notllvm-glnext\.so u:object_r:same_process_hal_file:s0
 /vendor/etc/permissions/public\.libraries\.txt u:object_r:same_process_hal_file:s0
 /vendor/lib64/libcutils\.so u:object_r:same_process_hal_file:s0
-$([[ -n "$(grep 'u:object' $TOME/vfc)" ]] && cat $TOME/vfc | sort -u)"
+$vfc"
 #
 productfc="/product u:object_r:system_file:s0
 /product/app u:object_r:system_file:s0
@@ -319,7 +319,7 @@ productfc="/product u:object_r:system_file:s0
 /product/priv-app/PrebuiltGmsCore/m/optional u:object_r:system_file:s0
 /product/priv-app/PrebuiltGmsCore/m/optional/MlkitBarcodeUIPrebuilt\.apk u:object_r:system_file:s0
 /product/priv-app/PrebuiltGmsCore/m/optional/VisionBarcodePrebuilt\.apk u:object_r:system_file:s0
-$([[ -n "$(grep 'u:object' $TOME/pfc)" ]] && cat $TOME/pfc | sort -u)"
+$pfc"
 #
 system_extfc=''
 #
@@ -470,7 +470,7 @@ product/priv-app/PrebuiltGmsCore/m/independent/AndroidPlatformServices.apk 0 0 0
 product/priv-app/PrebuiltGmsCore/m/optional 0 0 0755
 product/priv-app/PrebuiltGmsCore/m/optional/MlkitBarcodeUIPrebuilt.apk 0 0 0644
 product/priv-app/PrebuiltGmsCore/m/optional/VisionBarcodePrebuilt.apk 0 0 0644
-$([[ -n "$(grep '0 0 0' $TOME/pfs)" ]] && cat $TOME/pfs | sort -u)"
+$pfs"
 #
 system_extfs=""
 }
@@ -603,5 +603,8 @@ done
 fi
 }
 tuychinh
+[[ -n "$(grep '0 0 0' $TOME/pfs)" ]] && pfs=$(cat $TOME/pfs | sort -u) || unset pfs
+[[ -n "$(grep 'u:object' $TOME/pfc)" ]] && pfc=(cat $TOME/pfc | sort -u) || unset pfc
+[[ -n "$(grep 'u:object' $TOME/vfc)" ]] && vfc=(cat $TOME/vfc | sort -u) || unset vfc
 #
 themcauhinh
