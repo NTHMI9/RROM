@@ -318,7 +318,8 @@ productfc="/product u:object_r:system_file:s0
 /product/priv-app/PrebuiltGmsCore/m/independent/AndroidPlatformServices\.apk u:object_r:system_file:s0
 /product/priv-app/PrebuiltGmsCore/m/optional u:object_r:system_file:s0
 /product/priv-app/PrebuiltGmsCore/m/optional/MlkitBarcodeUIPrebuilt\.apk u:object_r:system_file:s0
-/product/priv-app/PrebuiltGmsCore/m/optional/VisionBarcodePrebuilt\.apk u:object_r:system_file:s0"
+/product/priv-app/PrebuiltGmsCore/m/optional/VisionBarcodePrebuilt\.apk u:object_r:system_file:s0
+$(cat $TOME/pfc | sort -u)"
 #
 system_extfc=''
 #
@@ -468,7 +469,8 @@ product/priv-app/PrebuiltGmsCore/m/independent 0 0 0755
 product/priv-app/PrebuiltGmsCore/m/independent/AndroidPlatformServices.apk 0 0 0644
 product/priv-app/PrebuiltGmsCore/m/optional 0 0 0755
 product/priv-app/PrebuiltGmsCore/m/optional/MlkitBarcodeUIPrebuilt.apk 0 0 0644
-product/priv-app/PrebuiltGmsCore/m/optional/VisionBarcodePrebuilt.apk 0 0 0644"
+product/priv-app/PrebuiltGmsCore/m/optional/VisionBarcodePrebuilt.apk 0 0 0644
+$(cat $TOME/pfs | sort -u)"
 #
 system_extfs=""
 }
