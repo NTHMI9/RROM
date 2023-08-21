@@ -245,7 +245,27 @@ vendorfc="/vendor/lib/egl/libVkLayer_ADRENO_qprofiler\.so u:object_r:system_lib_
 /vendor/lib64/notllvm-glnext\.so u:object_r:same_process_hal_file:s0
 /vendor/etc/permissions/public\.libraries\.txt u:object_r:same_process_hal_file:s0
 /vendor/lib64/libcutils\.so u:object_r:same_process_hal_file:s0
-$vfc"
+/vendor/etc/mixer_paths\.xml u:object_r:vendor_file:s0
+/vendor/etc/mixer_paths_cdp\.xml u:object_r:vendor_file:s0
+/vendor/etc/thermal-camera\.conf u:object_r:vendor_file:s0
+/vendor/etc/thermal-class0\.conf u:object_r:vendor_file:s0
+/vendor/etc/thermal-engine\.conf u:object_r:vendor_file:s0
+/vendor/etc/thermal-india-class0\.conf u:object_r:vendor_file:s0
+/vendor/etc/thermal-india-mgame\.conf u:object_r:vendor_file:s0
+/vendor/etc/thermal-india-normal\.conf u:object_r:vendor_file:s0
+/vendor/etc/thermal-india-tgame\.conf u:object_r:vendor_file:s0
+/vendor/etc/thermal-india-video\.conf u:object_r:vendor_file:s0
+/vendor/etc/thermal-map-india\.conf u:object_r:vendor_file:s0
+/vendor/etc/thermal-map\.conf u:object_r:vendor_file:s0
+/vendor/etc/thermal-mgame\.conf u:object_r:vendor_file:s0
+/vendor/etc/thermal-navigation\.conf u:object_r:vendor_file:s0
+/vendor/etc/thermal-nolimits\.conf u:object_r:vendor_file:s0
+/vendor/etc/thermal-normal\.conf u:object_r:vendor_file:s0
+/vendor/etc/thermal-phone\.conf u:object_r:vendor_file:s0
+/vendor/etc/thermal-region-map\.conf u:object_r:vendor_file:s0
+/vendor/etc/thermal-tgame\.conf u:object_r:vendor_file:s0
+/vendor/etc/thermal-video\.conf u:object_r:vendor_file:s0
+/vendor/etc/thermald-devices\.conf u:object_r:vendor_file:s0"
 #
 productfc="/product u:object_r:system_file:s0
 /product/app u:object_r:system_file:s0
@@ -253,6 +273,22 @@ productfc="/product u:object_r:system_file:s0
 /product/app/GoogleCalendarSyncAdapter/GoogleCalendarSyncAdapter\.apk u:object_r:system_file:s0
 /product/app/GoogleContactsSyncAdapter u:object_r:system_file:s0
 /product/app/GoogleContactsSyncAdapter/GoogleContactsSyncAdapter\.apk u:object_r:system_file:s0
+/product/app/Joyose u:object_r:system_file:s0
+/product/app/Joyose/Joyose\.apk u:object_r:system_file:s0
+/product/app/MIUIFileExplorer u:object_r:system_file:s0
+/product/app/MIUIFileExplorer/MIUIFileExplorer\.apk u:object_r:system_file:s0
+/product/app/MIUIScreenRecorder u:object_r:system_file:s0
+/product/app/MIUIScreenRecorder/MIUIScreenRecorder\.apk u:object_r:system_file:s0
+/product/app/MIUIScreenRecorder/MiuiScreenRecorder u:object_r:system_file:s0
+/product/app/MIUIScreenRecorder/MiuiScreenRecorder/MiuiScreenRecorder\.apk u:object_r:system_file:s0
+/product/app/MIUIScreenshot u:object_r:system_file:s0
+/product/app/MIUIScreenshot/MIUIScreenshot\.apk u:object_r:system_file:s0
+/product/app/MIUIScreenshot/MiuiScreenshot u:object_r:system_file:s0
+/product/app/MIUIScreenshot/MiuiScreenshot/MiuiScreenshot\.apk u:object_r:system_file:s0
+/product/app/MIUISystemUIPlugin u:object_r:system_file:s0
+/product/app/MIUISystemUIPlugin/MIUISystemUIPlugin\.apk u:object_r:system_file:s0
+/product/app/MIUISystemUIPlugin/MiuiSystemUIPlugin u:object_r:system_file:s0
+/product/app/MIUISystemUIPlugin/MiuiSystemUIPlugin/MiuiSystemUIPlugin\.apk u:object_r:system_file:s0
 /product/etc u:object_r:system_file:s0
 /product/etc/default-permissions u:object_r:system_file:s0
 /product/etc/default-permissions/default-permissions-nikgapps\.xml u:object_r:system_file:s0
@@ -297,8 +333,36 @@ productfc="/product u:object_r:system_file:s0
 /product/priv-app u:object_r:system_file:s0
 /product/priv-app/CarrierServices u:object_r:system_file:s0
 /product/priv-app/CarrierServices/CarrierServices\.apk u:object_r:system_file:s0
+/product/priv-app/Gallery_T_CN u:object_r:system_file:s0
+/product/priv-app/Gallery_T_CN/Gallery_T_CN\.apk u:object_r:system_file:s0
 /product/priv-app/GoogleServicesFramework u:object_r:system_file:s0
 /product/priv-app/GoogleServicesFramework/GoogleServicesFramework\.apk u:object_r:system_file:s0
+/product/priv-app/LatinImeGoogle u:object_r:system_file:s0
+/product/priv-app/LatinImeGoogle/LatinImeGoogle\.apk u:object_r:system_file:s0
+/product/priv-app/MIUISecurityCenter u:object_r:system_file:s0
+/product/priv-app/MIUISecurityCenter/MIUISecurityCenter\.apk u:object_r:system_file:s0
+/product/priv-app/MIUISecurityCenter/lib u:object_r:system_file:s0
+/product/priv-app/MIUISecurityCenter/lib/arm64 u:object_r:system_file:s0
+/product/priv-app/MIUISecurityCenter/lib/arm64/libMNNTrain\.so u:object_r:system_file:s0
+/product/priv-app/MIUISecurityCenter/lib/arm64/libMNN\.so u:object_r:system_file:s0
+/product/priv-app/MIUISecurityCenter/lib/arm64/libMNN_Express\.so u:object_r:system_file:s0
+/product/priv-app/MIUISecurityCenter/lib/arm64/libc++_shared\.so u:object_r:system_file:s0
+/product/priv-app/MIUISecurityCenter/lib/arm64/libfastplayer\.so u:object_r:system_file:s0
+/product/priv-app/MIUISecurityCenter/lib/arm64/libjni_load_serinum\.so u:object_r:system_file:s0
+/product/priv-app/MIUISecurityCenter/lib/arm64/libjni_sound_effect\.so u:object_r:system_file:s0
+/product/priv-app/MIUISecurityCenter/lib/arm64/libjni_sound_effect_2_0\.so u:object_r:system_file:s0
+/product/priv-app/MIUISecurityCenter/lib/arm64/liblib-riskcontrol\.so u:object_r:system_file:s0
+/product/priv-app/MIUISecurityCenter/lib/arm64/libmiffmpeg\.so u:object_r:system_file:s0
+/product/priv-app/MIUISecurityCenter/lib/arm64/libmiuiblursdk\.so u:object_r:system_file:s0
+/product/priv-app/MIUISecurityCenter/lib/arm64/libmnncore\.so u:object_r:system_file:s0
+/product/priv-app/MIUISecurityCenter/lib/arm64/libnap\.so u:object_r:system_file:s0
+/product/priv-app/MIUISecurityCenter/lib/arm64/libsec-common-utils\.so u:object_r:system_file:s0
+/product/priv-app/MIUISecurityCenter/lib/arm64/libtcp\.so u:object_r:system_file:s0
+/product/priv-app/MIUISecurityCenter/lib/arm64/libtensorflowlite_jni\.so u:object_r:system_file:s0
+/product/priv-app/MIUISecurityCenter/lib/arm64/libxcrash\.so u:object_r:system_file:s0
+/product/priv-app/MIUISecurityCenter/lib/arm64/libxcrash_dumper\.so u:object_r:system_file:s0
+/product/priv-app/MiuiCamera u:object_r:system_file:s0
+/product/priv-app/MiuiCamera/MiuiCamera\.apk u:object_r:system_file:s0
 /product/priv-app/Phonesky u:object_r:system_file:s0
 /product/priv-app/Phonesky/Phonesky\.apk u:object_r:system_file:s0
 /product/priv-app/PrebuiltGmsCore u:object_r:system_file:s0
@@ -318,8 +382,7 @@ productfc="/product u:object_r:system_file:s0
 /product/priv-app/PrebuiltGmsCore/m/independent/AndroidPlatformServices\.apk u:object_r:system_file:s0
 /product/priv-app/PrebuiltGmsCore/m/optional u:object_r:system_file:s0
 /product/priv-app/PrebuiltGmsCore/m/optional/MlkitBarcodeUIPrebuilt\.apk u:object_r:system_file:s0
-/product/priv-app/PrebuiltGmsCore/m/optional/VisionBarcodePrebuilt\.apk u:object_r:system_file:s0
-$pfc"
+/product/priv-app/PrebuiltGmsCore/m/optional/VisionBarcodePrebuilt\.apk u:object_r:system_file:s0"
 #
 system_extfc=''
 #
@@ -396,7 +459,28 @@ vendor/lib/rfsa/adsp/misound_res.bin 0 0 0644
 vendor/lib/rfsa/adsp/misound_karaokemix_res.bin 0 0 0644
 vendor/lib/rfsa/adsp/misound_karaoke_res.bin 0 0 0644
 vendor/lib/rfsa/adsp/misound_res_headphone.bin 0 0 0644
-vendor/lib/rfsa/adsp/misound_res_spk.bin 0 0 0644"
+vendor/lib/rfsa/adsp/misound_res_spk.bin 0 0 0644
+vendor/etc/mixer_paths.xml 0 0 0644
+vendor/etc/mixer_paths_cdp.xml 0 0 0644
+vendor/etc/thermal-camera.conf 0 0 0644
+vendor/etc/thermal-class0.conf 0 0 0644
+vendor/etc/thermal-engine.conf 0 0 0644
+vendor/etc/thermal-india-class0.conf 0 0 0644
+vendor/etc/thermal-india-mgame.conf 0 0 0644
+vendor/etc/thermal-india-normal.conf 0 0 0644
+vendor/etc/thermal-india-tgame.conf 0 0 0644
+vendor/etc/thermal-india-video.conf 0 0 0644
+vendor/etc/thermal-map-india.conf 0 0 0644
+vendor/etc/thermal-map.conf 0 0 0644
+vendor/etc/thermal-mgame.conf 0 0 0644
+vendor/etc/thermal-navigation.conf 0 0 0644
+vendor/etc/thermal-nolimits.conf 0 0 0644
+vendor/etc/thermal-normal.conf 0 0 0644
+vendor/etc/thermal-phone.conf 0 0 0644
+vendor/etc/thermal-region-map.conf 0 0 0644
+vendor/etc/thermal-tgame.conf 0 0 0644
+vendor/etc/thermal-video.conf 0 0 0644
+vendor/etc/thermald-devices.conf 0 0 0644"
 #
 productfs="product 0 0 0755
 product/app 0 0 0755
@@ -404,6 +488,22 @@ product/app/GoogleCalendarSyncAdapter 0 0 0755
 product/app/GoogleCalendarSyncAdapter/GoogleCalendarSyncAdapter.apk 0 0 0644
 product/app/GoogleContactsSyncAdapter 0 0 0755
 product/app/GoogleContactsSyncAdapter/GoogleContactsSyncAdapter.apk 0 0 0644
+product/app/Joyose 0 0 0755
+product/app/Joyose/Joyose.apk 0 0 0644
+product/app/MIUIFileExplorer 0 0 0755
+product/app/MIUIFileExplorer/MIUIFileExplorer.apk 0 0 0644
+product/app/MIUIScreenRecorder 0 0 0755
+product/app/MIUIScreenRecorder/MIUIScreenRecorder.apk 0 0 0644
+product/app/MIUIScreenRecorder/MiuiScreenRecorder 0 0 0755
+product/app/MIUIScreenRecorder/MiuiScreenRecorder/MiuiScreenRecorder.apk 0 0 0644
+product/app/MIUIScreenshot 0 0 0755
+product/app/MIUIScreenshot/MIUIScreenshot.apk 0 0 0644
+product/app/MIUIScreenshot/MiuiScreenshot 0 0 0755
+product/app/MIUIScreenshot/MiuiScreenshot/MiuiScreenshot.apk 0 0 0644
+product/app/MIUISystemUIPlugin 0 0 0755
+product/app/MIUISystemUIPlugin/MIUISystemUIPlugin.apk 0 0 0644
+product/app/MIUISystemUIPlugin/MiuiSystemUIPlugin 0 0 0755
+product/app/MIUISystemUIPlugin/MiuiSystemUIPlugin/MiuiSystemUIPlugin.apk 0 0 0644
 product/etc 0 0 0755
 product/etc/default-permissions 0 0 0755
 product/etc/default-permissions/default-permissions-nikgapps.xml 0 0 0644
@@ -448,8 +548,36 @@ product/overlay/GmsCoreOverlay.apk 0 0 0644
 product/priv-app 0 0 0755
 product/priv-app/CarrierServices 0 0 0755
 product/priv-app/CarrierServices/CarrierServices.apk 0 0 0644
+product/priv-app/Gallery_T_CN 0 0 0755
+product/priv-app/Gallery_T_CN/Gallery_T_CN.apk 0 0 0644
 product/priv-app/GoogleServicesFramework 0 0 0755
 product/priv-app/GoogleServicesFramework/GoogleServicesFramework.apk 0 0 0644
+product/priv-app/LatinImeGoogle 0 0 0755
+product/priv-app/LatinImeGoogle/LatinImeGoogle.apk 0 0 0644
+product/priv-app/MIUISecurityCenter 0 0 0755
+product/priv-app/MIUISecurityCenter/MIUISecurityCenter.apk 0 0 0644
+product/priv-app/MIUISecurityCenter/lib 0 0 0755
+product/priv-app/MIUISecurityCenter/lib/arm64 0 0 0755
+product/priv-app/MIUISecurityCenter/lib/arm64/libMNN.so 0 0 0644
+product/priv-app/MIUISecurityCenter/lib/arm64/libMNNTrain.so 0 0 0644
+product/priv-app/MIUISecurityCenter/lib/arm64/libMNN_Express.so 0 0 0644
+product/priv-app/MIUISecurityCenter/lib/arm64/libc++_shared.so 0 0 0644
+product/priv-app/MIUISecurityCenter/lib/arm64/libfastplayer.so 0 0 0644
+product/priv-app/MIUISecurityCenter/lib/arm64/libjni_load_serinum.so 0 0 0644
+product/priv-app/MIUISecurityCenter/lib/arm64/libjni_sound_effect.so 0 0 0644
+product/priv-app/MIUISecurityCenter/lib/arm64/libjni_sound_effect_2_0.so 0 0 0644
+product/priv-app/MIUISecurityCenter/lib/arm64/liblib-riskcontrol.so 0 0 0644
+product/priv-app/MIUISecurityCenter/lib/arm64/libmiffmpeg.so 0 0 0644
+product/priv-app/MIUISecurityCenter/lib/arm64/libmiuiblursdk.so 0 0 0644
+product/priv-app/MIUISecurityCenter/lib/arm64/libmnncore.so 0 0 0644
+product/priv-app/MIUISecurityCenter/lib/arm64/libnap.so 0 0 0644
+product/priv-app/MIUISecurityCenter/lib/arm64/libsec-common-utils.so 0 0 0644
+product/priv-app/MIUISecurityCenter/lib/arm64/libtcp.so 0 0 0644
+product/priv-app/MIUISecurityCenter/lib/arm64/libtensorflowlite_jni.so 0 0 0644
+product/priv-app/MIUISecurityCenter/lib/arm64/libxcrash.so 0 0 0644
+product/priv-app/MIUISecurityCenter/lib/arm64/libxcrash_dumper.so 0 0 0644
+product/priv-app/MiuiCamera 0 0 0755
+product/priv-app/MiuiCamera/MiuiCamera.apk 0 0 0644
 product/priv-app/Phonesky 0 0 0755
 product/priv-app/Phonesky/Phonesky.apk 0 0 0644
 product/priv-app/PrebuiltGmsCore 0 0 0755
@@ -469,8 +597,7 @@ product/priv-app/PrebuiltGmsCore/m/independent 0 0 0755
 product/priv-app/PrebuiltGmsCore/m/independent/AndroidPlatformServices.apk 0 0 0644
 product/priv-app/PrebuiltGmsCore/m/optional 0 0 0755
 product/priv-app/PrebuiltGmsCore/m/optional/MlkitBarcodeUIPrebuilt.apk 0 0 0644
-product/priv-app/PrebuiltGmsCore/m/optional/VisionBarcodePrebuilt.apk 0 0 0644
-$pfs"
+product/priv-app/PrebuiltGmsCore/m/optional/VisionBarcodePrebuilt.apk 0 0 0644"
 #
 system_extfs=""
 }
@@ -560,16 +687,16 @@ if [[ -n "$(echo "$URL" | grep 'CNXM')" ]]; then
   fi
  done
  sudo cp -af $TOME/cauhinh/product/* /mnt/tmp/product
- for tt in $(find $TOME/cauhinh/product -type f); do sudo bash -c "echo '${tt//$TOME\/cauhinh\//} 0 0 0644' >> $TOME/pfs"; ttm="${tt//$TOME\/cauhinh/}"; bash -c "echo '${ttm//./\\.} u:object_r:system_file:s0' >> $TOME/pfc"; done
- for tt in $(find $TOME/cauhinh/product -type d); do sudo bash -c "echo '${tt//$TOME\/cauhinh\//} 0 0 0755' >> $TOME/pfs"; ttm="${tt//$TOME\/cauhinh/}"; bash -c "echo '${ttm//./\\.} u:object_r:system_file:s0' >> $TOME/pfc"; done
+ for tt in $(find $TOME/cauhinh/product -type f); do sudo bash -c "echo '${tt//$TOME\/cauhinh\//} 0 0 0644' >> $TOME/pfs"; ttm="${tt//$TOME\/cauhinh/}"; sudo bash -c "echo '${ttm//./\\.} u:object_r:system_file:s0' >> $TOME/pfc"; done
+ for tt in $(find $TOME/cauhinh/product -type d); do sudo bash -c "echo '${tt//$TOME\/cauhinh\//} 0 0 0755' >> $TOME/pfs"; ttm="${tt//$TOME\/cauhinh/}"; sudo bash -c "echo '${ttm//./\\.} u:object_r:system_file:s0' >> $TOME/pfc"; done
  
  sudo rm -rf $TOME/{tam,gapp,cauhinh} $TOME/gapp.zip
  fi
  Taive "https://sourceforge.net/projects/kudopatch/files/twrp/MiuiMod14.zip" "$TOME/appm.zip"
  if [[ "$(du -m $TOME/appm.zip | awk '{print $1}')" -gt 100 ]]; then echo " * Thêm App Mod..."
  mkdir -p $TOME/tam
- unzip -qo $TOME/appm.zip -d $TOME/tam
- [ $? -ne 0 ] && 7za x -tzip -y $TOME/appm.zip -o$TOME/tam >/dev/null
+ 7za x -tzip -y $TOME/appm.zip -o$TOME/tam >/dev/null
+ [ $? -ne 0 ] && unzip -qo $TOME/appm.zip -d $TOME/tam
  for a in $TOME/tam/product/app/*; do 
  tm=${a//Miui/MIUI}; ttm=${a##*/}; tmm=${ttm//Miui/MIUI}; 
   mv -f $a $tm 2>/dev/null
@@ -603,8 +730,5 @@ done
 fi
 }
 tuychinh
-[[ -n "$(grep '0 0 0' $TOME/pfs)" ]] && pfs=$(cat $TOME/pfs | sort -u) || unset pfs
-[[ -n "$(grep 'u:object' $TOME/pfc)" ]] && pfc=(cat $TOME/pfc | sort -u) || unset pfc
-[[ -n "$(grep 'u:object' $TOME/vfc)" ]] && vfc=(cat $TOME/vfc | sort -u) || unset vfc
 #
 themcauhinh
