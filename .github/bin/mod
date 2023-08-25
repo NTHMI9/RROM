@@ -115,7 +115,7 @@ sudo sed -i '/<\/features>/d' $f
 sudo bash -c "echo '
 <integer name="config_cell_count_y_max">15</integer>
 <integer name="config_cell_count_x_max">15</integer>
-<integer name="support_widevine_l1">2</integer>
+<integer name="support_widevine_l1">1</integer>
 <bool name="support_sound_assist">true</bool>
 <bool name="is_support_video_tool_box">true</bool>
 <bool name="support_videobox_display_effect">true</bool>
