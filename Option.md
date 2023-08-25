@@ -32,7 +32,7 @@ Xoadex="services.art services.odex services.vdex miui-services.odex miui-service
 Tacgia="chamchamfy"
 
 ### Thêm Harman Kardon (Không hoạt động)
-HK="0"
+HK="1"
 
 ### Thêm Adreno GPU Driver
 GPU="0"
