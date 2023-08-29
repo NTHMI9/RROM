@@ -1,14 +1,15 @@
 #!/bin/bash
 TOME="$GITHUB_WORKSPACE"
-tenmamay=$(sudo grep 'ro.product.vendor.device' /mnt/tmp/vendor/build.prop | awk -F= '{print $2}' | awk '{$1=$1}{print}')
+phanvungtam=$TOME/Unpack
+tenmamay=$(sudo grep 'ro.product.vendor.device' $phanvungtam/vendor/build.prop | awk -F= '{print $2}' | awk '{$1=$1}{print}')
 # Thư mục chứa apk,jar đã mod: $TOME/Mod
 # Tìm tập tin apk,jar chép vào $TOME/Mod: [ Timfile *.apk/*.jar ]
 # Giải nén dex trong apk/jar từ thư mục $TOME/Mod: [ Unpackfile ] 
 # Đóng gói lại dex thành jar/apk vào thư mục $TOME/Mod: [ Repackfile ]
-# Đường dẫn thư mục system: /mnt/tmp/system/system 
-# Đường dẫn thư mục vendor: /mnt/tmp/vendor 
-# Đường dẫn thư mục product: /mnt/tmp/product 
-# Đường dẫn thư mục system_ext: /mnt/tmp/system_ext
+# Đường dẫn thư mục system: $phanvungtam/system/system 
+# Đường dẫn thư mục vendor: $phanvungtam/vendor 
+# Đường dẫn thư mục product: $phanvungtam/product 
+# Đường dẫn thư mục system_ext: $phanvungtam/system_ext
 
 cuphap() {
 # Nếu biết tên smali
@@ -107,7 +108,7 @@ done
 Caidat
 #
 tinhnang() {
-for p in /mnt/tmp/product /mnt/tmp/system/system /mnt/tmp/vendor; do 
+for p in $phanvungtam/product $phanvungtam/system/system $phanvungtam/vendor; do 
  if [ -d $p/etc/device_features ]; then
   for f in $p/etc/device_features/*.xml; do
    if [ -z "$(sudo grep -m1 'miui_volume_expand_freeland' $f)" ]; then 
@@ -626,9 +627,9 @@ mkdir -p $TOME/VH
 #Taive "https://github.com/kakathic/ZH-VN/releases/download/HH/TT_1.8.Zip" "$TOME/VH.zip"
 Taive "https://github.com/chamchamfy/toolcc/raw/main/overlay.zip" "$TOME/VH.zip"
 7za x -tzip -y "$TOME/VH.zip" -o$TOME/VH >/dev/null
-[[ -e /mnt/tmp/product/overlay ]] && TMVH=/mnt/tmp/product/overlay || TMVH=/mnt/tmp/vendor/overlay
+[[ -e $phanvungtam/product/overlay ]] && TMVH=$phanvungtam/product/overlay || TMVH=$phanvungtam/vendor/overlay
 sudo cp -af $TOME/VH/apk/* $TMVH
-[[ -d /mnt/tmp/system/system/media ]] && sudo cp -rf $TOME/VH/framework-miui-res /mnt/tmp/system/system/media/theme/default || sudo cp -rf $TOME/VH/framework-miui-res /mnt/tmp/product/media/theme/default
+[[ -d $phanvungtam/system/system/media ]] && sudo cp -rf $TOME/VH/framework-miui-res $phanvungtam/system/system/media/theme/default || sudo cp -rf $TOME/VH/framework-miui-res $phanvungtam/product/media/theme/default
 sudo rm -rf $TOME/VH
 fi
 } 
@@ -637,7 +638,7 @@ ngonngu
 if [[ "$HK" == "1" ]]; then echo " * Thêm Harman Kardon..."
 mkdir -p $TOME/tam
 7za x -tzip -y $TOME/.github/HarmanKardon.zip -o$TOME/tam >/dev/null
-sudo cp -af $TOME/tam/system/vendor/* /mnt/tmp/vendor 
+sudo cp -af $TOME/tam/system/vendor/* $phanvungtam/vendor 
 sudo rm -rf $TOME/tam
 fi 
 #
@@ -652,13 +653,13 @@ if [[ "$GPU" == "1" ]]; then
 if [[ -s "$TOME/AdrenoGPUDriver.zip" ]]; then echo " * Thêm Adreno GPU Driver..."
 mkdir -p $TOME/tam
 7za x -tzip -y $TOME/AdrenoGPUDriver.zip -o$TOME/tam >/dev/null
-sudo cp -af $TOME/tam/system/vendor/* /mnt/tmp/vendor 
+sudo cp -af $TOME/tam/system/vendor/* $phanvungtam/vendor 
 sudo rm -rf $TOME/tam $TOME/AdrenoGPUDriver.zip
 fi 
 fi 
 #
 #
-[[ "$tenmamay" == "vili" ]] && sudo cp -af $TOME/.github/libpy/input/* /mnt/tmp || tinhnang
+[[ "$tenmamay" == "vili" ]] && sudo cp -af $TOME/.github/libpy/input/* $phanvungtam || tinhnang
 #
 #
 if [[ "$twrp" == "1" ]]; then echo " * Thêm BOOT TWRP $tenmamay..."
@@ -699,7 +700,7 @@ if [[ -n "$(echo "$URL" | grep 'CNXM')" ]]; then
     sudo cp -af $t/* $tm
   fi
  done
- sudo cp -af $TOME/cauhinh/product/* /mnt/tmp/product
+ sudo cp -af $TOME/cauhinh/product/* $phanvungtam/product
  for tt in $(find $TOME/cauhinh/product -type f); do sudo bash -c "echo '${tt//$TOME\/cauhinh\//} 0 0 0644' >> $TOME/pfs"; ttm="${tt//$TOME\/cauhinh/}"; sudo bash -c "echo '${ttm//./\\.} u:object_r:system_file:s0' >> $TOME/pfc"; done
  for tt in $(find $TOME/cauhinh/product -type d); do sudo bash -c "echo '${tt//$TOME\/cauhinh\//} 0 0 0755' >> $TOME/pfs"; ttm="${tt//$TOME\/cauhinh/}"; sudo bash -c "echo '${ttm//./\\.} u:object_r:system_file:s0' >> $TOME/pfc"; done
  
@@ -724,10 +725,10 @@ if [[ -n "$(echo "$URL" | grep 'CNXM')" ]]; then
  for tt in $(find $TOME/tam/product/*app -type d); do sudo bash -c "echo '${tt//$TOME\/tam\//} 0 0 0755' >> $TOME/pfs"; ttm="${tt//$TOME\/tam/}"; sudo bash -c "echo '${ttm//./\\.} u:object_r:system_file:s0' >> $TOME/pfc"; done
  for tt in $(find $TOME/tam/product/*app -type f); do sudo bash -c "echo '${tt//$TOME\/tam\//} 0 0 0644' >> $TOME/pfs"; ttm="${tt//$TOME\/tam/}"; sudo bash -c "echo '${ttm//./\\.} u:object_r:system_file:s0' >> $TOME/pfc"; done
 
-  sudo cp -af $TOME/tam/product/*app /mnt/tmp/product 2>/dev/null
-  sudo cp -af $TOME/tam/vendor/*app /mnt/tmp/vendor 2>/dev/null
-  sudo cp -af $TOME/tam/system_ext/*app /mnt/tmp/system_ext 2>/dev/null
-  sudo cp -af $TOME/tam/system/*app /mnt/tmp/system/system 2>/dev/null
+  sudo cp -af $TOME/tam/product/*app $phanvungtam/product 2>/dev/null
+  sudo cp -af $TOME/tam/vendor/*app $phanvungtam/vendor 2>/dev/null
+  sudo cp -af $TOME/tam/system_ext/*app $phanvungtam/system_ext 2>/dev/null
+  sudo cp -af $TOME/tam/system/*app $phanvungtam/system/system 2>/dev/null
   sudo rm -rf $TOME/tam $TOME/appm.zip
  fi
 fi
