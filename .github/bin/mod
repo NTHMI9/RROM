@@ -1,5 +1,6 @@
 #!/bin/bash
 TOME="$GITHUB_WORKSPACE"
+#phanvungtam=/mnt/tmp
 phanvungtam=$TOME/Unpack
 tenmamay=$(sudo grep 'ro.product.vendor.device' $phanvungtam/vendor/build.prop | awk -F= '{print $2}' | awk '{$1=$1}{print}')
 # Thư mục chứa apk,jar đã mod: $TOME/Mod
@@ -643,10 +644,12 @@ sudo rm -rf $TOME/tam
 fi 
 #
 if [[ "$GPU" == "1" ]]; then 
- if [[ "$GPU770" == "1" ]]; then 
- Taive "https://github.com/chamchamfy/toolcc/raw/main/AdrenoGPUDriver770.zip" "$TOME/AdrenoGPUDriver.zip"
+ if [[ "$GPU690" == "1" ]]; then 
+ Taive "https://github.com/chamchamfy/toolcc/raw/main/AdrenoGPUDriver690.zip" "$TOME/AdrenoGPUDriver.zip"
  elif [[ "$GPU725" == "1" ]]; then 
  Taive "https://github.com/chamchamfy/toolcc/raw/main/AdrenoGPUDriver725.zip" "$TOME/AdrenoGPUDriver.zip"
+ elif [[ "$GPU651" == "1" ]]; then 
+ Taive "https://github.com/chamchamfy/toolcc/raw/main/AdrenoGPUDriver651.zip" "$TOME/AdrenoGPUDriver.zip"
  elif [[ "$GPU615" == "1" ]]; then 
  Taive "https://github.com/chamchamfy/toolcc/raw/main/AdrenoGPUDriver615.zip" "$TOME/AdrenoGPUDriver.zip"
  fi 
