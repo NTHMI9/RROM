@@ -40,10 +40,12 @@ GPU="1"
 ### Tùy chọn phiên bản Adreno GPU Driver
 #SDM8250
 
-GPU770="0"
+GPU690="0"
 
 GPU725="0"
 
 #SDM8350+
 
 GPU615="1"
+
+GPU651="0"
