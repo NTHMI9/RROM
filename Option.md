@@ -14,7 +14,7 @@ Dinhdangphanvung="ext4"
 chedo="none"
 
 ### Vá fstab (decrypt)
-Vfstab="0"
+Vfstab="1"
 
 ### Vá hệ thống
 Vsys="1"
