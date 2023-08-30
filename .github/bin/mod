@@ -2,7 +2,7 @@
 TOME="$GITHUB_WORKSPACE"
 #phanvungtam=/mnt/tmp
 phanvungtam=$TOME/Unpack
-tenmamay=$(sudo grep 'ro.product.vendor.device' $phanvungtam/vendor/build.prop | awk -F= '{print $2}' | awk '{$1=$1}{print}')
+tenmamay=$(sudo grep 'ro.product.odm.device' $phanvungtam/odm/etc/build.prop | awk -F= '{print $2}' | awk '{$1=$1}{print}')
 # Thư mục chứa apk,jar đã mod: $TOME/Mod
 # Tìm tập tin apk,jar chép vào $TOME/Mod: [ Timfile *.apk/*.jar ]
 # Giải nén dex trong apk/jar từ thư mục $TOME/Mod: [ Unpackfile ] 
