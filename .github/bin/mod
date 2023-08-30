@@ -213,6 +213,7 @@ vendorfc="/vendor/etc/permissions/public\.libraries\.txt u:object_r:same_process
 /vendor/lib/egl/eglSubDriverAndroid\.so u:object_r:system_lib_file:s0
 /vendor/lib/egl/libEGL_adreno\.so u:object_r:system_lib_file:s0
 /vendor/lib/egl/libGLESv1_CM_adreno\.so u:object_r:system_lib_file:s0
+/vendor/lib/egl/libGLESv2_adreno\.so u:object_r:system_lib_file:s0
 /vendor/lib/egl/libVkLayer_ADRENO_qprofiler\.so u:object_r:system_lib_file:s0
 /vendor/lib/egl/libq3dtools_adreno\.so u:object_r:system_lib_file:s0
 /vendor/lib/egl/libq3dtools_esx\.so u:object_r:system_lib_file:s0
@@ -236,6 +237,9 @@ vendorfc="/vendor/etc/permissions/public\.libraries\.txt u:object_r:same_process
 /vendor/lib64/android\.hardware\.graphics\.bufferqueue@1\.0\.so u:object_r:same_process_hal_file:s0
 /vendor/lib64/android\.hardware\.graphics\.bufferqueue@2\.0\.so u:object_r:same_process_hal_file:s0
 /vendor/lib64/android\.hardware\.graphics\.bufferqueue@3\.0\.so u:object_r:same_process_hal_file:s0
+/vendor/lib64/android\.hardware\.graphics\.common@1\.0\.so u:object_r:same_process_hal_file:s0
+/vendor/lib64/android\.hardware\.graphics\.common@1\.1\.so u:object_r:same_process_hal_file:s0
+/vendor/lib64/android\.hardware\.graphics\.common@1\.2\.so u:object_r:same_process_hal_file:s0
 /vendor/lib64/android\.hardware\.graphics\.composer@2\.2-resources\.so u:object_r:same_process_hal_file:s0
 /vendor/lib64/android\.hardware\.graphics\.composer@2\.3-resources\.so u:object_r:same_process_hal_file:s0
 /vendor/lib64/android\.hardware\.graphics\.composer@2\.4-resources\.so u:object_r:same_process_hal_file:s0
@@ -247,6 +251,12 @@ vendorfc="/vendor/etc/permissions/public\.libraries\.txt u:object_r:same_process
 /vendor/lib64/egl/libq3dtools_adreno\.so u:object_r:system_lib_file:s0
 /vendor/lib64/egl/libq3dtools_esx\.so u:object_r:system_lib_file:s0
 /vendor/lib64/gpu\+\+\.so u:object_r:same_process_hal_file:s0
+/vendor/lib64/hw/libbacktrace\.so u:object_r:same_process_hal_file:s0
+/vendor/lib64/hw/libcutils\.so u:object_r:same_process_hal_file:s0
+/vendor/lib64/hw/libhardware\.so u:object_r:same_process_hal_file:s0
+/vendor/lib64/hw/liblog\.so u:object_r:same_process_hal_file:s0
+/vendor/lib64/hw/libnativewindow\.so u:object_r:same_process_hal_file:s0
+/vendor/lib64/hw/libsync\.so u:object_r:same_process_hal_file:s0
 /vendor/lib64/hw/vulkan\.adreno\.so u:object_r:same_process_hal_file:s0
 /vendor/lib64/libEGL_adreno\.so u:object_r:same_process_hal_file:s0
 /vendor/lib64/libGLESv2_adreno\.so u:object_r:same_process_hal_file:s0
@@ -256,11 +266,13 @@ vendorfc="/vendor/etc/permissions/public\.libraries\.txt u:object_r:same_process
 /vendor/lib64/libc\+\+\.so u:object_r:same_process_hal_file:s0
 /vendor/lib64/libcutils\.so u:object_r:same_process_hal_file:s0
 /vendor/lib64/libdmabufheap\.so u:object_r:system_lib_file:s0
+/vendor/lib64/libgfxstats\.so u:object_r:same_process_hal_file:s0
 /vendor/lib64/libgpu_tonemapper\.so u:object_r:same_process_hal_file:s0
 /vendor/lib64/libgpumemtracer\.so u:object_r:same_process_hal_file:s0
 /vendor/lib64/libgpuservice\.so u:object_r:same_process_hal_file:s0
 /vendor/lib64/libgsl\.so u:object_r:same_process_hal_file:s0
 /vendor/lib64/libllvm-glnext\.so u:object_r:same_process_hal_file:s0
+/vendor/lib64/libllvm-qcom\.so u:object_r:same_process_hal_file:s0
 /vendor/lib64/libllvm-qgl\.so u:object_r:same_process_hal_file:s0
 /vendor/lib64/libq3dtools_adreno\.so u:object_r:same_process_hal_file:s0
 /vendor/lib64/notgsl\.so u:object_r:same_process_hal_file:s0
@@ -399,8 +411,10 @@ system_extfc=''
 systemfs=''
 #
 vendorfs="vendor/etc/permissions/public.libraries.txt 0 0 0644
+vendor/firmware/a630_sqe.fw 0 0 0644
 vendor/firmware/a650_gmu.bin 0 0 0644
 vendor/firmware/a650_sqe.fw 0 0 0644
+vendor/firmware/a660_sqe.fw 0 0 0644
 vendor/lib/egl/eglSubDriverAndroid.so 0 0 0644
 vendor/lib/egl/libEGL_adreno.so 0 0 0644
 vendor/lib/egl/libGLESv1_CM_adreno.so 0 0 0644
@@ -415,6 +429,7 @@ vendor/lib/libadreno_app_profiles.so 0 0 0644
 vendor/lib/libadreno_utils.so 0 0 0644
 vendor/lib/libbase64.so 0 0 0644
 vendor/lib/libdmabufheap.so 0 0 0644
+vendor/lib/libgsl.so 0 0 0644
 vendor/lib/libllvm-glnext.so 0 0 0644
 vendor/lib/libllvm-qgl.so 0 0 0644
 vendor/lib/libq3dtools_adreno.so 0 0 0644
@@ -428,6 +443,9 @@ vendor/lib/vendor.qti.hardware.graphics.composer@1.1.so 0 0 0644
 vendor/lib64/android.hardware.graphics.bufferqueue@1.0.so 0 0 0644
 vendor/lib64/android.hardware.graphics.bufferqueue@2.0.so 0 0 0644
 vendor/lib64/android.hardware.graphics.bufferqueue@3.0.so 0 0 0644
+vendor/lib64/android.hardware.graphics.common@1.0.so 0 0 0644
+vendor/lib64/android.hardware.graphics.common@1.1.so 0 0 0644
+vendor/lib64/android.hardware.graphics.common@1.2.so 0 0 0644
 vendor/lib64/android.hardware.graphics.composer@2.2-resources.so 0 0 0644
 vendor/lib64/android.hardware.graphics.composer@2.3-resources.so 0 0 0644
 vendor/lib64/android.hardware.graphics.composer@2.4-resources.so 0 0 0644
@@ -439,6 +457,12 @@ vendor/lib64/egl/libVkLayer_ADRENO_qprofiler.so 0 0 0644
 vendor/lib64/egl/libq3dtools_adreno.so 0 0 0644
 vendor/lib64/egl/libq3dtools_esx.so 0 0 0644
 vendor/lib64/gpu++.so 0 0 0644
+vendor/lib64/hw/libbacktrace.so 0 0 0644
+vendor/lib64/hw/libcutils.so 0 0 0644
+vendor/lib64/hw/libhardware.so 0 0 0644
+vendor/lib64/hw/liblog.so 0 0 0644
+vendor/lib64/hw/libnativewindow.so 0 0 0644
+vendor/lib64/hw/libsync.so 0 0 0644
 vendor/lib64/hw/vulkan.adreno.so 0 0 0644
 vendor/lib64/libEGL_adreno.so 0 0 0644
 vendor/lib64/libGLESv2_adreno.so 0 0 0644
@@ -448,12 +472,14 @@ vendor/lib64/libbase64.so 0 0 0644
 vendor/lib64/libc++.so 0 0 0644
 vendor/lib64/libcutils.so 0 0 0644
 vendor/lib64/libdmabufheap.so 0 0 0644
+vendor/lib64/libgfxstats.so 0 0 0644
 vendor/lib64/libgpu_tonemapper.so 0 0 0644
 vendor/lib64/libgpudataproducer.so 0 0 0644
 vendor/lib64/libgpumemtracer.so 0 0 0644
 vendor/lib64/libgpuservice.so 0 0 0644
 vendor/lib64/libgsl.so 0 0 0644
 vendor/lib64/libllvm-glnext.so 0 0 0644
+vendor/lib64/libllvm-qcom.so 0 0 0644
 vendor/lib64/libllvm-qgl.so 0 0 0644
 vendor/lib64/libq3dtools_adreno.so 0 0 0644
 vendor/lib64/notgsl.so 0 0 0644
