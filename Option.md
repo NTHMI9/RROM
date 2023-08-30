@@ -31,6 +31,12 @@ Xoadex="services.art services.odex services.vdex miui-services.odex miui-service
 ### Tác giả
 Tacgia="chamchamfy"
 
+### Thêm GAPP
+GAPP="0"
+
+### Thêm App mod
+APPM="0"
+
 ### Thêm Harman Kardon
 HK="1"
 
@@ -40,10 +46,12 @@ GPU="1"
 ### Tùy chọn phiên bản Adreno GPU Driver
 #SDM8250
 
-GPU770="0"
+GPU725V4="0"
 
 GPU725="0"
 
 #SDM8350+
 
-GPU615="1"
+GPU615="0"
+
+GPU651="1"
