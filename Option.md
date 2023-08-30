@@ -14,7 +14,7 @@ Dinhdangphanvung="ext4"
 chedo="none"
 
 ### Vá fstab (decrypt)
-Vfstab="0"
+Vfstab="1"
 
 ### Vá hệ thống
 Vsys="1"
@@ -50,8 +50,9 @@ GPU725V4="0"
 
 GPU725="0"
 
-#SDM8350+
+#SDM8350
 
 GPU615="0"
 
 GPU651="1"
+

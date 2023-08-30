@@ -1,5 +1,6 @@
 #!/bin/bash
 TOME="$GITHUB_WORKSPACE"
+#phanvungtam=/mnt/tmp
 phanvungtam=$TOME/Unpack
 tenmamay=$(sudo grep 'ro.product.vendor.device' $phanvungtam/vendor/build.prop | awk -F= '{print $2}' | awk '{$1=$1}{print}')
 # Thư mục chứa apk,jar đã mod: $TOME/Mod
@@ -342,7 +343,7 @@ productfc="/product u:object_r:system_file:s0
 /product/priv-app/Gallery_T_CN u:object_r:system_file:s0
 /product/priv-app/Gallery_T_CN/Gallery_T_CN\.apk u:object_r:system_file:s0
 /product/priv-app/MiuiGallery u:object_r:system_file:s0
-/product/priv-app/MiuiGallery/MiuiGallery.apk u:object_r:system_file:s0
+/product/priv-app/MiuiGallery/MiuiGallery\.apk u:object_r:system_file:s0
 /product/priv-app/GoogleServicesFramework u:object_r:system_file:s0
 /product/priv-app/GoogleServicesFramework/GoogleServicesFramework\.apk u:object_r:system_file:s0
 /product/priv-app/LatinImeGoogle u:object_r:system_file:s0
