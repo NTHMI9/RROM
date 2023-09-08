@@ -697,18 +697,21 @@ fi
 #
 if [[ "$twrp" == "1" ]]; then echo " * Thêm BOOT TWRP $tenmamay..."
  mkdir -p $TOME/twrp
+ if [[ -n "$(grep 'recovery' $phanvungtam/vendor/etc/fstab.*)" ]]; then 
+  [[ "$tenmamay" == "vili" ]] && linktwrp='https://sourceforge.net/projects/recovery-for-xiaomi-devices/files/vili/twrp-3.7.0_12-v7.9_A13-vili-skkk.img'
+  Taive "$linktwrp" "$TOME/twrp/recovey.img"
+ else 
  if [[ -n "$(echo "$URL" | grep 'MIXM')" ]]; then linktwrp="https://sourceforge.net/projects/chamchamfy/files/Tools/boot_global_$tenmamay.img"
  elif [[ -n "$(echo "$URL" | grep 'TWXM')" ]]; then linktwrp="https://sourceforge.net/projects/chamchamfy/files/Tools/boot_tw_$tenmamay.img"
  elif [[ -n "$(echo "$URL" | grep 'IDXM')" ]]; then linktwrp="https://sourceforge.net/projects/chamchamfy/files/Tools/boot_id_$tenmamay.img"
- elif [[ -n "$(echo "$URL" | grep 'EUXM')" ]]; then linktwrp="https://sourceforge.net/projects/chamchamfy/files/Tools/boot_eu_$tenmamay.img"
  elif [[ -n "$(echo "$URL" | grep 'CNXM')" ]]; then linktwrp="https://sourceforge.net/projects/kudopatch/files/boot/boot_cn_$tenmamay.img"
  else
-[[ "$tenmamay" == "vili" ]] && linktwrp='https://sourceforge.net/projects/recovery-for-xiaomi-devices/files/vili/twrp-3.7.0_12-v7.9_A13-vili-skkk.img'
-[[ "$tenmamay" == "alioth" ]] && linktwrp='https://sourceforge.net/projects/recovery-for-xiaomi-devices/files/alioth/twrp-3.7.0_12-v7.9_A13-alioth-skkk.img'
+ [[ "$tenmamay" == "vili" ]] && linktwrp='https://sourceforge.net/projects/recovery-for-xiaomi-devices/files/vili/twrp-3.7.0_12-v7.9_A13-vili-skkk.img'
+ [[ "$tenmamay" == "alioth" ]] && linktwrp='https://sourceforge.net/projects/recovery-for-xiaomi-devices/files/alioth/twrp-3.7.0_12-v7.9_A13-alioth-skkk.img'
  fi
  Taive "$linktwrp" "$TOME/twrp/boot.img"
- #wget "$linktwrp" -O "$TOME/twrp/boot.img"
- du -m $TOME/twrp/boot.img 2>/dev/null
+ fi
+ du -m $TOME/twrp/*.img 2>/dev/null
 fi
 #
 if [[ "$GAPP" == "1" ]]; then 
