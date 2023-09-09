@@ -25,9 +25,6 @@ TKM="0"
 ### Thêm twrp. Tùy chỉnh trong tập tin .github/bin/mod cho phù hợp dòng máy
 twrp="1"
 
-### Xoá odex vdex... Khi tùy chọn vá hệ thống bật
-Xoadex="services.art services.odex services.vdex miui-services.odex miui-services.vdex framework.odex framework.vdex miui-framework.odex miui-framework.vdex #Settings.odex #Settings.vdex"
-
 ### Tác giả
 Tacgia="chamchamfy"
 
