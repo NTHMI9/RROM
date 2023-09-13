@@ -14,7 +14,7 @@ Dinhdangphanvung="ext4"
 chedo="none"
 
 ### Vá fstab (decrypt)
-Vfstab="0"
+Vfstab="1"
 
 ### Vá hệ thống
 Vsys="1"
@@ -29,7 +29,7 @@ twrp="1"
 Tacgia="chamchamfy"
 
 ### Thêm GAPP
-GAPP="0"
+GAPP="1"
 
 ### Thêm App mod
 APPM="0"
