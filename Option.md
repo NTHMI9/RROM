@@ -29,7 +29,7 @@ twrp="1"
 Tacgia="chamchamfy"
 
 ### Thêm GAPP
-GAPP="1"
+GAPP="0"
 
 ### Thêm App mod
 APPM="0"
@@ -49,7 +49,7 @@ GPU725="0"
 
 #SDM8350
 
-GPU615="1"
+GPU615="0"
 
-GPU651="0"
+GPU651="1"
 
