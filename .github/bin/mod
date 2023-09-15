@@ -660,7 +660,7 @@ Taive "https://github.com/chamchamfy/toolcc/raw/main/overlay.zip" "$TOME/VH.zip"
 7za x -tzip -y "$TOME/VH.zip" -o$TOME/VH >/dev/null
 [[ -e $phanvungtam/product/overlay ]] && TMVH=$phanvungtam/product/overlay || TMVH=$phanvungtam/vendor/overlay
 sudo cp -af $TOME/VH/apk/* $TMVH
-sudo cp -af $TOME/VH/apk/GmsConfigOverlayCommon.apk $TMVH
+sudo cp -af $TOME/VH/GmsConfigOverlayCommon.apk $TMVH
 #[[ -d $phanvungtam/system/system/media ]] && sudo cp -rf $TOME/VH/framework-miui-res $phanvungtam/system/system/media/theme/default || sudo cp -rf $TOME/VH/framework-miui-res $phanvungtam/product/media/theme/default
 sudo rm -rf $TOME/VH
 fi
