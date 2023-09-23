@@ -160,7 +160,6 @@ Photos
 PlatformNetworkPermissionConfig
 PlayAutoInstallStubApp
 Podcasts
-PrintRecommendationService
 PrintSpooler
 Protips
 ProxyHandler
