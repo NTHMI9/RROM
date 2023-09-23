@@ -45,7 +45,7 @@ BookmarkProvider
 Browser 
 Chrome
 Chrome64
-CloudPrint2 
+#CloudPrint2 
 CtsShimPrebuilt
 DMRegService
 #DiracAudioControlService
@@ -139,7 +139,6 @@ MiuiBugReportGlobal
 MiuiCompass
 MiuiContentExtension
 MiuiDaemon
-MiuiPrintSpoolerBeta
 MiuiScanner
 MiuiVideoGlobal 
 MiuiVipService
@@ -160,7 +159,6 @@ Photos
 PlatformNetworkPermissionConfig
 PlayAutoInstallStubApp
 Podcasts
-PrintSpooler
 Protips
 ProxyHandler
 QuickSearchBox
