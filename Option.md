@@ -17,7 +17,7 @@ chedo="none"
 Vfstab="0"
 
 ### Vá hệ thống
-Vsys="1"
+Vsys="0"
 
 ### Chuyển Tài khoản Mi lên đầu. Tùy chỉnh trong tập tin .github/bin/mod khi mod Settings
 TKM="0"
