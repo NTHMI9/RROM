@@ -38,7 +38,7 @@ APPM="0"
 HK="1"
 
 ### Thêm Adreno GPU Driver
-GPU="1"
+GPU="0"
 
 ### Tùy chọn phiên bản Adreno GPU Driver
 #SDM8250
