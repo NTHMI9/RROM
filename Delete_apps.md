@@ -54,7 +54,7 @@ Duo
 DynamicSystemInstallationService
 EasterEgg
 Email 
-FusedLocationProvider
+#FusedLocationProvider
 #FamilyLinkParentalControls
 GameCenter
 GameCenterGlobal
@@ -64,8 +64,8 @@ GoogleLocationHistory
 GoogleNews
 GoogleOne
 GoogleOneTimeInitializer 
-HybridAccessory
-HybridPlatform
+#HybridAccessory
+#HybridPlatform
 KSICibaEngine 
 MIBrowserGlobal 
 MIBrowserGlobal_removable
@@ -137,7 +137,7 @@ MiuiAudioMonitor
 MiuiBugReport
 MiuiBugReportGlobal
 MiuiCompass
-MiuiContentExtension
+#MiuiContentExtension
 MiuiDaemon
 MiuiScanner
 MiuiVideoGlobal 
@@ -156,7 +156,7 @@ PaymentService_Global
 PersonalSafety
 PhotoTable
 Photos
-PlatformNetworkPermissionConfig
+#PlatformNetworkPermissionConfig
 PlayAutoInstallStubApp
 Podcasts
 Protips
@@ -164,7 +164,7 @@ ProxyHandler
 QuickSearchBox
 QuickSearchBox_M2M3
 RideModeAudio
-SecureElement
+#SecureElement
 SimAppDialog
 SmartHome
 SmartTravel
@@ -204,14 +204,14 @@ com.google.mainline.adservices
 com.iflytek.inputmethod.miui
 com.miui.qr
 #com.xiaomi.ugd
-dpmserviceapp
+#dpmserviceapp
 facebook-appmanager
 facebook-installer
 facebook-services
 greenguard
 mab 
 mi_connect_service
-seccamservice
+#seccamservice
 slaservice 
 talkback
 tv.danmaku.bili_26
