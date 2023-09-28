@@ -17,7 +17,7 @@ chedo="none"
 Vfstab="0"
 
 ### Vá hệ thống
-Vsys="0"
+Vsys="1"
 
 ### Chuyển Tài khoản Mi lên đầu. Tùy chỉnh trong tập tin .github/bin/mod khi mod Settings
 TKM="0"
@@ -35,10 +35,10 @@ GAPP="0"
 APPM="0"
 
 ### Thêm Harman Kardon
-HK="0"
+HK="1"
 
 ### Thêm Adreno GPU Driver
-GPU="0"
+GPU="1"
 
 ### Tùy chọn phiên bản Adreno GPU Driver
 #SDM8250
