@@ -251,7 +251,7 @@
     <!--Left margin of count down parent layout for front camera-->
     <float name="camera_front_count_down_margin">-0.5573</float>
     <bool name="front_fingerprint_sensor">false</bool>
-    <!--whether the device supports smart cover with small window-->$
+    <!--whether the device supports smart cover with small window-->
     <bool name="support_small_win_cover">true</bool>
     <!--0: x7 type; 1: A1 type -->
     <integer name="small_win_cover_type">1</integer>
@@ -265,6 +265,10 @@
         <item>uinput-goodix</item>
     </string-array>
     <bool name="support_tap_fingerprint_sensor_to_home">true</bool>
+    <bool name="support_game_dim">true</bool>
+    <bool name="miui_volume_expand_freeland">true</bool>
+    <integer name="config_cell_count_y_max">15</integer>
+    <integer name="config_cell_count_x_max">15</integer>
     <!-- finger for alipay. default do not need config. -->
     <string name="finger_alipay_ifaa_model">Xiaomi-umi</string>
     <!-- type of soter finger pay, config by owner of soter -->

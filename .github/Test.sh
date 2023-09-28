@@ -58,6 +58,6 @@ fi
 
 #Taidulieu
 . $TOME/Option.md
-sudo $TOME/.github/bin/lpmakes
+. $TOME/.github/bin/mod
 
 echo "- Kết thúc" 
