@@ -35,7 +35,7 @@ GAPP="0"
 APPM="0"
 
 ### Thêm Harman Kardon
-HK="1"
+HK="0"
 
 ### Thêm Adreno GPU Driver
 GPU="0"
