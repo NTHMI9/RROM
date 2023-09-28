@@ -38,7 +38,7 @@ AiAsstVision_L2
 AiAsstVision_8550
 AnalyticsCore
 AndroidAutoStub
-AutoRegistration
+#AutoRegistration
 BaiduIME
 BasicDreams
 BookmarkProvider
@@ -47,7 +47,7 @@ Chrome
 Chrome64
 #CloudPrint2 
 CtsShimPrebuilt
-DMRegService
+#DMRegService
 #DiracAudioControlService
 Driver
 Duo
@@ -60,7 +60,7 @@ GameCenter
 GameCenterGlobal
 Gmail2
 GoogleFeedback 
-GoogleLocationHistory 
+#GoogleLocationHistory 
 GoogleNews
 GoogleOne
 GoogleOneTimeInitializer 
@@ -150,7 +150,7 @@ NextPay
 Notes
 ONS
 Opera
-PacProcessor
+#PacProcessor
 PaymentService
 PaymentService_Global
 PersonalSafety
@@ -159,7 +159,7 @@ Photos
 #PlatformNetworkPermissionConfig
 PlayAutoInstallStubApp
 Podcasts
-Protips
+#Protips
 ProxyHandler
 QuickSearchBox
 QuickSearchBox_M2M3
@@ -174,10 +174,10 @@ Stk
 SystemAppUpdater
 SystemHelper
 TSMClient
-Tag
+#Tag
 ThirdAppAssistant
-Traceur
-TranslationService
+#Traceur
+#TranslationService
 UPTsmService
 UserDictionaryProvider 
 Videos
@@ -188,8 +188,8 @@ VoiceAssistAndroidT
 VoiceTrigger
 VsimCore
 WAPPushManager
-WMService
-WfdService
+#WMService
+#WfdService
 XMCloudEngine
 XMPass
 Xinre 
@@ -212,7 +212,7 @@ greenguard
 mab 
 mi_connect_service
 #seccamservice
-slaservice 
+#slaservice 
 talkback
 tv.danmaku.bili_26
-xdivert
+#xdivert
