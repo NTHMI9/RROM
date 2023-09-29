@@ -157,7 +157,7 @@ PersonalSafety
 PhotoTable
 Photos
 #PlatformNetworkPermissionConfig
-PlayAutoInstallStubApp
+#PlayAutoInstallStubApp
 Podcasts
 Protips
 ProxyHandler
