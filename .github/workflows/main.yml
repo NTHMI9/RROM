@@ -13,7 +13,7 @@ on:
          - https://bigota.d.miui.com/V14.0.4.0.TKDIDXM/miui_VILIIDGlobal_V14.0.4.0.TKDIDXM_85f11f8734_13.0.zip
          - https://bigota.d.miui.com/V14.0.4.0.TKDINXM/miui_VILIINGlobal_V14.0.4.0.TKDINXM_1f3be070c3_13.0.zip
       SIZE:
-        description: 'Kích cỡ phân vùng super: #Có 5 hoặc 6 phân vùng chọn 8.5 #Có 7 phân vùng chọn 9 #Có 8 phân vùng chọn 9.5'
+        description: 'Kích cỡ phân vùng super: 8.5 | 9 | 9.5'
         required: true
         default: '8.5'
         type: choice
