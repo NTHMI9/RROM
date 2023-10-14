@@ -30,18 +30,24 @@ on property:init.svc.thermal-engine=running
     stop connsyslogger
     stop debuggerd
     stop vmstat
-# Set boot completed
-on property:sys.boot_completed=1
-	chmod 0755 /system/bin/spm
-	chmod 0731 /data/system/theme
-	exec u:r:init:s0 root root -- /system/bin/spm 
-	exec u:r:sysinit:s0 root root -- /system/bin/spm 
-	exec -- /system/bin/spm 
+# Van tay
+on init && property:ro.product.build.version.sdk=30
+    setprop ro.com.google.build.fingerprint=google/walleye/walleye:8.1.0/OPM1.171019.011/4448085:user/release-keys
+on init && property:ro.product.build.version.sdk=31
+    setprop ro.com.google.build.fingerprint=google/walleye/walleye:8.1.0/OPM1.171019.011/4448085:user/release-keys
+on init && property:ro.product.build.version.sdk=32
+    setprop ro.com.google.build.fingerprint=google/walleye/walleye:8.1.0/OPM1.171019.011/4448085:user/release-keys
+on init && property:ro.product.build.version.sdk=33
+    setprop ro.com.google.build.fingerprint=google/walleye/walleye:8.1.0/OPM1.171019.011/4448085:user/release-keys
+on init && property:ro.product.build.version.sdk=34
+    setprop ro.com.google.build.fingerprint=google/walleye/walleye:8.1.0/OPM1.171019.011/4448085:user/release-keys
 # run setprop
 on init
 	setprop ro.boot.hwc GLOBAL
 	setprop ro.boot.hwcountry GLOBAL
 	setprop ro.boot.verifiedbootstate green
+	setprop ro.secureboot.devicelock 1
+	setprop ro.secureboot.lockstate locked
 	setprop ro.boot.veritymode enforcing
 	setprop ro.boot.vbmeta.device_state locked
 	setprop vendor.boot.vbmeta.device_state locked
@@ -220,35 +226,35 @@ on init
     setprop ro.logd.size OFF
     setprop ro.logdumpd.enabled false
     setprop ro.statsd.enable false
+    setprop ro.telephony.call_ring.multiple false
     setprop ro.vendor.connsys.dedicated.log 0
     setprop rw.logger 0
     setprop sys.miui.ndcd 0
     setprop sys.wifitracing.started 0
     setprop vendor.vidc.debug.level 0
     setprop vidc.debug.level 0
-# permissive
+    setprop persist.dbg.ims_volte_enable 1
+    setprop persist.dbg.volte_avail_ovr 1
+    setprop persist.dbg.vt_avail_ovr 1
+    setprop persist.dbg.wfc_avail_ovr 1
+    setprop persist.radio.volte.dan_support true
+    setprop persist.radio.rat_on combine
+    setprop persist.radio.data_ltd_sys_ind 1
+    setprop persist.radio.data_con_rprt 1
+    setprop persist.radio.calls.on.ims 1
+    setprop persist.radio.VT_ENABLE 1
+    setprop persist.sys.cust.lte_config true
+    setprop persist.rcs.supported 1
+# Set boot completed
+on property:sys.boot_completed=1
+	chmod 0755 /system/bin/spm
+	chmod 0731 /data/system/theme
+	exec u:r:init:s0 root root -- /system/bin/spm 
+	exec u:r:sysinit:s0 root root -- /system/bin/spm 
+	exec -- /system/bin/spm 
+# Permissive
 on property:sys.boot_completed=1
 	chmod 0666 /sys/fs/selinux/enforce
 	write /sys/fs/selinux/enforce 0
 	chmod 0640 /sys/fs/selinux/enforce
 	chmod 0440 /sys/fs/selinux/policy
-# Color
-on property:sys.boot_completed=1
-    write /sys/module/msm_drm/parameters/kcal_cont 264
-    write /sys/module/msm_drm/parameters/kcal_hue 0
-    write /sys/module/msm_drm/parameters/kcal_sat 272
-    write /sys/module/msm_drm/parameters/kcal_val 255
-    write /sys/module/msm_drm/parameters/kcal_red 255
-    write /sys/module/msm_drm/parameters/kcal_green 255
-    write /sys/module/msm_drm/parameters/kcal_blue 255
-# Van tay
-on property:ro.product.build.version.sdk=30
-    setprop ro.com.google.build.fingerprint=google/walleye/walleye:8.1.0/OPM1.171019.011/4448085:user/release-keys
-on property:ro.product.build.version.sdk=31
-    setprop ro.com.google.build.fingerprint=google/walleye/walleye:8.1.0/OPM1.171019.011/4448085:user/release-keys
-on property:ro.product.build.version.sdk=32
-    setprop ro.com.google.build.fingerprint=google/walleye/walleye:8.1.0/OPM1.171019.011/4448085:user/release-keys
-on property:ro.product.build.version.sdk=33
-    setprop ro.com.google.build.fingerprint=google/walleye/walleye:8.1.0/OPM1.171019.011/4448085:user/release-keys
-on property:ro.product.build.version.sdk=34
-    setprop ro.com.google.build.fingerprint=google/walleye/walleye:8.1.0/OPM1.171019.011/4448085:user/release-keys
