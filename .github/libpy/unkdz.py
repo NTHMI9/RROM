@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 
 """
 Copyright (C) 2016 Elliott Mitchell <ehem+android@m5p.com>
@@ -18,6 +18,7 @@ Copyright (C) 2013 IOMonster (thecubed on XDA)
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
+from __future__ import absolute_import
 from __future__ import print_function
 import os
 import argparse
@@ -41,9 +42,9 @@ class KDZFileTools(kdz.KDZFile):
 	infile = None
 
 	kdz_header = {
-		b"\x28\x05\x00\x00"b"\x34\x31\x25\x80":	0,
-		b"\x18\x05\x00\x00"b"\x32\x79\x44\x50":	1,
-		kdz.KDZFile._dz_header:			2,
+          b"\x28\x05\x00\x00"b"\x34\x31\x25\x80":	0,
+          b"\x18\x05\x00\x00"b"\x32\x79\x44\x50":	1,
+          kdz.KDZFile._dz_header:			2,
 	}
 
 
@@ -70,8 +71,8 @@ class KDZFileTools(kdz.KDZFile):
 			if type(kdz_item[key]) is str or type(kdz_item[key]) is bytes:
 				kdz_item[key] = kdz_item[key].rstrip(b'\x00')
 				if b'\x00' in kdz_item[key]:
-					print("[!] Error: extraneous data found IN "+key, file=sys.stderr)
-					sys.exit(1)
+					print("[!] Warning: extraneous data found IN "+key, file=sys.stderr)
+					#sys.exit(1)
 			elif type(kdz_item[key]) is int:
 				if kdz_item[key] != 0:
 					print('[!] Error: field "'+key+'" is non-zero ('+b2a_hex(kdz_item[key])+')', file=sys.stderr)
