@@ -683,6 +683,8 @@ if [[ "$GPU" == "1" ]]; then
  Taive "https://github.com/chamchamfy/toolcc/raw/main/AdrenoGPUDriver728.zip" "$TOME/AdrenoGPUDriver.zip"
  elif [[ "$GPU615" == "1" ]]; then 
  Taive "https://github.com/chamchamfy/toolcc/raw/main/AdrenoGPUDriver615.zip" "$TOME/AdrenoGPUDriver.zip"
+ elif [[ "$GPU615" == "1" ]]; then 
+ Taive "https://github.com/chamchamfy/toolcc/raw/main/AdrenoGPUDriver651.zip" "$TOME/AdrenoGPUDriver.zip"
  fi 
 if [[ -s "$TOME/AdrenoGPUDriver.zip" ]]; then echo " * Thêm Adreno GPU Driver..."
 mkdir -p $TOME/tam
