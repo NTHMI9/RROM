@@ -38,7 +38,7 @@ jobs:
         uses: actions/stale@v8
         with:
           only-labels: "build"
-          close-issue-message: "NAME: ${{ env.NAMER }}, <br/><br/>LINK DOWNLOAD: ${{ env.LINKROM }}, <br/><br/>MD5: ${{ env.MD5 }}"   
+          close-issue-message: "NAME: ${{ env.NAMER }}<br/><br/>LINK DOWNLOAD: ${{ env.LINKROM }}<br/><br/>MD5: ${{ env.MD5 }}"   
           stale-issue-label: "Hoàn thành"
           days-before-issue-stale: 0
           days-before-stale: 0
