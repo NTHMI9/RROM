@@ -1,4 +1,4 @@
-name: VH ROM
+name: Tool Mod ROM
 description: Xem chi tiết
 title: "Xây dựng ROM"
 labels: ["build"]
@@ -13,6 +13,7 @@ body:
       description: |
         Hãy điền liên kết tải rom vào đây
         Ví dụ: `Url: http://link.rom/file.zip`
+        Chỉ hỗ trợ android 12 trở nên, nên dùng link rom của Xiaomi, không hỗ trợ rom port.
       placeholder: "Url:"
       value: "Url: "
     validations:
