@@ -1,4 +1,4 @@
-name: VH-OS
+name: Xây dựng ROM
 on: 
   workflow_dispatch:
   issues:
