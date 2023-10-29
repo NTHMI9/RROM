@@ -34,4 +34,11 @@ body:
         Test
         
         Sau khi hoàn thành toàn bộ hãy ấn vào nút màu xanh lá để hoàn thành `Submit new issue`
-        
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](https://example.com)
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true
