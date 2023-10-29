@@ -11,6 +11,16 @@ jobs:
     if: github.repository == 'chamchamfy/RROM' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-22.04
     steps:
+      - name: 'Tắt vấn đề'
+        uses: actions/stale@v8
+        with:
+          only-labels: "build"
+          stale-issue-label: "Hoàn thành"
+          days-before-issue-stale: 0
+          days-before-stale: 0
+          days-before-issue-close: 0
+          days-before-close: 0
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Nạp dữ liệu
         uses: actions/checkout@v3
       - name: 'Tải về'
@@ -35,16 +45,10 @@ jobs:
           echo "MD5=$(cat $TOME/1.json | jq -r .data.md5)" | tee -a $GITHUB_ENV
           echo "NAMER=$(cat $TOME/1.json | jq -r .data.fileName)" | tee -a $GITHUB_ENV
           
-      - name: 'Tắt Issues'
+      - name: 'Dán Link'
         uses: actions/stale@v8
         with:
-          only-labels: "build"
           close-issue-message: "NAME: ${{ env.NAMER }}<br/><br/>LINK DOWNLOAD: ${{ env.LINKROM }}<br/><br/>MD5: ${{ env.MD5 }}"   
-          stale-issue-label: "Hoàn thành"
-          days-before-issue-stale: 0
-          days-before-stale: 0
-          days-before-issue-close: 0
-          days-before-close: 0
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 
           
