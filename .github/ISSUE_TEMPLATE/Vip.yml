@@ -12,7 +12,7 @@ body:
       label: Nhập liên kết
       description: |
         Hãy điền liên kết tải rom vào đây
-        vd: `Url=http://link.rom/file.zip`
+        Ví dụ: `Url=http://link.rom/file.zip`
       placeholder: "Url="
       value: "Url="
     validations:
