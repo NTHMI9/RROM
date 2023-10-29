@@ -16,7 +16,7 @@ jobs:
       - name: 'Xem thông báo'
         run: |
           # CC          
-          bash .github/Chay.sh
+          #bash .github/Chay.sh
       - name: Upload Sever
         run: |
           # kakathic
@@ -39,12 +39,12 @@ jobs:
         with:
           only-labels: "build"
           #stale-issue-label: "Hoàn thành"
-          close-issue-message: "NAME: ${{ env.NAMER }}, LINK DOWNLOAD: ${{ env.LINKROM }}, MD5: $MD5"   
-          close-issue-label: "Hoàn thành"
-          #days-before-issue-stale: 0
-          days-before-issue-close: 0
+          stale-issue-message: "NAME: ${{ env.NAMER }}, LINK DOWNLOAD: ${{ env.LINKROM }}, MD5: $MD5"   
+          stale-issue-label: "Hoàn thành"
+          days-before-issue-stale: 0
+          #days-before-issue-close: 0
           #days-before-stale: 0
-          days-before-close: 0
+          #days-before-close: 0
           #labels-to-remove-when-stale: "Hoàn thành"
           
           #stale-issue-message: "Link Download: ${{ env.LINKROM }}"
