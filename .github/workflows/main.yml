@@ -34,6 +34,7 @@ jobs:
           HOME="$GITHUB_WORKSPACE"
           cd .github/libpy/Flash2in1
           ls
+          echo $HOME/${URL##*/}
           zip -qr $HOME/${URL##*/} *
           url2="$(curl -s https://api.gofile.io/getServer | jq -r .data.server)"
           eval "curl -F 'file=@$HOME/${URL##*/}' 'https://$url2.gofile.io/uploadFile' > $HOME/1.json"
