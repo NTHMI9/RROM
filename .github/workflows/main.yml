@@ -24,16 +24,16 @@ jobs:
       - name: Upload
         run: |
           # kakathic
-          HOME="$GITHUB_WORKSPACE"
-          cd $HOME/.github/libpy/Flash2in1
-          echo $HOME/$NEMEROM
-          zip -qr $HOME/$NEMEROM *
+          TOME="$GITHUB_WORKSPACE"
+          cd $TOME/.github/libpy/Flash2in1
+          echo $TOME/$NEMEROM
+          zip -qr $TOME/$NEMEROM *
           url2="$(curl -s https://api.gofile.io/getServer | jq -r .data.server)"
-          eval "curl -F 'file=@$HOME/$NEMEROM' 'https://$url2.gofile.io/uploadFile' > $HOME/1.json"
+          eval "curl -F 'file=@$TOME/$NEMEROM' 'https://$url2.gofile.io/uploadFile' > $TOME/1.json"
           echo
-          echo "LINKROM=$(cat $HOME/1.json | jq -r .data.downloadPage)" | tee -a $GITHUB_ENV
-          echo "MD5=$(cat $HOME/1.json | jq -r .data.md5)" | tee -a $GITHUB_ENV
-          echo "NAMER=$(cat $HOME/1.json | jq -r .data.fileName)" | tee -a $GITHUB_ENV
+          echo "LINKROM=$(cat $TOME/1.json | jq -r .data.downloadPage)" | tee -a $GITHUB_ENV
+          echo "MD5=$(cat $TOME/1.json | jq -r .data.md5)" | tee -a $GITHUB_ENV
+          echo "NAMER=$(cat $TOME/1.json | jq -r .data.fileName)" | tee -a $GITHUB_ENV
           
       - name: 'Tắt Issues'
         uses: actions/stale@v8
