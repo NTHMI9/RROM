@@ -31,12 +31,9 @@ jobs:
           url2="$(curl -s https://api.gofile.io/getServer | jq -r .data.server)"
           eval "curl -F 'file=@$HOME/$NEMEROM' 'https://$url2.gofile.io/uploadFile' > $HOME/1.json"
           echo
-          echo "LINKROM=$(cat $HOME/1.json | jq -r .data.downloadPage)" >> $GITHUB_ENV
-          echo "MD5=$(cat $HOME/1.json | jq -r .data.md5)" >> $GITHUB_ENV
-          echo "NAMER=$(cat $HOME/1.json | jq -r .data.fileName)" >> $GITHUB_ENV
-          echo "NAME: $NAMER"
-          echo "LINK DOWNLOAD: $LINKROM"
-          echo "MD5: $MD5"
+          echo "LINKROM=$(cat $HOME/1.json | jq -r .data.downloadPage)" | tee -a $GITHUB_ENV
+          echo "MD5=$(cat $HOME/1.json | jq -r .data.md5)" | tee -a $GITHUB_ENV
+          echo "NAMER=$(cat $HOME/1.json | jq -r .data.fileName)" | tee -a $GITHUB_ENV
           
       - name: 'Tắt Issues'
         uses: actions/stale@v8
