@@ -38,13 +38,13 @@ jobs:
         uses: actions/stale@v8
         with:
           only-labels: "build"
-          stale-issue-label: "Hoàn thành"
+          #stale-issue-label: "Hoàn thành"
           close-issue-message: "NAME: ${{ env.NAMER }}, LINK DOWNLOAD: ${{ env.LINKROM }}, MD5: $MD5"   
-          
+          close-issue-label: "Hoàn thành"
           #days-before-issue-stale: 0
           #days-before-issue-close: 0
-          days-before-stale: 0
-          #days-before-close: 0
+          #days-before-stale: 0
+          days-before-close: 0
           #labels-to-remove-when-stale: "Hoàn thành"
           
           #stale-issue-message: "Link Download: ${{ env.LINKROM }}"
