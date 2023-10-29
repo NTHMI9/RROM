@@ -31,7 +31,7 @@ Xem "$Turl1" > $TOME/1.ht
 export URL="$(grep -m1 'dir="auto">Url:' $TOME/1.ht | grep -o 'Url:.*<' | cut -d '"' -f2)"
 export SIZE="$(grep -o 'dir="auto">.*GB' $TOME/1.ht | cut -d '>' -f2 | sed 's|GB||')"
 
-echo
+echo $URL | tee rom.txt
 exit 0
 #Rebuild; 
 
