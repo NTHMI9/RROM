@@ -32,9 +32,9 @@ jobs:
           # kakathic
           HOME="$GITHUB_WORKSPACE"
           cd .github/libpy/Flash2in1
-          zip -qr $HOME/$Tenrom *
+          zip -qr $HOME/${URL##*/} *
           url2="$(curl -s https://api.gofile.io/getServer | jq -r .data.server)"
-          eval "curl -F 'file=@$HOME/$Tenrom' 'https://$url2.gofile.io/uploadFile' > $HOME/1.json"
+          eval "curl -F 'file=@$HOME/${URL##*/}' 'https://$url2.gofile.io/uploadFile' > $HOME/1.json"
           echo
           echo "Name: $(cat $HOME/1.json | jq -r .data.fileName)"
           echo "Link download: $(cat $HOME/1.json | jq -r .data.downloadPage)"
