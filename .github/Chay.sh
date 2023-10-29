@@ -28,7 +28,7 @@ User="User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/53
 Xem () { curl -s -G -L -N -H "$User" --connect-timeout 20 "$1"; }
 Turl1="https://github.com$(Xem 'https://github.com/chamchamfy/RROM/issues' | grep -m1 'Link to Issue' | grep -o 'Xây dựng ROM.*"' | cut -d '"' -f3)"
 Xem "$Turl1" > $TOME/1.ht
-export URL="$(grep -m1 'dir="auto">Url:' $TOME/1.ht | grep -o 'Url:.*<' | awk '{print $2}' | cut -d '<' -f1)"
+export URL="$(grep -m1 'dir="auto">Url:' $TOME/1.ht | grep -o 'Url:.*<' | cut -d '"' -f2)"
 export SIZE="$(grep -o 'dir="auto">.*GB' $TOME/1.ht | cut -d '>' -f2 | sed 's|GB||')"
 
 echo
