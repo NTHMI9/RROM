@@ -39,7 +39,7 @@ body:
       label: Tùy chọn
       description: 
       options:
-        - label: **"Thêm Tiếng Việt"**
+        - label: Thêm Tiếng Việt
         - label: **Test**
           required: false
 
