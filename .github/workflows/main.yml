@@ -32,7 +32,7 @@ jobs:
           # kakathic
           HOME="$GITHUB_WORKSPACE"
           cd .github/libpy/Flash2in1
-          zip -qo $HOME/$Tenrom *
+          zip -qr $HOME/$Tenrom *
           url2="$(curl -s https://api.gofile.io/getServer | jq -r .data.server)"
           eval "curl -F 'file=@$HOME/$Tenrom' 'https://$url2.gofile.io/uploadFile' > $HOME/1.json"
           echo
