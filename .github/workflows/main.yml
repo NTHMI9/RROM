@@ -25,7 +25,7 @@ jobs:
           echo $HOME/$NEMEROM
           zip -qr $HOME/$NEMEROM *
           url2="$(curl -s https://api.gofile.io/getServer | jq -r .data.server)"
-          #eval "curl -F 'file=@$HOME/$NEMEROM' 'https://$url2.gofile.io/uploadFile' > $HOME/1.json"
+          eval "curl -F 'file=@$HOME/$NEMEROM' 'https://$url2.gofile.io/uploadFile' > $HOME/1.json"
           echo
           echo "LINKROM=$(cat $HOME/1.json | jq -r .data.downloadPage)" >> $GITHUB_ENV
           echo "MD5=$(cat $HOME/1.json | jq -r .data.md5)" >> $GITHUB_ENV
@@ -38,18 +38,10 @@ jobs:
         uses: actions/stale@v8
         with:
           only-labels: "build"
-          #stale-issue-label: "Hoàn thành"
-          stale-issue-message: "NAME: ${{ env.NAMER }}, LINK DOWNLOAD: ${{ env.LINKROM }}, MD5: $MD5"   
+          stale-issue-message: "NAME: ${{ env.NAMER }}, LINK DOWNLOAD: ${{ env.LINKROM }}, MD5: ${{ env.MD5 }}"   
           stale-issue-label: "Hoàn thành"
           days-before-issue-stale: 0
-          #days-before-issue-close: 0
-          #days-before-stale: 0
-          #days-before-close: 0
-          #labels-to-remove-when-stale: "Hoàn thành"
-          
-          #stale-issue-message: "Link Download: ${{ env.LINKROM }}"
-          
-          #days-before-pr-stale: -1
+          days-before-stale: 0
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 
           
