@@ -16,7 +16,7 @@ jobs:
       - name: 'Xem thông báo'
         run: |
           # CC          
-          #bash .github/Chay.sh
+          bash .github/Chay.sh
       - name: 'Tắt Issues'
         uses: actions/stale@v8
         with:
