@@ -25,15 +25,15 @@ jobs:
           days-before-stale: 0
           days-before-close: 0
           only-labels: "build"
+          labels-to-remove-when-stale: "Hoàn thành"
           stale-issue-label: "Hoàn thành"
           days-before-pr-stale: -1
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Upload Gofile.io
+      - name: Upload Sever
         run: |
           # kakathic
           HOME="$GITHUB_WORKSPACE"
           cd $HOME/.github/libpy/Flash2in1
-          ls
           echo $HOME/$NEMEROM
           zip -qr $HOME/$NEMEROM *
           url2="$(curl -s https://api.gofile.io/getServer | jq -r .data.server)"
