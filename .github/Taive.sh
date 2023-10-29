@@ -1,4 +1,5 @@
 # kakathic
+export TOME="$GITHUB_WORKSPACE"
 
 # Cài giờ Việt Nam
 sudo apt-get install curl > /dev/null;
