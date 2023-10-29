@@ -1,5 +1,6 @@
 name: VH-OS
 on: 
+  workflow_dispatch:
   issues:
     types:
       - opened
