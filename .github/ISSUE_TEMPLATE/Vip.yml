@@ -42,3 +42,13 @@ body:
         - label: Thêm Tiếng Việt
         - label: Test
           required: false
+
+  - type: textarea
+    attributes:
+      label: Xoá ứng dụng
+      description: |
+        Tên thư mục ứng dụng ở /system/app/AiAsstVision, priv-app, product v.v
+      render: shell
+      value: "AiAsstVision "
+
+      
