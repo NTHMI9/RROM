@@ -41,7 +41,7 @@ body:
       options:
         - label: "Thêm Tiếng Việt"
         - label: Test
-          required: false
+          required: true
 
   - type: textarea
     attributes:
