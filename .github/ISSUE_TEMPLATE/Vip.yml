@@ -39,10 +39,10 @@ body:
       label: Tùy chọn
       description: 
       options:
-        - label: **Thêm Tiếng Việt**
+        - label: "**Thêm Tiếng Việt**"
           required: true
-        - label: **Test**
-          required: false
+        - label: "**Test**"
+          
 
   - type: textarea
     attributes:
