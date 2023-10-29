@@ -21,7 +21,7 @@ SIZEKK="$(grep -o 'dir="auto">.*GB' $TOME/1.ht | cut -d '>' -f2 | sed 's|GB||')"
 GITENV URL $URLKK
 GITENV SIZE $SIZEKK
 GITENV NEMEROM "${URL##*/}"
-GITENV Dinhdang "${URL##*.}"
+GITENV DINHDANG "${URL##*.}"
 
 # Tải rom và tải file khác 
 (
