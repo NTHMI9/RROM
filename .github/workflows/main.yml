@@ -1,4 +1,4 @@
-name: REBUILD Rom MIUI
+name: VH-OS
 on: 
   workflow_dispatch:
     inputs:
@@ -25,11 +25,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: 'Xem thông báo'
-        env:
-          URL: ${{ inputs.URL }}
-          SIZE: ${{ inputs.SIZE }}
         run: |
-          # Rom Rebuild 
+          # CC          
           bash .github/Chay.sh    
       - uses: actions/upload-artifact@v3
         with:
