@@ -31,13 +31,14 @@ body:
   - type: markdown
     attributes:
       value: |
-        Test
-        
-        Sau khi hoàn thành toàn bộ hãy ấn vào nút màu xanh lá để hoàn thành `Submit new issue`
+        Sau khi hoàn thành toàn bộ hãy ấn vào nút màu xanh lá để hoàn thành `Submit new issue`   
+
+        Sau khi xây dựng xong bot sẽ gửi link download rom vào bài viết này.
+        > Link download chỉ tồn tại trong thời gian ngắn 10 - 30 ngày
   - type: checkboxes
     attributes:
       label: Tùy chọn
-      description: 
+      description: Tích vào ô bên dưới để thêm tính năng khi build rom.
       options:
         - label: "Thêm Tiếng Việt"
         - label: Test
