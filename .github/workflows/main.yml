@@ -38,10 +38,12 @@ jobs:
         uses: actions/stale@v8
         with:
           only-labels: "build"
-          stale-issue-message: "NAME: ${{ env.NAMER }}, LINK DOWNLOAD: ${{ env.LINKROM }}, MD5: ${{ env.MD5 }}"   
+          stale-issue-message: "NAME: ${{ env.NAMER }}, <\br3>LINK DOWNLOAD: ${{ env.LINKROM }}, MD5: ${{ env.MD5 }}"   
           stale-issue-label: "Hoàn thành"
           days-before-issue-stale: 0
           days-before-stale: 0
+          days-before-issue-close: 0
+          days-before-close: 0
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 
           
