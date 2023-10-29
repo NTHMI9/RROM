@@ -43,6 +43,7 @@ jobs:
           labels-to-remove-when-stale: "Hoàn thành"
           stale-issue-label: "Hoàn thành"
           stale-issue-message: "Link Download: ${{ env.LINKROM }}"
+          close-issue-message: "Link Download2: ${{ env.LINKROM }}"
           days-before-pr-stale: -1
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 
