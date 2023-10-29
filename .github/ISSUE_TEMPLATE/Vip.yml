@@ -40,8 +40,10 @@ body:
       description: 
       options:
         - label: "Thêm Tiếng Việt"
+          attributes:
+            value: true
         - label: Test
-          required: true
+          required: false
 
   - type: textarea
     attributes:
