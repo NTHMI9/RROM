@@ -33,7 +33,7 @@ export SIZE="$(grep -o 'dir="auto">.*GB' $TOME/1.ht | cut -d '>' -f2 | sed 's|GB
 
 echo
 echo "NEMEROM=${URL##*/}" >> $GITHUB_ENV
-exit 0
-#Rebuild; 
+
+Rebuild; 
 
 echo "- Kết thúc"
