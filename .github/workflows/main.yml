@@ -11,17 +11,17 @@ jobs:
     if: github.repository == 'chamchamfy/RROM' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-22.04
     steps:
-      - name: Load data
+      - name: Nạp dữ liệu
         uses: actions/checkout@v3
-      - name: 'Tải Xuống'
+      - name: 'Tải ROM'
         run: |
           # Taive          
           bash .github/Taive.sh
-      - name: 'Xem thông báo'
+      - name: 'Xem build ROM'
         run: |
           # CC          
           bash .github/Chay.sh
-      - name: Upload Sever
+      - name: Upload
         run: |
           # kakathic
           HOME="$GITHUB_WORKSPACE"
