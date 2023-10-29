@@ -15,8 +15,21 @@ body:
       value: "Url="
     validations:
       required: true
+  - type: dropdown
+    attributes:
+      label: Kích cỡ Super
+      description: Chọn kích cỡ file super, xem hướng dẫn kiểm tra kích cỡ bên dưới.
+      options:
+        - 8.5GB
+        - 9GB
+        - 10.GB
+      default: 0
+    validations:
+      required: true
   - type: markdown
     attributes:
       value: |
+        Test
+        
         Sau khi hoàn thành toàn bộ hãy ấn vào nút màu xanh lá để hoàn thành `Submit new issue`
         
