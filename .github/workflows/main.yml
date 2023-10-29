@@ -1,25 +1,13 @@
 name: VH-OS
 on: 
-  workflow_dispatch:
-    inputs:
-      URL:
-        description: 'Hãy điền đường dẫn url của link rom để tải xuống'
-        required: true
-        default: 'https://bigota.d.miui.com/V14.0.3.0.TKDMIXM/miui_VILIGlobal_V14.0.3.0.TKDMIXM_e7abe78e55_13.0.zip'
-        
-      SIZE:
-        description: 'Kích cỡ phân vùng super: 8.5 | 9 | 9.5'
-        required: true
-        default: '8.5'
-        type: choice
-        options:
-         - '8.5'
-         - '9'
-         - '9.5'
-          
+  issues:
+    types:
+      - opened
+permissions: write-all
 jobs:
   build:
-    name: 'Xem quá trình...'
+    name: 'Xem quá trình'
+    if: github.repository == 'chamchamfy/RROM' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout
@@ -28,7 +16,6 @@ jobs:
         run: |
           # CC          
           bash .github/Chay.sh
-
       - uses: actions/stale@v8
         with:
           days-before-issue-stale: 0
@@ -39,10 +26,16 @@ jobs:
           stale-issue-label: "Hoàn thành"
           days-before-pr-stale: -1
           repo-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload Gofile.io
+        run: |
+          # kakathic
+          HOME="$GITHUB_WORKSPACE"
+          cd .github/libpy/Flash2in1
+          zip -qo $HOME/$Tenrom *
+          url2="$(curl -s https://api.gofile.io/getServer | jq -r .data.server)"
+          eval "curl -F 'file=@$HOME/$Tenrom' 'https://$url2.gofile.io/uploadFile' > $HOME/1.json"
+          echo
+          echo "Name: $(cat $HOME/1.json | jq -r .data.fileName)"
+          echo "Link download: $(cat $HOME/1.json | jq -r .data.downloadPage)"
+          echo "Md5: $(cat $HOME/1.json | jq -r .data.md5)"
           
-      - uses: actions/upload-artifact@v3
-        with:
-          name: RROM_${{ env.TENZ }}
-          path: .github/libpy/Flash2in1/*
-          retention-days: 3
-     
