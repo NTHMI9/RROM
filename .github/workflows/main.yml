@@ -13,6 +13,10 @@ jobs:
     steps:
       - name: Load data
         uses: actions/checkout@v3
+      - name: 'Tải Xuống'
+        run: |
+          # Taive          
+          bash .github/Taive.sh
       - name: 'Xem thông báo'
         run: |
           # CC          
