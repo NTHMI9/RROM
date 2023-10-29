@@ -11,7 +11,7 @@ jobs:
     if: github.repository == 'chamchamfy/RROM' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-22.04
     steps:
-      - name: 'Tắt vấn đề'
+      - name: 'Tắt Issues'
         uses: actions/stale@v8
         with:
           only-labels: "build"
