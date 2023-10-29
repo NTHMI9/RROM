@@ -40,7 +40,6 @@ body:
       description: 
       options:
         - label: "Thêm Tiếng Việt"
-          value: true
         - label: Test
           required: false
 
