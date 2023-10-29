@@ -1,0 +1,37 @@
+name: Build Rom
+description: Xem chi tiết
+title: "Test: xxxxx"
+labels: ["build"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Điền vào thông tin bên dưới để hoàn thành quá trình xây dựng rom
+  - type: input
+    attributes:
+      label: Nhập liên kết
+      description: |
+        Hãy điền liên kết tải rom vào đây
+        Ví dụ: `Url=http://link.rom/file.zip`
+      placeholder: "Url="
+      value: "Url="
+    validations:
+      required: true
+  - type: dropdown
+    attributes:
+      label: Kích cỡ Super
+      description: Chọn kích cỡ file super, xem hướng dẫn kiểm tra kích cỡ bên dưới.
+      options:
+        - 8.5GB
+        - 9GB
+        - 10.GB
+      default: 0
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: |
+        Test
+        
+        Sau khi hoàn thành toàn bộ hãy ấn vào nút màu xanh lá để hoàn thành `Submit new issue`
+        
