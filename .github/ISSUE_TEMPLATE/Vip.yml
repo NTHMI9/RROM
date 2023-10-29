@@ -1,6 +1,6 @@
-name: Build Rom
+name: VH ROM
 description: Xem chi tiết
-title: "Test: xxxxx"
+title: "Xây dựng ROM"
 labels: ["build"]
 body:
   - type: markdown
