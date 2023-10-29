@@ -33,6 +33,6 @@ export SIZE="$(grep -o 'dir="auto">.*GB' $TOME/1.ht | cut -d '>' -f2 | sed 's|GB
 
 echo
 
-Rebuild; 
+#Rebuild; 
 
 echo "- Kết thúc"
