@@ -33,9 +33,22 @@ echo "pycryptodome
 docopt
 protobuf<=3.20.1" > requirements.txt
 pip3 install -r requirements.txt > /dev/null;
-) & ( echo "- Tải về: $URL";
-Taive "$URL" "$TOME/$NEMEROM" )
+) & ( 
+echo "- Tải về: $URL";
+Taive "$URL" "$TOME/$NEMEROM"
+)
 
 echo
+echo "- Giải nén ROM..."
 
-
+if [ "$DINHDANG" == "zip" ];then
+unzip -qo "$TOME/$NEMEROM" -d "$TOME/Unzip"
+cp -rf $TOME/Unzip/META-INF/com/android $TOME/.github/libpy/Flash2in1/META-INF/com 2>/dev/null
+elif [ "$DINHDANG" == "tgz" ] || [ "$DINHDANG" == "gz" ];then
+tar -xf "$TOME/$NEMEROM" -C "$TOME/Unzip"
+[[ -s "$TOME/Unzip/images/super.img" ]] && mv -f $TOME/Unzip/images/super.img $TOME/Unzip/super.img
+else
+echo "- Rom không phải file zip hoặc tgz, gz"
+exit 1
+fi
+sudo rm -f $TOME/$NEMEROM 2>/dev/null
