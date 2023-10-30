@@ -36,22 +36,26 @@ jobs:
         run: |
           # kakathic         
           bash .github/Upload.sh
-      - name: Dán Thẻ
-        uses: actions-cool/issues-helper@v3.5.2
+      - name: 'Dán Link & Xoá thẻ'
+        uses: actions/github-script@v6
         with:
-          actions: 'add-labels'
-          labels: "${{ env.THETB }}"
-          token: ${{ secrets.GITHUB_TOKEN }}
-          issue-number: ${{ env.NUMBERI }}
-      - name: Dán Link
-        uses: actions-cool/issues-helper@v3.5.2
-        with:
-          actions: 'close-issues'
-          token: ${{ secrets.GITHUB_TOKEN }}
-          issue-number: ${{ env.NUMBERI }}
-          labels: "${{ env.THETB }}"
-          body: "${{ env.THATBAI }}"   
-
+          script: |
+            github.rest.issues.update({
+              issue_number: ${{ env.NUMBERI }},
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'closed',
+              state_reason: 'completed',
+              labels: ["${{ env.THETB }}"],
+              body: "${{ env.THATBAI }}"
+            })
+            github.rest.issues.removeLabel({
+              issue_number: ${{ env.NUMBERI }},
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              name: ['Wait']
+            })
+            
 
 
           
