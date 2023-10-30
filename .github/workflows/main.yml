@@ -48,7 +48,6 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           issue-number: ${{ env.NUMBERI }}
           labels: "${{ env.THETB }}"
-          close-reason: 'not_planned'
           body: "${{ env.THATBAI }}"   
 
 
