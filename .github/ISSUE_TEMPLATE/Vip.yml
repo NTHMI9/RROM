@@ -1,7 +1,7 @@
 name: Tool Mod ROM
 description: Xem chi tiết
 title: "Xây dựng ROM"
-labels: ["build"]
+labels: ["Build"]
 body:
   - type: markdown
     attributes:
