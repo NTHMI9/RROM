@@ -12,12 +12,14 @@ jobs:
     if: github.repository == 'chamchamfy/RROM' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-22.04
     steps:
-      - name: 'Tắt Issues'
-        uses: gcampbell-msft/fixed-pending-release@0.0.9         
+      - name: 'Chat bot'
+        uses: actions/stale@v8
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          label: 'build'
-          message: "Đang build vui lòng chờ"
+          only-labels: "Build"
+          stale-issue-label: "Wait"
+          stale-issue-message: "Đang trong quá trình xây dựng, vui lòng chờ...<br/><br/>Sau khi xong link sẽ được gửi vào bài viết này.<br/><br/>Hoặc xem quá trình xây dựng [📱Actions](https://github.com/chamchamfy/RROM/actions)"
+          days-before-stale: 0
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Nạp dữ liệu
         uses: actions/checkout@v3
       - name: 'Tải về'
