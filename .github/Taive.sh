@@ -42,7 +42,7 @@ Taive "$URL" "$TOME/$NEMEROM" || exit 0
 echo
 echo "- Giải nén ROM..."
 
-if [[ -s "$TOME/$NEMEROM" ]]; then
+if [[ -e "$TOME/$NEMEROM" ]] && [[ -s "$TOME/$NEMEROM" ]]; then
  if [ "$DINHDANG" == "zip" ]; then
  unzip -qo "$TOME/$NEMEROM" -d "$TOME/Unzip" 2>/dev/null
  cp -rf $TOME/Unzip/META-INF/com/android $TOME/.github/libpy/Flash2in1/META-INF/com 2>/dev/null
