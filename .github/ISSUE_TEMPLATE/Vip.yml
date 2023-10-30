@@ -25,7 +25,7 @@ body:
       options:
         - 8.5GB
         - 9GB
-        - 10.GB
+        - 9.5.GB
       default: 0
     validations:
       required: true
