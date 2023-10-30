@@ -38,7 +38,7 @@ jobs:
         uses: actions-cool/issues-helper@v3.5.2
         with:
           actions: 'add-labels'
-          labels: 'Hoàn thành'
+          labels: "${{ env.THETB }}"
           token: ${{ secrets.GITHUB_TOKEN }}
           issue-number: ${{ env.NUMBERI }}
       - name: Dán Link
@@ -47,9 +47,9 @@ jobs:
           actions: 'close-issues'
           token: ${{ secrets.GITHUB_TOKEN }}
           issue-number: ${{ env.NUMBERI }}
-          labels: 'Hoàn thành'
+          labels: "${{ env.THETB }}"
           close-reason: 'not_planned'
-          body: "NAME: ${{ env.NAMER }}<br/><br/>LINK DOWNLOAD: ${{ env.LINKROM }}<br/><br/>MD5: ${{ env.MD5 }}"   
+          body: "${{ env.THATBAI }}"   
 
 
 
