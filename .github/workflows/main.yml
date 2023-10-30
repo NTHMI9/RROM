@@ -47,11 +47,15 @@ jobs:
           echo "MD5=$(cat $TOME/1.json | jq -r .data.md5)" | tee -a $GITHUB_ENV
           echo "NAMER=$(cat $TOME/1.json | jq -r .data.fileName)" | tee -a $GITHUB_ENV
           
-      - name: 'Dán Link'
-        uses: actions/stale@v8
+      - name: Dán Link
+        uses: actions-cool/issues-helper@v3
         with:
-          close-issue-label: "Hoàn thành"
-          close-issue-message: "NAME: ${{ env.NAMER }}<br/><br/>LINK DOWNLOAD: ${{ env.LINKROM }}<br/><br/>MD5: ${{ env.MD5 }}"   
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-
+          actions: |
+            - add-labels
+            - create-comment
+          labels: 'Hoàn thành'
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ env.NUMBERI }}
+          body: |
+            "NAME: ${{ env.NAMER }}<br/><br/>LINK DOWNLOAD: ${{ env.LINKROM }}<br/><br/>MD5: ${{ env.MD5 }}"   
           
