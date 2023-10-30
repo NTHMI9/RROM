@@ -49,13 +49,13 @@ jobs:
           actions: 'add-labels'
           labels: 'Hoàn thành'
           token: ${{ secrets.GITHUB_TOKEN }}
-          issue-number: 2
+          issue-number: ${{ env.NUMBERI }}
       - name: Dán Link
         uses: actions-cool/issues-helper@v3.5.2
         with:
           actions: 'close-issues'
           token: ${{ secrets.GITHUB_TOKEN }}
-          issue-number: 3
+          issue-number: ${{ env.NUMBERI }}
           labels: 'Hoàn thành'
           close-reason: 'not_planned'
           body: "NAME: ${{ env.NAMER }}<br/><br/>LINK DOWNLOAD: ${{ env.LINKROM }}<br/><br/>MD5: ${{ env.MD5 }}"   
