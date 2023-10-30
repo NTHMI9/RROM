@@ -17,7 +17,7 @@ jobs:
         with:
           only-labels: "Build"
           stale-issue-label: "Wait"
-          stale-issue-message: "Đang trong quá trình xây dựng, vui lòng chờ...<br/><br/>Sau khi xong link sẽ được gửi vào bài viết này.<br/><br/>Hoặc xem quá trình xây dựng 📱[Actions](https://github.com/chamchamfy/RROM/actions)"
+          stale-issue-message: "Đang trong quá trình xây dựng, vui lòng chờ...<br/><br/>Sau khi xong link sẽ được gửi vào bài viết này.<br/><br/>Hoặc xem quá trình xây dựng 📱[Actions](https://github.com/chamchamfy/RROM/actions/runs/${{ env.GITHUB_RUN_ID }})"
           days-before-stale: 0
           repo-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Nạp dữ liệu
