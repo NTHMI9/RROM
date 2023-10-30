@@ -9,7 +9,7 @@ sudo cp /usr/share/zoneinfo/Asia/Ho_Chi_Minh /etc/localtime
 User="User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36"
 Xem () { curl -s -G -L -N -H "$User" --connect-timeout 20 "$1"; }
 Taive () { curl -L -N -H "$User" --connect-timeout 20 "$1" -o "$2"; }
-GITENV(){ [ "$2" ] || ( echo "- Error: $1" && exit 1 ); echo "$1=$2" >> $GITHUB_ENV; eval "$1=$2"; }
+GITENV(){ [ "$2" ] || ( echo "- Error: $1" && exit 0 ); echo "$1=$2" >> $GITHUB_ENV; eval "$1=$2"; }
 
 # CÁC TÙY CHỌN WEB
 
@@ -54,6 +54,6 @@ if [[ -s "$TOME/$NEMEROM" ]]; then
  [[ -s "$TOME/Unzip/images/super.img.brx" ]] && zstd -D $TOME/Unzip/images/super.transfer.list -d $TOME/Unzip/images/super.img.brx -o $TOME/Unzip/super.img
  else
  echo "- Rom không phải file zip hoặc tgz, gz"
- exit 1
+ exit 0
 fi
 sudo rm -f $TOME/$NEMEROM 2>/dev/null
