@@ -56,7 +56,8 @@ jobs:
           actions: 'close-issues'
           token: ${{ secrets.GITHUB_TOKEN }}
           issue-number: 3
-          labels: 'Build'
+          labels: 'Hoàn thành'
+          close-reason: 'not_planned'
           body: "NAME: ${{ env.NAMER }}<br/><br/>LINK DOWNLOAD: ${{ env.LINKROM }}<br/><br/>MD5: ${{ env.MD5 }}"   
 
 
