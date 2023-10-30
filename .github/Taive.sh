@@ -36,7 +36,7 @@ echo "protobuf<=3.20.1" > requirements.txt
 pip3 install -r requirements.txt >/dev/null;
 ) & ( 
 echo "- Tải về: $URL";
-Taive "$URL" "$TOME/$NEMEROM"
+Taive "$URL" "$TOME/$NEMEROM" || exit 0
 )
 
 echo
