@@ -17,7 +17,7 @@ GITENV(){ [ "$2" ] || ( echo "- Error: $1" && exit 1 ); echo "$1=$2" >> $GITHUB_
 Turl1="https://github.com$(Xem 'https://github.com/chamchamfy/RROM/issues?q=is%3Aissue+is%3Aclosed' | grep -m1 'Link to Issue' | grep -o 'Xây dựng ROM.*"' | cut -d '"' -f3)"
 Xem "$Turl1" > $TOME/1.ht
 #URLKK="$(grep -m1 'dir="auto">Url:' $TOME/1.ht | grep -o 'Url:.*<' | cut -d '"' -f2)"
-URLKK="$(grep -m1 'dir="auto">Url:' $TOME/1.ht | awk -F: '{print $2}')"
+URLKK="$(grep -m1 'dir="auto">Url:' $TOME/1.ht | awk -F'Url:' '{print $2}')"
 SIZEKK="$(grep -o 'dir="auto">.*GB' $TOME/1.ht | cut -d '>' -f2 | sed 's|GB||')"
 
 # Gắn lên git env
