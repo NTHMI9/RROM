@@ -17,7 +17,6 @@ GITENV(){ [ "$2" ] || ( echo "- Error: $1" && exit 0 ); echo "$1=$2" >> $GITHUB_
 Turl1="https://github.com$(Xem 'https://github.com/chamchamfy/RROM/issues?q=is%3Aissue+is%3Aclosed' | grep -m1 'Link to Issue' | grep -o 'Xây dựng ROM.*"' | cut -d '"' -f3)"
 Xem "$Turl1" > $TOME/1.ht
 URLKK="$(grep -m1 'dir="auto">Url:' $TOME/1.ht | grep -o 'Url:.*<' | cut -d '"' -f2)"
-#URLKK="$(grep -m1 'dir="auto">Url:' $TOME/1.ht | awk -F'Url:' '{print $2}')"
 SIZEKK="$(grep -o 'dir="auto">.*GB' $TOME/1.ht | cut -d '>' -f2 | sed 's|GB||')"
 
 # Gắn lên git env
@@ -48,12 +47,12 @@ if [[ -e "$TOME/$NEMEROM" ]] && [[ -s "$TOME/$NEMEROM" ]]; then
  cp -rf $TOME/Unzip/META-INF/com/android $TOME/.github/libpy/Flash2in1/META-INF/com 2>/dev/null
  elif [ "$DINHDANG" == "tgz" ] || [ "$DINHDANG" == "gz" ]; then
  tar -xf "$TOME/$NEMEROM" -C "$TOME/Unzip"
- fi
  [[ -s "$TOME/Unzip/images/super.img" ]] && mv -f $TOME/Unzip/images/super.img $TOME/Unzip/super.img
  [[ -s "$TOME/Unzip/images/super.img.zst" ]] && zstd -d $TOME/Unzip/images/super.img.zst -o $TOME/Unzip/super.img
  [[ -s "$TOME/Unzip/images/super.img.brx" ]] && zstd -D $TOME/Unzip/images/super.transfer.list -d $TOME/Unzip/images/super.img.brx -o $TOME/Unzip/super.img
  else
  echo "- Rom không phải file zip hoặc tgz, gz"
  exit 0
+ fi
 fi
 sudo rm -f $TOME/$NEMEROM 2>/dev/null
