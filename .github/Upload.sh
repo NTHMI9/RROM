@@ -1,7 +1,7 @@
 # kakathic
 TOME="$GITHUB_WORKSPACE"
 cd $TOME/.github/libpy/Flash2in1
-GITENV(){ [ "$2" ] || ( echo "- Error: $1" && exit 0 ); echo "$1=$2" >> $GITHUB_ENV; eval "$1=$2"; }
+GITENV(){ [ "$2" ] || ( echo "- Error: $1" ); echo "$1=$2" >> $GITHUB_ENV; eval "$1='$2'"; }
 
 if [ -e $TOME/ok ]; then
 # Nén rom zip
