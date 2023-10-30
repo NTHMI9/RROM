@@ -13,16 +13,11 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: 'Tắt Issues'
-        uses: actions/stale@v8
+        uses: gcampbell-msft/fixed-pending-release@0.0.9         
         with:
-          only-labels: "build"
-          stale-issue-label: "Wait"
-          stale-issue-message: "Đang trong quá trình xây dựng, vui lòng chờ...<br/><br/>Sau khi xong link sẽ được gửi vào bài viết này."
-          days-before-issue-stale: 0
-          days-before-stale: 0
-          days-before-issue-close: 0
-          days-before-close: 0
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          label: 'build'
+          message: "Đang build vui lòng chờ"
       - name: Nạp dữ liệu
         uses: actions/checkout@v3
       - name: 'Tải về'
