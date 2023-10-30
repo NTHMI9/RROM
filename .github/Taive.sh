@@ -44,7 +44,7 @@ echo "- Giải nén ROM..."
 
 if [[ -s "$TOME/$NEMEROM" ]]; then
  if [ "$DINHDANG" == "zip" ]; then
- unzip -qo "$TOME/$NEMEROM" -d "$TOME/Unzip"
+ unzip -qo "$TOME/$NEMEROM" -d "$TOME/Unzip" 2>/dev/null
  cp -rf $TOME/Unzip/META-INF/com/android $TOME/.github/libpy/Flash2in1/META-INF/com 2>/dev/null
  elif [ "$DINHDANG" == "tgz" ] || [ "$DINHDANG" == "gz" ]; then
  tar -xf "$TOME/$NEMEROM" -C "$TOME/Unzip"
