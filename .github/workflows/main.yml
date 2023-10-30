@@ -44,18 +44,21 @@ jobs:
           echo "MD5=$(cat $TOME/1.json | jq -r .data.md5)" | tee -a $GITHUB_ENV
           echo "NAMER=$(cat $TOME/1.json | jq -r .data.fileName)" | tee -a $GITHUB_ENV
       - name: Dán Thẻ
-        uses: actions-cool/issues-helper@v3
+        uses: actions-cool/issues-helper@v3.5.2
         with:
           actions: 'add-labels'
           labels: 'Hoàn thành'
           token: ${{ secrets.GITHUB_TOKEN }}
           issue-number: 2
       - name: Dán Link
-        uses: actions-cool/issues-helper@v3
+        uses: actions-cool/issues-helper@v3.5.2
         with:
-          actions: 'create-comment'
+          actions: 'close-issues'
           token: ${{ secrets.GITHUB_TOKEN }}
-          issue-number: 2
-          body: |
-            NAME: ${{ env.NAMER }}<br/><br/>LINK DOWNLOAD: ${{ env.LINKROM }}<br/><br/>MD5: ${{ env.MD5 }}   
+          issue-number: 3
+          labels: 'Build'
+          body: "NAME: ${{ env.NAMER }}<br/><br/>LINK DOWNLOAD: ${{ env.LINKROM }}<br/><br/>MD5: ${{ env.MD5 }}"   
+
+
+
           
