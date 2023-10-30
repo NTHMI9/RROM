@@ -21,6 +21,6 @@ GITENV THETB "Hoàn thành"
 
 else
 echo '- Tạo ROM thất bại'
-GITENV THATBAI "Tạo rom thất bại, Xem log: 📱[Actions](https://github.com/chamchamfy/RROM/actions/runs/$GITHUB_RUN_ID)"
+GITENV THATBAI "Tạo rom thất bại, Xem log: 📱[Actions runs](https://github.com/chamchamfy/RROM/actions/runs/$GITHUB_RUN_ID)"
 GITENV THETB "Thất bại"
 fi
