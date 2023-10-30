@@ -13,13 +13,21 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: 'Chat bot'
-        uses: actions/stale@v8
+        uses: actions/github-script@v6
         with:
-          only-labels: "Build"
-          stale-issue-label: "Wait"
-          stale-issue-message: "Đang trong quá trình xây dựng, vui lòng chờ...<br/><br/>Sau khi xong link sẽ được gửi vào bài viết này.<br/><br/>Hoặc xem quá trình xây dựng 📱[Actions](https://github.com/chamchamfy/RROM/actions)"
-          days-before-stale: 0
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.rest.issues.addLabels({
+              issue_number: ${{ github.event.issue.number }},
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: ['Wait']
+            })
+            github.rest.issues.createComment({
+              issue_number: ${{ github.event.issue.number }},
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: "Đang trong quá trình xây dựng, vui lòng chờ...<br/><br/>Sau khi xong link sẽ được gửi vào bài viết này.<br/><br/>Hoặc xem quá trình xây dựng 📱[Actions](https://github.com/chamchamfy/RROM/actions)"
+            })
       - name: Nạp dữ liệu
         uses: actions/checkout@v3
       - name: 'Tải về'
@@ -44,7 +52,13 @@ jobs:
               repo: context.repo.repo,
               state: 'closed',
               state_reason: 'completed',
-              labels: ["${{ env.THETB }}"],
+              labels: ["${{ env.THETB }}"]
+            })
+            github.rest.issues.createComment({
+              issue_number: ${{ env.NUMBERI }},
+              owner: context.repo.owner,
+              repo: context.repo.repo,
               body: "${{ env.THATBAI }}"
             })
+
             
