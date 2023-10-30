@@ -25,6 +25,7 @@ GITENV URL $URLKK
 GITENV SIZE $SIZEKK
 GITENV NEMEROM "${URL##*/}"
 GITENV DINHDANG "${URL##*.}"
+GITENV NUMBERI "${Turl1##*/}"
 
 # Tải rom và tải file khác 
 (
