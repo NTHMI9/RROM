@@ -53,8 +53,5 @@ if [[ -e "$TOME/$NEMEROM" ]] && [[ -s "$TOME/$NEMEROM" ]]; then
  fi 
 fi
 
-# di chuyển super 
-[[ -s "$TOME/Unzip/images/super.img" ]] && mv -f $TOME/Unzip/images/super.img $TOME/Unzip/super.img
-[[ -s "$TOME/Unzip/images/super.img.zst" ]] && zstd -d $TOME/Unzip/images/super.img.zst -o $TOME/Unzip/super.img
-[[ -s "$TOME/Unzip/images/super.img.brx" ]] && zstd -D $TOME/Unzip/images/super.transfer.list -d $TOME/Unzip/images/super.img.brx -o $TOME/Unzip/super.img
+# Xoá tập tin rom sau khi giải nén 
 sudo rm -f $TOME/$NEMEROM 2>/dev/null
