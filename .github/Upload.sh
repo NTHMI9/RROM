@@ -16,7 +16,7 @@ GITENV LINKROM "$(cat $TOME/1.json | jq -r .data.downloadPage)"
 echo
 echo "Link download: $LINKROM"
 
-GITENV THATBAI "Tạo rom thành công <br/><br/>Link Download: ${{ env.LINKROM }}"
+GITENV THATBAI "Tạo rom thành công <br/><br/>Link Download: $LINKROM"
 GITENV THETB "Hoàn thành"
 
 else
