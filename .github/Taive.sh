@@ -5,6 +5,7 @@ mkdir -p $TOME/{tmp,Unpack,Repack,Unzip,Payload,Super,Apk,Mod/tmp,VH,Up}
 # Cài giờ Việt Nam
 sudo apt-get install curl > /dev/null;
 sudo cp /usr/share/zoneinfo/Asia/Ho_Chi_Minh /etc/localtime
+
 # Fuc
 User="User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36"
 Xem () { curl -s -G -L -N -H "$User" --connect-timeout 20 "$1"; }
@@ -12,7 +13,6 @@ Taive () { curl -L -N -H "$User" --connect-timeout 20 "$1" -o "$2"; }
 GITENV(){ [ "$2" ] || ( echo "- Error: $1"); echo "$1=$2" >> $GITHUB_ENV; eval "$1='$2'"; }
 
 # CÁC TÙY CHỌN WEB
-
 # link url rom và size
 Turl1="https://github.com$(Xem 'https://github.com/chamchamfy/RROM/issues' | grep -m1 'Link to Issue' | grep -o 'Xây dựng ROM.*"' | cut -d '"' -f3)"
 Xem "$Turl1" > $TOME/1.ht
@@ -47,12 +47,14 @@ if [[ -e "$TOME/$NEMEROM" ]] && [[ -s "$TOME/$NEMEROM" ]]; then
  cp -rf $TOME/Unzip/META-INF/com/android $TOME/.github/libpy/Flash2in1/META-INF/com 2>/dev/null
  elif [ "$DINHDANG" == "tgz" ] || [ "$DINHDANG" == "gz" ]; then
  tar -xf "$TOME/$NEMEROM" -C "$TOME/Unzip"
- [[ -s "$TOME/Unzip/images/super.img" ]] && mv -f $TOME/Unzip/images/super.img $TOME/Unzip/super.img
- [[ -s "$TOME/Unzip/images/super.img.zst" ]] && zstd -d $TOME/Unzip/images/super.img.zst -o $TOME/Unzip/super.img
- [[ -s "$TOME/Unzip/images/super.img.brx" ]] && zstd -D $TOME/Unzip/images/super.transfer.list -d $TOME/Unzip/images/super.img.brx -o $TOME/Unzip/super.img
  else
  echo "- Rom không phải file zip hoặc tgz, gz"
  exit 0
- fi
+ fi 
 fi
+
+# di chuyển super 
+[[ -s "$TOME/Unzip/images/super.img" ]] && mv -f $TOME/Unzip/images/super.img $TOME/Unzip/super.img
+[[ -s "$TOME/Unzip/images/super.img.zst" ]] && zstd -d $TOME/Unzip/images/super.img.zst -o $TOME/Unzip/super.img
+[[ -s "$TOME/Unzip/images/super.img.brx" ]] && zstd -D $TOME/Unzip/images/super.transfer.list -d $TOME/Unzip/images/super.img.brx -o $TOME/Unzip/super.img
 sudo rm -f $TOME/$NEMEROM 2>/dev/null
