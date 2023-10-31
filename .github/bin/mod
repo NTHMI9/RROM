@@ -701,7 +701,7 @@ fi
 if [[ "$twrp" == "1" ]]; then echo " * Thêm BOOT TWRP $tenmamay..."
  mkdir -p $TOME/twrp
  if [[ -n "$(grep 'recovery' $phanvungtam/vendor/etc/fstab.*)" ]]; then 
-  linktwrp="https://sourceforge.net/projects/recovery-for-xiaomi-devices/files/${tenmamay}/twrp-3.7.0_12-v7.9_A13-${tenmamay}-skkk.img"
+  [[ "$tenmamay" == "lmi" ]] && linktwrp="https://sourceforge.net/projects/recovery-for-xiaomi-devices/files/${tenmamay}/twrp-3.7.0_12-v7.7_A12-${tenmamay}-skkk.img" || linktwrp="https://sourceforge.net/projects/recovery-for-xiaomi-devices/files/${tenmamay}/twrp-3.7.0_12-v7.9_A13-${tenmamay}-skkk.img"
   Taive "$linktwrp" "$TOME/twrp/recovey.img"
  else 
  if [[ "$tenmamay" == "vili" ]]; then 
