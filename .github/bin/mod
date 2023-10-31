@@ -63,7 +63,7 @@ dong='IS_GLOBAL_BUILD'
 thaychuoi
 boten;
 }
-sudo sed -i 's/"MIUI "/"MIUID "/g' $TOME/Mod/$tjar/classes*/com/android/settings/device/MiuiAboutPhoneUtils.smali 2>/dev/null
+sudo sed -i 's/"MIUI "/"VHOS "/g' $TOME/Mod/$tjar/classes*/com/android/settings/device/MiuiAboutPhoneUtils.smali 2>/dev/null
 sudo sed -i 's/"by xiaomi.eu"/"by MIUICC "/g' $TOME/Mod/$tjar/classes*/com/android/settings/device/MiuiAboutPhoneUtils.smali 2>/dev/null
 sudo sed -i 's/"by "/" "/g' $TOME/Mod/$tjar/classes*/com/android/settings/device/MiuiAboutPhoneUtils.smali 2>/dev/null 
 [[ "$TKM" == "1" ]] && Tkm
