@@ -48,20 +48,6 @@ GITENV TTV "$(checkbox 'Thêm Tiếng Việt')"
 # Chọn sv upload
 GITENV SEVERUP "$(checktc Transfer)"
 
-
-# Tải rom và tải file khác 
-(
-while true; do
-if [ "$(gh issue view $NUMBIE | grep -cm1 CLOSED)" == 1 ];then
-gh run cancel $GITHUB_RUN_ID
-else
-[ -e "$TOME/$NEMEROM" ] && break
-sleep 1
-echo 1
-fi
-done
-) &
-
 (
 sudo apt-get update >/dev/null
 sudo apt-get install zstd binutils e2fsprogs erofs-utils simg2img img2simg zipalign f2fs-tools p7zip >/dev/null
@@ -72,6 +58,17 @@ pip3 install -r requirements.txt >/dev/null;
 echo "- Tải về: $URL";
 Taive "$URL" "$TOME/rom.zip" || exit 0
 mv "$TOME/rom.zip" "$TOME/$NEMEROM"
+) & (
+# Tải rom và tải file khác
+while true; do
+if [ "$(gh issue view $NUMBIE | grep -cm1 CLOSED)" == 1 ];then
+gh run cancel $GITHUB_RUN_ID
+else
+[ -e "$TOME/$NEMEROM" ] && break
+sleep 1
+echo 1
+fi
+done
 )
 
 echo
