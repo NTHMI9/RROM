@@ -20,12 +20,13 @@ body:
       required: true
   - type: dropdown
     attributes:
-      label: Kích cỡ Super
-      description: Chọn kích cỡ file super, xem hướng dẫn kiểm tra kích cỡ bên dưới.
+      label: Dùng Recovery mod
+      description: |
+        Dùng `Twrp`, hoặc `OrangeFox`
+        Lưu ý: Nếu chọn Fox một số rom sẽ không có sẵn nó sẽ tự chọn Twrp.
       options:
-        - 8.5GB
-        - 9GB
-        - 9.5GB
+        - OrangeFox ( Ưu tiên )
+        - Twrp
       default: 0
     validations:
       required: true
