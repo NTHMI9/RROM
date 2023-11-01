@@ -14,18 +14,31 @@ GITENV(){ [ "$2" ] || ( echo "- Error: $1"); echo "$1=$2" >> $GITHUB_ENV; eval "
 checktc(){ grep -co 'dir="auto">.*'$1'' $TOME/1.ht 2>/dev/null; }
 
 # CÁC TÙY CHỌN WEB
-# link url rom và size
+
 Turl1="https://github.com$(Xem 'https://github.com/chamchamfy/RROM/issues' | grep -m1 'Link to Issue' | grep -o 'Xây dựng ROM.*"' | cut -d '"' -f3)"
 Xem "$Turl1" > $TOME/1.ht
+
+# get delete app
+while true; do
+kjgghh=0
+grep -A"$kjgghh" -m2 'data-snippet-clipboard-copy-content=' $TOME/1.ht > $TOME/delete_app.md
+kjgghh=$(($kjgghh + 1))
+[ "$(grep -c '">' $TOME/delete_app.md)" == 1 ] && break
+done
+uc1="$(head -n1 $TOME/delete_app.md | grep -o 'data-snippet-clipboard-copy-content=.*' | cut -d '"' -f2)"
+[ "$(wc -l < $TOME/delete_app.md)" -gt 1 ] && uc2="$(tail -n1 $TOME/delete_app.md | cut -d '"' -f1)"
+sed -i -e '1d' -e '$d' $TOME/delete_app.md
+echo "$uc1
+$uc2" >> $TOME/delete_app.md
+
+
+# link url rom và size 
 URLKK="$(grep -m1 'dir="auto">Url:' $TOME/1.ht | grep -o 'Url:.*<' | cut -d '"' -f2)"
-SIZEKK="$(grep -o 'dir="auto">.*GB' $TOME/1.ht | cut -d '>' -f2 | sed 's|GB||')"
+#SIZEKK="$(grep -o 'dir="auto">.*GB' $TOME/1.ht | cut -d '>' -f2 | sed 's|GB||')"
 RECOVERYMOD="$(checktc OrangeFox)"
-
-
 
 # Gắn lên git env
 GITENV URL $URLKK
-GITENV SIZE $SIZEKK
 GITENV NEMEROM "${URL##*/}"
 GITENV DINHDANG "${URL##*.}"
 GITENV NUMBERI "${Turl1##*/}"
