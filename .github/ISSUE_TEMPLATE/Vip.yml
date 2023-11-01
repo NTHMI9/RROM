@@ -62,7 +62,6 @@ body:
       description: Chọn sever để tải rom lên, thời gian lưu trữ files tùy sever 10 - 30 ngày.
       options:
         - Gofile
-        - MixDrop
         - Transfer
       default: 0
     validations:
