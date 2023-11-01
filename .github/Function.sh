@@ -10,3 +10,5 @@ checkbox(){ grep -m1 "$1</li>" $TOME/1.ht 2>/dev/null | grep -cm1 'checked=' 2>/
 Chatbot(){ gh issue comment $NUMBIE --body "$1" & echo "$1"; }
 addlabel(){ gh issue edit $NUMBIE --add-label "$1"; }
 closechat(){ gh issue close $NUMBIE -c "$1"; }
+cancelrun(){ gh run cancel $GITHUB_RUN_ID; }
+removelabel(){ gh issue edit $NUMBIE --remove-label "$1"; }
