@@ -20,15 +20,15 @@ Xem "https://github.com/chamchamfy/RROM/issues/$NUMBIE" > $TOME/1.ht
 if [ "$(grep -cm1 'data-snippet-clipboard-copy-content=' $TOME/1.ht)" == 1 ];then
 while true; do
 kjgghh=0
-grep -A"$kjgghh" -m2 'data-snippet-clipboard-copy-content=' $TOME/1.ht > $TOME/delete_app.md
+grep -A"$kjgghh" -m2 'data-snippet-clipboard-copy-content=' $TOME/1.ht > $TOME/Delete_apps.md
 kjgghh=$(($kjgghh + 1))
-[ "$(grep -c '">' $TOME/delete_app.md)" == 1 ] && break
+[ "$(grep -c '">' $TOME/Delete_apps.md)" == 1 ] && break
 done
-uc1="$(head -n1 $TOME/delete_app.md | grep -o 'data-snippet-clipboard-copy-content=.*' | cut -d '"' -f2)"
-[ "$(wc -l < $TOME/delete_app.md)" -gt 1 ] && uc2="$(tail -n1 $TOME/delete_app.md | cut -d '"' -f1)"
-sed -i -e '1d' -e '$d' $TOME/delete_app.md
+uc1="$(head -n1 $TOME/Delete_apps.md | grep -o 'data-snippet-clipboard-copy-content=.*' | cut -d '"' -f2)"
+[ "$(wc -l < $TOME/Delete_apps.md)" -gt 1 ] && uc2="$(tail -n1 $TOME/Delete_apps.md | cut -d '"' -f1)"
+sed -i -e '1d' -e '$d' $TOME/Delete_apps.md
 echo "$uc1
-$uc2" >> $TOME/delete_app.md
+$uc2" >> $TOME/Delete_apps.md
 fi
 
 # link url rom và size 
