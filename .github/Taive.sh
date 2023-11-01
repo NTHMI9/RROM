@@ -57,6 +57,7 @@ gh run cancel $GITHUB_RUN_ID
 else
 [ -e "$TOME/$NEMEROM" ] && break
 sleep 1
+echo 1
 fi
 done
 ) & (
