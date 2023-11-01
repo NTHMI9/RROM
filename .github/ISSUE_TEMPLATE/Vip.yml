@@ -34,7 +34,7 @@ body:
       label: Chế độ Mount
       description: Cho phép chỉnh sửa hệ thống hoặc chỉ đọc giống rom gốc.
       options:
-        - Mặc định theo hệ thống 
+        - Mặc định (Hệ thống)
         - Cho phép ghi đọc
         - Chỉ đọc
       default: 0
