@@ -2,14 +2,15 @@
 TOME="$GITHUB_WORKSPACE"
 cd $TOME/.github/libpy/Flash2in1
 GITENV(){ [ "$2" ] || ( echo "- Error: $1" ); echo "$1=$2" >> $GITHUB_ENV; eval "$1='$2'"; }
+Chatbot(){ gh issue comment $NUMBIE --body "$1" & echo "$1"; }
 
 if [ -e $TOME/ok ]; then
 # Nén rom zip
-echo "Tên ROM: $NEMEROM"
+Chatbot "Nén ROM: $NEMEROM"
 zip -qr $TOME/$NEMEROM *
 
 echo
-echo '- ROM đang tải lên sever vui lòng chờ...'
+Chatbot '- ROM đang tải lên sever vui lòng chờ...'
 
 if [ "$SEVERUP" = 1 ];then
 Dangtailen="$(curl --upload-file "$TOME/$NEMEROM" https://transfer.sh)"
