@@ -12,7 +12,7 @@ Xem () { curl -s -G -L -N -H "$User" --connect-timeout 20 "$1"; }
 Taive () { curl -L -N -H "$User" --connect-timeout 20 "$1" -o "$2"; }
 GITENV(){ [ "$2" ] || ( echo "- Error: $1"); echo "$1=$2" >> $GITHUB_ENV; eval "export $1='$2'"; }
 checktc(){ grep -co 'dir="auto">.*'$1'' $TOME/1.ht 2>/dev/null; }
-checkbox(){ grep -m1 "$1</li>" 1.htm | grep -cm1 'checked='; }
+checkbox(){ grep -m1 "$1</li>" 1.ht | grep -cm1 'checked='; }
 
 # CÁC TÙY CHỌN WEB
 Xem "https://github.com/chamchamfy/RROM/issues/$NUMBIE" > $TOME/1.ht
