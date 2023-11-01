@@ -1,9 +1,11 @@
 # Function
 export TOME="$GITHUB_WORKSPACE"
+export User="User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36"
+
 mkdir -p $TOME/{tmp,Unpack,Repack,Unzip,Payload,Super,Apk,Mod/tmp,VH,Up}
 
-Xem () { curl -s -G -L -N -H --connect-timeout 20 "$1"; }
-Taive () { curl -L -N -H --connect-timeout 20 "$1" -o "$2"; }
+Xem () { curl -s -G -L -N -H "$User" --connect-timeout 20 "$1"; }
+Taive () { curl -L -N -H "$User" --connect-timeout 20 "$1" -o "$2"; }
 
 # Thêm ad=123, thêm env v.v
 GITENV(){ [ "$2" ] || ( echo "- Error: $1"); echo "$1=$2" >> $GITHUB_ENV; eval "export $1='$2'"; }
