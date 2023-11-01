@@ -8,9 +8,17 @@ if [ -e $TOME/ok ]; then
 echo "Tên ROM: $NEMEROM"
 zip -qr $TOME/$NEMEROM *
 
+echo
+echo '- ROM đang tải lên sever vui lòng chờ...'
+
+if [ "$SEVERUP" = 1 ];then
+Dangtailen="$(curl --upload-file "$TOME/$NEMEROM" https://transfer.sh)"
+GITENV LINKROM "$Dangtailen"
+else
 url2="$(curl -s https://api.gofile.io/getServer | jq -r .data.server)"
 eval "curl -F 'file=@$TOME/$NEMEROM' 'https://$url2.gofile.io/uploadFile' > $TOME/1.json"
 GITENV LINKROM "$(cat $TOME/1.json | jq -r .data.downloadPage)"
+fi
 
 # Link download 
 echo
