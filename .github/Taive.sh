@@ -66,7 +66,7 @@ mv "$TOME/rom.zip" "$TOME/$NEMEROM"
 while true; do
 if [ "$(gh issue view $NUMBIE | grep -cm1 CLOSED)" == 1 ];then
 Chatbot "Đã nhận được lệnh hủy quá trình."
-gh run cancel $GITHUB_RUN_ID
+cancelrun
 else
 [ -e "$TOME/$NEMEROM" ] && break
 [ -e "$TOME/lag" ] && break
@@ -94,8 +94,8 @@ fi
 sudo rm -f $TOME/$NEMEROM 2>/dev/null
 else
 Chatbot "- Liên kết tải lỗi $URL..."
-gh issue edit $NUMBIE --remove-label "Build"
-gh issue edit $NUMBIE --remove-label "Wait"
+removelabel "Build"
+removelabel "Wait"
 closechat "Tạo rom thất bại, Xem log: 📱[Actions runs](https://github.com/chamchamfy/RROM/actions/runs/$GITHUB_RUN_ID)"
 addlabel "Thất bại"
 fi
