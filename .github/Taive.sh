@@ -11,6 +11,7 @@ User="User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/53
 Xem () { curl -s -G -L -N -H "$User" --connect-timeout 20 "$1"; }
 Taive () { curl -L -N -H "$User" --connect-timeout 20 "$1" -o "$2"; }
 GITENV(){ [ "$2" ] || ( echo "- Error: $1"); echo "$1=$2" >> $GITHUB_ENV; eval "export $1='$2'"; }
+checktc(){ grep -co 'dir="auto">.*'$1'' $TOME/1.ht 2>/dev/null; }
 
 # CÁC TÙY CHỌN WEB
 # link url rom và size
@@ -18,6 +19,9 @@ Turl1="https://github.com$(Xem 'https://github.com/chamchamfy/RROM/issues' | gre
 Xem "$Turl1" > $TOME/1.ht
 URLKK="$(grep -m1 'dir="auto">Url:' $TOME/1.ht | grep -o 'Url:.*<' | cut -d '"' -f2)"
 SIZEKK="$(grep -o 'dir="auto">.*GB' $TOME/1.ht | cut -d '>' -f2 | sed 's|GB||')"
+RECOVERYMOD="$(checktc OrangeFox)"
+
+
 
 # Gắn lên git env
 GITENV URL $URLKK
