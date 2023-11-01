@@ -15,7 +15,7 @@ jobs:
       NUMBIE: ${{ github.event.issue.number }}
       GH_TOKEN: ${{ github.token }}
     steps:
-      - name: Nạp dữ liệu
+      - name: Dữ liệu
         uses: actions/checkout@v3
       - name: 'Tải về'
         run: |
