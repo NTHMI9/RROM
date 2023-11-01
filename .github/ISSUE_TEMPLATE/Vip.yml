@@ -34,7 +34,7 @@ body:
     attributes:
       label: Chế độ Mount
       description: |
-        Nếu chọn `None` nó cho phép chỉnh sửa hệ thống, ngược lại thì không.
+        Cho phép chỉnh sửa hệ thống hoặc chỉ đọc giống rom gốc.
       options:
         - Cho phép đọc, viết
         - Chỉ đọc
