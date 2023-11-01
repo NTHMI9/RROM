@@ -11,9 +11,8 @@ body:
     attributes:
       label: Nhập liên kết
       description: |
-        Hãy điền liên kết tải rom vào đây
         Ví dụ: `Url: http://link.rom/file.zip`
-        Chỉ hỗ trợ android 12 trở nên, nên dùng link rom của Xiaomi, không hỗ trợ rom port.
+        Chỉ hỗ trợ `Android 12` trở nên, nên dùng [link rom của Xiaomi](https://xiaomirom.com/en/series), không hỗ trợ rom port.
       placeholder: "Url:"
       value: "Url: "
     validations:
