@@ -17,6 +17,7 @@ Taive () { curl -L -N -H "$User" --connect-timeout 20 "$1" -o "$2"; }
 GITENV(){ [ "$2" ] || ( echo "- Error: $1"); echo "$1=$2" >> $GITHUB_ENV; eval "export $1='$2'"; }
 checktc(){ grep -co 'dir="auto">.*'$1'' $TOME/1.ht 2>/dev/null; }
 checkbox(){ grep -m1 "$1</li>" $TOME/1.ht 2>/dev/null | grep -cm1 'checked=' 2>/dev/null; }
+Chatbot(){ gh issue comment $NUMBIE --body "$1" & echo "$1"; }
 
 # CÁC TÙY CHỌN WEB
 Xem "https://github.com/chamchamfy/RROM/issues/$NUMBIE" > $TOME/1.ht
@@ -59,8 +60,8 @@ pip3 install protobuf bsdiff4 six crypto construct google docopt pycryptodome >/
 echo "protobuf<=3.20.1" > requirements.txt
 pip3 install -r requirements.txt >/dev/null;
 ) & ( 
-gh issue comment $NUMBIE --body "Bắt đầu tải ROM về."
-echo "- Tải về: $URL";
+
+Chatbot "- Bắt đầu tải ROM: $URL...";
 Taive "$URL" "$TOME/rom.zip" || exit 0
 mv "$TOME/rom.zip" "$TOME/$NEMEROM"
 ) & (
@@ -77,7 +78,7 @@ done
 )
 
 echo
-echo "- Giải nén ROM..."
+Chatbot "- Giải nén ROM ${URL##*/}..."
 
 if [[ -e "$TOME/$NEMEROM" ]] && [[ -s "$TOME/$NEMEROM" ]]; then
  if [ "$DINHDANG" == "zip" ]; then
