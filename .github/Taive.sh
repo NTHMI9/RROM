@@ -1,6 +1,6 @@
 # kakathic
-export TOME="$GITHUB_WORKSPACE"
-mkdir -p $TOME/{tmp,Unpack,Repack,Unzip,Payload,Super,Apk,Mod/tmp,VH,Up}
+. .github/Function.sh
+
 
 # Cài giờ Việt Nam
 sudo apt-get install curl > /dev/null;
@@ -9,15 +9,6 @@ sudo cp /usr/share/zoneinfo/Asia/Ho_Chi_Minh /etc/localtime
 # chat bot chào & thêm nhãn chờ
 gh issue comment $NUMBIE --body "Bắt đầu xây dựng, vui lòng chờ...<br/><br/>Sau khi xong link sẽ được gửi vào bài viết này, hoặc xem quá trình xây dựng 📱[Actions](https://github.com/chamchamfy/RROM/actions/runs/$GITHUB_RUN_ID)<br/><br/>Muốn sửa quá trình xây dựng hãy ấn nút `Close Issues`, chỉ có thể sửa khi đang tải rom về."
 gh issue edit $NUMBIE --add-label "Wait"
-
-# Fuc
-User="User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36"
-Xem () { curl -s -G -L -N -H "$User" --connect-timeout 20 "$1"; }
-Taive () { curl -L -N -H "$User" --connect-timeout 20 "$1" -o "$2"; }
-GITENV(){ [ "$2" ] || ( echo "- Error: $1"); echo "$1=$2" >> $GITHUB_ENV; eval "export $1='$2'"; }
-checktc(){ grep -co 'dir="auto">.*'$1'' $TOME/1.ht 2>/dev/null; }
-checkbox(){ grep -m1 "$1</li>" $TOME/1.ht 2>/dev/null | grep -cm1 'checked=' 2>/dev/null; }
-Chatbot(){ gh issue comment $NUMBIE --body "$1" & echo "$1"; }
 
 # CÁC TÙY CHỌN WEB
 Xem "https://github.com/chamchamfy/RROM/issues/$NUMBIE" > $TOME/1.ht
