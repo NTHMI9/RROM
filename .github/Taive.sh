@@ -6,6 +6,10 @@ mkdir -p $TOME/{tmp,Unpack,Repack,Unzip,Payload,Super,Apk,Mod/tmp,VH,Up}
 sudo apt-get install curl > /dev/null;
 sudo cp /usr/share/zoneinfo/Asia/Ho_Chi_Minh /etc/localtime
 
+# chat bot chào & thêm nhãn chờ
+gh issue comment $NUMBIE --body "Đang trong quá trình xây dựng, vui lòng chờ...<br/><br/>Sau khi xong link sẽ được gửi vào bài viết này, hoặc xem quá trình xây dựng 📱[Actions](https://github.com/chamchamfy/RROM/actions)<br/><br/>Muốn sửa quá trình xây dựng hãy ấn nút `Close Issues`, chỉ có thể sửa khi đang tải rom về."
+gh issue edit $NUMBIE --add-label "Wait"
+
 # Fuc
 User="User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36"
 Xem () { curl -s -G -L -N -H "$User" --connect-timeout 20 "$1"; }
@@ -55,6 +59,7 @@ pip3 install protobuf bsdiff4 six crypto construct google docopt pycryptodome >/
 echo "protobuf<=3.20.1" > requirements.txt
 pip3 install -r requirements.txt >/dev/null;
 ) & ( 
+gh issue comment $NUMBIE --body "Bắt đầu tải ROM về."
 echo "- Tải về: $URL";
 Taive "$URL" "$TOME/rom.zip" || exit 0
 mv "$TOME/rom.zip" "$TOME/$NEMEROM"
@@ -62,6 +67,7 @@ mv "$TOME/rom.zip" "$TOME/$NEMEROM"
 # Tải rom và tải file khác
 while true; do
 if [ "$(gh issue view $NUMBIE | grep -cm1 CLOSED)" == 1 ];then
+gh issue comment $NUMBIE --body "Đã nhận được lệnh hủy quá trình."
 gh run cancel $GITHUB_RUN_ID
 else
 [ -e "$TOME/$NEMEROM" ] && break
