@@ -35,8 +35,8 @@ body:
       label: Chế độ mount Super
       description: "Nếu chọn `None` nó cho phép chỉnh sửa hệ thống, ngược lại thì không."
       options:
-        - None
-        - Read only
+        - 'None'
+        - 'Read only'
       default: 0
     validations:
       required: true
