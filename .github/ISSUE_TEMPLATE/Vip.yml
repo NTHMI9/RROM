@@ -11,7 +11,7 @@ body:
     attributes:
       label: Nhập liên kết
       description: |
-        Ví dụ: `Url: http://link.rom/file.zip`
+        Ví dụ: ```Url: http://link.rom/file.zip```
         Chỉ hỗ trợ `Android 12` trở nên, nên dùng [link rom của Xiaomi](https://xiaomirom.com/en/series), không hỗ trợ rom port.
       placeholder: "Url:"
       value: "Url: "
