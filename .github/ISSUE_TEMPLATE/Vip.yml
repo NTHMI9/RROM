@@ -32,7 +32,7 @@ body:
       required: true
   - type: dropdown
     attributes:
-      label: Chế độ mount Super
+      label: Chế độ Mount
       description: |
         Nếu chọn `None` nó cho phép chỉnh sửa hệ thống, ngược lại thì không.
       options:
