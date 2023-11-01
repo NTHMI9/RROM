@@ -105,6 +105,6 @@ else
 Chatbot "- Liên kết tải lỗi $URL..."
 gh issue edit $NUMBIE --remove-label "Build"
 gh issue edit $NUMBIE --remove-label "Wait"
-Chatbot "Tạo rom thất bại, Xem log: 📱[Actions runs](https://github.com/chamchamfy/RROM/actions/runs/$GITHUB_RUN_ID)"
+gh issue close $NUMBIE -c "Tạo rom thất bại, Xem log: 📱[Actions runs](https://github.com/chamchamfy/RROM/actions/runs/$GITHUB_RUN_ID)"
 gh issue edit $NUMBIE --add-label "Thất bại"
 fi
