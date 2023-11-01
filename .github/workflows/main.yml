@@ -11,6 +11,8 @@ jobs:
     name: 'Xem quá trình'
     if: github.repository == 'chamchamfy/RROM' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-22.04
+    env:
+      NUMBIE: ${{ github.event.issue.number }}
     steps:
       - name: 'Chat bot'
         uses: actions/github-script@v6
