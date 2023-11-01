@@ -1,8 +1,6 @@
 # kakathic
-TOME="$GITHUB_WORKSPACE"
+. .github/Function.sh
 cd $TOME/.github/libpy/Flash2in1
-GITENV(){ [ "$2" ] || ( echo "- Error: $1" ); echo "$1=$2" >> $GITHUB_ENV; eval "$1='$2'"; }
-Chatbot(){ gh issue comment $NUMBIE --body "$1" & echo "$1"; }
 
 if [ -e $TOME/ok ]; then
 # Nén rom zip
