@@ -29,7 +29,7 @@ jobs:
               issue_number: ${{ github.event.issue.number }},
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: "Đang trong quá trình xây dựng, vui lòng chờ...<br/><br/>Sau khi xong link sẽ được gửi vào bài viết này, hoặc xem quá trình xây dựng 📱[Actions](https://github.com/chamchamfy/RROM/actions)"
+              body: "Đang trong quá trình xây dựng, vui lòng chờ...<br/><br/>Sau khi xong link sẽ được gửi vào bài viết này, hoặc xem quá trình xây dựng 📱[Actions](https://github.com/chamchamfy/RROM/actions)<br/><br/>Muốn hủy quá trình hãy ấn nút `Close Issues`, chỉ có thể hủy khi đang tải rom về."
             })
       - name: Nạp dữ liệu
         uses: actions/checkout@v3
