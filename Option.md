@@ -8,7 +8,7 @@ NN="VI"
 opcc="1"
 
 ### Hỗ trợ: ext4 hoặc erofs. Bỏ trống là mặc định
-Dinhdangphanvung="ext4"
+Dinhdangphanvung=""
 
 ### Chế độ phân vùng super: none hoặc readonly
 chedo="none"
