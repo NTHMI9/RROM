@@ -33,8 +33,7 @@ body:
   - type: dropdown
     attributes:
       label: Chế độ Mount
-      description: |
-        Cho phép chỉnh sửa hệ thống hoặc chỉ đọc giống rom gốc.
+      description: Cho phép chỉnh sửa hệ thống hoặc chỉ đọc giống rom gốc.
       options:
         - Cho phép đọc, viết
         - Chỉ đọc
@@ -56,6 +55,18 @@ body:
         - label: "Thêm Tiếng Việt"
         - label: Test
           required: false
+
+  - type: dropdown
+    attributes:
+      label: Sever Upload
+      description: Chọn sever để tải rom lên, thời gian lưu trữ files tùy sever 10 - 30 ngày.
+      options:
+        - Gofile
+        - MixDrop
+        - Transfer
+      default: 0
+    validations:
+      required: true
 
   - type: textarea
     attributes:
