@@ -11,25 +11,24 @@ echo
 Chatbot '- ROM đang tải lên sever vui lòng chờ...'
 
 if [ "$SEVERUP" = 1 ];then
-Dangtailen="$(curl --upload-file "$TOME/$NEMEROM" https://transfer.sh)"
-GITENV LINKROM "$Dangtailen"
+LINKROM="$(curl --upload-file "$TOME/$NEMEROM" https://transfer.sh)"
 else
 url2="$(curl -s https://api.gofile.io/getServer | jq -r .data.server)"
 eval "curl -F 'file=@$TOME/$NEMEROM' 'https://$url2.gofile.io/uploadFile' > $TOME/1.json"
-GITENV LINKROM "$(cat $TOME/1.json | jq -r .data.downloadPage)"
+LINKROM="$(cat $TOME/1.json | jq -r .data.downloadPage)"
 fi
 
 # Link download 
 echo
 echo "Link download: $LINKROM"
 
-gh issue close $NUMBIE -c "Tạo rom thành công <br/><br/>Link Download: $LINKROM"
-gh issue edit $NUMBIE --add-label "Hoàn thành"
+closechat "Tạo rom thành công <br/><br/>Link Download: $LINKROM"
+addlabel "Hoàn thành"
 
 else
-gh issue close $NUMBIE -c "Tạo rom thất bại, Xem log: 📱[Actions runs](https://github.com/chamchamfy/RROM/actions/runs/$GITHUB_RUN_ID)"
-gh issue edit $NUMBIE --add-label "Thất bại"
+closechat "Tạo rom thất bại, Xem log: 📱[Actions runs](https://github.com/chamchamfy/RROM/actions/runs/$GITHUB_RUN_ID)"
+addlabel "Thất bại"
 fi
 
-gh issue edit $NUMBIE --remove-label "Build"
-gh issue edit $NUMBIE --remove-label "Wait"
+removelabel "Build"
+removelabel "Wait"
