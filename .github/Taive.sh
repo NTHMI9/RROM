@@ -14,9 +14,7 @@ GITENV(){ [ "$2" ] || ( echo "- Error: $1"); echo "$1=$2" >> $GITHUB_ENV; eval "
 checktc(){ grep -co 'dir="auto">.*'$1'' $TOME/1.ht 2>/dev/null; }
 
 # CÁC TÙY CHỌN WEB
-
-Turl1="https://github.com$(Xem 'https://github.com/chamchamfy/RROM/issues' | grep -om1 'Link to Issue.*' | cut -d '"' -f3)"
-Xem "$Turl1" > $TOME/1.ht
+Xem "https://github.com/chamchamfy/RROM/issues/$NUMBIE" > $TOME/1.ht
 
 # get delete app
 if [ "$(grep -cm1 'data-snippet-clipboard-copy-content=' $TOME/1.ht)" == 1 ];then
