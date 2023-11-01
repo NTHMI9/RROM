@@ -79,7 +79,7 @@ gh run cancel $GITHUB_RUN_ID
 else
 [ -e "$TOME/$NEMEROM" ] && break
 [ -e "$TOME/lag" ] && break
-sleep 1
+sleep 10
 fi
 done
 )
