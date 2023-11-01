@@ -1,7 +1,10 @@
 #!/bin/bash
 TOME="$GITHUB_WORKSPACE"
 cd $TOME/Super
-for m in system.img vendor.img product.img system_ext.img; do sudo mkdir -p /mnt/diem/${m%/*}; [[ -s "$m" ]] && sudo mount -w -t auto $TOME/Super/$m /mnt/diem/${m%/*}; done 
+# Chỉ dành cho hệ thống ext4 mới có thể mount
+if [[ -n "$(hexdump -n 4000 system.img | grep 'e1e2 e0f5')" ]]; then echo " - Tập tin hệ thống là erofs"
+else 
+for m in system.img vendor.img product.img system_ext.img; do sudo mkdir -p /mnt/diem/${m%/*}; [[ -s "$m" ]] && sudo mount -w -t auto $TOME/Super/$m /mnt/diem/${m%/*} 2>/dev/null; done 
 khoichay() {
 if [[ -n "$(echo "$URL" | grep 'CNXM')" ]]; then 
  Taive "https://sourceforge.net/projects/nikgapps/files/Releases/NikGapps-T/16-Jul-2023/NikGapps-basic-arm64-13-20230716-signed.zip" "$TOME/gapp.zip"
@@ -56,4 +59,4 @@ umount /mnt/diem/product 2>/dev/null
 umount /mnt/diem/system 2>/dev/null
 umount /mnt/diem/system_ext 2>/dev/null
 umount /mnt/diem/vendor 2>/dev/null
-#
+fi
