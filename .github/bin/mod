@@ -700,18 +700,27 @@ fi
 #
 if [[ "$twrp" == "1" ]]; then echo " * Thêm BOOT TWRP $tenmamay..."
  mkdir -p $TOME/twrp
+ taivetwrp() { kkurl="recovery-for-xiaomi-devices"; Taive "$(Xem "$(Xem "https://sourceforge.net/projects/$tenmamay/files/$tenmamay" | grep -om1 "https://.*./$kkurl/files/$tenmamay/.*$1.*" | cut -d '"' -f1)?use_mirror=zenlayer&amp=&use_mirror=zenlayer&r=" | grep -om1 "https://.*./$kkurl/.*$1.*" | cut -d '"' -f1)" "$2"; }
  if [[ -n "$(grep 'recovery' $phanvungtam/vendor/etc/fstab.*)" ]]; then 
-  [[ "$tenmamay" == "lmi" ]] && linktwrp="https://sourceforge.net/projects/recovery-for-xiaomi-devices/files/${tenmamay}/twrp-3.7.0_12-v7.7_A12-${tenmamay}-skkk.img" || linktwrp="https://sourceforge.net/projects/recovery-for-xiaomi-devices/files/${tenmamay}/twrp-3.7.0_12-v7.9_A13-${tenmamay}-skkk.img"
-  Taive "$linktwrp" "$TOME/twrp/recovey.img"
+  if [[ "$RECOVERYMOD" == "1" ]]; then 
+  taivetwrp "OrangeFox-" "$TOME/twrp/fox.zip" 
+  7za x -tzip -y $TOME/twrp/fox.zip *.img -o$TOME/twrp/recovey.img >/dev/null && rm -rf $TOME/twrp/fox.zip 2>/dev/null
+  else 
+  taivetwrp "twrp-" "$TOME/twrp/recovey.img"
+  fi
  else 
  if [[ "$tenmamay" == "vili" ]]; then 
-  if [[ -n "$(echo "$URL" | grep 'MIXM')" ]]; then linktwrp="https://sourceforge.net/projects/chamchamfy/files/Tools/boot_global_$tenmamay.img"
-  elif [[ -n "$(echo "$URL" | grep 'TWXM')" ]]; then linktwrp="https://sourceforge.net/projects/chamchamfy/files/Tools/boot_tw_$tenmamay.img"
-  fi
+  if [[ -n "$(echo "$URL" | grep 'MIXM')" ]]; then linktwrp="https://sourceforge.net/projects/chamchamfy/files/Tools/boot_global_$tenmamay.img"; elif [[ -n "$(echo "$URL" | grep 'TWXM')" ]]; then linktwrp="https://sourceforge.net/projects/chamchamfy/files/Tools/boot_tw_$tenmamay.img"; fi
+  Taive "$linktwrp" "$TOME/twrp/boot.img"
  else
- linktwrp="https://sourceforge.net/projects/recovery-for-xiaomi-devices/files/${tenmamay}/twrp-3.7.0_12-v7.9_A13-${tenmamay}-skkk.img"
+  if [[ "$RECOVERYMOD" == "1" ]]; then 
+  taivetwrp "OrangeFox-" "$TOME/twrp/fox.zip" 
+  7za x -tzip -y $TOME/twrp/fox.zip *.img -o$TOME/twrp/boot.img >/dev/null && rm -rf $TOME/twrp/fox.zip 2>/dev/null
+  else 
+  taivetwrp "twrp-" "$TOME/twrp/boot.img"
+  fi
+ #linktwrp="https://sourceforge.net/projects/recovery-for-xiaomi-devices/files/${tenmamay}/twrp-3.7.0_12-v7.9_A13-${tenmamay}-skkk.img"
  fi
- Taive "$linktwrp" "$TOME/twrp/boot.img"
  fi
  du -m $TOME/twrp/*.img 2>/dev/null
 fi
