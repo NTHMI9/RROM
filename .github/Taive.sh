@@ -7,7 +7,7 @@ sudo apt-get install curl > /dev/null;
 sudo cp /usr/share/zoneinfo/Asia/Ho_Chi_Minh /etc/localtime
 
 # chat bot chào & thêm nhãn chờ
-gh issue comment $NUMBIE --body "Bắt đầu xây dựng, vui lòng chờ...<br/><br/>Sau khi xong link sẽ được gửi vào bài viết này, hoặc xem quá trình xây dựng 📱[Actions](https://github.com/chamchamfy/RROM/actions)<br/><br/>Muốn sửa quá trình xây dựng hãy ấn nút `Close Issues`, chỉ có thể sửa khi đang tải rom về."
+gh issue comment $NUMBIE --body "Bắt đầu xây dựng, vui lòng chờ...<br/><br/>Sau khi xong link sẽ được gửi vào bài viết này, hoặc xem quá trình xây dựng 📱[Actions](https://github.com/chamchamfy/RROM/actions/runs/$GITHUB_RUN_ID)<br/><br/>Muốn sửa quá trình xây dựng hãy ấn nút `Close Issues`, chỉ có thể sửa khi đang tải rom về."
 gh issue edit $NUMBIE --add-label "Wait"
 
 # Fuc
@@ -103,4 +103,8 @@ fi
 sudo rm -f $TOME/$NEMEROM 2>/dev/null
 else
 Chatbot "- Liên kết tải lỗi $URL..."
+gh issue edit $NUMBIE --remove-label "Build"
+gh issue edit $NUMBIE --remove-label "Wait"
+Chatbot "Tạo rom thất bại, Xem log: 📱[Actions runs](https://github.com/chamchamfy/RROM/actions/runs/$GITHUB_RUN_ID)"
+gh issue edit $NUMBIE --add-label "Thất bại"
 fi
