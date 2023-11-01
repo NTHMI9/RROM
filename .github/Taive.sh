@@ -19,6 +19,7 @@ Turl1="https://github.com$(Xem 'https://github.com/chamchamfy/RROM/issues' | gre
 Xem "$Turl1" > $TOME/1.ht
 
 # get delete app
+if [ "$(grep -cm1 'data-snippet-clipboard-copy-content=' $TOME/1.ht)" == 1 ];then
 while true; do
 kjgghh=0
 grep -A"$kjgghh" -m2 'data-snippet-clipboard-copy-content=' $TOME/1.ht > $TOME/delete_app.md
@@ -30,7 +31,7 @@ uc1="$(head -n1 $TOME/delete_app.md | grep -o 'data-snippet-clipboard-copy-conte
 sed -i -e '1d' -e '$d' $TOME/delete_app.md
 echo "$uc1
 $uc2" >> $TOME/delete_app.md
-
+fi
 
 # link url rom và size 
 URLKK="$(grep -m1 'dir="auto">Url:' $TOME/1.ht | grep -o 'Url:.*<' | cut -d '"' -f2)"
