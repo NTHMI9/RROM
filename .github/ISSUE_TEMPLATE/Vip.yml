@@ -36,7 +36,7 @@ body:
       description: |
         Nếu chọn `None` nó cho phép chỉnh sửa hệ thống, ngược lại thì không.
       options:
-        - Full
+        - Cho phép đọc, viết
         - Chỉ đọc
       default: 0
     validations:
