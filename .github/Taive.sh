@@ -18,19 +18,7 @@ checkbox(){ grep -m1 "$1</li>" $TOME/1.ht 2>/dev/null | grep -cm1 'checked=' 2>/
 Xem "https://github.com/chamchamfy/RROM/issues/$NUMBIE" > $TOME/1.ht
 
 # get delete app
-if [ "$(grep -cm1 'data-snippet-clipboard-copy-content=' $TOME/1.ht)" == 1 ];then
-while true; do
-kjgghh=0
-grep -A"$kjgghh" -m2 'data-snippet-clipboard-copy-content=' $TOME/1.ht > $TOME/Delete_apps.md
-kjgghh=$(($kjgghh + 1))
-[ "$(grep -c '">' $TOME/Delete_apps.md)" == 1 ] && break
-done
-uc1="$(head -n1 $TOME/Delete_apps.md | grep -o 'data-snippet-clipboard-copy-content=.*' | cut -d '"' -f2)"
-[ "$(wc -l < $TOME/Delete_apps.md)" -gt 1 ] && uc2="$(tail -n1 $TOME/Delete_apps.md | cut -d '"' -f1)"
-sed -i -e '1d' -e '$d' $TOME/Delete_apps.md
-echo "$uc1
-$uc2" >> $TOME/Delete_apps.md
-fi
+
 
 # link url rom và size 
 URLKK="$(grep -m1 'dir="auto">Url:' $TOME/1.ht | grep -o 'Url:.*<' | cut -d '"' -f2)"
