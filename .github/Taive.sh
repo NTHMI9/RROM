@@ -45,6 +45,10 @@ GITENV DINHDANG "${URL##*.}"
 # Thêm tiếng Việt 1=Bật, 0=Tắt
 GITENV TTV "$(checkbox 'Thêm Tiếng Việt')"
 
+# Chọn sv upload
+GITENV SEVERUP "$(checktc Transfer)"
+
+
 # Tải rom và tải file khác 
 (
 sudo apt-get update >/dev/null
