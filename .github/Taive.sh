@@ -39,7 +39,7 @@ RECOVERYMOD="$(checktc OrangeFox)"
 
 # Gắn lên git env
 GITENV URL $URLKK
-GITENV NEMEROM "${URL##*/}"
+GITENV NEMEROM "RROM_${URL##*/}"
 GITENV DINHDANG "${URL##*.}"
 
 # Thêm tiếng Việt 1=Bật, 0=Tắt
@@ -51,6 +51,15 @@ GITENV SEVERUP "$(checktc Transfer)"
 
 # Tải rom và tải file khác 
 (
+while true; do
+if [ "$(gh issue view $NUMBIE | grep -cm1 CLOSED)" == 1 ];then
+gh run cancel $GITHUB_RUN_ID
+else
+[ -e "$TOME/$NEMEROM" ] && break
+sleep 1
+fi
+done
+) & (
 sudo apt-get update >/dev/null
 sudo apt-get install zstd binutils e2fsprogs erofs-utils simg2img img2simg zipalign f2fs-tools p7zip >/dev/null
 pip3 install protobuf bsdiff4 six crypto construct google docopt pycryptodome >/dev/null
@@ -58,7 +67,8 @@ echo "protobuf<=3.20.1" > requirements.txt
 pip3 install -r requirements.txt >/dev/null;
 ) & ( 
 echo "- Tải về: $URL";
-Taive "$URL" "$TOME/$NEMEROM" || exit 0
+Taive "$URL" "$TOME/rom.zip" || exit 0
+mv "$TOME/rom.zip" "$TOME/$NEMEROM"
 )
 
 echo
