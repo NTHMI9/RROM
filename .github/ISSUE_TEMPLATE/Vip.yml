@@ -34,7 +34,8 @@ body:
       label: Chế độ Mount
       description: Cho phép chỉnh sửa hệ thống hoặc chỉ đọc giống rom gốc.
       options:
-        - Cho phép đọc, viết
+        - Mặc định theo hệ thống 
+        - Cho phép ghi đọc
         - Chỉ đọc
       default: 0
     validations:
@@ -50,6 +51,12 @@ body:
       description: Tích vào ô bên dưới để thêm tính năng khi build rom.
       options:
         - label: "Thêm Tiếng Việt"
+        - label: "Thêm GAPP"
+        - label: "Thêm âm thanh HARMAN KARDON"
+        - label: "Thêm ADRENO GPU Driver"
+        - label: "Vá hệ thống"
+        - label: "Bỏ mã hoá Rom"
+        - label: "Thêm ứng dụng đã Mod"
         - label: Test
           required: false
 
