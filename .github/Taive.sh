@@ -15,7 +15,7 @@ checktc(){ grep -co 'dir="auto">.*'$1'' $TOME/1.ht 2>/dev/null; }
 
 # CÁC TÙY CHỌN WEB
 
-Turl1="https://github.com$(Xem 'https://github.com/chamchamfy/RROM/issues' | grep -m1 'Link to Issue' | grep -o 'Xây dựng ROM.*"' | cut -d '"' -f3)"
+Turl1="https://github.com$(Xem 'https://github.com/chamchamfy/RROM/issues' | grep -om1 'Link to Issue.*' | cut -d '"' -f3)"
 Xem "$Turl1" > $TOME/1.ht
 
 # get delete app
@@ -42,7 +42,7 @@ RECOVERYMOD="$(checktc OrangeFox)"
 GITENV URL $URLKK
 GITENV NEMEROM "${URL##*/}"
 GITENV DINHDANG "${URL##*.}"
-GITENV NUMBERI "${Turl1##*/}"
+
 
 # Tải rom và tải file khác 
 (
