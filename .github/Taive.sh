@@ -7,8 +7,8 @@ sudo apt-get install curl > /dev/null;
 sudo cp /usr/share/zoneinfo/Asia/Ho_Chi_Minh /etc/localtime
 
 # chat bot chào & thêm nhãn chờ
-gh issue comment $NUMBIE --body "Bắt đầu xây dựng, vui lòng chờ...<br/><br/>Sau khi xong link sẽ được gửi vào bài viết này, hoặc xem quá trình xây dựng 📱[Actions](https://github.com/chamchamfy/RROM/actions/runs/$GITHUB_RUN_ID)<br/><br/>Muốn sửa quá trình xây dựng hãy ấn nút `Close Issues`, chỉ có thể sửa khi đang tải rom về."
-gh issue edit $NUMBIE --add-label "Wait"
+Chatbot "Bắt đầu xây dựng, vui lòng chờ...<br/><br/>Sau khi xong link sẽ được gửi vào bài viết này, hoặc xem quá trình xây dựng 📱[Actions](https://github.com/chamchamfy/RROM/actions/runs/$GITHUB_RUN_ID)<br/><br/>Muốn sửa quá trình xây dựng hãy ấn nút `Close Issues`, chỉ có thể sửa khi đang tải rom về."
+addlabel "Wait"
 
 # CÁC TÙY CHỌN WEB
 Xem "https://github.com/chamchamfy/RROM/issues/$NUMBIE" > $TOME/1.ht
@@ -65,7 +65,7 @@ mv "$TOME/rom.zip" "$TOME/$NEMEROM"
 # Tải rom và tải file khác
 while true; do
 if [ "$(gh issue view $NUMBIE | grep -cm1 CLOSED)" == 1 ];then
-gh issue comment $NUMBIE --body "Đã nhận được lệnh hủy quá trình."
+Chatbot "Đã nhận được lệnh hủy quá trình."
 gh run cancel $GITHUB_RUN_ID
 else
 [ -e "$TOME/$NEMEROM" ] && break
@@ -96,6 +96,6 @@ else
 Chatbot "- Liên kết tải lỗi $URL..."
 gh issue edit $NUMBIE --remove-label "Build"
 gh issue edit $NUMBIE --remove-label "Wait"
-gh issue close $NUMBIE -c "Tạo rom thất bại, Xem log: 📱[Actions runs](https://github.com/chamchamfy/RROM/actions/runs/$GITHUB_RUN_ID)"
-gh issue edit $NUMBIE --add-label "Thất bại"
+closechat "Tạo rom thất bại, Xem log: 📱[Actions runs](https://github.com/chamchamfy/RROM/actions/runs/$GITHUB_RUN_ID)"
+addlabel "Thất bại"
 fi
