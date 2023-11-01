@@ -25,11 +25,11 @@ fi
 echo
 echo "Link download: $LINKROM"
 
-Chatbot "Tạo rom thành công <br/><br/>Link Download: $LINKROM"
+gh issue close $NUMBIE -c "Tạo rom thành công <br/><br/>Link Download: $LINKROM"
 gh issue edit $NUMBIE --add-label "Hoàn thành"
 
 else
-Chatbot "Tạo rom thất bại, Xem log: 📱[Actions runs](https://github.com/chamchamfy/RROM/actions/runs/$GITHUB_RUN_ID)"
+gh issue close $NUMBIE -c "Tạo rom thất bại, Xem log: 📱[Actions runs](https://github.com/chamchamfy/RROM/actions/runs/$GITHUB_RUN_ID)"
 gh issue edit $NUMBIE --add-label "Thất bại"
 fi
 
