@@ -653,7 +653,7 @@ system_extfs=""
 }
 #
 ngonngu() { 
-if [[ "$NN" == "VI" ]]; then echo " * Thêm ngôn ngữ..."
+if [[ "$TTV" == "1" ]]; then echo " * Thêm ngôn ngữ..."
 mkdir -p $TOME/VH
 #Taive "https://github.com/kakathic/ZH-VN/releases/download/HH/TT_1.8.Zip" "$TOME/VH.zip"
 Taive "https://github.com/chamchamfy/toolcc/raw/main/overlay.zip" "$TOME/VH.zip"
@@ -700,7 +700,7 @@ fi
 #
 if [[ "$twrp" == "1" ]]; then echo " * Thêm BOOT TWRP $tenmamay..."
  mkdir -p $TOME/twrp
- taivetwrp() { kkurl="recovery-for-xiaomi-devices"; Taive "$(Xem "$(Xem "https://sourceforge.net/projects/$tenmamay/files/$tenmamay" | grep -om1 "https://.*./$kkurl/files/$tenmamay/.*$1.*" | cut -d '"' -f1)?use_mirror=zenlayer&amp=&use_mirror=zenlayer&r=" | grep -om1 "https://.*./$kkurl/.*$1.*" | cut -d '"' -f1)" "$2"; }
+ taivetwrp() { kkurl="recovery-for-xiaomi-devices"; Taive "$(Xem "$(Xem "https://sourceforge.net/projects/$kkurl/files/$tenmamay" | grep -om1 "https://.*./$kkurl/files/$tenmamay/.*$1.*" | cut -d '"' -f1)?use_mirror=zenlayer&amp=&use_mirror=zenlayer&r=" | grep -om1 "https://.*./$kkurl/.*$1.*" | cut -d '"' -f1)" "$2"; }
  if [[ -n "$(grep 'recovery' $phanvungtam/vendor/etc/fstab.*)" ]]; then 
   if [[ "$RECOVERYMOD" == "1" ]]; then 
   taivetwrp "OrangeFox-" "$TOME/twrp/fox.zip" 
@@ -722,6 +722,7 @@ if [[ "$twrp" == "1" ]]; then echo " * Thêm BOOT TWRP $tenmamay..."
  #linktwrp="https://sourceforge.net/projects/recovery-for-xiaomi-devices/files/${tenmamay}/twrp-3.7.0_12-v7.9_A13-${tenmamay}-skkk.img"
  fi
  fi
+ [[ -n "$TOME/twrp/boot.img" ]] && echo " * Thêm Recovery $tenmamay..."
  du -m $TOME/twrp/*.img 2>/dev/null
 fi
 #
