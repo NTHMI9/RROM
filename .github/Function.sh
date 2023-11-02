@@ -29,5 +29,6 @@ closechat "$1"
 closechat "Báo lỗi tại: [Discussions](https://github.com/chamchamfy/RROM/discussions)"
 addlabel "Thất bại"
 removelabel "Wait"
+removelabel "Build"
 cancelrun
 }
