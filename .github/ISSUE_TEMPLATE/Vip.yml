@@ -53,13 +53,35 @@ body:
         - label: "Thêm Tiếng Việt"
         - label: "Thêm GAPP"
         - label: "Thêm âm thanh HARMAN KARDON"
-        - label: "Thêm ADRENO GPU Driver"
         - label: "Vá hệ thống"
         - label: "Bỏ mã hoá Rom"
         - label: "Thêm ứng dụng đã Mod"
         - label: Test
           required: false
-
+  - type: dropdown
+    attributes:
+      label: Chọn ADRENO GPU Driver
+      description: Thêm trình điều khiển ADRENO GPU Driver mới vào ROM, nên lựa chọn phù hợp vi xử lý.
+      options:
+        - Mặc định (không thêm)
+        - Phiên bản GPU 690 (SDM8250)
+        - Phiên bản GPU 725 (SDM8250)
+        - Phiên bản GPU 728 (SDM8250)
+        - Phiên bản GPU 615 (SDM8350)
+        - Phiên bản GPU 651 (SDM8350)
+      default: 0
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Nhập tên tác giả
+      description: |
+        Tác giả: chamchamfy & kakathic
+        Tên tác giả hiển thị khi flash zip ROM.
+      placeholder: "Tác giả:"
+      value: "Tacgia: "
+    validations:
+      required: true
   - type: dropdown
     attributes:
       label: Sever Upload
