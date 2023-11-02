@@ -32,6 +32,7 @@ fi
 URLKK="$(grep -m1 'dir="auto">Url:' $TOME/1.ht | grep -o 'Url:.*<' | sed 's|Url:<||' | cut -d '"' -f2)"
 #SIZEKK="$(grep -o 'dir="auto">.*GB' $TOME/1.ht | cut -d '>' -f2 | sed 's|GB||')"
 RECOVERYMOD="$(checktc OrangeFox)"
+GITENV MREC $RECOVERYMOD
 
 # Gắn lên git env
 GITENV URL $URLKK
@@ -46,11 +47,25 @@ GITENV Vsys "$(checkbox 'Vá hệ thống')"
 GITENV Vfstab "$(checkbox 'Bỏ mã hoá Rom')"
 GITENV APPM "$(checkbox 'Thêm ứng dụng đã Mod')"
 
-# Thùy chọn Adreno GPU Driver
+# Tùy chọn Adreno GPU Driver
+if [ "$(checktc 'Phiên bản GPU 690')" == 1 ]; then AGPU="690"
+elif [ "$(checktc 'Phiên bản GPU 725')" == 1 ]; then AGPU="725"
+elif [ "$(checktc 'Phiên bản GPU 728')" == 1 ]; then AGPU="728"
+elif [ "$(checktc 'Phiên bản GPU 615')" == 1 ]; then AGPU="615"
+elif [ "$(checktc 'Phiên bản GPU 651')" == 1 ]; then AGPU="651"
+fi
+GITENV AGPU $AGPU
 
+# Tùy chọn loại hệ thống
+if [ "$(checktc 'Cho phép ghi đọc')" == 1 ]; then DDPV="ext4"
+elif [ "$(checktc 'Chỉ đọc')" == 1 ]; then DDPV="erofs"
+else DDPV=""
+fi
+GITENV Dinhdangphanvung $DDPV
 
 # Thêm tên tác giả khi flash Rom
-
+Tacgia="$(grep -m1 'dir="auto">Tacgia:' $TOME/1.ht | awk -F'Tacgia:' '{print $2}')"
+GITENV Tacgia $Tacgia
 
 # Chọn sv upload
 GITENV SEVERUP "$(checktc Transfer)"
