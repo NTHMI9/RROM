@@ -79,7 +79,7 @@ body:
         Tác giả: chamchamfy & kakathic
         Tên tác giả hiển thị khi flash zip ROM.
       placeholder: "Tác giả:"
-      value: "Tacgia: "
+      value: "tacgia: "
     validations:
       required: true
   - type: dropdown
