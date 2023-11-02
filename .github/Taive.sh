@@ -111,17 +111,12 @@ if [[ -e "$TOME/$NEMEROM" ]] && [[ -s "$TOME/$NEMEROM" ]]; then
  elif [ "$DINHDANG" == "tgz" ] || [ "$DINHDANG" == "gz" ]; then
  tar -xf "$TOME/$NEMEROM" -C "$TOME/Unzip"
  else
- echo "- Rom không phải file zip hoặc tgz, gz"
- exit 0
+ bug "- Rom không phải file zip hoặc tgz, gz"
  fi 
 fi
 
 # Xoá tập tin rom sau khi giải nén 
 sudo rm -f $TOME/$NEMEROM 2>/dev/null
 else
-Chatbot "- Liên kết tải lỗi $URL..."
-removelabel "Build"
-removelabel "Wait"
-closechat "Tạo rom thất bại, Xem log: 📱[Actions runs](https://github.com/chamchamfy/RROM/actions/runs/$GITHUB_RUN_ID)"
-addlabel "Thất bại"
+bug "- Liên kết tải lỗi..."
 fi
