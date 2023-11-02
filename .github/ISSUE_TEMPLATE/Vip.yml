@@ -34,7 +34,7 @@ body:
       label: Chế độ Mount
       description: Cho phép chỉnh sửa hệ thống hoặc chỉ đọc giống rom gốc.
       options:
-        - Mặc định (Hệ thống)
+        - Mặc định ( Theo hệ thống)
         - Cho phép ghi đọc
         - Chỉ đọc
       default: 0
@@ -98,6 +98,7 @@ body:
       label: Xoá ứng dụng
       description: |
         Tên thư mục ứng dụng ở /system/app/AiAsstVision, priv-app, product v.v
+        Thêm dấu # trước tên thư mục là không xóa ứng dụng đó như: #Calculator
       render: shell
       value: |
         #Calculator #Calendar #CleanMaster #Health #MIShare #MIShareGlobal #MIUIAod #MIUICalculator #MIUICalculatorGlobal #MIUICalendar #MIUICleanMaster #MIUICleanMasterGlobal-cleaner
