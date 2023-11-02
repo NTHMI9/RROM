@@ -674,57 +674,53 @@ sudo cp -af $TOME/tam/system/vendor/* $phanvungtam/vendor
 sudo rm -rf $TOME/tam
 fi 
 #
-if [[ "$GPU" == "1" ]]; then 
- if [[ "$GPU690" == "1" ]]; then 
+if [[ "$AGPU" == "690" ]]; then 
  Taive "https://github.com/chamchamfy/toolcc/raw/main/AdrenoGPUDriver690.zip" "$TOME/AdrenoGPUDriver.zip"
- elif [[ "$GPU725" == "1" ]]; then 
+ elif [[ "$AGPU" == "725" ]]; then 
  Taive "https://github.com/chamchamfy/toolcc/raw/main/AdrenoGPUDriver725.zip" "$TOME/AdrenoGPUDriver.zip"
- elif [[ "$GPU728" == "1" ]]; then 
+ elif [[ "$AGPU" == "728" ]]; then 
  Taive "https://github.com/chamchamfy/toolcc/raw/main/AdrenoGPUDriver728.zip" "$TOME/AdrenoGPUDriver.zip"
- elif [[ "$GPU615" == "1" ]]; then 
+ elif [[ "$AGPU" == "615" ]]; then 
  Taive "https://github.com/chamchamfy/toolcc/raw/main/AdrenoGPUDriver615.zip" "$TOME/AdrenoGPUDriver.zip"
- elif [[ "$GPU651" == "1" ]]; then 
+ elif [[ "$AGPU" == "651" ]]; then 
  Taive "https://github.com/chamchamfy/toolcc/raw/main/AdrenoGPUDriver651.zip" "$TOME/AdrenoGPUDriver.zip"
- fi 
+fi 
 if [[ -s "$TOME/AdrenoGPUDriver.zip" ]]; then echo " * Thêm Adreno GPU Driver..."
 mkdir -p $TOME/tam
 7za x -tzip -y $TOME/AdrenoGPUDriver.zip -o$TOME/tam >/dev/null
 sudo cp -af $TOME/tam/system/vendor/* $phanvungtam/vendor 
 sudo rm -rf $TOME/tam $TOME/AdrenoGPUDriver.zip
 fi 
-fi 
 #
 #
 [[ "$tenmamay" == "vili" ]] && sudo cp -af $TOME/.github/libpy/input/* $phanvungtam || tinhnang
 #
 #
-if [[ "$twrp" == "1" ]]; then echo " * Thêm BOOT TWRP $tenmamay..."
+#linktwrp="https://sourceforge.net/projects/recovery-for-xiaomi-devices/files/${tenmamay}/twrp-3.7.0_12-v7.9_A13-${tenmamay}-skkk.img"
  mkdir -p $TOME/twrp
  taivetwrp() { kkurl="recovery-for-xiaomi-devices"; Taive "$(Xem "$(Xem "https://sourceforge.net/projects/$kkurl/files/$tenmamay" | grep -om1 "https://.*./$kkurl/files/$tenmamay/.*$1.*" | cut -d '"' -f1)?use_mirror=zenlayer&amp=&use_mirror=zenlayer&r=" | grep -om1 "https://.*./$kkurl/.*$1.*" | cut -d '"' -f1)" "$2"; }
- if [[ -n "$(grep 'recovery' $phanvungtam/vendor/etc/fstab.*)" ]]; then 
-  if [[ "$RECOVERYMOD" == "1" ]]; then 
+if [[ -n "$(grep 'recovery' $phanvungtam/vendor/etc/fstab.*)" ]]; then 
+  if [[ "$MREC" == "1" ]]; then 
   taivetwrp "OrangeFox-" "$TOME/twrp/fox.zip" 
   7za x -tzip -y $TOME/twrp/fox.zip *.img -o$TOME/twrp/recovey.img >/dev/null && rm -rf $TOME/twrp/fox.zip 2>/dev/null
   else 
   taivetwrp "twrp-" "$TOME/twrp/recovey.img"
   fi
- else 
+else 
  if [[ "$tenmamay" == "vili" ]]; then 
   if [[ -n "$(echo "$URL" | grep 'MIXM')" ]]; then linktwrp="https://sourceforge.net/projects/chamchamfy/files/Tools/boot_global_$tenmamay.img"; elif [[ -n "$(echo "$URL" | grep 'TWXM')" ]]; then linktwrp="https://sourceforge.net/projects/chamchamfy/files/Tools/boot_tw_$tenmamay.img"; fi
   Taive "$linktwrp" "$TOME/twrp/boot.img"
  else
-  if [[ "$RECOVERYMOD" == "1" ]]; then 
+  if [[ "$MREC" == "1" ]]; then 
   taivetwrp "OrangeFox-" "$TOME/twrp/fox.zip" 
   7za x -tzip -y $TOME/twrp/fox.zip *.img -o$TOME/twrp/boot.img >/dev/null && rm -rf $TOME/twrp/fox.zip 2>/dev/null
   else 
   taivetwrp "twrp-" "$TOME/twrp/boot.img"
   fi
- #linktwrp="https://sourceforge.net/projects/recovery-for-xiaomi-devices/files/${tenmamay}/twrp-3.7.0_12-v7.9_A13-${tenmamay}-skkk.img"
  fi
- fi
- [[ -n "$TOME/twrp/boot.img" ]] && echo " * Thêm Recovery $tenmamay..."
- du -m $TOME/twrp/*.img 2>/dev/null
 fi
+[[ -n "$(ls $TOME/twrp/*.img 2>/dev/null)" ]] && echo " * Thêm Recovery $tenmamay..."
+du -m $TOME/twrp/*.img 2>/dev/null
 #
 if [[ "$GAPP" == "1" ]]; then 
  Taive "https://sourceforge.net/projects/nikgapps/files/Releases/NikGapps-T/16-Jul-2023/NikGapps-basic-arm64-13-20230716-signed.zip" "$TOME/gapp.zip"
