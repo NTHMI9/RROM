@@ -40,6 +40,12 @@ GITENV DINHDANG "${URL##*.}"
 
 # Thêm tiếng Việt 1=Bật, 0=Tắt
 GITENV TTV "$(checkbox 'Thêm Tiếng Việt')"
+GITENV GAPP "$(checkbox 'Thêm GAPP')"
+GITENV HK "$(checkbox 'Thêm âm thanh HARMAN KARDON')"
+GITENV GPU "$(checkbox 'Thêm ADRENO GPU Driver')"
+GITENV Vsys "$(checkbox 'Vá hệ thống')"
+GITENV Vfstab "$(checkbox 'Bỏ mã hoá Rom')"
+GITENV APPM "$(checkbox 'Thêm ứng dụng đã Mod')"
 
 # Chọn sv upload
 GITENV SEVERUP "$(checktc Transfer)"
