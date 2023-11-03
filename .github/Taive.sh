@@ -63,8 +63,7 @@ fi
 GITENV Dinhdangphanvung $DDPV
 
 # Thêm tên tác giả khi flash Rom
-Tacgia="$(grep -m1 'dir="auto">Tacgia:' $TOME/1.ht | awk -F'Tacgia:' '{print $2}')"
-GITENV Tacgia $Tacgia
+GITENV Tacgia "chamchamfy"
 
 # Chọn sv upload
 GITENV SEVERUP "$(checktc Transfer)"
