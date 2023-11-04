@@ -57,7 +57,8 @@ fi
 GITENV AGPU $DGPU
 
 # Tùy chọn loại hệ thống
-if [[ "$(checktc 'Cho phép ghi đọc')" == 1 ]]; then DDPV="ext4"
+if [[ "$(checktc 'Theo hệ thống')" == 1 ]]; then DDPV="0"
+elif [[ "$(checktc 'Cho phép ghi đọc')" == 1 ]]; then DDPV="ext4"
 elif [[ "$(checktc 'Chỉ đọc')" == 1 ]]; then DDPV="erofs"
 else DDPV="0"
 fi
