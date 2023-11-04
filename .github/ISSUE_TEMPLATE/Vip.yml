@@ -72,16 +72,6 @@ body:
       default: 0
     validations:
       required: true
-  - type: input
-    attributes:
-      label: Nhập tên tác giả
-      description: |
-        Tác giả: chamchamfy & kakathic
-        Tên tác giả hiển thị khi flash zip ROM.
-      placeholder: "Tác giả:"
-      value: "Tacgia: "
-    validations:
-      required: true
   - type: dropdown
     attributes:
       label: Sever Upload

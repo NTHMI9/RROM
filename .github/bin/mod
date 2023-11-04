@@ -11,27 +11,6 @@ tenmamay=$(sudo grep 'ro.product.odm.device' $phanvungtam/odm/etc/build.prop | a
 # Đường dẫn thư mục vendor: $phanvungtam/vendor 
 # Đường dẫn thư mục product: $phanvungtam/product 
 # Đường dẫn thư mục system_ext: $phanvungtam/system_ext
-
-cuphap() {
-# Nếu biết tên smali
-noichua=$(find 'đường dẫn thư mục' -type f -name 'tên smali'); 
-phuongthuc='phương thức cần tìm'
-cuoi='phương thức cuối'
-noidung='nội dung thay thế'
-dong="nội dung cần tìm để thay dòng nếu có"
-chạy lệnh: thayphuongthuc/chendau/chentruoc/chensau/thaygiua/thaythedoan/thaydoan/chendoan/thaydong/thaychuoi
-boten; 
-# Không biết tên smali
-taptin=$(find 'đường dẫn thư mục' -type f -name '*.smali');
-for noichua in $taptin; do
-phuongthuc='phương thức cần tìm'
-cuoi='phương thức cuối'
-noidung='nội dung thay thế'
-dong="nội dung cần tìm để thay dòng nếu có"
-chạy lệnh: thayphuongthuc/chendau/chentruoc/chensau/thaygiua/thaythedoan/thaydoan/chendoan/thaydong/thaychuoi
-boten;
-done
-}
 #
 Caidat() {
 for tjar in Joyose1 Settings1 MIUISystemUIPlugin1 MIUIPackageInstaller MiuiSystemUI1; do
