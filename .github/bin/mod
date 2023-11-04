@@ -11,7 +11,47 @@ tenmamay=$(sudo grep 'ro.product.odm.device' $phanvungtam/odm/etc/build.prop | a
 # Đường dẫn thư mục vendor: $phanvungtam/vendor 
 # Đường dẫn thư mục product: $phanvungtam/product 
 # Đường dẫn thư mục system_ext: $phanvungtam/system_ext
-#
+########
+# tìm kiếm văn bản và hiện đường dẫn, in đường dẫn vào file để xác định class.dex cần dùng
+Timkiem(){ find $2 -name "*.smali" -exec grep -Rl "$1" {} + | tee -a 1z.txt; }
+
+# thay thế toàn bộ phương thức method 
+Vsmali(){
+patVsmali="$(Timkiem "$(echo "$1" | sed '/^$/d' | head -n1)" "$2")"
+so="$(grep -nm1 "$(echo "$1" | sed '/^$/d' | head -n1)" "$patVsmali" | cut -d: -f1;)"
+sed -i "$so,/$(echo "$1" | sed '/^$/d' | tail -n1)/c ${1//
+/\\n}" "$patVsmali"; }
+
+mẫu1() {
+Vsmali '
+.method public performHapticFeedback(Landroid/view/View;I)Z
+    .locals 1
+    const/4 v0, 0x0
+    return v0
+.end method
+' './*.smali'
+}
+
+# nâng cao, thay đổi 1 dòng trong method 
+Nsmali(){
+patNsmali="$(Timkiem "$(echo "$1" | sed '/^$/d' | head -n1)" "$6")"
+so2="$(sed = "$patNsmali" | sed 'N;s/\n/:\t/' | sed -n "$(grep -nm1 "$1" "$patNsmali" | cut -d: -f1;),/$2/p" | grep "$3" | cut -d: -f1 | sed -n "${5}p")"
+sed -i "${so2}c $4" "$patNsmali"; }
+
+mẫu2() {
+Nsmali '.method public performHapticFeedback(Landroid/view/View;I)Z' '.end method' \
+'invoke-virtual {p1, v0}, Landroid/view/View;->performHapticFeedback(I)Z' \
+'invoke-virtual {p1, v0}, Landroid/view/View;->performHapticFeedback(I)Z \n kakathic' '1' './*.smali'
+}
+
+# 1 tìm kiếm văn bản
+# 2 kết thúc dòng tìm kiếm
+# 3 tìm kiếm văn bản trong kết quả tìm kiếm 1
+# 4 thay thế số 3
+# 5 trường hợp có 2 dòng ở mục 3 trùng khớp mặc định nên để số 1 để chọn dòng đầu
+# ví dụ: const/4 v0, 0x0 có 2 dòng, mẫu thay thế dòng 2
+# 6 đường dẫn smali
+########
 Caidat() {
 for tjar in Joyose1 Settings1 MIUISystemUIPlugin1 MIUIPackageInstaller MiuiSystemUI1; do
 Timfile "$tjar.apk"
