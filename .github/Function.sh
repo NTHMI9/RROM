@@ -31,4 +31,5 @@ addlabel "Thất bại"
 removelabel "Wait"
 removelabel "Build"
 cancelrun
+exit
 }
