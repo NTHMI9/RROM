@@ -6,7 +6,7 @@ sudo apt-get install curl > /dev/null;
 sudo cp /usr/share/zoneinfo/Asia/Ho_Chi_Minh /etc/localtime
 
 # chat bot chào & thêm nhãn chờ
-Chatbot 'Bắt đầu xây dựng, vui lòng chờ...<br/><br/>Sau khi xong link sẽ được gửi vào bài viết này, hoặc xem quá trình xây dựng 📱[Actions](https://github.com/chamchamfy/RROM/actions/runs/'$GITHUB_RUN_ID')<br/><br/>Muốn sửa quá trình xây dựng hãy ấn nút `Close Issues`, chỉ có thể sửa khi đang tải rom về.' >/dev/null    
+Chatbot "Bắt đầu xây dựng, vui lòng chờ...<br/><br/>Sau khi xong link sẽ được gửi vào bài viết này, hoặc xem quá trình xây dựng 📱[Actions](https://github.com/chamchamfy/RROM/actions/runs/'$GITHUB_RUN_ID')<br/><br/>Muốn sửa quá trình xây dựng hãy ấn nút `Close Issues`, chỉ có thể sửa khi đang tải rom về." 2>/dev/null   
 addlabel "Wait"
 
 # CÁC TÙY CHỌN WEB
