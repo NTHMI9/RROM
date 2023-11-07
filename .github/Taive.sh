@@ -47,21 +47,18 @@ GITENV Vfstab "$(checkbox 'Bỏ mã hoá Rom')"
 GITENV APPM "$(checkbox 'Thêm ứng dụng đã Mod')"
 
 # Tùy chọn Adreno GPU Driver
-if [[ "$(checktc 'Phiên bản GPU 690')" == 1 ]]; then DGPU="690"
-elif [[ "$(checktc 'Phiên bản GPU 725')" == 1 ]]; then DGPU="725"
-elif [[ "$(checktc 'Phiên bản GPU 728')" == 1 ]]; then DGPU="728"
-elif [[ "$(checktc 'Phiên bản GPU 615')" == 1 ]]; then DGPU="615"
-elif [[ "$(checktc 'Phiên bản GPU 651')" == 1 ]]; then DGPU="651"
-else DGPU="0"
-fi
+[[ -n "$(grep 'Mặc định' $TOME/1.ht)" ]] && DGPU="0"
+[[ -n "$(grep 'Phiên bản GPU 690' $TOME/1.ht)" ]] && DGPU="690"
+[[ -n "$(grep 'Phiên bản GPU 725' $TOME/1.ht)" ]] && DGPU="725"
+[[ -n "$(grep 'Phiên bản GPU 728' $TOME/1.ht)" ]] && DGPU="728"
+[[ -n "$(grep 'Phiên bản GPU 615' $TOME/1.ht)" ]] && DGPU="615"
+[[ -n "$(grep 'Phiên bản GPU 651' $TOME/1.ht)" ]] && DGPU="651"
 GITENV AGPU $DGPU
 
 # Tùy chọn loại hệ thống
-if [[ "$(checktc 'Theo hệ thống')" == 1 ]]; then DDPV="0"
-elif [[ "$(checktc 'Cho phép ghi đọc')" == 1 ]]; then DDPV="ext4"
-elif [[ "$(checktc 'Chỉ đọc')" == 1 ]]; then DDPV="erofs"
-else DDPV="0"
-fi
+[[ -n "$(grep 'Theo hệ thống' $TOME/1.ht)" ]] && DDPV="0"
+[[ -n "$(grep 'Chỉ đọc' $TOME/1.ht)" ]] && DDPV="erofs"
+[[ -n "$(grep 'Cho phép ghi đọc' $TOME/1.ht)" ]] && DDPV="ext4"
 GITENV Dinhdangphanvung $DDPV
 
 # Thêm tên tác giả khi flash Rom
