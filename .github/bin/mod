@@ -704,7 +704,7 @@ if [[ "$AGPU" == "690" ]]; then
  elif [[ "$AGPU" == "651" ]]; then 
  Taive "https://github.com/chamchamfy/toolcc/raw/main/AdrenoGPUDriver651.zip" "$TOME/AdrenoGPUDriver.zip"
 fi 
-if [[ -s "$TOME/AdrenoGPUDriver.zip" ]]; then echo " * Thêm Adreno GPU Driver..."
+if [[ -s "$TOME/AdrenoGPUDriver.zip" ]]; then echo " * Thêm Adreno GPU Driver $AGPU..."
 mkdir -p $TOME/tam
 7za x -tzip -y $TOME/AdrenoGPUDriver.zip -o$TOME/tam >/dev/null
 sudo cp -af $TOME/tam/system/vendor/* $phanvungtam/vendor 
