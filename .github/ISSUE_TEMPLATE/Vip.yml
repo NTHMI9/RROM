@@ -67,8 +67,7 @@ body:
         - Phiên bản GPU 690 (SDM8250)
         - Phiên bản GPU 725 (SDM8250)
         - Phiên bản GPU 728 (SDM8250)
-        - Phiên bản GPU 615 (SDM8350)
-        - Phiên bản GPU 651 (SDM8350)
+        - Phiên bản GPU 615 (SDM8350)       
       default: 0
     validations:
       required: true
