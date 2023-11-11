@@ -385,6 +385,7 @@ productfc="/product u:object_r:system_file:s0
 /product/priv-app/Gallery_T_CN/Gallery_T_CN\.apk u:object_r:system_file:s0
 /product/priv-app/MiuiGallery u:object_r:system_file:s0
 /product/priv-app/MiuiGallery/MiuiGallery\.apk u:object_r:system_file:s0
+/product/priv-app/MiuiExtraPhoto/MiuiExtraPhoto.\apk u:object_r:system_file:s0
 /product/priv-app/GoogleServicesFramework u:object_r:system_file:s0
 /product/priv-app/GoogleServicesFramework/GoogleServicesFramework\.apk u:object_r:system_file:s0
 /product/priv-app/LatinImeGoogle u:object_r:system_file:s0
@@ -634,6 +635,8 @@ product/priv-app/CarrierServices 0 0 0755
 product/priv-app/CarrierServices/CarrierServices.apk 0 0 0644
 product/priv-app/Gallery_T_CN 0 0 0755
 product/priv-app/Gallery_T_CN/Gallery_T_CN.apk 0 0 0644
+product/priv-app/MiuiExtraPhoto 0 0 0755
+product/priv-app/MiuiExtraPhoto/MiuiExtraPhoto.apk 0 0 0644
 product/priv-app/MiuiGallery 0 0 0755
 product/priv-app/MiuiGallery/MiuiGallery.apk 0 0 0644
 product/priv-app/GoogleServicesFramework 0 0 0755
