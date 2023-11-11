@@ -2,7 +2,7 @@
 TOME="$GITHUB_WORKSPACE"
 #phanvungtam=/mnt/tmp
 phanvungtam=$TOME/Unpack
-tenmamay=$(sudo grep 'ro.product.odm.device' $phanvungtam/odm/etc/build.prop | awk -F= '{print $2}' | awk '{$1=$1}{print}')
+[[ -f $phanvungtam/odm/etc/build.prop ]] && tenmamay=$(sudo grep 'ro.product.odm.device' $phanvungtam/odm/etc/build.prop | awk -F= '{print $2}' | awk '{$1=$1}{print}') || tenmamay=$(sudo grep 'ro.product.vendor.device' $phanvungtam/vendor/etc/build.prop | awk -F= '{print $2}' | awk '{$1=$1}{print}')
 API=$(sudo grep 'ro.build.version.sdk=' $phanvungtam/system/system/build.prop | awk -F= '{print $2}');
 VERS=$(sudo grep 'ro.build.version.release=' $phanvungtam/system/system/build.prop | awk -F= '{print $2}');
 # Thư mục chứa apk,jar đã mod: $TOME/Mod
