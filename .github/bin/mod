@@ -735,10 +735,10 @@ fi
  mkdir -p $TOME/twrp
  taivetwrp() { kkurl="recovery-for-xiaomi-devices"; Taive "$(Xem "$(Xem "https://sourceforge.net/projects/$kkurl/files/$tenmamay" | grep -om1 "https://.*./$kkurl/files/$tenmamay/.*$1.*" | cut -d '"' -f1)?use_mirror=zenlayer&amp=&use_mirror=zenlayer&r=" | grep -om1 "https://.*./$kkurl/.*$1.*" | cut -d '"' -f1)" "$2"; }
 if [[ -n "$(grep 'recovery' $phanvungtam/vendor/etc/fstab.*)" ]]; then 
-  if [[ "$MREC" == "1" ]]; then 
+  if [[ "$MREC" == "OF" ]]; then 
   taivetwrp "OrangeFox-" "$TOME/twrp/fox.zip" 
   7za x -tzip -y $TOME/twrp/fox.zip *.img -o$TOME/twrp/recovey.img >/dev/null && rm -rf $TOME/twrp/fox.zip 2>/dev/null
-  else 
+  elif [[ "$MREC" == "TWRP" ]]; then 
   taivetwrp "twrp-" "$TOME/twrp/recovey.img"
   fi
 else 
@@ -746,10 +746,10 @@ else
   if [[ -n "$(echo "$URL" | grep 'MIXM')" ]]; then linktwrp="https://sourceforge.net/projects/chamchamfy/files/Tools/boot_global_$tenmamay.img"; elif [[ -n "$(echo "$URL" | grep 'TWXM')" ]]; then linktwrp="https://sourceforge.net/projects/chamchamfy/files/Tools/boot_tw_$tenmamay.img"; fi
   Taive "$linktwrp" "$TOME/twrp/boot.img"
  else
-  if [[ "$MREC" == "1" ]]; then 
+  if [[ "$MREC" == "OF" ]]; then 
   taivetwrp "OrangeFox-" "$TOME/twrp/fox.zip" 
   7za x -tzip -y $TOME/twrp/fox.zip *.img -o$TOME/twrp/boot.img >/dev/null && rm -rf $TOME/twrp/fox.zip 2>/dev/null
-  else 
+  elif [[ "$MREC" == "TWRP" ]]; then 
   taivetwrp "twrp-" "$TOME/twrp/boot.img"
   fi
  fi
