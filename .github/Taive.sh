@@ -30,7 +30,11 @@ fi
 # link url rom và size 
 URLKK="$(grep -m1 'dir="auto">Url:' $TOME/1.ht | grep -o 'Url:.*<' | sed 's|Url:<||' | cut -d '"' -f2)"
 #SIZEKK="$(grep -o 'dir="auto">.*GB' $TOME/1.ht | cut -d '>' -f2 | sed 's|GB||')"
-RECOVERYMOD="$(checktc OrangeFox)"
+
+# Thêm recovery mod
+[[ -n "$(grep 'Không thêm' $TOME/1.ht)" ]] && RECOVERYMOD="0"
+[[ -n "$(grep 'OrangeFox' $TOME/1.ht)" ]] && RECOVERYMOD="1"
+[[ -n "$(grep 'TWRP' $TOME/1.ht)" ]] && RECOVERYMOD="TWRP"
 GITENV MREC $RECOVERYMOD
 
 # Gắn lên git env
