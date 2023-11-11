@@ -24,8 +24,9 @@ body:
         Dùng `Twrp`, hoặc `OrangeFox`
         Lưu ý: Nếu chọn Fox một số rom sẽ không có sẵn nó sẽ tự chọn Twrp.
       options:
-        - OrangeFox ( Ưu tiên )
-        - Twrp
+        - Không thêm
+        - OrangeFox
+        - TWRP
       default: 0
     validations:
       required: true
