@@ -56,7 +56,6 @@ body:
         - label: "Thêm âm thanh HARMAN KARDON"
         - label: "Vá hệ thống"
         - label: "Bỏ mã hoá Rom"
-        - label: "Thêm ứng dụng đã Mod"
         - label: Test
           required: false
   - type: dropdown
