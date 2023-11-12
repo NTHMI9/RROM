@@ -20,19 +20,19 @@ jobs:
       - name: 'Tải về'
         run: |
           # Taive          
-          bash .github/Taive.sh 2>&1 | tee -a .github/log.txt
+          bash .github/Taive.sh 2>&1 | tee -a log.txt
       - name: 'Xem build ROM'
         run: |
           # CC          
-          bash .github/Chay.sh 2>&1 | tee -a .github/log.txt
+          bash .github/Chay.sh 2>&1 | tee -a log.txt
       - name: Upload
         run: |
           # kakathic         
-          bash .github/Upload.sh 2>&1 | tee -a .github/log.txt
+          bash .github/Upload.sh 2>&1 | tee -a log.txt
       - name: Lưu Log
-        uses: EndBug/add-and-commit@v9
+        uses: actions/upload-artifact@v3
         with:
-          message: 'Upload Log'
-          add: 'log.txt --force'
-          cwd: './.github/'
+         name: Xem Log
+         path: log.txt
+         retention-days: 5
             
