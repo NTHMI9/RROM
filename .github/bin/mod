@@ -762,7 +762,7 @@ du -m $TOME/twrp/*.img 2>/dev/null
 if [[ "$GAPP" == "1" ]]; then 
 if [ "$VERS" == "12" ]; then PB=S; elif [ "$VERS" == "13" ]; then PB=T; elif [ "$VERS" == "14" ]; then PB=U; elif [ "$VERS" == "15" ]; then PB=V; elif [ "$VERS" == "16" ]; then PB=W; elif [ "$VERS" == "17" ]; then PB=X; elif [ "$VERS" == "18" ]; then PB=Y; elif [ "$API" == "19" ]; then PB=Z; fi
  Taive "https://sourceforge.net/projects/nikgapps/files/Releases/NikGapps-${PB}/07-Nov-2023/NikGapps-basic-arm64-${VERS}-20231107-signed.zip" "$TOME/gapp.zip"
- if [[ -s "$TOME/gapp.zip" ]]; then echo " * Thêm Gói Gapp..."
+ if [[ "$(du -m $TOME/gapp.zip | awk '{print $1}')" -gt 20 ]]; then echo " * Thêm Gói Gapp..."
  mkdir -p $TOME/gapp $TOME/tam
  7za x -tzip -y $TOME/gapp.zip -o$TOME/tam >/dev/null
  for f in $TOME/tam/AppSet/CarrierServices/*.zip $TOME/tam/AppSet/Core/*.zip; do 
