@@ -20,14 +20,19 @@ jobs:
       - name: 'Tải về'
         run: |
           # Taive          
-          bash .github/Taive.sh
+          bash .github/Taive.sh 2>&1 | tee -a .github/log.txt
       - name: 'Xem build ROM'
         run: |
           # CC          
-          bash .github/Chay.sh
+          bash .github/Chay.sh 2>&1 | tee -a .github/log.txt
       - name: Upload
         run: |
           # kakathic         
-          bash .github/Upload.sh
-
+          bash .github/Upload.sh 2>&1 | tee -a .github/log.txt
+      - name: Lưu Log
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: 'Upload Log'
+          add: 'log.txt --force'
+          cwd: './.github/'
             
