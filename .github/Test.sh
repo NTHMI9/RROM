@@ -28,7 +28,7 @@ danhsach='system vendor system_ext product odm mi_ext system_dlkm vendor_dlkm';
 Boot="boot boot_a vendor_boot vendor_boot_a"; 
 
 User="User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
-Taive() { curl -s -L -H "$User" "$1" -o "$2"; }
+Taive() { curl -S -L "$1" -o "$2"; }
 mkdir -p $TOME/{tmp,Unpack,Repack,Unzip,Payload,Super,Apk,Mod/tmp,VH,Up} 
 
 Taidulieu() { 
