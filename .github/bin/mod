@@ -85,7 +85,7 @@ boten;
 }
 sudo sed -i 's/"MIUI "/"MIUIVH "/g' $TOME/Mod/$tjar/classes*/com/android/settings/device/MiuiAboutPhoneUtils.smali 2>/dev/null
 sudo sed -i 's/"by xiaomi.eu"/"by MIUICC "/g' $TOME/Mod/$tjar/classes*/com/android/settings/device/MiuiAboutPhoneUtils.smali 2>/dev/null
-sudo sed -i 's/"by "/" "/g' $TOME/Mod/$tjar/classes*/com/android/settings/device/MiuiAboutPhoneUtils.smali 2>/dev/null 
+sudo sed -i 's/"ro.build.host"/"CC "/g' $TOME/Mod/$tjar/classes*/com/android/settings/device/MiuiAboutPhoneUtils.smali 2>/dev/null 
 [[ "$TKM" == "1" ]] && Tkm
  fi
  if [[ "$tjar" == "Joyose" ]]; then 
@@ -711,16 +711,12 @@ sudo cp -af $TOME/tam/system/vendor/* $phanvungtam/vendor
 sudo rm -rf $TOME/tam
 fi 
 #
-if [[ "$AGPU" == "690" ]]; then 
- Taive "https://github.com/chamchamfy/toolcc/raw/main/AdrenoGPUDriver690.zip" "$TOME/AdrenoGPUDriver.zip"
- elif [[ "$AGPU" == "725" ]]; then 
+
+
+if [[ "$AGPU" == "725" ]]; then 
  Taive "https://github.com/chamchamfy/toolcc/raw/main/AdrenoGPUDriver725.zip" "$TOME/AdrenoGPUDriver.zip"
- elif [[ "$AGPU" == "728" ]]; then 
- Taive "https://github.com/chamchamfy/toolcc/raw/main/AdrenoGPUDriver728.zip" "$TOME/AdrenoGPUDriver.zip"
  elif [[ "$AGPU" == "615" ]]; then 
  Taive "https://github.com/chamchamfy/toolcc/raw/main/AdrenoGPUDriver615.zip" "$TOME/AdrenoGPUDriver.zip"
- elif [[ "$AGPU" == "651" ]]; then 
- Taive "https://github.com/chamchamfy/toolcc/raw/main/AdrenoGPUDriver651.zip" "$TOME/AdrenoGPUDriver.zip"
 fi 
 if [[ -s "$TOME/AdrenoGPUDriver.zip" ]]; then echo " * Thêm Adreno GPU Driver $AGPU..."
 mkdir -p $TOME/tam
