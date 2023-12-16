@@ -27,9 +27,10 @@ Phanvung="system system_a vendor vendor_a product product_a system_ext odm odm_a
 danhsach='system vendor system_ext product odm mi_ext system_dlkm vendor_dlkm'; 
 Boot="boot boot_a vendor_boot vendor_boot_a"; 
 
-User="User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+User="User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36"
 Taive() { curl -S -k "$1" -o "$2"; }
-Taive2() { wget --no-check-certificate "$1" -O "$2"; }
+Taivewget() { wget --no-check-certificate "$1" -O "$2"; }
+Xem () { curl -s -G -L -N -H "$User" "$1"; }
 mkdir -p $TOME/{tmp,Unpack,Repack,Unzip,Payload,Super,Apk,Mod/tmp,VH,Up} 
 
 Taidulieu() { 
@@ -39,7 +40,7 @@ echo "TENZ=$Tenr" >> $GITHUB_ENV
 
 echo "- Tải về" 
 Taive "$URL" "$TOME/$Tenrom" 
-[ $? -ne 0 ] && Taive2 "$URL" "$TOME/$Tenrom"
+[ $? -ne 0 ] && Taivewget "$URL" "$TOME/$Tenrom"
 
 echo "- Giải nén rom" 
 if [[ -s $TOME/$Tenrom ]]; then 
