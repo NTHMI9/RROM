@@ -99,7 +99,7 @@ body:
         MIUIYoupin MIUIgreenguard MIpay MINextPay #MiAONService MSA MSA-Global Magisk Maps Meet MarkupGoogle MiBrowser MiBugReport MiCreditInStub MiGameCenterGlobal MiGameCenterSDKService MiGameService
         MiGameService_8550 MiLiveAssistant MiMobileNoti MiMover MiService MiShop MipayService Mirror #MiRadio MiuiAudioMonitor MiuiBugReport MiuiBugReportGlobal MiuiCompass #MiuiContentExtension MiuiDaemon
         MuiScanner MiuiVideoGlobal MiuiVipService Miuigreenguard ModemTestBox Music NewHome NextPay Notes ONS Opera PacProcessor PaymentService PaymentService_Global PersonalSafety PhotoTable Photos
-        #PlatformNetworkPermissionConfig #PlayAutoInstallStubApp Podcasts Protips ProxyHandler QuickSearchBox QuickSearchBox_M2M3 RideModeAudio #SecureElement SimAppDialog SmartHome SmartTravel SogouInput
+        #PlatformNetworkPermissionConfig #PlayAutoInstallStubApp Podcasts Protips ProxyHandler QuickSearchBox QuickSearchBox_M2M3 RideModeAudio #SecureElement SimAppDialog SmartHome SmartTravel #SogouInput
         SoundPickerGoogle Stk SystemAppUpdater SystemHelper TSMClient #Tag ThirdAppAssistant Traceur TranslationService UPTsmService UserDictionaryProvider Videos VipAccount VirtualSim VoiceAssist
         VoiceAssistAndroidT VoiceTrigger VsimCore WAPPushManager WMService WfdService XMCloudEngine XMPass Xinre XiaoAiSpeechEngine XiaoaiEdgeEngine XiaoaiRecommendation YTMusic YouDaoEngine YouTube
         aiasst_service com.google.mainline.adservices com.iflytek.inputmethod.miui com.miui.qr dpmserviceapp facebook-appmanager facebook-installer facebook-services greenguard mab mi_connect_service
