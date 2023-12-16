@@ -4,8 +4,9 @@ export User="User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWe
 
 mkdir -p $TOME/{tmp,Unpack,Repack,Unzip,Payload,Super,Apk,Mod/tmp,VH,Up}
 
-Xem () { curl -s -G -L -N -H "$User" --connect-timeout 20 "$1"; }
-Taive () { curl -L -N -H "$User" --connect-timeout 20 "$1" -o "$2"; }
+Xem () { curl -s -L -G -N -H "$User" "$1"; }
+Taive () { curl -S -k "$1" -o "$2"; }
+Taivewget() { wget --no-check-certificate "$1" -O "$2"; }
 
 # Thêm ad=123, thêm env v.v
 GITENV(){ [ "$2" ] || ( echo "- Error: $1"); echo "$1=$2" >> $GITHUB_ENV; eval "export $1='$2'"; }
