@@ -12,15 +12,15 @@ on property:init.svc.thermal-engine=running
 	stop logcatd
 # Van tay
 on init && property:ro.product.build.version.sdk=30
-    setprop ro.com.google.build.fingerprint=google/walleye/walleye:8.1.0/OPM1.171019.011/4448085:user/release-keys
+    setprop ro.com.google.build.fingerprint "google/marlin/marlin:10/QP1A.191005.007.A3/5972272:user/release-keys"
 on init && property:ro.product.build.version.sdk=31
-    setprop ro.com.google.build.fingerprint=google/walleye/walleye:8.1.0/OPM1.171019.011/4448085:user/release-keys
+    setprop ro.com.google.build.fingerprint "google/walleye/walleye:8.1.0/OPM1.171019.011/4448085:user/release-keys"
 on init && property:ro.product.build.version.sdk=32
-    setprop ro.com.google.build.fingerprint=google/walleye/walleye:8.1.0/OPM1.171019.011/4448085:user/release-keys
+    setprop ro.com.google.build.fingerprint "google/walleye/walleye:8.1.0/OPM1.171019.011/4448085:user/release-keys"
 on init && property:ro.product.build.version.sdk=33
-    setprop ro.com.google.build.fingerprint=google/walleye/walleye:8.1.0/OPM1.171019.011/4448085:user/release-keys
+    setprop ro.com.google.build.fingerprint "google/cheetah/cheetah:13/TQ1A.230205.002/9471150:user/release-keys"
 on init && property:ro.product.build.version.sdk=34
-    setprop ro.com.google.build.fingerprint=google/walleye/walleye:8.1.0/OPM1.171019.011/4448085:user/release-keys
+    setprop ro.com.google.build.fingerprint "google/husky/husky:14/UD1A.231105.004/11010374:user/release-keys"
 # run setprop
 on init
 	setprop ro.boot.hwc GLOBAL
@@ -102,7 +102,7 @@ on init
 	setprop persist.vendor.battery.health true
 	setprop ro.vendor.fps.switch.thermal true
 	setprop ro.vendor.fps.switch.default true
-	setprop ro.surface_flinger.use_content_detection_for_refresh_rate false
+	setprop ro.surface_flinger.use_content_detection_for_refresh_rate true
 	setprop persist.vendor.power.dfps.level 60,90,120 
 	setprop persist.sys.composition.type gpu
 	setprop persist.sys.smartfps 1
@@ -172,6 +172,16 @@ on init
     setprop persist.sys.NV_STEREOCTRL 0
     setprop persist.sys.NV_STEREOSEPCHG 0
     setprop persist.sys.NV_STEREOSEP 20
+    setprop ro.surface_flinger.set_idle_timer_ms 2147483647
+    setprop ro.surface_flinger.set_touch_timer_ms 2147483647
+    setprop ro.surface_flinger.set_display_power_timer_ms 2147483647
+    setprop ro.vendor.display.primary_idle_refresh_rate 1,120:3280
+    setprop persist.vendor.disable_idle_fps true
+    setprop persist.vendor.disable_idle_fps.threshold 492
+    setprop ro.vendor.display.idle_default_fps 120
+    setprop ro.vendor.display.idle_default_fps.support false
+    setprop ro.vendor.display.fod_monitor_default_fps 120
+
 # Set boot completed
 on property:sys.boot_completed=1
 	chmod 0755 /system/bin/spm
@@ -185,3 +195,7 @@ on property:sys.boot_completed=1
 	write /sys/fs/selinux/enforce 0
 	chmod 0640 /sys/fs/selinux/enforce
 	chmod 0440 /sys/fs/selinux/policy
+# DT2W
+on property:sys.boot_completed=1
+    write /sys/touchpanel/double_tap 1
+    
