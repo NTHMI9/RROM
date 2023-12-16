@@ -47,5 +47,7 @@ fi
 }
 
 Taidulieu
-. $TOME/Option.md
+ls $TOME/$Tenrom
+ls $TOME/Unzip
+#. $TOME/Option.md
 echo "- Kết thúc" 
