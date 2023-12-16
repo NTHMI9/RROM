@@ -46,6 +46,6 @@ else echo "- Không có tập tin rom"
 fi 
 }
 
-#Taidulieu
+Taidulieu
 . $TOME/Option.md
 echo "- Kết thúc" 
