@@ -52,11 +52,8 @@ GITENV APPM "$(checkbox 'Thêm ứng dụng đã Mod')"
 
 # Tùy chọn Adreno GPU Driver
 [[ -n "$(grep 'Mặc định' $TOME/1.ht)" ]] && DGPU="0"
-[[ -n "$(grep 'Phiên bản GPU 690' $TOME/1.ht)" ]] && DGPU="690"
 [[ -n "$(grep 'Phiên bản GPU 725' $TOME/1.ht)" ]] && DGPU="725"
-[[ -n "$(grep 'Phiên bản GPU 728' $TOME/1.ht)" ]] && DGPU="728"
 [[ -n "$(grep 'Phiên bản GPU 615' $TOME/1.ht)" ]] && DGPU="615"
-[[ -n "$(grep 'Phiên bản GPU 651' $TOME/1.ht)" ]] && DGPU="651"
 GITENV AGPU $DGPU
 
 # Tùy chọn loại hệ thống
@@ -83,7 +80,7 @@ pip3 install -r requirements.txt >/dev/null;
 ) & ( 
 
 
-Chatbot "- Bắt đầu tải ROM: $URL...";
+Chatbot "- Bắt đầu tải ROM: $URL ...";
 Taive "$URL" "$TOME/rom.zip" || exit 0
 mv "$TOME/rom.zip" "$TOME/$NEMEROM"
 [ -e "$TOME/$NEMEROM" ] || echo "$TOME/lag"
@@ -104,7 +101,7 @@ done
 )
 
 echo
-Chatbot "- Giải nén ROM ${URL##*/}..."
+Chatbot "- Giải nén ROM ${URL##*/} ..."
 
 if [[ -e "$TOME/$NEMEROM" ]] && [[ -s "$TOME/$NEMEROM" ]]; then
  if [ "$DINHDANG" == "zip" ]; then
