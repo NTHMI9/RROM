@@ -14,7 +14,7 @@ uname -a
 echo
 
 sudo apt-get update > /dev/null
-sudo apt-get install curl zstd binutils e2fsprogs erofs-utils simg2img img2simg zipalign > /dev/null
+sudo apt-get install wget curl zstd binutils e2fsprogs erofs-utils simg2img img2simg zipalign > /dev/null
 pip3 install protobuf bsdiff4 six crypto construct google docopt pycryptodome > /dev/null
 
 echo "protobuf<=3.20.1" > requirements.txt
@@ -29,6 +29,7 @@ Boot="boot boot_a vendor_boot vendor_boot_a";
 
 User="User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
 Taive() { curl -S "$1" -o "$2"; }
+Taive2() { wget -S "$1" -O "$2"; }
 mkdir -p $TOME/{tmp,Unpack,Repack,Unzip,Payload,Super,Apk,Mod/tmp,VH,Up} 
 
 Taidulieu() { 
@@ -38,6 +39,7 @@ echo "TENZ=$Tenr" >> $GITHUB_ENV
 
 echo "- Tải về" 
 Taive "$URL" "$TOME/$Tenrom" 
+[ $? -ne 0 ] && Taive2 "$URL" "$TOME/$Tenrom"
 
 echo "- Giải nén rom" 
 if [[ -s $TOME/$Tenrom ]]; then 
