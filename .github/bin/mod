@@ -115,7 +115,6 @@ boten;
 done
  fi
  if [[ "$tjar" == "MiuiSystemUI" ]]; then 
-[[ -d $TOME/Mod/$tjar/classes ]] && sudo cp -af $TOME/.github/libpy/pow/* $TOME/Mod/$tjar/classes
 noichua=$(find $TOME/Mod/$tjar/ -type f -name 'PrivacyItemControllerler.smali'); 
 phuongthuc='isMicicCameraAndabled('
 noidung='move-result p0'
