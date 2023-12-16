@@ -64,9 +64,7 @@ body:
       description: Thêm trình điều khiển ADRENO GPU Driver mới vào ROM, nên lựa chọn phù hợp vi xử lý.
       options:
         - Mặc định (không thêm)
-        - Phiên bản GPU 690 (SDM8250)
         - Phiên bản GPU 725 (SDM8250)
-        - Phiên bản GPU 728 (SDM8250)
         - Phiên bản GPU 615 (SDM8350)       
       default: 0
     validations:
