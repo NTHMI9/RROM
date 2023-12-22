@@ -690,16 +690,18 @@ system_extfs=""
 }
 #
 ngonngu() { 
-if [[ "$TTV" == "1" ]]; then echo " * Thêm ngôn ngữ..."
+if [[ "$TTV" == "1" ]]; then 
 mkdir -p $TOME/VH
 #Taive "https://github.com/kakathic/ZH-VN/releases/download/HH/TT_1.8.Zip" "$TOME/VH.zip"
 Taive "https://github.com/chamchamfy/toolcc/raw/main/overlay.zip" "$TOME/VH.zip"
 [ ! -f "$TOME/VH.zip" ] && Taivewget "https://github.com/chamchamfy/toolcc/raw/main/overlay.zip" "$TOME/VH.zip"
+if [[ -s "$TOME/VH.zip" ]]; then echo " * Thêm ngôn ngữ..."
 7za x -tzip -y "$TOME/VH.zip" -o$TOME/VH >/dev/null
-[[ -e $phanvungtam/product/overlay ]] && TMVH=$phanvungtam/product/overlay || TMVH=$phanvungtam/vendor/overlay
+[[ -e "$phanvungtam/product/overlay" ]] && TMVH=$phanvungtam/product/overlay || TMVH=$phanvungtam/vendor/overlay
 sudo cp -af $TOME/VH/apk/* $TMVH
 sudo cp -af $TOME/VH/GmsConfigOverlayCommon.apk $TMVH
 sudo rm -rf $TOME/VH
+fi
 fi
 } 
 ngonngu
@@ -715,11 +717,9 @@ fi
 
 if [[ "$AGPU" == "725" ]]; then 
  Taive "https://github.com/chamchamfy/toolcc/raw/main/AdrenoGPUDriver725.zip" "$TOME/AdrenoGPUDriver.zip"
- [ ! -f "$TOME/AdrenoGPUDriver.zip" ] && Taivewget "https://github.com/chamchamfy/toolcc/raw/main/AdrenoGPUDriver725.zip" "$TOME/AdrenoGPUDriver.zip"
  elif [[ "$AGPU" == "615" ]]; then 
  Taive "https://github.com/chamchamfy/toolcc/raw/main/AdrenoGPUDriver615.zip" "$TOME/AdrenoGPUDriver.zip"
- [ ! -f "$TOME/AdrenoGPUDriver.zip" ] && Taivewget "https://github.com/chamchamfy/toolcc/raw/main/AdrenoGPUDriver615.zip" "$TOME/AdrenoGPUDriver.zip"
-fi 
+ fi 
 if [[ -s "$TOME/AdrenoGPUDriver.zip" ]]; then echo " * Thêm Adreno GPU Driver $AGPU..."
 mkdir -p $TOME/tam
 7za x -tzip -y $TOME/AdrenoGPUDriver.zip -o$TOME/tam >/dev/null
