@@ -26,17 +26,22 @@ on init
 	setprop ro.boot.hwc GLOBAL
 	setprop ro.boot.hwcountry GLOBAL
 	setprop ro.boot.verifiedbootstate green
+	setprop ro.boot.flash.locked 1
 	setprop ro.secureboot.devicelock 1
-	setprop ro.secureboot.lockstate locked
+	setprop ro.secureboot.lockstate 1
 	setprop ro.boot.veritymode enforcing
 	setprop ro.boot.vbmeta.device_state locked
 	setprop vendor.boot.vbmeta.device_state locked
+	setprop ro.boot.warranty_bit=0
+	setprop ro.vendor.boot.warranty_bit=0
+	setprop ro.vendor.warranty_bit=0
+	setprop ro.warranty_bit=0
 	setprop ro.debuggable 0
 	setprop ro.secure 1
 	setprop ro.adb.secure 1
-	setprop ro.build.type user
 	setprop ro.allow.mock.location 0
-	setprop ro.boot.flash.locked 1
+	setprop ro.build.type user
+	setprop ro.build.tags release-keys
 	setprop persist.sys.usb.config adb,mtp
 	setprop debug.composition.type gpu
 	setprop debug.performance.tuning 1
@@ -152,26 +157,11 @@ on init
     setprop persist.radio.VT_ENABLE 1
     setprop persist.sys.cust.lte_config true
     setprop persist.rcs.supported 1
-    setprop dev.pm.dyn_samplingrate 1
-    setprop debug.gr.numframebuffers 3
-    setprop debug.performance.tuning 1
-    setprop debug.kill_allocating_task 0
+    setprop persist.sys.NV_FPSLIMIT 120
     setprop debug.qctwa.preservebuf 1
     setprop debug.qctwa.statusbar 1
     setprop debug.qc.hardware true
     setprop com.qc.hardware true
-    setprop hw3d.force 1
-    setprop hw2d.force 1
-    setprop force_hw_ui true
-    setprop ro.product.gpu.driver 1
-    setprop persist.sys.ui.hw 1
-    setprop persist.sys.purgeable_assets 1
-    setprop persist.sys.NV_FPSLIMIT 120
-    setprop persist.sys.NV_POWERMODE 1
-    setprop persist.sys.NV_PROFVER 15
-    setprop persist.sys.NV_STEREOCTRL 0
-    setprop persist.sys.NV_STEREOSEPCHG 0
-    setprop persist.sys.NV_STEREOSEP 20
     setprop ro.surface_flinger.set_idle_timer_ms 2147483647
     setprop ro.surface_flinger.set_touch_timer_ms 2147483647
     setprop ro.surface_flinger.set_display_power_timer_ms 2147483647
