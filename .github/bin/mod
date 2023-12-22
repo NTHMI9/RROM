@@ -737,23 +737,18 @@ fi
 if [[ -n "$(grep 'recovery' $phanvungtam/vendor/etc/fstab.*)" ]]; then 
   if [[ "$MREC" == "1" ]]; then 
   taivetwrp "OrangeFox-" "$TOME/twrp/fox.zip" 
-  7za x -tzip -y $TOME/twrp/fox.zip *.img -o$TOME/twrp/recovey.img >/dev/null && rm -rf $TOME/twrp/fox.zip 2>/dev/null
+  7za x -tzip -y $TOME/twrp/fox.zip *.img -o$TOME/twrp/recovery.img >/dev/null && rm -rf $TOME/twrp/fox.zip 2>/dev/null
   elif [[ "$MREC" == "TWRP" ]]; then 
-  taivetwrp "twrp-" "$TOME/twrp/recovey.img"
+  taivetwrp "twrp-" "$TOME/twrp/recovery.img"
   fi
 else 
- if [[ "$tenmamay" == "vili" ]]; then 
-  if [[ -n "$(echo "$URL" | grep 'MIXM')" ]]; then linktwrp="https://sourceforge.net/projects/chamchamfy/files/Tools/boot_global_$tenmamay.img"; elif [[ -n "$(echo "$URL" | grep 'TWXM')" ]]; then linktwrp="https://sourceforge.net/projects/chamchamfy/files/Tools/boot_tw_$tenmamay.img"; fi
-  Taive "$linktwrp" "$TOME/twrp/boot.img"
- else
   if [[ "$MREC" == "1" ]]; then 
   taivetwrp "OrangeFox-" "$TOME/twrp/fox.zip" 
-  7za x -tzip -y $TOME/twrp/fox.zip *.img -o$TOME/twrp/boot.img >/dev/null && rm -rf $TOME/twrp/fox.zip 2>/dev/null
+  7za x -tzip -y $TOME/twrp/fox.zip *.img -o$TOME/twrp/twrp.img >/dev/null && rm -rf $TOME/twrp/fox.zip 2>/dev/null
   elif [[ "$MREC" == "TWRP" ]]; then 
-  taivetwrp "twrp-" "$TOME/twrp/boot.img"
+  taivetwrp "twrp-" "$TOME/twrp/twrp.img"
   fi
  fi
-fi
 [[ -n "$(ls $TOME/twrp/*.img 2>/dev/null)" ]] && echo " * Thêm Recovery $tenmamay..."
 du -m $TOME/twrp/*.img 2>/dev/null
 #
