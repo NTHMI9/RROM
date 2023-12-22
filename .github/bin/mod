@@ -749,6 +749,12 @@ else
   taivetwrp "twrp-" "$TOME/twrp/twrp.img"
   fi
  fi
+if [[ "$tenmamay" == "vili" ]]; then 
+ if [[ ! -f "$TOME/twrp/twrp.img" ]]; then 
+  if [[ -n "$(echo "$URL" | grep 'MIXM')" ]]; then linktwrp="https://sourceforge.net/projects/chamchamfy/files/Tools/boot_global_$tenmamay.img"; elif [[ -n "$(echo "$URL" | grep 'TWXM')" ]]; then linktwrp="https://sourceforge.net/projects/chamchamfy/files/Tools/boot_tw_$tenmamay.img"; fi
+  Taive "$linktwrp" "$TOME/twrp/boot.img"
+ fi
+fi
 [[ -n "$(ls $TOME/twrp/*.img 2>/dev/null)" ]] && echo " * Thêm Recovery $tenmamay..."
 du -m $TOME/twrp/*.img 2>/dev/null
 #
