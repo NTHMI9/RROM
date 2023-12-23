@@ -32,10 +32,10 @@ on init
 	setprop ro.boot.veritymode enforcing
 	setprop ro.boot.vbmeta.device_state locked
 	setprop vendor.boot.vbmeta.device_state locked
-	setprop ro.boot.warranty_bit=0
-	setprop ro.vendor.boot.warranty_bit=0
-	setprop ro.vendor.warranty_bit=0
-	setprop ro.warranty_bit=0
+	setprop ro.boot.warranty_bit 0
+	setprop ro.vendor.boot.warranty_bit 0
+	setprop ro.vendor.warranty_bit 0
+	setprop ro.warranty_bit 0
 	setprop ro.debuggable 0
 	setprop ro.secure 1
 	setprop ro.adb.secure 1
@@ -68,6 +68,12 @@ on init
 	#setprop ro.hardware.fp.fod false
 	#setprop ro.vendor.fod.dimlayer.enable false
 	#setprop ro.vendor.audio.dolby.vision.support true
+	setprop vendor.audio.dolby.ds2.enabled true
+    setprop vendor.audio.dolby.ds2.hardbypass true
+    setprop vendor.audio.lowpower false
+    setprop vendor.audio.feature.spkr_prot.enable false
+    setprop vendor.audio.offload.passthrough true
+    setprop persist.vendor.audio.misound.disable false
 	setprop ro.vendor.audio.enhance.support true
 	setprop ro.vendor.audio.gain.support true
 	setprop ro.vendor.audio.game.effect true
