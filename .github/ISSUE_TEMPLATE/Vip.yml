@@ -93,7 +93,7 @@ body:
         #AiAsstVision_L2 #AiAsstVision_8550 AnalyticsCore AndroidAutoStub #AutoRegistration BaiduIME BasicDreams BookmarkProvider Browser Chrome Chrome64 #CloudPrint2 CtsShimPrebuilt #DMRegService
         #DiracAudioControlService Driver Duo DynamicSystemInstallationService EasterEgg Email FusedLocationProvider #FamilyLinkParentalControls GameCenter GameCenterGlobal Gmail2 GoogleFeedback
         GoogleLocationHistory GoogleNews GoogleOne GoogleOneTimeInitializer #HybridAccessory #HybridPlatform KSICibaEngine MIBrowserGlobal MIBrowserGlobal_removable MIBrowserGlobal_builtin_before_2021
-        MICOMMUNITY_OVERSEA MIFinance MIPlayClient MISTORE_OVERSEA MIService MIServiceGlobal MITSMClient MIUIAICR MIUIAiasstService MIUIBrowser #MIUIBarrage #MIUIBarrageV2 MIUIDriveMode MIUIDuokanReader
+        MICOMMUNITY_OVERSEA MIFinance MIPlayClient MISTORE_OVERSEA MIService MIServiceGlobal MITSMClient #MIUIAICR MIUIAiasstService MIUIBrowser #MIUIBarrage #MIUIBarrageV2 MIUIDriveMode MIUIDuokanReader
         MIUIEmail MIUIGameCenter #MIUIGlobalMinusScreenWidget MIUIHuanji MIUIMiDrive MIUIMiPicks MIUIMusic MIUIMusicT MIUINewHome MIUINewHome_Removable MIUIQuickSearchBox MIUIReporter MIUIScanner
         #MIUISuperMarket #MIUISuperMarket_M2_M3 MIUISystemAppUpdater MIUIVideo MIUIVideoPlayer MIUIVipAccount MIUIVipService MIUIVirtualSim MIUIXiaoAiSpeechEngine MIUIXiaoAiSpeechEngine-matisse
         MIUIYoupin MIUIgreenguard MIpay MINextPay #MiAONService MSA MSA-Global Magisk Maps Meet MarkupGoogle MiBrowser MiBugReport MiCreditInStub MiGameCenterGlobal MiGameCenterSDKService MiGameService
