@@ -89,8 +89,8 @@ body:
       value: |
         #Calculator #Calendar #CleanMaster #Health #MIShare #MIShareGlobal #MIUIAod #MIUICalculator #MIUICalculatorGlobal #MIUICalendar #MIUICleanMaster #MIUICleanMasterGlobal-cleaner
         #MIUICompass #MIUICompassGlobal #MIUIMusicGlobal #MIUINotes #MIUIPersonalAssistant #MIUIYellowPage #MIUIYellowPageGlobal #MiGalleryLockScreen #MiGalleryLockScreenGlobal #MiGalleryLockScreenGlobalT
-        #MiGalleryLockScreen-T #MiLink #MiLinkGlobal #MiRadio #MiuiAod #MiuiPersonalAssistant #MiuiPlayClient #MiuiWeather #MiuiYellowPage #PersonalAssistant #Weather #Wellbeing #ANGLE AiAsstVision
-        AiAsstVision_L2 AiAsstVision_8550 AnalyticsCore AndroidAutoStub #AutoRegistration BaiduIME BasicDreams BookmarkProvider Browser Chrome Chrome64 #CloudPrint2 CtsShimPrebuilt #DMRegService
+        #MiGalleryLockScreen-T #MiLink #MiLinkGlobal #MiRadio #MiuiAod #MiuiPersonalAssistant #MiuiPlayClient #MiuiWeather #MiuiYellowPage #PersonalAssistant #Weather #Wellbeing #ANGLE #AiAsstVision
+        #AiAsstVision_L2 #AiAsstVision_8550 AnalyticsCore AndroidAutoStub #AutoRegistration BaiduIME BasicDreams BookmarkProvider Browser Chrome Chrome64 #CloudPrint2 CtsShimPrebuilt #DMRegService
         #DiracAudioControlService Driver Duo DynamicSystemInstallationService EasterEgg Email FusedLocationProvider #FamilyLinkParentalControls GameCenter GameCenterGlobal Gmail2 GoogleFeedback
         GoogleLocationHistory GoogleNews GoogleOne GoogleOneTimeInitializer #HybridAccessory #HybridPlatform KSICibaEngine MIBrowserGlobal MIBrowserGlobal_removable MIBrowserGlobal_builtin_before_2021
         MICOMMUNITY_OVERSEA MIFinance MIPlayClient MISTORE_OVERSEA MIService MIServiceGlobal MITSMClient MIUIAICR MIUIAiasstService MIUIBrowser #MIUIBarrage #MIUIBarrageV2 MIUIDriveMode MIUIDuokanReader
